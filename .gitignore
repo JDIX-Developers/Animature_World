@@ -1,5 +1,5 @@
 *.class
-
-# Package Files #
+*~
+# Archivos de paquete #
 *.war
 *.ear
