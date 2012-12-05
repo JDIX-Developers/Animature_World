@@ -27,6 +27,36 @@ public class Mapa extends Container {
 	private Dimension dimensión;
 
 	/**
+	 * @param args Argumentos
+	 * @throws IOException Si hay un error de IO
+	 */
+	public static void main(String[] args) throws IOException
+	{
+		Cuadrado.setSprite("img/sprites/prueba.png");
+
+		//Prueba sin compresión
+		byte[] b = {0x04, 0x05,
+				0x03, 0x01, 0X00, 0x01, 0x01, 0x00, 0x02, 0x01,
+				0x00, 0x01, 0x02, 0x01, 0x01, 0x01, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x03, 0x01,
+				0x02, 0x01, 0x00, 0x00, 0x02, 0x01, 0x01, 0x00,
+				0x02, 0x01, 0x02, 0x01, 0x03, 0x00, 0x00, 0x00
+		};
+
+		Mapa m = new Mapa(b);
+
+		System.out.println(m.getAncho() + "x" + m.getAlto());
+
+		m.guardar("mapas/prueba.map");
+
+		Mapa m2 = new Mapa("mapas/prueba.map");
+		System.out.println(m.getAncho() + "x" + m.getAlto());
+		m2.imprimirArray();
+
+		//TODO Prueba con compresión
+	}
+
+	/**
 	 * @param datos Array de datos del mapa
 	 */
 	public Mapa(Cuadrado[][] datos)
@@ -232,30 +262,61 @@ public class Mapa extends Container {
 	}
 
 	/**
-	 * @param args Argumentos
-	 * @throws IOException Si hay un error de IO
+	 * Comprime el mapa actual
 	 */
-	public static void main(String[] args) throws IOException
+	public void comprimir()
 	{
-		//Prueba sin compresión
-		byte[] b = {0x04, 0x05,
-				0x05, 0x0F, 0X00, 0x02, 0x01, 0x08, 0x01, 0x03,
-				0x0B, 0x0B, 0x03, 0x0C, 0x0D, 0x05, 0x07, 0x0A,
-				0x03, 0x08, 0x08, 0x03, 0x05, 0x0E, 0x04, 0x03,
-				0x0F, 0x01, 0x00, 0x00, 0x00, 0x03, 0x0F, 0x06,
-				0x06, 0x09, 0x08, 0x02, 0x0A, 0x0C, 0x04, 0x06
-		};
+		//TODO Comprimir archivo
+	}
 
-		Mapa m = new Mapa(b);
+	/**
+	 * Descomprime el archivo actual
+	 * Puede que no sea necesario, ya que el algoritmo es muy simple
+	 */
+	private void descomprimir()
+	{
+		//TODO Descomprimir archivo
+	}
 
-		System.out.println(m.getAncho() + "x" + m.getAlto());
+	/**
+	 * Clase de compresión de mapas
+	 * @author Razican (Iban Eguia)
+	 *
+	 */
+	private class Compresor {
 
-		m.guardar("mapa.map");
+		private byte[][] a2d;
+		private byte[]	 array;
+		private byte[]	 arrc;
+		private byte[]	 arrd;
 
-		Mapa m2 = new Mapa("mapa.map");
-		System.out.println(m.getAncho() + "x" + m.getAlto());
-		m2.imprimirArray();
+		public Compresor(byte[] a)
+		{
+			this.array = a;
+		}
 
-		//TODO Prueba con compresión
+		public byte[] comprimir()
+		{
+			if (arrc == null)
+			{
+				//TODO Implementar algoritmo de compresión
+			}
+
+			return arrc;
+		}
+
+		/**
+		 * @return array descomprimido
+		 * Puede que no sea necesario, ya que la descompresión es muy simple
+		 */
+		public byte[] descomprimir()
+		{
+			if (arrd == null)
+			{
+				//TODO Implementar algoritmo de compresión
+			}
+
+			return arrd;
+		}
 	}
 }

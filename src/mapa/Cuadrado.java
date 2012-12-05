@@ -105,7 +105,7 @@ public class Cuadrado extends JComponent {
 		{
 			cuadrados = new Cuadrado[sprite.getWidth()/TAMAÑO][sprite.getHeight()/TAMAÑO];
 		}
-		if (x > sprite.getWidth()/TAMAÑO || y > sprite.getHeight()/TAMAÑO)
+		if (x > sprite.getWidth()/TAMAÑO-1 || y > sprite.getHeight()/TAMAÑO-1)
 		{
 			throw new SpriteException("No hay una imagen para esas coordenadas");
 		}
