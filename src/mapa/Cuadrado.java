@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
+import utilities.MathUtils;
 import excepciones.CompressionException;
 import excepciones.SpriteException;
 
@@ -56,11 +57,18 @@ public class Cuadrado extends JComponent {
 	}
 
 	@Override
+	public String toString()
+	{
+		return "(" + this.x + "," + this.y + ")";
+	}
+
+	@Override
 	public void paint(Graphics g)
 	{
 		super.paint(g);
 
 		//TODO Pintar el cuadrado
+		//OJO con los unsigneds
 	}
 
 	/**
@@ -97,6 +105,7 @@ public class Cuadrado extends JComponent {
 	 */
 	public static Cuadrado cargar(byte x, byte y) throws SpriteException, CompressionException
 	{
+		int xi = MathUtils.uByteToInt(x), yi = MathUtils.uByteToInt(y);
 		if (sprite == null)
 		{
 			throw new SpriteException();
@@ -105,15 +114,15 @@ public class Cuadrado extends JComponent {
 		{
 			cuadrados = new Cuadrado[sprite.getWidth()/TAMAÑO][sprite.getHeight()/TAMAÑO];
 		}
-		if (x > sprite.getWidth()/TAMAÑO-1 || y > sprite.getHeight()/TAMAÑO-1)
+		if (xi > sprite.getWidth()/TAMAÑO-1 || yi > sprite.getHeight()/TAMAÑO-1)
 		{
-			throw new SpriteException("No hay una imagen para esas coordenadas");
+			throw new SpriteException("No hay una imagen para las coordenadas (" + xi + "," + yi + ")");
 		}
-		if (cuadrados[x][y] == null)
+		if (cuadrados[xi][yi] == null)
 		{
-			cuadrados[x][y] = new Cuadrado(x, y);
+			cuadrados[xi][yi] = new Cuadrado(x, y);
 		}
 
-		return cuadrados[x][y];
+		return cuadrados[xi][yi];
 	}
 }

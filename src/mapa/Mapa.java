@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
+import utilities.MathUtils;
 import excepciones.CompressionException;
 import excepciones.SpriteException;
 
@@ -36,22 +37,25 @@ public class Mapa extends Container {
 
 		//Prueba sin compresión
 		byte[] b = {0x04, 0x05,
-				0x03, 0x01, 0X00, 0x01, 0x01, 0x00, 0x02, 0x01,
-				0x00, 0x01, 0x02, 0x01, 0x01, 0x01, 0x00, 0x00,
-				0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x03, 0x01,
-				0x02, 0x01, 0x00, 0x00, 0x02, 0x01, 0x01, 0x00,
+				0x03, 0x01, 0X03, 0x01, 0x03, 0x01, 0x02, 0x01,
+				0x03, 0x01, 0x02, 0x01, 0x01, 0x01, 0x00, 0x00,
+				0x03, 0x01, 0x00, 0x01, 0x00, 0x01, 0x03, 0x01,
+				0x03, 0x01, 0x00, 0x00, 0x02, 0x01, 0x01, 0x00,
 				0x02, 0x01, 0x02, 0x01, 0x03, 0x00, 0x00, 0x00
 		};
 
 		Mapa m = new Mapa(b);
 
 		System.out.println(m.getAncho() + "x" + m.getAlto());
+		m.imprimirArray();
+		m.comprimir();
+		m.imprimirArray();
 
-		m.guardar("mapas/prueba.map");
-
-		Mapa m2 = new Mapa("mapas/prueba.map");
-		System.out.println(m.getAncho() + "x" + m.getAlto());
-		m2.imprimirArray();
+//		m.guardar("mapas/prueba.map");
+//
+//		Mapa m2 = new Mapa("mapas/prueba.map");
+//		System.out.println(m.getAncho() + "x" + m.getAlto());
+//		m2.imprimirArray();
 
 		//TODO Prueba con compresión
 	}
@@ -142,7 +146,7 @@ public class Mapa extends Container {
 
 	private void calcularDimensión()
 	{
-		this.dimensión = new Dimension(this.array[0], this.array[1]);
+		this.dimensión = new Dimension(MathUtils.uByteToInt(this.array[0]), MathUtils.uByteToInt(this.array[1]));
 	}
 
 	/**
@@ -176,18 +180,18 @@ public class Mapa extends Container {
 	/**
 	 * Genera el array bidimensional de datos para los bytes del mapa
 	 * @throws CompressionException Si hay un error de compresión
-	 * @throws SpriteException Si no está inicializado el sprite
+	 * @throws SpriteException Si el sprite no está definido
 	 */
 	private void generarDatos() throws CompressionException, SpriteException
 	{
 		this.cuadrados = new Cuadrado[this.getAlto()][this.getAncho()];
+		descomprimir();
 
-		//OJO Cuidado con compresión
 		for (int i = 0; i < this.getAlto(); i++)
 		{
 			for (int h = 0; h < this.getAncho(); h++)
 			{
-				this.cuadrados[i][h] = Cuadrado.cargar(this.array[2*h*i+2], this.array[2*h*i+3]);
+				this.cuadrados[i][h] = Cuadrado.cargar(this.array[2*h+this.getAncho()*2*i+2], this.array[2*h+this.getAncho()*2*i+3]);
 			}
 		}
 	}
@@ -197,6 +201,7 @@ public class Mapa extends Container {
 	 */
 	public void guardar()
 	{
+		comprimir();
 		try
 		{
 			(new FileOutputStream(this.archivo)).write(this.array);
@@ -273,9 +278,7 @@ public class Mapa extends Container {
 	public void comprimir()
 	{
 		byte[][] arr2d = new byte[getAlto()][2*getAncho()];
-		byte[] arr1 = new byte[2+2*getAlto()*getAncho()];
-		arr1[0] = (byte) getAncho();
-		arr1[1] = (byte) getAlto();
+		byte[][] arr2dc = new byte[getAlto()][2*getAncho()];
 		int índice = 2;
 
 		//Cargamos el array bidimensional sin comprimir, cuadrado por cuadrado
@@ -283,33 +286,64 @@ public class Mapa extends Container {
 		{
 			for (int h = 0, j = 0; h < this.cuadrados[i].length; h++)
 			{
-				arr1[índice++] = arr2d[i][j++] = this.cuadrados[i][h].bytes()[0];
-				arr1[índice++] = arr2d[i][j++] = this.cuadrados[i][h].bytes()[1];
+				arr2d[i][j++] = this.cuadrados[i][h].bytes()[0];
+				arr2d[i][j++] = this.cuadrados[i][h].bytes()[1];
 			}
 		}
 
 		short borrados = 0;
-		//Primero comprimimos en X TODO
 
-		//Luego comprimimos en Y TODO
-
-		//Creamos el array comprimido
-		byte[] arr2 = new byte[arr1.length-borrados];
-		arr2[0] = arr1[0];
-		arr2[1] = arr1[1];
-		índice = 2;
-
-		for (int i = 2; i < arr1.length; i += 2)
+		//TODO Primero comprimimos en X
+		for (int i = 0; i < arr2d.length; i++)
 		{
-			//Solo guardamos el byte si no está borrado
-			if (arr1[i] != 0xFF && arr1[i+1] != 0xFF)
+			for (int h = 0; h < arr2d[i].length; h += 2)
 			{
-				arr2[índice++] = arr1[i];
-				arr2[índice++] = arr1[i+1];
+				arr2dc[i][h] = arr2d[i][h];
+				arr2dc[i][h+1] = arr2d[i][h+1];
+				int r = 1;
+
+				while ((h+r*2) < arr2d[i].length && arr2d[i][h] == arr2d[i][h+r*2] && arr2d[i][h+1] == arr2d[i][h+r*2+1])
+				{
+					r++;
+				}
+
+				if (r > 2)
+				{
+					arr2dc[i][h+3] = (byte) 0xFF;
+					arr2dc[i][h+2] = (byte) (r-1);
+					for (int j = 4; j < r*2; j += 2)
+					{
+						arr2dc[i][h+j+1] = arr2dc[i][h+j] = (byte) 0xFF;
+						borrados++;
+					}
+
+					h += r*2-2;
+				}
 			}
 		}
 
-		this.array = arr2;
+		//TODO Luego comprimimos en Y
+
+		//Creamos el array comprimido
+		byte[] arr = new byte[2+2*getAlto()*getAncho()-borrados*2];
+		arr[0] = (byte) getAncho();
+		arr[1] = (byte) getAlto();
+		índice = 2;
+
+		for (int i = 0; i < arr2dc.length; i++)
+		{
+			for (int h = 0; h < arr2dc[i].length; h += 2)
+			{
+				//Solo guardamos el byte si no está borrado
+				if (arr2dc[i][h] != (byte) 0xFF || arr2dc[i][h+1] != (byte) 0xFF)
+				{
+					arr[índice++] = arr2dc[i][h];
+					arr[índice++] = arr2dc[i][h+1];
+				}
+			}
+		}
+
+		this.array = arr;
 	}
 
 	/**

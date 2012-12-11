@@ -3,3 +3,4 @@
 # Archivos de paquete #
 *.war
 *.ear
+bin/*
