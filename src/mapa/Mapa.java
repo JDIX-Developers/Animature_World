@@ -35,13 +35,13 @@ public class Mapa extends Container {
 	{
 		Cuadrado.setSprite("img/sprites/prueba.png");
 
-		//Prueba sin compresión
-		byte[] b = {0x04, 0x05,
-				0x03, 0x01, 0X03, 0x01, 0x03, 0x01, 0x02, 0x01,
-				0x03, 0x01, 0x02, 0x01, 0x01, 0x01, 0x00, 0x00,
-				0x03, 0x01, 0x00, 0x01, 0x00, 0x01, 0x03, 0x01,
-				0x03, 0x01, 0x00, 0x00, 0x02, 0x01, 0x01, 0x00,
-				0x02, 0x01, 0x02, 0x01, 0x03, 0x00, 0x00, 0x00
+		byte[] b = {0x05, 0x06,
+				0x03, 0x01, 0X03, 0x01, 0x03, 0x01, 0x03, 0x01, 0x02, 0x01,
+				0x03, 0x01, 0x03, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x01, 0x03, 0x01, 0x00, 0x01, 0x03, 0x01, 0x00, 0x00,
+				0x00, 0x01, 0x03, 0x01, 0x00, 0x01, 0x03, 0x01, 0x00, 0x01,
+				0x03, 0x01, 0x03, 0x01, 0x02, 0x01, 0x01, 0x00, 0x00, 0x00,
+				0x02, 0x01, 0x02, 0x01, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00
 		};
 
 		Mapa m = new Mapa(b);
@@ -293,7 +293,7 @@ public class Mapa extends Container {
 
 		short borrados = 0;
 
-		//TODO Primero comprimimos en X
+		//Comprimimos primero en coordenada X
 		for (int i = 0; i < arr2d.length; i++)
 		{
 			for (int h = 0; h < arr2d[i].length; h += 2)
@@ -309,8 +309,8 @@ public class Mapa extends Container {
 
 				if (r > 2)
 				{
-					arr2dc[i][h+3] = (byte) 0xFF;
 					arr2dc[i][h+2] = (byte) (r-1);
+					arr2dc[i][h+3] = (byte) 0xFF;
 					for (int j = 4; j < r*2; j += 2)
 					{
 						arr2dc[i][h+j+1] = arr2dc[i][h+j] = (byte) 0xFF;
@@ -322,7 +322,37 @@ public class Mapa extends Container {
 			}
 		}
 
-		//TODO Luego comprimimos en Y
+		//Luego comprimimos en Y
+		for (int h = 0; h < arr2d[0].length; h +=2)
+		{
+			for (int i = 0; i < arr2d.length; i++)
+			{
+				int r = 1;
+
+				while (i+r < arr2d.length && arr2d[i][h] == arr2d[i+r][h] && arr2d[i][h+1] == arr2d[i+r][h+1])
+				{
+					r++;
+				}
+
+				if (r > 2)
+				{
+					arr2dc[i+1][h] = (byte) 0xFF;
+					arr2dc[i+1][h+1] = (byte) (r-1);
+					for (int j = 2; j < r; j++)
+					{
+						arr2dc[i+j][h+1] = arr2dc[i+j][h] = (byte) 0xFF;
+						borrados++;
+					}
+
+					i += r-1;
+				}
+			}
+		}
+
+		for (int i = 0; i < arr2dc.length; i++)
+		{
+			System.out.println(Arrays.toString(arr2dc[i]));
+		}
 
 		//Creamos el array comprimido
 		byte[] arr = new byte[2+2*getAlto()*getAncho()-borrados*2];
