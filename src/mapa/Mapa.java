@@ -349,11 +349,6 @@ public class Mapa extends Container {
 			}
 		}
 
-		for (int i = 0; i < arr2dc.length; i++)
-		{
-			System.out.println(Arrays.toString(arr2dc[i]));
-		}
-
 		//Creamos el array comprimido
 		byte[] arr = new byte[2+2*getAlto()*getAncho()-borrados*2];
 		arr[0] = (byte) getAncho();
