@@ -56,8 +56,6 @@ public class Mapa extends Container {
 //		Mapa m2 = new Mapa("mapas/prueba.map");
 //		System.out.println(m.getAncho() + "x" + m.getAlto());
 //		m2.imprimirArray();
-
-		//TODO Prueba con compresión
 	}
 
 	/**
@@ -154,7 +152,6 @@ public class Mapa extends Container {
 	 */
 	private void generarArray()
 	{
-		//TODO compresión
 		this.array = new byte[2*this.getAncho()*this.getAlto()+2];
 
 		this.array[0] = (byte) this.getAncho();
@@ -279,7 +276,6 @@ public class Mapa extends Container {
 	{
 		byte[][] arr2d = new byte[getAlto()][2*getAncho()];
 		byte[][] arr2dc = new byte[getAlto()][2*getAncho()];
-		int índice = 2;
 
 		//Cargamos el array bidimensional sin comprimir, cuadrado por cuadrado
 		for (int i = 0; i < this.cuadrados.length; i++)
@@ -353,7 +349,7 @@ public class Mapa extends Container {
 		byte[] arr = new byte[2+2*getAlto()*getAncho()-borrados*2];
 		arr[0] = (byte) getAncho();
 		arr[1] = (byte) getAlto();
-		índice = 2;
+		int índice = 2;
 
 		for (int i = 0; i < arr2dc.length; i++)
 		{
@@ -372,11 +368,109 @@ public class Mapa extends Container {
 	}
 
 	/**
-	 * Descomprime el archivo actual
-	 * Puede que no sea necesario, ya que el algoritmo es muy simple
+	 * Descomprime el array actual.
+	 *
+	 * Tanto la compresión como la descompresión son tareas muy costosas, por lo que se debe
+	 * evitar en la medida de lo posible.
 	 */
 	private void descomprimir()
 	{
-		//byte[][] arr2d = new byte[getAlto()][2*getAncho()];
+		byte[][] arr2d = new byte[getAlto()][getAncho()];
+		this.cuadrados = new Cuadrado[getAlto()][getAncho()];
+
+		//TODO Descomprimir
+
+		this.array = new byte[2+2*getAlto()*getAncho()];
+		this.array[0] = (byte) getAncho();
+		this.array[1] = (byte) getAlto();
+		int índice = 2;
+
+		for (int i = 0; i < arr2d.length; i++)
+		{
+			for (int h = 0; h < arr2d[i].length; h++)
+			{
+				this.array[índice++] = arr2d[i][h];
+			}
+		}
+	}
+
+	/**
+	 * @param x Coordenada X en el mapa
+	 * @param y Coordenada Y en el mapa
+	 * @param c nuevo cuadrado para esas coordenadas
+	 */
+	public void cambiarCuadrado(int x, int y, Cuadrado c)
+	{
+		//TODO
+	}
+
+	/**
+	 * @param x Coordenada X en el mapa
+	 * @param y Coordenada Y en el mapa
+	 * @param cx Coordenada X del cuadrado en el sprite
+	 * @param cy Coordenada Y del cuadrado en el sprite
+	 * @throws SpriteException Si el sprite no está definido
+	 * @throws CompressionException Si se usan bytes no válidos
+	 */
+	public void cambiarCuadrado(int x, int y, byte cx, byte cy) throws SpriteException, CompressionException
+	{
+		cambiarCuadrado(x, y, Cuadrado.cargar(cx, cy));
+	}
+
+	/**
+	 * @param x Coordenada X en el mapa
+	 * @param y Coordenada Y en el mapa
+	 * @param c nuevo cuadrado para esas coordenadas
+	 * @param t Tiempo por el que el cuadrado cambiará
+	 */
+	public void cambiarCuadrado(int x, int y, Cuadrado c, long t)
+	{
+		//TODO
+	}
+
+	/**
+	 * @param x Coordenada X en el mapa
+	 * @param y Coordenada Y en el mapa
+	 * @param cx Coordenada X del cuadrado en el sprite
+	 * @param cy Coordenada Y del cuadrado en el sprite
+	 * @param t Tiempo por el que el cuadrado cambiará
+	 * @throws SpriteException Si el sprite no está definido
+	 * @throws CompressionException Si se usan bytes no válidos
+	 */
+	public void cambiarCuadrado(int x, int y, byte cx, byte cy, long t) throws SpriteException, CompressionException
+	{
+		cambiarCuadrado(x, y, Cuadrado.cargar(cx, cy), t);
+	}
+
+	/**
+	 * @param x Coordenada X en el mapa
+	 * @param y Coordenada Y en el mapa
+	 * @param c nuevo cuadrado para esas coordenadas
+	 */
+	public void sobreponerCuadrado(int x, int y, Cuadrado c)
+	{
+		//TODO
+	}
+
+	/**
+	 * @param x Coordenada X en el mapa
+	 * @param y Coordenada Y en el mapa
+	 * @param cx Coordenada X del cuadrado en el sprite
+	 * @param cy Coordenada Y del cuadrado en el sprite
+	 * @throws SpriteException Si el sprite no está definido
+	 * @throws CompressionException Si se usan bytes no válidos
+	 */
+	public void sobreponerCuadrado(int x, int y, byte cx, byte cy) throws SpriteException, CompressionException
+	{
+		sobreponerCuadrado(x, y, Cuadrado.cargar(cx, cy));
+	}
+
+	/**
+	 * @param x Coordenada X en el mapa
+	 * @param y Coordenada Y en el mapa
+	 */
+	public void borrarSuperpuesto(int x, int y)
+	{
+		//TODO
 	}
 }
