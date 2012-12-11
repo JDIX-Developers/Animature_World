@@ -153,10 +153,8 @@ public class Mapa extends Container {
 		//TODO compresión
 		this.array = new byte[2*this.getAncho()*this.getAlto()+2];
 
-		this.array[1] = (byte) (this.getAncho() & 0x00FF);
-		this.array[0] = (byte) ((this.getAncho() & 0xFF00) >> 8);
-		this.array[3] = (byte) (this.getAlto() & 0x00FF);
-		this.array[2] = (byte) ((this.getAlto() & 0xFF00) >> 8);
+		this.array[0] = (byte) this.getAncho();
+		this.array[1] = (byte) this.getAlto();
 
 		int índice = 2;
 		byte[] bytes;
