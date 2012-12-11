@@ -182,7 +182,7 @@ public class Mapa extends Container {
 	{
 		this.cuadrados = new Cuadrado[this.getAlto()][this.getAncho()];
 
-		//TODO Cuidado con compresión
+		//OJO Cuidado con compresión
 		for (int i = 0; i < this.getAlto(); i++)
 		{
 			for (int h = 0; h < this.getAncho(); h++)
@@ -252,6 +252,14 @@ public class Mapa extends Container {
 	}
 
 	/**
+	 * @return Array bidimensional de cuadrados
+	 */
+	public Cuadrado[][] getCuadrados()
+	{
+		return this.cuadrados;
+	}
+
+	/**
 	 * Imprime el array de bytes en la consola
 	 */
 	public void imprimirArray()
@@ -264,7 +272,44 @@ public class Mapa extends Container {
 	 */
 	public void comprimir()
 	{
-		//TODO Comprimir archivo
+		byte[][] arr2d = new byte[getAlto()][2*getAncho()];
+		byte[] arr1 = new byte[2+2*getAlto()*getAncho()];
+		arr1[0] = (byte) getAncho();
+		arr1[1] = (byte) getAlto();
+		int índice = 2;
+
+		//Cargamos el array bidimensional sin comprimir, cuadrado por cuadrado
+		for (int i = 0; i < this.cuadrados.length; i++)
+		{
+			for (int h = 0, j = 0; h < this.cuadrados[i].length; h++)
+			{
+				arr1[índice++] = arr2d[i][j++] = this.cuadrados[i][h].bytes()[0];
+				arr1[índice++] = arr2d[i][j++] = this.cuadrados[i][h].bytes()[1];
+			}
+		}
+
+		short borrados = 0;
+		//Primero comprimimos en X TODO
+
+		//Luego comprimimos en Y TODO
+
+		//Creamos el array comprimido
+		byte[] arr2 = new byte[arr1.length-borrados];
+		arr2[0] = arr1[0];
+		arr2[1] = arr1[1];
+		índice = 2;
+
+		for (int i = 2; i < arr1.length; i += 2)
+		{
+			//Solo guardamos el byte si no está borrado
+			if (arr1[i] != 0xFF && arr1[i+1] != 0xFF)
+			{
+				arr2[índice++] = arr1[i];
+				arr2[índice++] = arr1[i+1];
+			}
+		}
+
+		this.array = arr2;
 	}
 
 	/**
@@ -273,48 +318,6 @@ public class Mapa extends Container {
 	 */
 	private void descomprimir()
 	{
-		//TODO Descomprimir archivo
-	}
-
-	/**
-	 * Clase de compresión de mapas
-	 * @author Razican (Iban Eguia)
-	 *
-	 */
-	private class Compresor {
-
-		private byte[][] a2d;
-		private byte[]	 array;
-		private byte[]	 arrc;
-		private byte[]	 arrd;
-
-		public Compresor(byte[] a)
-		{
-			this.array = a;
-		}
-
-		public byte[] comprimir()
-		{
-			if (arrc == null)
-			{
-				//TODO Implementar algoritmo de compresión
-			}
-
-			return arrc;
-		}
-
-		/**
-		 * @return array descomprimido
-		 * Puede que no sea necesario, ya que la descompresión es muy simple
-		 */
-		public byte[] descomprimir()
-		{
-			if (arrd == null)
-			{
-				//TODO Implementar algoritmo de compresión
-			}
-
-			return arrd;
-		}
+		//byte[][] arr2d = new byte[getAlto()][2*getAncho()];
 	}
 }
