@@ -46,7 +46,7 @@ public class Mapa extends Container {
 
 		Mapa m = new Mapa(b);
 
-		System.out.println(m.getAncho() + "x" + m.getAlto());
+		System.out.println(m.getAncho() + "x" + m.getAlto() + " Cuadrados");
 		m.imprimirArray();
 		m.comprimir();
 		m.imprimirArray();
@@ -375,23 +375,23 @@ public class Mapa extends Container {
 	 */
 	private void descomprimir()
 	{
-		byte[][] arr2d = new byte[getAlto()][getAncho()];
-		this.cuadrados = new Cuadrado[getAlto()][getAncho()];
-
-		//TODO Descomprimir
-
-		this.array = new byte[2+2*getAlto()*getAncho()];
-		this.array[0] = (byte) getAncho();
-		this.array[1] = (byte) getAlto();
-		int índice = 2;
-
-		for (int i = 0; i < arr2d.length; i++)
-		{
-			for (int h = 0; h < arr2d[i].length; h++)
-			{
-				this.array[índice++] = arr2d[i][h];
-			}
-		}
+//		byte[][] arr2d = new byte[getAlto()][getAncho()];
+//		this.cuadrados = new Cuadrado[getAlto()][getAncho()];
+//
+//		//TODO Descomprimir
+//
+//		this.array = new byte[2+2*getAlto()*getAncho()];
+//		this.array[0] = (byte) getAncho();
+//		this.array[1] = (byte) getAlto();
+//		int índice = 2;
+//
+//		for (int i = 0; i < arr2d.length; i++)
+//		{
+//			for (int h = 0; h < arr2d[i].length; h++)
+//			{
+//				this.array[índice++] = arr2d[i][h];
+//			}
+//		}
 	}
 
 	/**
