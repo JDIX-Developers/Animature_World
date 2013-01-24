@@ -8,11 +8,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
+/**
+ * Ventana principal del programa.
+ * @author Jordan Aranda Tejada
+ */
 public class VentanaPrincipal extends JFrame
 {
+	private static final long	serialVersionUID	= -5512652425053684151L;
 	private final JPanel contentPane;
 
+	/**
+	 * Constructor de la ventana principal.
+	 */
 	public VentanaPrincipal()
 	{
 		setTitle("PoketMon");
@@ -23,16 +30,19 @@ public class VentanaPrincipal extends JFrame
 		getGraphicsConfiguration().getDevice().setFullScreenWindow(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		this.contentPane = new JPanel();
+		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(this.contentPane);
 		getContentPane().add(new Inicio(), BorderLayout.CENTER);
 
 		setVisible(true);
 	}
+	/**
+	 * @param args Argumentos.
+	 */
 	public static void main(String[] args)
 	{
-		new VentanaPrincipal();
+		VentanaPrincipal ventana = new VentanaPrincipal();
 	}
 }
