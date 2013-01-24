@@ -1,4 +1,4 @@
-package Paneles;
+package menús;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,21 +11,35 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class PanelMenuInicio extends JPanel implements ActionListener
-{
-	private static final long serialVersionUID = 1L;
-	private JButton btnNuevaPartida, btnCargarPartida, btnOpciones, btnCreditos, btnSalir;
-	public PanelMenuInicio()
+/**
+ * @author Jordan Aranda Tejada
+ * 
+ */
+public class Inicio extends JPanel implements ActionListener {
+
+	private static final long	serialVersionUID	= 3465880948872999761L;
+
+	private JButton				btnNuevaPartida, btnCargarPartida, btnOpciones,
+	btnCreditos, btnSalir;
+
+	/**
+	 * Creación del panel
+	 */
+	public Inicio()
 	{
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{20, 0, 10, 0, 10, 0, 10, 0, 10, 0, 20, 0};
-		gridBagLayout.rowHeights = new int[]{20, 0, 20, 20, 0};
-		gridBagLayout.columnWeights = new double[]{10.0, 100.0, 10.0, 100.0, 10.0, 100.0, 10.0, 100.0, 10.0, 100.0, 10.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 100.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] {20, 0, 10, 0, 10, 0, 10, 0, 10,
+		0, 20, 0};
+		gridBagLayout.rowHeights = new int[] {20, 0, 20, 20, 0};
+		gridBagLayout.columnWeights = new double[] {10.0, 100.0, 10.0, 100.0,
+		10.0, 100.0, 10.0, 100.0, 10.0, 100.0, 10.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[] {0.0, 100.0, 1.0, 0.0,
+		Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
 		anyadirBotonesMenu();
 	}
+
 	private void anyadirBotonesMenu()
 	{
 		this.btnNuevaPartida = new JButton("NUEVA PARTIDA");
@@ -98,6 +112,7 @@ public class PanelMenuInicio extends JPanel implements ActionListener
 		gbc_btnSalir.gridy = 2;
 		add(this.btnSalir, gbc_btnSalir);
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -105,13 +120,21 @@ public class PanelMenuInicio extends JPanel implements ActionListener
 		if (escuchador == this.btnNuevaPartida)
 		{
 			// NUEVA PARTIDA
-		} else if (escuchador == this.btnCargarPartida) {
+		}
+		else if (escuchador == this.btnCargarPartida)
+		{
 			// CARGAR PARTIDA
-		} else if (escuchador == this.btnOpciones) {
+		}
+		else if (escuchador == this.btnOpciones)
+		{
 			// OPCIONES
-		} else if (escuchador == this.btnCreditos) {
+		}
+		else if (escuchador == this.btnCreditos)
+		{
 			// CREDITOS
-		} else if (escuchador == this.btnSalir) {
+		}
+		else if (escuchador == this.btnSalir)
+		{
 			// SALIR
 		}
 	}
