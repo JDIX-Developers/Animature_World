@@ -1,4 +1,4 @@
-package configuración;
+package configuración;
 
 import java.io.IOException;
 import java.util.Properties;
