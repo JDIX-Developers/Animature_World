@@ -1,4 +1,4 @@
-package menús;
+package interfaz.menús;
 
 import java.awt.Color;
 import java.awt.Font;
