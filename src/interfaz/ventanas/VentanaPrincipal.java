@@ -8,10 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
 /**
+ * Ventana principal del programa.
  * @author Jordan Aranda Tejada
- *
  */
 public class VentanaPrincipal extends JFrame
 {
@@ -19,7 +18,7 @@ public class VentanaPrincipal extends JFrame
 	private final JPanel contentPane;
 
 	/**
-	 * Creación de la ventana
+	 * Constructor de la ventana principal.
 	 */
 	public VentanaPrincipal()
 	{
@@ -39,23 +38,12 @@ public class VentanaPrincipal extends JFrame
 
 		setVisible(true);
 	}
-	
+
 	/**
 	 * @param args Argumentos
 	 */
 	public static void main(String[] args)
 	{
-		VentanaPrincipal v = new VentanaPrincipal();
-		
-		try
-		{
-			Thread.sleep(5000);
-		}
-		catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
-		
-		v.dispose();
+		new VentanaPrincipal();
 	}
 }

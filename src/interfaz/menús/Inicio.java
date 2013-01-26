@@ -1,138 +1,1 @@
-package interfaz.menús;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
-/**
- * @author Jordan Aranda Tejada
- *
- */
-public class Inicio extends JPanel implements ActionListener {
-
-	private static final long	serialVersionUID	= 3465880948872999761L;
-
-	private JButton	btnNuevaPartida, btnCargarPartida, btnOpciones, btnCreditos, btnSalir;
-
-	/**
-	 * Creación del panel
-	 */
-	public Inicio()
-	{
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {20, 0, 10, 0, 10, 0, 10, 0, 10,0, 20, 0};
-		gridBagLayout.rowHeights = new int[] {20, 0, 20, 20, 0};
-		gridBagLayout.columnWeights = new double[] {10.0, 100.0, 10.0, 100.0,
-		10.0, 100.0, 10.0, 100.0, 10.0, 100.0, 10.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[] {0.0, 100.0, 1.0, 0.0,Double.MIN_VALUE};
-		setLayout(gridBagLayout);
-
-		anyadirBotonesMenu();
-	}
-
-	private void anyadirBotonesMenu()
-	{
-		this.btnNuevaPartida = new JButton("NUEVA PARTIDA");
-		this.btnNuevaPartida.setFocusable(false);
-		this.btnNuevaPartida.setFocusTraversalKeysEnabled(false);
-		this.btnNuevaPartida.setFocusPainted(false);
-		this.btnNuevaPartida.setForeground(Color.BLACK);
-		this.btnNuevaPartida.setFont(new Font("Serif", Font.PLAIN, 16));
-		this.btnNuevaPartida.addActionListener(this);
-		GridBagConstraints gbc_btnNuevaPartida = new GridBagConstraints();
-		gbc_btnNuevaPartida.fill = GridBagConstraints.BOTH;
-		gbc_btnNuevaPartida.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNuevaPartida.gridx = 1;
-		gbc_btnNuevaPartida.gridy = 2;
-		add(this.btnNuevaPartida, gbc_btnNuevaPartida);
-
-		this.btnCargarPartida = new JButton("CARGAR PARTIDA");
-		this.btnCargarPartida.setFocusable(false);
-		this.btnCargarPartida.setFocusTraversalKeysEnabled(false);
-		this.btnCargarPartida.setFocusPainted(false);
-		this.btnCargarPartida.setForeground(Color.BLACK);
-		this.btnCargarPartida.setFont(new Font("Serif", Font.PLAIN, 16));
-		this.btnCargarPartida.addActionListener(this);
-		GridBagConstraints gbc_btnCargarPartida = new GridBagConstraints();
-		gbc_btnCargarPartida.fill = GridBagConstraints.BOTH;
-		gbc_btnCargarPartida.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCargarPartida.gridx = 3;
-		gbc_btnCargarPartida.gridy = 2;
-		add(this.btnCargarPartida, gbc_btnCargarPartida);
-
-		this.btnOpciones = new JButton("OPCIONES");
-		this.btnOpciones.setFocusable(false);
-		this.btnOpciones.setFocusTraversalKeysEnabled(false);
-		this.btnOpciones.setFocusPainted(false);
-		this.btnOpciones.setForeground(Color.BLACK);
-		this.btnOpciones.setFont(new Font("Serif", Font.PLAIN, 16));
-		this.btnOpciones.addActionListener(this);
-		GridBagConstraints gbc_btnOpciones = new GridBagConstraints();
-		gbc_btnOpciones.fill = GridBagConstraints.BOTH;
-		gbc_btnOpciones.insets = new Insets(0, 0, 5, 5);
-		gbc_btnOpciones.gridx = 5;
-		gbc_btnOpciones.gridy = 2;
-		add(this.btnOpciones, gbc_btnOpciones);
-
-		this.btnCreditos = new JButton("CR\u00C9DITOS");
-		this.btnCreditos.setFocusable(false);
-		this.btnCreditos.setFocusTraversalKeysEnabled(false);
-		this.btnCreditos.setFocusPainted(false);
-		this.btnCreditos.setForeground(Color.BLACK);
-		this.btnCreditos.setFont(new Font("Serif", Font.PLAIN, 16));
-		this.btnCreditos.addActionListener(this);
-		GridBagConstraints gbc_btnCreditos = new GridBagConstraints();
-		gbc_btnCreditos.fill = GridBagConstraints.BOTH;
-		gbc_btnCreditos.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCreditos.gridx = 7;
-		gbc_btnCreditos.gridy = 2;
-		add(this.btnCreditos, gbc_btnCreditos);
-
-		this.btnSalir = new JButton("SALIR");
-		this.btnSalir.setFocusable(false);
-		this.btnSalir.setFocusTraversalKeysEnabled(false);
-		this.btnSalir.setFocusPainted(false);
-		this.btnSalir.setForeground(Color.BLACK);
-		this.btnSalir.setFont(new Font("Serif", Font.PLAIN, 16));
-		this.btnSalir.addActionListener(this);
-		GridBagConstraints gbc_btnSalir = new GridBagConstraints();
-		gbc_btnSalir.fill = GridBagConstraints.BOTH;
-		gbc_btnSalir.insets = new Insets(0, 0, 5, 5);
-		gbc_btnSalir.gridx = 9;
-		gbc_btnSalir.gridy = 2;
-		add(this.btnSalir, gbc_btnSalir);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		Object escuchador = e.getSource();
-		if (escuchador == this.btnNuevaPartida)
-		{
-			// NUEVA PARTIDA
-		}
-		else if (escuchador == this.btnCargarPartida)
-		{
-			// CARGAR PARTIDA
-		}
-		else if (escuchador == this.btnOpciones)
-		{
-			// OPCIONES
-		}
-		else if (escuchador == this.btnCreditos)
-		{
-			// CREDITOS
-		}
-		else if (escuchador == this.btnSalir)
-		{
-			// SALIR
-		}
-	}
-}
+package interfaz.menús;import java.awt.Color;import java.awt.Cursor;import java.awt.Font;import java.awt.GridBagConstraints;import java.awt.GridBagLayout;import java.awt.Insets;import java.awt.SystemColor;import java.awt.event.MouseEvent;import java.awt.event.MouseListener;import java.io.File;import java.io.IOException;import javax.imageio.ImageIO;import javax.swing.JLabel;import javax.swing.JPanel;import javax.swing.SwingConstants;import javax.swing.border.BevelBorder;import audio.MP3;import configuración.BgBorder;/** * Panel del menu de inicio. * * @author Jordan Aranda Tejada */public class Inicio extends JPanel implements MouseListener {	private static final long	serialVersionUID	= 1L;	private JLabel				lblNuevaPartida, lblCargarPartida, lblOpciones,	lblCreditos, lblSalir;	/**	 * Constructor del panel de inicio.	 */	public Inicio()	{		new MP3("sounds/Inicio.mp3").play();		anyadirFondo();		GridBagLayout gridBagLayout = new GridBagLayout();		gridBagLayout.columnWidths = new int[] {20, 0, 10, 0, 10, 0, 10, 0, 10,		0, 20, 0};		gridBagLayout.rowHeights = new int[] {20, 0, 20, 20, 0};		gridBagLayout.columnWeights = new double[] {10.0, 100.0, 10.0, 100.0,		10.0, 100.0, 10.0, 100.0, 10.0, 100.0, 10.0, Double.MIN_VALUE};		gridBagLayout.rowWeights = new double[] {0.0, 100.0, 1.0, 0.0,		Double.MIN_VALUE};		setLayout(gridBagLayout);		anyadirBotonesMenu();	}	private void anyadirBotonesMenu()	{		this.lblNuevaPartida = new JLabel("NUEVA PARTIDA");		this.lblNuevaPartida.setCursor(Cursor		.getPredefinedCursor(Cursor.HAND_CURSOR));		this.lblNuevaPartida.setBorder(new BevelBorder(BevelBorder.RAISED,		null, null, null, null));		this.lblNuevaPartida.addMouseListener(this);		this.lblNuevaPartida.setOpaque(true);		this.lblNuevaPartida.setBackground(SystemColor.inactiveCaption);		this.lblNuevaPartida.setHorizontalTextPosition(SwingConstants.CENTER);		this.lblNuevaPartida.setForeground(Color.BLACK);		this.lblNuevaPartida.setHorizontalAlignment(SwingConstants.CENTER);		this.lblNuevaPartida.setFont(new Font("Serif", Font.BOLD, 16));		this.lblNuevaPartida.addMouseListener(this);		GridBagConstraints gbc_lblNuevaPartida = new GridBagConstraints();		gbc_lblNuevaPartida.fill = GridBagConstraints.BOTH;		gbc_lblNuevaPartida.insets = new Insets(0, 0, 5, 5);		gbc_lblNuevaPartida.gridx = 1;		gbc_lblNuevaPartida.gridy = 2;		add(this.lblNuevaPartida, gbc_lblNuevaPartida);		this.lblCargarPartida = new JLabel("CARGAR PARTIDA");		this.lblCargarPartida.setCursor(Cursor		.getPredefinedCursor(Cursor.HAND_CURSOR));		this.lblCargarPartida.setBorder(new BevelBorder(BevelBorder.RAISED,		null, null, null, null));		this.lblCargarPartida.setBackground(SystemColor.inactiveCaption);		this.lblCargarPartida.setOpaque(true);		this.lblCargarPartida.setHorizontalTextPosition(SwingConstants.CENTER);		this.lblCargarPartida.setForeground(Color.BLACK);		this.lblCargarPartida.setHorizontalAlignment(SwingConstants.CENTER);		this.lblCargarPartida.setFont(new Font("Serif", Font.BOLD, 16));		this.lblCargarPartida.addMouseListener(this);		GridBagConstraints gbc_lblCargarPartida = new GridBagConstraints();		gbc_lblCargarPartida.fill = GridBagConstraints.BOTH;		gbc_lblCargarPartida.insets = new Insets(0, 0, 5, 5);		gbc_lblCargarPartida.gridx = 3;		gbc_lblCargarPartida.gridy = 2;		add(this.lblCargarPartida, gbc_lblCargarPartida);		this.lblOpciones = new JLabel("OPCIONES");		this.lblOpciones.setCursor(Cursor		.getPredefinedCursor(Cursor.HAND_CURSOR));		this.lblOpciones.setBorder(new BevelBorder(BevelBorder.RAISED, null,		null, null, null));		this.lblOpciones.setOpaque(true);		this.lblOpciones.setBackground(SystemColor.inactiveCaption);		this.lblOpciones.setHorizontalTextPosition(SwingConstants.CENTER);		this.lblOpciones.setForeground(Color.BLACK);		this.lblOpciones.setFont(new Font("Serif", Font.BOLD, 16));		this.lblOpciones.setHorizontalAlignment(SwingConstants.CENTER);		this.lblOpciones.addMouseListener(this);		GridBagConstraints gbc_lblOpciones = new GridBagConstraints();		gbc_lblOpciones.fill = GridBagConstraints.BOTH;		gbc_lblOpciones.insets = new Insets(0, 0, 5, 5);		gbc_lblOpciones.gridx = 5;		gbc_lblOpciones.gridy = 2;		add(this.lblOpciones, gbc_lblOpciones);		this.lblCreditos = new JLabel("CR\u00C9DITOS");		this.lblCreditos.setCursor(Cursor		.getPredefinedCursor(Cursor.HAND_CURSOR));		this.lblCreditos.setBorder(new BevelBorder(BevelBorder.RAISED, null,		null, null, null));		this.lblCreditos.setOpaque(true);		this.lblCreditos.setBackground(SystemColor.inactiveCaption);		this.lblCreditos.setHorizontalAlignment(SwingConstants.CENTER);		this.lblCreditos.setFont(new Font("Serif", Font.BOLD, 16));		this.lblCreditos.setHorizontalTextPosition(SwingConstants.CENTER);		this.lblCreditos.setForeground(Color.BLACK);		this.lblCreditos.addMouseListener(this);		GridBagConstraints gbc_lblCrditos = new GridBagConstraints();		gbc_lblCrditos.fill = GridBagConstraints.BOTH;		gbc_lblCrditos.insets = new Insets(0, 0, 5, 5);		gbc_lblCrditos.gridx = 7;		gbc_lblCrditos.gridy = 2;		add(this.lblCreditos, gbc_lblCrditos);		this.lblSalir = new JLabel("SALIR");		this.lblSalir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		this.lblSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null,		null, null));		this.lblSalir.setOpaque(true);		this.lblSalir.setBackground(SystemColor.inactiveCaption);		this.lblSalir.setHorizontalAlignment(SwingConstants.CENTER);		this.lblSalir.setFont(new Font("Serif", Font.BOLD, 16));		this.lblSalir.setHorizontalTextPosition(SwingConstants.CENTER);		this.lblSalir.setForeground(Color.BLACK);		this.lblSalir.addMouseListener(this);		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);		gbc_lblNewLabel.gridx = 9;		gbc_lblNewLabel.gridy = 2;		add(this.lblSalir, gbc_lblNewLabel);	}	@Override	public void mouseClicked(MouseEvent arg0)	{		Object escuchador = arg0.getSource();		if (escuchador == this.lblNuevaPartida)		{			// NUEVA PARTIDA		}		else if (escuchador == this.lblCargarPartida)		{			// CARGAR PARTIDA		}		else if (escuchador == this.lblOpciones)		{			// OPCIONES		}		else if (escuchador == this.lblCreditos)		{			// CREDITOS		}		else if (escuchador == this.lblSalir)		{			// SALIR		}	}	@Override	public void mouseEntered(MouseEvent arg0)	{		Object escuchador = arg0.getSource();		if (escuchador == this.lblNuevaPartida)		{			this.lblNuevaPartida.setBackground(SystemColor.activeCaption);		}		else if (escuchador == this.lblCargarPartida)		{			this.lblCargarPartida.setBackground(SystemColor.activeCaption);		}		else if (escuchador == this.lblOpciones)		{			this.lblOpciones.setBackground(SystemColor.activeCaption);		}		else if (escuchador == this.lblCreditos)		{			this.lblCreditos.setBackground(SystemColor.activeCaption);		}		else if (escuchador == this.lblSalir)		{			this.lblSalir.setBackground(SystemColor.activeCaption);		}	}	@Override	public void mouseExited(MouseEvent arg0)	{		Object escuchador = arg0.getSource();		if (escuchador == this.lblNuevaPartida)		{			this.lblNuevaPartida.setBackground(SystemColor.inactiveCaption);		}		else if (escuchador == this.lblCargarPartida)		{			this.lblCargarPartida.setBackground(SystemColor.inactiveCaption);		}		else if (escuchador == this.lblOpciones)		{			this.lblOpciones.setBackground(SystemColor.inactiveCaption);		}		else if (escuchador == this.lblCreditos)		{			this.lblCreditos.setBackground(SystemColor.inactiveCaption);		}		else if (escuchador == this.lblSalir)		{			this.lblSalir.setBackground(SystemColor.inactiveCaption);		}	}	@Override	public void mousePressed(MouseEvent arg0)	{		// TODO Auto-generated method stub	}	@Override	public void mouseReleased(MouseEvent arg0)	{		// TODO Auto-generated method stub	}	private void anyadirFondo()	{		try		{			BgBorder imagen = new BgBorder(ImageIO.read(new File(			"img/fondo.jpg")));			this.setBorder(imagen);		}		catch (IOException e)		{			System.out.println(e.getMessage());		}	}}
