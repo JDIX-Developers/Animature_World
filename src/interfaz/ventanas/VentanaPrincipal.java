@@ -31,7 +31,7 @@ public class VentanaPrincipal extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.contentPane = new JPanel();
-		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
 		this.contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(this.contentPane);
 		getContentPane().add(new Inicio(), BorderLayout.CENTER);
