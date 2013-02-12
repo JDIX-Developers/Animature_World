@@ -11,7 +11,7 @@ public class Servidor {
 	
 	private Servidor()//TODO URL u)
 	{
-		//TODO Crear servidor
+		//TODO Crear servidor Prueba
 	}
 	
 	/**
