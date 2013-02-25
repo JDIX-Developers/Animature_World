@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">Poketmon</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="welcome">Bienvenido!!</string>
+    <string name="sign_in">Entrar</string>
+    <string name="user">Usuario</string>
 
 </resources>
