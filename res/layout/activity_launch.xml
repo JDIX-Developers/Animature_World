@@ -8,7 +8,7 @@
     tools:context=".LaunchActivity" >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/editText_UserLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -19,7 +19,7 @@
         android:ems="10" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText_PasswordLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -29,7 +29,7 @@
         android:inputType="textPassword" />
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/checkBox_Record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:layout_gravity="center"
@@ -45,18 +45,21 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btn_Register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-			android:width="100dp"
-            android:text="@string/register" />
+            android:onClick="register"
+            android:text="@string/register"
+            android:width="100dp" />
         
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_Enter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:width="100dp"
-            android:text="@string/sign_in" />
+            android:onClick="enter"
+            android:text="@string/sign_in"
+            android:width="100dp" />
+
     </LinearLayout>
 
 </LinearLayout>
