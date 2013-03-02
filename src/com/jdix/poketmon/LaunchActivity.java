@@ -2,6 +2,7 @@ package com.jdix.poketmon;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -41,8 +42,12 @@ public class LaunchActivity extends Activity
 	 * Method pressing the register button
 	 * @param View
 	 */
-	public void register(View view) {
-		
+	public void register(View view) 
+	{
+		// We create the attempt
+		Intent intent = new Intent(LaunchActivity.this, LoginActivity.class);
+		// We started the new activity
+		startActivity(intent);
 	}
 	/**
 	 * Method pressing the enter button

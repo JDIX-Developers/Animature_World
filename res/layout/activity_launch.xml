@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-		android:gravity="center"
         android:layout_marginTop="150dp"
         android:maxLines="1"
         android:hint="@string/user"
@@ -23,8 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:layout_marginTop="30dp"
+		android:hint="@string/password"
         android:ems="10"
         android:inputType="textPassword" />
 
@@ -57,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="enter"
-            android:text="@string/sign_in"
+            android:text="@string/enter"
             android:width="100dp" />
 
     </LinearLayout>
