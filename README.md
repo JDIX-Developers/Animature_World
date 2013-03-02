@@ -1,4 +1,3 @@
-Poketmon
-========
+# Animature World #
 
-Clon en Java de Pokemon, con posibles mejoras.
+Clon en Android de Pokemon, con posibles mejoras.
