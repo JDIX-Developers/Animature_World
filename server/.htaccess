@@ -1,0 +1,19 @@
+<Files .htaccess>
+ order allow,deny
+ deny from all
+</Files>
+
+# disable directory browsing
+Options All -Indexes
+
+#Server Enviroment
+SetEnv SERVER_ADMIN admin@razican.com
+
+# Default language
+DefaultLanguage es-ES
+
+# Default character set
+AddDefaultCharset UTF-8
+
+#Default 404 page
+ErrorDocument 404 http://jdix.razican.com/404.php
