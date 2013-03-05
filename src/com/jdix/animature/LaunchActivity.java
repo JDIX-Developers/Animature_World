@@ -49,7 +49,7 @@ public class LaunchActivity extends Activity
 	public void register(View view) 
 	{
 		// We create the attempt
-		Intent intent = new Intent(LaunchActivity.this, LoginActivity.class);
+		Intent intent = new Intent(LaunchActivity.this, RegisterActivity.class);
 		// We started the new activity
 		startActivity(intent);
 	}

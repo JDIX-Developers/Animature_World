@@ -1,5 +1,32 @@
 package com.jdix.animature.utils;
 
-public class Database {
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
 
+public class Database extends SQLiteOpenHelper 
+{
+	public Database(Context context, String name, CursorFactory factory, int version)
+	{
+		super(context, name, factory, version);
+	}
+
+	@Override
+	public void onCreate(SQLiteDatabase db)
+	{
+		db.execSQL("CREATE TABLE user (id, email TEXT, password TEXT)");
+		db.execSQL("INSERT into user VALUES ('', '', '')");
+		db.execSQL("CREATE TABLE aminatures ()");
+		//TODO From file and delete file (maybe)
+	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+	{
+		//TODO Upgrade
+		db.execSQL("DROP TABLE IF EXISTS user");
+		db.execSQL("CREATE TABLE user (email TEXT, password TEXT)");
+		db.execSQL("INSERT into user VALUES ('', '', '')");
+	}
 }
