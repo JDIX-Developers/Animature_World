@@ -9,69 +9,87 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class NewGameActivity extends Activity 
-{
-	private EditText editText_playerName;
-	private RadioGroup rgSex;
-	private RadioButton rButtonBoy;
-	private RadioButton rButtonGirl;
-	private EditText editText_neighborName;
-	private Button generate;
-	private RadioGroup rgPet;
-	private RadioButton rButtonDog;
-	private RadioButton rButtonCat;
-	private Button btn_play;
+public class NewGameActivity extends Activity {
 	
-	private String  playerName;
-	private int sex; 				// 0 - Boy and 1 - Girl
-	private String neighborName;
-	private int pet;				// 0 - Dog and 1 - Cat
-	
-	private String[]generatedNames = {"Xabier","Iban","David","Jordan","Ander",
-			"Paula","Nerea","Javier","Daniel","Irene"};
-	private int index = -1; 			// Index for generatedNames
-	
+	private EditText	editText_playerName;
+	private RadioGroup	rgSex;
+	private RadioButton	rButtonBoy;
+	private RadioButton	rButtonGirl;
+	private EditText	editText_neighborName;
+	private Button		generate;
+	private RadioGroup	rgPet;
+	private RadioButton	rButtonDog;
+	private RadioButton	rButtonCat;
+	private Button		btn_play;
+
+	private String		playerName;
+	private int			sex;													// 0
+																				// -
+																				// Boy
+																				// and
+																				// 1
+																				// -
+																				// Girl
+	private String		neighborName;
+	private int			pet;													// 0
+																				// -
+																				// Dog
+																				// and
+																				// 1
+																				// -
+																				// Cat
+
+	private String[]	generatedNames	= { "Xabier", "Iban", "David",
+			"Jordan", "Ander", "Paula", "Nerea", "Javier", "Daniel", "Irene" };
+	private int			index			= -1;									// Index
+																				// for
+																				// generatedNames
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_game);
-		
+
 		// We get a reference to the interface controls
-		editText_playerName = (EditText)findViewById(R.id.editText_playerName);
-		rgSex = (RadioGroup)findViewById(R.id.rbgroup_sex);
-		rButtonBoy = (RadioButton)findViewById(R.id.radioButton_boy);
-		rButtonGirl = (RadioButton)findViewById(R.id.radioButton_girl);
-		editText_neighborName = (EditText)findViewById(R.id.editText_neighborName);
-		generate = (Button)findViewById(R.id.btn_generate);
-		rgPet = (RadioGroup)findViewById(R.id.rbgroup_pet);
-		rButtonDog = (RadioButton)findViewById(R.id.radioButton_dog);
-		rButtonCat = (RadioButton)findViewById(R.id.radioButton_cat);
-		btn_play = (Button)findViewById(R.id.btnPlay);
+		editText_playerName = (EditText) findViewById(R.id.editText_playerName);
+		rgSex = (RadioGroup) findViewById(R.id.rbgroup_sex);
+		rButtonBoy = (RadioButton) findViewById(R.id.radioButton_boy);
+		rButtonGirl = (RadioButton) findViewById(R.id.radioButton_girl);
+		editText_neighborName = (EditText) findViewById(R.id.editText_neighborName);
+		generate = (Button) findViewById(R.id.btn_generate);
+		rgPet = (RadioGroup) findViewById(R.id.rbgroup_pet);
+		rButtonDog = (RadioButton) findViewById(R.id.radioButton_dog);
+		rButtonCat = (RadioButton) findViewById(R.id.radioButton_cat);
+		btn_play = (Button) findViewById(R.id.btnPlay);
 	}
+
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.new_game, menu);
-		return true;
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		return super.onCreateOptionsMenu(menu);
 	}
+
 	/**
 	 * Method pressing the generate button
+	 * 
 	 * @param View
 	 */
 	public void generate_NameNeighbor(View view)
 	{
 		this.index++;
-		if(this.index>9)
-			this.index=0;
+		if (this.index > 9)
+			this.index = 0;
 		editText_neighborName.setText(this.generatedNames[this.index]);
 	}
+
 	/**
 	 * Method pressing the play button
+	 * 
 	 * @param View
 	 */
 	public void startNewGame(View view)
 	{
-		
+
 	}
 }

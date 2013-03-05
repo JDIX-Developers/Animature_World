@@ -15,9 +15,9 @@ public class Database extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE user (id, email TEXT, password TEXT)");
-		db.execSQL("INSERT into user VALUES ('', '', '')");
-		db.execSQL("CREATE TABLE aminatures ()");
+		db.execSQL("CREATE TABLE user (email TEXT, password TEXT)");
+		db.execSQL("INSERT into user VALUES ('', '')");
+		db.execSQL("CREATE TABLE animatures ()");
 		//TODO From file and delete file (maybe)
 	}
 

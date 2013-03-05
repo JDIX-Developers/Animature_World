@@ -25,31 +25,33 @@ public class RegisterActivity extends Activity {
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
 	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] {"foo@example.com:hello", "bar@example.com:world" };
+	private static final String[]	DUMMY_CREDENTIALS	= new String[] {
+			"foo@example.com:hello", "bar@example.com:world" };
 
 	/**
 	 * The default email to populate the email field with.
 	 */
-	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
+	public static final String		EXTRA_EMAIL			= "com.example.android.authenticatordemo.extra.EMAIL";
 
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
-	private UserLoginTask mAuthTask = null;
+	private UserLoginTask			mAuthTask			= null;
 
 	// Values for email and password at the time of the login attempt.
-	private String mEmail;
-	private String mPassword;
+	private String					mEmail;
+	private String					mPassword;
 
 	// UI references.
-	private EditText mEmailView;
-	private EditText mPasswordView;
-	private View mLoginFormView;
-	private View mLoginStatusView;
-	private TextView mLoginStatusMessageView;
+	private EditText				mEmailView;
+	private EditText				mPasswordView;
+	private View					mLoginFormView;
+	private View					mLoginStatusView;
+	private TextView				mLoginStatusMessageView;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_register);
@@ -60,11 +62,13 @@ public class RegisterActivity extends Activity {
 		mEmailView.setText(mEmail);
 
 		mPasswordView = (EditText) findViewById(R.id.password);
-		mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+		mPasswordView
+				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 					@Override
 					public boolean onEditorAction(TextView textView, int id,
 							KeyEvent keyEvent) {
-						if (id == R.id.login || id == EditorInfo.IME_NULL) {
+						if (id == R.id.login || id == EditorInfo.IME_NULL)
+						{
 							attemptLogin();
 							return true;
 						}
@@ -86,10 +90,9 @@ public class RegisterActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		getMenuInflater().inflate(R.menu.activity_login, menu);
-		return true;
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	/**
@@ -97,8 +100,10 @@ public class RegisterActivity extends Activity {
 	 * If there are form errors (invalid email, missing fields, etc.), the
 	 * errors are presented and no actual login attempt is made.
 	 */
-	public void attemptLogin() {
-		if (mAuthTask != null) {
+	public void attemptLogin()
+	{
+		if (mAuthTask != null)
+		{
 			return;
 		}
 
@@ -114,32 +119,41 @@ public class RegisterActivity extends Activity {
 		View focusView = null;
 
 		// Check for a valid password.
-		if (TextUtils.isEmpty(mPassword)) {
+		if (TextUtils.isEmpty(mPassword))
+		{
 			mPasswordView.setError(getString(R.string.error_field_required));
 			focusView = mPasswordView;
 			cancel = true;
-		} else if (mPassword.length() < 4) {
+		}
+		else if (mPassword.length() < 4)
+		{
 			mPasswordView.setError(getString(R.string.error_invalid_password));
 			focusView = mPasswordView;
 			cancel = true;
 		}
 
 		// Check for a valid email address.
-		if (TextUtils.isEmpty(mEmail)) {
+		if (TextUtils.isEmpty(mEmail))
+		{
 			mEmailView.setError(getString(R.string.error_field_required));
 			focusView = mEmailView;
 			cancel = true;
-		} else if (!mEmail.contains("@")) {
+		}
+		else if (!mEmail.contains("@"))
+		{
 			mEmailView.setError(getString(R.string.error_invalid_email));
 			focusView = mEmailView;
 			cancel = true;
 		}
 
-		if (cancel) {
+		if (cancel)
+		{
 			// There was an error; don't attempt login and focus the first
 			// form field with an error.
 			focusView.requestFocus();
-		} else {
+		}
+		else
+		{
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
@@ -153,11 +167,13 @@ public class RegisterActivity extends Activity {
 	 * Shows the progress UI and hides the login form.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-	private void showProgress(final boolean show) {
+	private void showProgress(final boolean show)
+	{
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
 		// for very easy animations. If available, use these APIs to fade-in
 		// the progress spinner.
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
+		{
 			int shortAnimTime = getResources().getInteger(
 					android.R.integer.config_shortAnimTime);
 
@@ -182,7 +198,9 @@ public class RegisterActivity extends Activity {
 									: View.VISIBLE);
 						}
 					});
-		} else {
+		}
+		else
+		{
 			// The ViewPropertyAnimator APIs are not available, so simply show
 			// and hide the relevant UI components.
 			mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -196,19 +214,25 @@ public class RegisterActivity extends Activity {
 	 */
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 		@Override
-		protected Boolean doInBackground(Void... params) {
+		protected Boolean doInBackground(Void... params)
+		{
 			// TODO: attempt authentication against a network service.
 
-			try {
+			try
+			{
 				// Simulate network access.
 				Thread.sleep(2000);
-			} catch (InterruptedException e) {
+			}
+			catch (InterruptedException e)
+			{
 				return false;
 			}
 
-			for (String credential : DUMMY_CREDENTIALS) {
+			for (String credential : DUMMY_CREDENTIALS)
+			{
 				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
+				if (pieces[0].equals(mEmail))
+				{
 					// Account exists, return true if the password matches.
 					return pieces[1].equals(mPassword);
 				}
@@ -219,20 +243,26 @@ public class RegisterActivity extends Activity {
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean success) {
+		protected void onPostExecute(final Boolean success)
+		{
 			mAuthTask = null;
 			showProgress(false);
 
-			if (success) {
+			if (success)
+			{
 				finish();
-			} else {
-				mPasswordView.setError(getString(R.string.error_incorrect_password));
+			}
+			else
+			{
+				mPasswordView
+						.setError(getString(R.string.error_incorrect_password));
 				mPasswordView.requestFocus();
 			}
 		}
 
 		@Override
-		protected void onCancelled() {
+		protected void onCancelled()
+		{
 			mAuthTask = null;
 			showProgress(false);
 		}
