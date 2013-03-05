@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jdix.poketmon"
+    package="com.jdix.animature"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
-            android:name="com.jdix.poketmon.LaunchActivity"
+            android:name="com.jdix.animature.LaunchActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,16 +23,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jdix.poketmon.LoginActivity"
+            android:name="com.jdix.animature.LoginActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
         <activity
-            android:name="com.jdix.poketmon.RegisterActivity"
+            android:name="com.jdix.animature.RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
         <activity
-            android:name="com.jdix.poketmon.MainMenuActivity"
+            android:name="com.jdix.animature.MainMenuActivity"
             android:label="@string/title_activity_main_menu" >
         </activity>
     </application>

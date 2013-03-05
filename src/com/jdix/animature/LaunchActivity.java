@@ -1,4 +1,4 @@
-package com.jdix.poketmon;
+package com.jdix.animature;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import com.jdix.animature.R;
 
 public class LaunchActivity extends Activity
 {
