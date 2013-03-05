@@ -20,6 +20,7 @@ public class NewGameActivity extends Activity
 	private RadioGroup rgPet;
 	private RadioButton rButtonDog;
 	private RadioButton rButtonCat;
+	private Button btn_play;
 	
 	private String  playerName;
 	private int sex; 				// 0 - Boy and 1 - Girl
@@ -46,7 +47,7 @@ public class NewGameActivity extends Activity
 		rgPet = (RadioGroup)findViewById(R.id.rbgroup_pet);
 		rButtonDog = (RadioButton)findViewById(R.id.radioButton_dog);
 		rButtonCat = (RadioButton)findViewById(R.id.radioButton_cat);
-
+		btn_play = (Button)findViewById(R.id.btnPlay);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
