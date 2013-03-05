@@ -45,7 +45,8 @@ function db()
 		$db = new mysqli($dbsettings['server'], $dbsettings['user'], $dbsettings['pass'], $dbsettings['name']);
 		if ( ! is_null($db->connect_error))
 		{
-			exit(header('Location: http://jdix.razican.com/404.php', 404));
+			header('Location: http://jdix.razican.com/404.php', 404);
+			exit;
 		}
 
 		$db->set_charset('utf8');
@@ -66,10 +67,12 @@ function db()
 		case 'register':
 		break;
 		default:
-			exit(header('Location: http://jdix.razican.com/404.php', 404));
+			header('Location: http://jdix.razican.com/404.php', 404);
+			exit;
 	}
 //}
 //else
 //{
-//	exit(header('Location: http://jdix.razican.com/404.php', 404));
+//	header('Location: http://jdix.razican.com/404.php', 404);
+//	exit;
 //}
