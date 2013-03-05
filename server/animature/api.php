@@ -34,11 +34,42 @@ function cl_version()
 	}
 }
 
-//if (is_ssl() && is_animature())
+function db()
+{
+	static $db;
+
+	if (empty($db))
+	{
+		require('dbconfig.php');
+
+		$db = new mysqli($dbsettings['server'], $dbsettings['user'], $dbsettings['pass'], $dbsettings['name']);
+		if ( ! is_null($db->connect_error))
+		{
+			exit(header('Location: http://jdix.razican.com/404.php', 404));
+		}
+
+		$db->set_charset('utf8');
+		unset($dbsettings);
+	}
+
+	return $db;
+}
+
+//if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['action']))
 //{
+	define('IN_API', TRUE);
 
-
-
-
-
+	switch ($_POST['action'])
+	{
+		case 'login':
+		break;
+		case 'register':
+		break;
+		default:
+			exit(header('Location: http://jdix.razican.com/404.php', 404));
+	}
+//}
+//else
+//{
+//	exit(header('Location: http://jdix.razican.com/404.php', 404));
 //}
