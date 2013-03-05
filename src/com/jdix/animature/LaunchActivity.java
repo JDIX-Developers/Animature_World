@@ -62,5 +62,8 @@ public class LaunchActivity extends Activity
 		username = editText_UserLogin.getText().toString();
 		password = editText_PasswordLogin.getText().toString();
 		
+		// Provisional
+			Intent intent = new Intent(LaunchActivity.this, MainMenuActivity.class);
+			startActivity(intent);		
 	}
 }

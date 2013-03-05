@@ -1,0 +1,17 @@
+<resources>
+	<string name="title_activity_new_game">Sign in</string>
+
+    <!-- Strings related to new game -->
+	<string name="title_newGame">Nueva Partida</string>
+	<string name="playerName">Nombre del jugador</string>
+	<string name="chooseSex">¿Qué eres?</string>
+	<string name="boy">Chico</string>
+	<string name="girl">Chica</string>
+	<string name="neighborName">Nombre de tu vecino</string>
+	<string name="generate_name">Generar</string>
+	<string name="choosePet">Elige una mascota:</string>
+	<string name="dog">Perro</string>
+	<string name="cat">Gato</string>
+	<string name="play">Jugar</string>					
+	
+</resources>
