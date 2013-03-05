@@ -25,7 +25,7 @@ function cl_version()
 			preg_match('/^Animature\/[1-9]+\.[0-9]+\.[0-9]+$/', $_SERVER['HTTP_USER_AGENT'], $va);
 			$v = explode('.', str_replace('Animature/', '', $va[0]));
 
-			foreach ($v as $key =>$int)
+			foreach ($v as $key => $int)
 			{
 				$v[$key] = (int) $int;
 			}
