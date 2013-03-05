@@ -1,0 +1,12 @@
+<resources>
+    
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    
+	<!-- Strings related to Main Menu -->
+	<string name="btnNewGame">Nueva Partida</string>
+	<string name="btnLoadGame">Cargar Partida</string>
+	<string name="btnMultiplayer">Multijugador</string>
+	<string name="btnAnimatureShop">Tienda Animature</string>
+	<string name="btnOptions">Opciones</string>
+    
+</resources>

@@ -17,6 +17,9 @@ public class LaunchActivity extends Activity
 	private Button btn_Register;
 	private Button btn_Enter;
 	
+	private String username;
+	private String password;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -54,6 +57,9 @@ public class LaunchActivity extends Activity
 	 * @param View
 	 */
 	public void enter(View view){
+		// We get the values from EditText
+		username = editText_UserLogin.getText().toString();
+		password = editText_PasswordLogin.getText().toString();
 		
 	}
 }

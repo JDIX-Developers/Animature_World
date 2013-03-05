@@ -31,6 +31,10 @@
             android:name="com.jdix.poketmon.RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
+        <activity
+            android:name="com.jdix.poketmon.MainMenuActivity"
+            android:label="@string/title_activity_main_menu" >
+        </activity>
     </application>
 
 </manifest>
