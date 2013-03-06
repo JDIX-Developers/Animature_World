@@ -33,7 +33,7 @@ En el servidor, la API tendrá varios action, que pasaré a describir a continua
 
 Se deberán especificar 3 datos: method, email y pass. El method será *manual* para todos los logins. *auto* está reservado para un login automático para aumentar la seguridad de la conexión, ya que usa tokens regenerables.
 El *email* será el email usado por el usuario al intentar entrar. Deberá estar comprobado y no deberá ser vacío.
-La *pass* será la contraseña usada por el usuario, no podrá ser un string vacío, y se enviará al servidor encriptada en Sha1 incluyendo tras el string de la contraseña el siguiente string: *--Animature*. Esto aumentará la seguridad.
+La *pass* será la contraseña usada por el usuario, no podrá ser un string vacío, y se enviará al servidor encriptada en Sha1 incluyendo tras el string de la contraseña el siguiente salt: *--Animature*. Esto aumentará la seguridad.
 
 El servidor devolverá 3 valores: email, pass, token. El *email* será un booleano (TRUE o FALSE) que indicará si el email es válido o no. El *pass* será un booleano que indicará, una vez comprobado el email, si la contraseña es correcta o no.
 En el caso en el que ambos sean TRUE, es decir, que el email y la contraseña son válidos, se incluirá el token, que setá un string hexadecimal de 32 caracteres que controlará la conexión. No es necesario controlarlo, ya que la propia conexión gestionará el token.
@@ -46,7 +46,7 @@ Connection.setLogin("test@razican.com", StringUtils.sha1("test"+"--Animature"));
 
 ### Action: register ###
 
-Se deberán especificar 3 datos: user, email, pass. El primero será el usuario que el jugador tendrá en Internet y en el juego. No podrá estar vacío. El segundo será un email comprobado, y el tercero será una contraseña, que previamente deberá haber sido comprobada para evitar errores (doble introducción). Esta última se transmitirá en sha1, como en el login.
+Se deberán especificar 3 datos: user, email, pass. El primero será el usuario que el jugador tendrá en Internet y en el juego. No podrá estar vacío. El segundo será un email comprobado, y el tercero será una contraseña, que previamente deberá haber sido comprobada para evitar errores (doble introducción). Esta última se transmitirá en sha1, con el salt, como en el login.
 
 El servidor devolverá 3 valores: user, email, y token. Respectivamente, un booleano indicando la validez del usuario, otro indicando la del email, y un string para controlar la conexión.
 

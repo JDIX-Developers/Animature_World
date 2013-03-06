@@ -34,6 +34,39 @@ function cl_version()
 	}
 }
 
+function valid_email($email)
+{
+	$is_valid = (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
+	$is_valid = ($is_valid && getmxrr(explode('@', $email)[1], NULL));
+
+	if ($is_valid)
+	{
+		$query = db()->query("SELECT COUNT(*) FROM `users` WHERE `email` = '".db()->real_escape_string($email)."';");
+		$results = 0;
+		foreach ($query->fetch_row() as $number)
+		{
+			$results = (int) $number;
+		}
+
+		$is_valid = ($results === 0);
+	}
+
+	return $is_valid;
+}
+
+function exists_user($user)
+{
+	$query = db()->query("SELECT COUNT(*) FROM `users` WHERE `user` = '".db()->real_escape_string($user)."'");
+
+	$results = 0;
+	foreach ($query->fetch_row() as $number)
+	{
+		$results = (int) $number;
+	}
+
+	return $results > 0;
+}
+
 function db()
 {
 	static $db;
@@ -63,24 +96,41 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 	switch ($_POST['action'])
 	{
 		case 'login':
-			if (isset($_POST['mode']) && ! empty($_POST['mode']) && isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['pass']) && ! empty($_POST['pass']))
+			if (isset($_POST['mode']) && ! empty($_POST['mode']) && isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! empty($_POST['pass']))
 			{
+				//TODO
 				$result = array(
 					'token' => md5('prueba'),
-					'user' => TRUE,
+					'email' => TRUE,
 					'pass' => TRUE);
 
 				echo json_encode($result);
 			}
 			else
 			{
-
+				header('Location: http://jdix.razican.com/404.php', 404);
+				exit;
 			}
 		break;
 		case 'register':
+			if (isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! empty($_POST['pass']))
+			{
+				//TODO Falta el registro y la creación de la sesión
+				$result = array(
+					'token' => md5($_POST['user'].$_POST['pass'].microtime(TRUE)."--Animature"),
+					'user' => exists_user($_POST['user']),
+					'email' => valid_email($_POST['email']));
+
+				echo json_encode($result);
+			}
+			else
+			{
+				header('Location: http://jdix.razican.com/404.php', 404);
+				exit;
+			}
 		break;
 		case 'test':
-			echo json_encode(array('text' => 'Hola'));
+			echo json_encode(array('text' => 'Hola, esto es Animature World, desde el servidor!!!'));
 		break;
 		default:
 			header('Location: http://jdix.razican.com/404.php', 404);
