@@ -63,7 +63,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 	switch ($_POST['action'])
 	{
 		case 'login':
-			if (isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['pass']) && ! empty($_POST['pass']))
+			if (isset($_POST['mode']) && ! empty($_POST['mode']) && isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['pass']) && ! empty($_POST['pass']))
 			{
 				$result = array(
 					'token' => md5('prueba'),
@@ -71,6 +71,10 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 					'pass' => TRUE);
 
 				echo json_encode($result);
+			}
+			else
+			{
+
 			}
 		break;
 		case 'register':
