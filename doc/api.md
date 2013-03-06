@@ -15,7 +15,7 @@ El sistema devolverá un objeto JSON, con el que se podrán extraer todas las pr
 
 ### Ejemplo de uso ###
 
-´´´java
+```java
 Connection c = Connection.getInstance();
 
 c.setAction("login");
@@ -40,9 +40,9 @@ En el caso en el que ambos sean TRUE, es decir, que el email y la contraseña so
 
 Lo que sí es importante es que una vez hecho el login, se le incluya a la conexión los datos del login, para lo que se usará el método estático *setLogin()*:
 
-´´´java
+```java
 Connection.setLogin("test@razican.com", StringUtils.sha1("test"+"--Animature"));
-´´´
+```
 
 ### Action: register ###
 
