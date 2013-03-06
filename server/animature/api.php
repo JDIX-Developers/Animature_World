@@ -2,7 +2,7 @@
 
 function is_ssl()
 {
-	return ( ! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off');
+	return TRUE;//( ! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off');
 }
 
 function is_animature()
@@ -56,23 +56,35 @@ function db()
 	return $db;
 }
 
-//if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['action']))
-//{
+if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['action']))
+{
 	define('IN_API', TRUE);
 
 	switch ($_POST['action'])
 	{
 		case 'login':
+			if (isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['pass']) && ! empty($_POST['pass']))
+			{
+				$result = array(
+					'token' => md5("prueba"),
+					'user' => TRUE,
+					'pass' => TRUE);
+
+				echo json_encode($result);
+			}
 		break;
 		case 'register':
+		break;
+		case 'test':
+			echo "Hola";
 		break;
 		default:
 			header('Location: http://jdix.razican.com/404.php', 404);
 			exit;
 	}
-//}
-//else
-//{
-//	header('Location: http://jdix.razican.com/404.php', 404);
-//	exit;
-//}
+}
+else
+{
+	header('Location: http://jdix.razican.com/404.php', 404);
+	exit;
+}
