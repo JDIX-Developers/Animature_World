@@ -66,7 +66,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 			if (isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['pass']) && ! empty($_POST['pass']))
 			{
 				$result = array(
-					'token' => md5("prueba"),
+					'token' => md5('prueba'),
 					'user' => TRUE,
 					'pass' => TRUE);
 
@@ -76,7 +76,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 		case 'register':
 		break;
 		case 'test':
-			echo "Hola";
+			echo json_encode(array('text' => 'Hola'));
 		break;
 		default:
 			header('Location: http://jdix.razican.com/404.php', 404);
