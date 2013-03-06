@@ -22,11 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.jdix.animature.RegisterActivity"
-            android:label="@string/title_activity_register" 
-			android:windowSoftInputMode="adjustResize|stateVisible" >
+            android:label="@string/title_activity_register"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
         <activity
             android:name="com.jdix.animature.MainMenuActivity"
@@ -35,6 +34,10 @@
         <activity
             android:name="com.jdix.animature.NewGameActivity"
             android:label="@string/title_activity_new_game" >
+        </activity>
+        <activity
+            android:name="com.jdix.animature.TestActivity"
+            android:label="@string/title_activity_test" >
         </activity>
     </application>
 
