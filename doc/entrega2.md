@@ -27,6 +27,7 @@ La documentación de la API y las especificaciones de los mapas etc. estará dis
 * En los arbustos aparecerán animatures salvajes que podrá capturar.
 * El personaje podrá curar a sus animatures en un centro animature.
 * Se podrán comprar cosas en las tiendas animature.
+* Se podrá hablar con otras personas con IA.
 * El personaje no podrá visitar más de dos pueblos.
 * Los animatures podrán recibir experiencia y subir de nivel, sin sobrepasar el nivel 100.
-* Cada punto de experiencia aumentará la efectividad del animature.
+* Cada nivel aumentará la efectividad del animature.
