@@ -31,3 +31,4 @@ La documentación de la API y las especificaciones de los mapas etc. estará dis
 * El personaje no podrá visitar más de dos pueblos.
 * Los animatures podrán recibir experiencia y subir de nivel, sin sobrepasar el nivel 100.
 * Cada nivel aumentará la efectividad del animature.
+* No se podrá jugar en modo multijugador en esta versión.
