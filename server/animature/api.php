@@ -90,6 +90,8 @@ function db()
 	return $db;
 }
 
+db()->query("DELETE FROM `sessions` WHERE expiration < ".time().";");
+
 if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['action']))
 {
 	define('IN_API', TRUE);
@@ -97,13 +99,17 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 	switch ($_POST['action'])
 	{
 		case 'login':
-			if (isset($_POST['mode']) && ! empty($_POST['mode']) && isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! empty($_POST['pass']))
+			if (isset($_POST['mode']) && ($_POST['mode'] === 'manual' OR $_POST['mode'] === 'auto') &&
+				isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! empty($_POST['pass']))
 			{
 				//TODO
-				$result = array(
-					'token' => md5('prueba'),
-					'email' => TRUE,
-					'pass' => TRUE);
+				$result = array('token' => md5('prueba'));
+
+				if ($_POST['mode'] === 'manual')
+				{
+					$result['email'] = TRUE;
+					$result['pass'] = TRUE;
+				}
 
 				echo json_encode($result);
 			}
