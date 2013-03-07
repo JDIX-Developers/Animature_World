@@ -37,7 +37,8 @@ function cl_version()
 function valid_email($email)
 {
 	$is_valid = (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
-	$is_valid = ($is_valid && getmxrr(explode('@', $email)[1], NULL));
+	$has_mx = getmxrr(explode('@', $email), $mxhost);
+	$is_valid = ($is_valid && $has_mx[1]);
 
 	if ($is_valid)
 	{
@@ -93,7 +94,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 {
 	define('IN_API', TRUE);
 
-	switch ($_POST['action'])
+	switch ($_GET['action'])
 	{
 		case 'login':
 			if (isset($_POST['mode']) && ! empty($_POST['mode']) && isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! empty($_POST['pass']))
