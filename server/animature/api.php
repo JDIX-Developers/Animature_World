@@ -94,7 +94,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 {
 	define('IN_API', TRUE);
 
-	switch ($_GET['action'])
+	switch ($_POST['action'])
 	{
 		case 'login':
 			if (isset($_POST['mode']) && ! empty($_POST['mode']) && isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! empty($_POST['pass']))
@@ -129,9 +129,6 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 				header('Location: http://jdix.razican.com/404.php', 404);
 				exit;
 			}
-		break;
-		case 'test':
-			echo json_encode(array('text' => 'Hola, esto es Animature World, desde el servidor!!!'));
 		break;
 		default:
 			header('Location: http://jdix.razican.com/404.php', 404);
