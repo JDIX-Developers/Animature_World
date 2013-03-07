@@ -19,7 +19,6 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
 	        android:layout_marginTop="100dp"
-	        android:maxLines="1"
 			android:singleLine="true"
 	        android:hint="@string/user"
 	        android:ems="10" />
