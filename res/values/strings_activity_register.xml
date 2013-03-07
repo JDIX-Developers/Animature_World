@@ -8,8 +8,9 @@
     <string name="action_sign_in_register">Registrar</string>
     <string name="login_progress_signing_in">Signing in&#8230;</string>
     <string name="error_invalid_email">Esta dirección de e-mail ya está en uso</string>
-    <string name="error_invalid_password">Contraseña demasiado corta</string>
-    <string name="error_incorrect_password">Las contraseñas no coinciden</string>
+    <string name="error_invalid_password">La contraseña debe tener entre 4 y 15 carácteres</string>
+	<string name="error_incorrect_password">La contraseña es incorrecta</string>
     <string name="error_field_required">Todos los campos son requeridos</string>
+    <string name="error_not_same_password">Las contraseñas no coinciden</string>
 
 </resources>

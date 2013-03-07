@@ -88,4 +88,16 @@ public class MainMenuActivity extends Activity {
 	{
 
 	}
+	/**
+	 * Method pressing the exit button
+	 * 
+	 * @param View
+	 */
+	public void exit(View view)
+	{
+		// Provisional
+		Intent intent = new Intent(MainMenuActivity.this, LaunchActivity.class);
+		startActivity(intent);
+		finish();
+	}
 }

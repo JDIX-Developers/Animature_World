@@ -39,12 +39,16 @@ public class RegisterActivity extends Activity {
 	private UserLoginTask			mAuthTask			= null;
 
 	// Values for email and password at the time of the login attempt.
+	private String					mUsername;
+	private String					mPassword1;
+	private String					mPassword2;
 	private String					mEmail;
-	private String					mPassword;
 
 	// UI references.
+	private EditText				mUsernameView;
+	private EditText				mPasswordView1;
+	private EditText				mPasswordView2;
 	private EditText				mEmailView;
-	private EditText				mPasswordView;
 	private View					mLoginFormView;
 	private View					mLoginStatusView;
 	private TextView				mLoginStatusMessageView;
@@ -61,9 +65,22 @@ public class RegisterActivity extends Activity {
 		mEmailView = (EditText) findViewById(R.id.email);
 		mEmailView.setText(mEmail);
 
-		mPasswordView = (EditText) findViewById(R.id.password);
-		mPasswordView
-				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+		mPasswordView1 = (EditText) findViewById(R.id.password1);
+		mPasswordView1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+					@Override
+					public boolean onEditorAction(TextView textView, int id,
+							KeyEvent keyEvent) {
+						if (id == R.id.login || id == EditorInfo.IME_NULL)
+						{
+							attemptLogin();
+							return true;
+						}
+						return false;
+					}
+				});
+		
+		mPasswordView2 = (EditText) findViewById(R.id.password2);
+		mPasswordView2.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 					@Override
 					public boolean onEditorAction(TextView textView, int id,
 							KeyEvent keyEvent) {
@@ -79,14 +96,6 @@ public class RegisterActivity extends Activity {
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
 		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
-
-		findViewById(R.id.sign_in_button).setOnClickListener(
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						attemptLogin();
-					}
-				});
 	}
 
 	@Override
@@ -108,27 +117,41 @@ public class RegisterActivity extends Activity {
 		}
 
 		// Reset errors.
+		mUsernameView.setError(null);
+		mPasswordView1.setError(null);
+		mPasswordView2.setError(null);
 		mEmailView.setError(null);
-		mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
+		mUsername = mUsernameView.getText().toString();
+		mPassword1 = mPasswordView1.getText().toString();
+		mPassword2 = mPasswordView2.getText().toString();
 		mEmail = mEmailView.getText().toString();
-		mPassword = mPasswordView.getText().toString();
-
+		
 		boolean cancel = false;
 		View focusView = null;
 
-		// Check for a valid password.
-		if (TextUtils.isEmpty(mPassword))
+		// Check for a valid username.
+		if(TextUtils.isEmpty(mUsername))
 		{
-			mPasswordView.setError(getString(R.string.error_field_required));
-			focusView = mPasswordView;
+			mUsernameView.setError(getString(R.string.error_field_required));
+			focusView = mUsernameView;
 			cancel = true;
 		}
-		else if (mPassword.length() < 4)
+		
+		// Check for a valid password.
+		if (TextUtils.isEmpty(mPassword1))
 		{
-			mPasswordView.setError(getString(R.string.error_invalid_password));
-			focusView = mPasswordView;
+			mPasswordView1.setError(getString(R.string.error_field_required));
+			focusView = mPasswordView1;
+			cancel = true;
+		}else if (mPassword1.length() < 4 || mPassword1.length() > 15){
+			mPasswordView1.setError(getString(R.string.error_invalid_password));
+			focusView = mPasswordView1;
+			cancel = true;
+		}else if(!mPassword1.equals(mPassword2)){
+			mPasswordView2.setError(getString(R.string.error_not_same_password));
+			focusView = mPasswordView2;
 			cancel = true;
 		}
 
@@ -234,7 +257,7 @@ public class RegisterActivity extends Activity {
 				if (pieces[0].equals(mEmail))
 				{
 					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
+					return pieces[1].equals(mPassword1);
 				}
 			}
 
@@ -254,9 +277,9 @@ public class RegisterActivity extends Activity {
 			}
 			else
 			{
-				mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
-				mPasswordView.requestFocus();
+				mPasswordView1.setError(getString(R.string.error_incorrect_password));
+				mPasswordView2.setError(getString(R.string.error_incorrect_password));
+				mPasswordView1.requestFocus();
 			}
 		}
 

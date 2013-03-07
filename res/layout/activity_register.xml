@@ -52,7 +52,7 @@
             </EditText>
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/password1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -98,6 +98,7 @@
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:textSize="18sp"
+                android:onClick="attemptLogin"
                 android:text="@string/action_sign_in_register" />
         </LinearLayout>
     </ScrollView>
