@@ -72,4 +72,22 @@ public class LaunchActivity extends Activity {
 		Intent intent = new Intent(LaunchActivity.this, MainMenuActivity.class);
 		startActivity(intent);
 	}
+	/**
+	 * Attempts to sign in the account specified by the login form.
+	 * If there are form errors (invalid username and password, missing fields, etc.), the
+	 * errors are presented and no actual login attempt is made.
+	 */
+	public boolean attemptLogin()
+	{
+		boolean isAcepted=true;
+		if(username.trim().equals("")){
+			editText_UserLogin.setError(getString(R.string.error_field_required));
+			isAcepted=false;
+		}
+		if(password.trim().equals("")){
+			editText_PasswordLogin.setError(getString(R.string.error_field_required));
+			isAcepted=false;
+		}
+		return isAcepted;
+	}
 }
