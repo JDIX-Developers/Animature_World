@@ -131,11 +131,17 @@ public class RegisterActivity extends Activity {
 		boolean cancel = false;
 		View focusView = null;
 
-		// Check for a valid username.
-		if(TextUtils.isEmpty(mUsername))
+		// Check for a valid email address.
+		if (TextUtils.isEmpty(mEmail))
 		{
-			mUsernameView.setError(getString(R.string.error_field_required));
-			focusView = mUsernameView;
+			mEmailView.setError(getString(R.string.error_field_required));
+			focusView = mEmailView;
+			cancel = true;
+		}
+		else if (!mEmail.matches("[a-z0-9][\\w\\.-]*[a-z0-9]\\.[a-z][a-z\\.]*[a-z]$"))
+		{
+			mEmailView.setError(getString(R.string.error_invalid_email));
+			focusView = mEmailView;
 			cancel = true;
 		}
 		
@@ -154,18 +160,12 @@ public class RegisterActivity extends Activity {
 			focusView = mPasswordView2;
 			cancel = true;
 		}
-
-		// Check for a valid email address.
-		if (TextUtils.isEmpty(mEmail))
+		
+		// Check for a valid username.
+		if(TextUtils.isEmpty(mUsername))
 		{
-			mEmailView.setError(getString(R.string.error_field_required));
-			focusView = mEmailView;
-			cancel = true;
-		}
-		else if (!mEmail.matches("[a-z0-9][\\w\\.-]*[a-z0-9]\\.[a-z][a-z\\.]*[a-z]$"))
-		{
-			mEmailView.setError(getString(R.string.error_invalid_email));
-			focusView = mEmailView;
+			mUsernameView.setError(getString(R.string.error_field_required));
+			focusView = mUsernameView;
 			cancel = true;
 		}
 

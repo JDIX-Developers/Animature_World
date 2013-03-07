@@ -69,9 +69,11 @@ public class LaunchActivity extends Activity {
 		username = editText_UserLogin.getText().toString();
 		password = editText_PasswordLogin.getText().toString();
 
-		// Provisional
-		Intent intent = new Intent(LaunchActivity.this, MainMenuActivity.class);
-		startActivity(intent);
+		if(attemptLogin()){
+			// Provisional
+			Intent intent = new Intent(LaunchActivity.this, MainMenuActivity.class);
+			startActivity(intent);
+		}
 	}
 	/**
 	 * Attempts to sign in the account specified by the login form.
@@ -80,15 +82,25 @@ public class LaunchActivity extends Activity {
 	 */
 	public boolean attemptLogin()
 	{
+		View focusView = null;
 		boolean isAcepted=true;
-		if(TextUtils.isEmpty(username)){
-			editText_UserLogin.setError(getString(R.string.error_field_required));
-			isAcepted=false;
-		}
+		
 		if(TextUtils.isEmpty(password)){
 			editText_PasswordLogin.setError(getString(R.string.error_field_required));
 			isAcepted=false;
+			focusView = editText_PasswordLogin;
 		}
+		if(TextUtils.isEmpty(username)){
+			editText_UserLogin.setError(getString(R.string.error_field_required));
+			isAcepted=false;
+			focusView = editText_UserLogin;
+		}
+		
+		if( ! isAcepted)
+		{
+			focusView.requestFocus();
+		}
+		
 		return isAcepted;
 	}
 }
