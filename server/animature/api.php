@@ -57,7 +57,7 @@ function valid_email($email)
 
 function exists_user($user)
 {
-	$query = db()->query("SELECT COUNT(*) FROM `users` WHERE `user` = '".db()->real_escape_string($user)."'");
+	$query = db()->query("SELECT COUNT(*) FROM `users` WHERE `username` = '".db()->real_escape_string($user)."'");
 
 	$results = 0;
 	foreach ($query->fetch_row() as $number)
@@ -114,13 +114,25 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 			}
 		break;
 		case 'register':
-			if (isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! empty($_POST['pass']))
+			if (isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! preg_match('/[a-f0-9]{40}/', $_POST['pass']))
 			{
-				//TODO Falta el registro y la creación de la sesión
+				if (valid_email($_POST['email']) && ! exists_user($_POST['user']))
+				{
+					db()->query("INSERT INTO `users` (`email`, `password`, `username`) ".
+						"VALUES ('".db()->real_escape_string($_POST['email'])."', '".
+						db()->real_escape_string($_POST['password'])."', '".db()->real_escape_string($_POST['user'])."');");
+					$token = md5($_POST['user'].$_POST['pass'].microtime(TRUE)."--Animature");
+
+					db()->query("INSERT INTO `sessions` VALUES ('".$token."', SELECT `id` FROM `users` WHERE `username` = '".db()->real_escape_string($_POST['user'])."', ".(time()+7200).");");
+				}
+
 				$result = array(
-					'token' => md5($_POST['user'].$_POST['pass'].microtime(TRUE)."--Animature"),
-					'user' => exists_user($_POST['user']),
+					'user' => ! exists_user($_POST['user']),
 					'email' => valid_email($_POST['email']));
+				if (isset($token))
+				{
+					$result['token'] = $token;
+				}
 
 				echo json_encode($result);
 			}
