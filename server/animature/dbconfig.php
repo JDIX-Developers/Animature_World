@@ -6,3 +6,7 @@ $dbsettings = array(
 	'pass'		=> '12345',
 	'name'		=> 'animature'
 );
+
+
+/* End of file dbconfig.php */
+/* Location: ./animature/dbconfig.php */

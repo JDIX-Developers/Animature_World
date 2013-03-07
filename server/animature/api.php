@@ -152,3 +152,7 @@ else
 	header('Location: http://jdix.razican.com/404.php', 404);
 	exit;
 }
+
+
+/* End of file api.php */
+/* Location: ./animature/api.php */
