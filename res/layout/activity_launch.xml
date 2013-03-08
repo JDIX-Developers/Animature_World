@@ -3,7 +3,8 @@
 	    xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
 
 	<LinearLayout
 	    android:id="@+id/LinearLayout1"
@@ -11,21 +12,32 @@
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
 	    android:layout_gravity="center"
+	    android:layout_marginLeft="25dp"
+	    android:layout_marginRight="25dp"
 	    tools:context=".LaunchActivity" >
+
+		<ImageView
+		    android:id="@+id/imageView1"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:background="@null"
+		    android:layout_gravity="center"
+		    android:gravity="center"
+		    android:src="@drawable/title" />
 	
 	    <EditText
 	        android:id="@+id/editText_UserLogin"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
-	        android:layout_marginTop="100dp"
+	        android:layout_marginTop="50dp"
 			android:singleLine="true"
 	        android:hint="@string/user"
 	        android:ems="10" />
 	
 	    <EditText
 	        android:id="@+id/editText_PasswordLogin"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
 	        android:layout_marginTop="30dp"
@@ -37,7 +49,7 @@
 	        android:id="@+id/checkBox_Record"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-			android:layout_gravity="center"
+			android:layout_gravity="right"
 			android:gravity="center"
 			android:layout_marginTop="30dp"
 	        android:text="@string/record_Me" />
@@ -46,8 +58,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content" 
 	        android:layout_marginTop="30dp"
-			android:layout_marginBottom="20dp"
-	        android:layout_gravity="center"
+	        android:layout_gravity="right"
 	        android:gravity="center">
 	
 	        <Button
@@ -56,7 +67,8 @@
 	            android:layout_height="wrap_content"
 	            android:onClick="register"
 	            android:text="@string/register"
-	            android:width="100dp" />
+	            android:textSize="20sp"
+	            android:width="140dp" />
 	        
 	        <Button
 	            android:id="@+id/btn_Enter"
@@ -64,7 +76,8 @@
 	            android:layout_height="wrap_content"
 	            android:onClick="enter"
 	            android:text="@string/enter"
-	            android:width="100dp" />
+	            android:textSize="20sp"
+	            android:width="120dp" />
 	
 	    </LinearLayout>
 	
