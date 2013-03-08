@@ -21,7 +21,7 @@ public class Player
 	private Animature [] activeAnimatures;
 	private int coord_X;
 	private int coord_Y;
-	private int orientation;		// 1-Up, 2-Right, 3-Down, 4-Left
+	private int orientation;
 	private int last_Healing;
 	private int medals;
 	private int money;
