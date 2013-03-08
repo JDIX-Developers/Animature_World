@@ -4,7 +4,7 @@
 (id, email, password, username)
 
 ## Tabla Animature ##
-(id, name, height, weight, type, velocity, defense, agility, strenght, health, level_evo)
+(id, name, height, weight, type, velocity, defense, agility, strenght, precission, health, level_evo)
 
 ## Tabla Save ##
 (id, *user*, stage, last_played, started, total_time, steps, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*, *map*, coord_x, coord_y, neighbour, *1st_an*, orientation, last_Healing, medals, money)
@@ -25,4 +25,4 @@
 (enemy, save)
 
 ## Tabla Attacks ##
-(id, name, type, max_pp, precission)
+(id, name, type, max_pp, power, probability)

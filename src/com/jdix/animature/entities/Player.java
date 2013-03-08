@@ -4,6 +4,12 @@ import android.graphics.drawable.Drawable;
 
 public class Player 
 {
+	public static final int NORTH = 0; 
+	public static final int WEST = 1; 
+	public static final int SOUTH = 2; 
+	public static final int EAST = 3; 
+	
+	private int id_Player;
 	private String name;
 	private int sex;				// 0-Boy, 1-Girl
 	private int pet;				// 0-Dog, 1-Cat
@@ -25,13 +31,12 @@ public class Player
 	{
 		
 	}
-	public Player(String name, int sex, int pet, String neighborName,
+	public Player(int id_Animature, String name, int sex, int pet, String neighborName,
 			int stage, int started, int last_Played, int steps,
 			Animature[] activeAnimatures, int coord_X, int coord_Y,
 			int orientation, int last_Healing, int medals, int money,
 			Drawable [] imgPlayer)
 	{
-		super();
 		this.name = name;
 		this.sex = sex;
 		this.pet = pet;
@@ -48,6 +53,12 @@ public class Player
 		this.medals = medals;
 		this.money = money;
 		this.imgPlayer = imgPlayer;
+	}
+	public int getId_Player() {
+		return id_Player;
+	}
+	public void setId_Player(int id_Player) {
+		this.id_Player = id_Player;
 	}
 	public String getName() {
 		return name;

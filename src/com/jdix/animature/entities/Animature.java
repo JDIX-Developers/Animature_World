@@ -4,11 +4,18 @@ import android.graphics.drawable.Drawable;
 
 public class Animature 
 {
+	public static final int VELOCITY = 0;
+	public static final int DEFENSE = 1;
+	public static final int AGILITY = 2;
+	public static final int STRENGHT = 3;
+	public static final int PRECISSION = 4;
+	
+	private int id_Animature;
 	private String name;
 	private double height;
 	private double weight;
-	private String type;
-	private int [] cualities;			// 0-Velocity, 1-Defense, 2-Agility, 3-Strenght
+	private int type;
+	private int [] cualities;
 	private int health;
 	private int level_evo;
 	private Drawable [] imgAnimature;	// 0-FrontImage, 1-BackImage
@@ -18,9 +25,9 @@ public class Animature
 	{
 		
 	}
-	public Animature(String name, double height, double weight,
-					String type, int [] cualities, int health,
-					int level_evo, Drawable [] imgAnimature,
+	public Animature(int id_Animature, String name, double height, double weight,
+					int type, int [] cualities, int health,
+					int level_evo, Attack [] attacks, Drawable [] imgAnimature,
 					Drawable iconAnimature){
 		this.name = name;
 		this.height = height;
@@ -31,6 +38,12 @@ public class Animature
 		this.level_evo = level_evo;
 		this.imgAnimature = imgAnimature;
 		this.iconAnimature = iconAnimature;
+	}
+	public int getId_Animature() {
+		return id_Animature;
+	}
+	public void setId_Animature(int id_Animature) {
+		this.id_Animature = id_Animature;
 	}
 	public String getName() {
 		return name;
@@ -50,10 +63,10 @@ public class Animature
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 	public int[] getCualities() {
