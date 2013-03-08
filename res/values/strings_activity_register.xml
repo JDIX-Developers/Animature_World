@@ -1,10 +1,10 @@
 <resources>
-
-    <string name="title_activity_login">Sign in</string>
-
-    <!-- Strings related to login -->
+    <string name="title_activity_register">RegisterActivity</string>
+    <!-- Strings related to register -->
+    
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Contraseña</string>
+    <string name="prompt_repeat_password">Repetir contraseña</string>
     <string name="action_sign_in_register">Registrar</string>
     <string name="login_progress_signing_in">Signing in&#8230;</string>
     <string name="error_used_email">Esta dirección de e-mail ya está en uso</string>

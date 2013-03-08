@@ -36,10 +36,6 @@
             android:name="com.jdix.animature.NewGameActivity"
             android:label="@string/title_activity_new_game" >
         </activity>
-        <activity
-            android:name="com.jdix.animature.TestActivity"
-            android:label="@string/title_activity_test" >
-        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,11 @@
+<resources>
+	<string name="title_activity_login">Sign in</string>
+	 <!-- Strings related to login -->
+	
+	<string name="enter">Entrar</string>
+    <string name="register">Registrarse</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+	<string name="record_Me">Recordarme</string>
+
+</resources>
