@@ -40,7 +40,7 @@ public class NewGameActivity extends Activity {
 																				// Cat
 
 	private String[]	generatedNames	= { "Xabier", "Iban", "David",
-			"Jordan", "Ander", "Paula", "Nerea", "Javier", "Daniel", "Irene" };
+			"Jordan", "Paula", "Lucas", "Nerea", "Javier", "Irene", "Mario", "Lucia", "Daniel" };
 	private int			index			= -1;									// Index
 																				// for
 																				// generatedNames
@@ -78,7 +78,7 @@ public class NewGameActivity extends Activity {
 	public void generate_NameNeighbor(View view)
 	{
 		this.index++;
-		if (this.index > 9)
+		if (this.index > 11)
 			this.index = 0;
 		editText_neighborName.setText(this.generatedNames[this.index]);
 	}
