@@ -1,18 +1,26 @@
 package com.jdix.animature;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.jdix.animature.R;
+import com.jdix.animature.utils.Connection;
+import com.jdix.animature.utils.Database;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -51,13 +59,20 @@ public class RegisterActivity extends Activity {
 	private View					mLoginStatusView;
 	private TextView				mLoginStatusMessageView;
 
+	public SQLiteDatabase db;
+	
+	private ResultReceiver login;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-
+		
 		setContentView(R.layout.activity_register);
 
+		db = (new Database(this, "AnimatureWorldDB", null, 1)).getWritableDatabase();
+		login = (ResultReceiver) getIntent().getExtras().get("login");
+		
 		// Set up the login form.
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);
@@ -205,15 +220,37 @@ public class RegisterActivity extends Activity {
 	 * the user.
 	 */
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+		
+		boolean user, email, error;
+		
 		@Override
 		protected Boolean doInBackground(Void... params)
 		{
 			// TODO: attempt authentication against a network service.
+			Connection c = Connection.getInstance();
 
-			// REGISTRO AQUI!!! FERRE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			c.setAction("register");
+			c.addData("user", mUsername);
+			c.addData("email", mEmail);
+			//c.addData("pass", StringUtils.sha1(mPassword1 + "--AnimatureWorld"));
 
-			// TODO: register the new account here.
-			return true;
+			JSONObject jsonObject = c.execute();
+			user = email = error = false;
+			if (jsonObject != null)
+			{
+				try
+				{
+					user = jsonObject.getBoolean("user");
+					email = jsonObject.getBoolean("email");
+				}
+				catch (JSONException e) {}
+			}
+			else
+			{
+				error = true;
+			}
+
+			return user && email;
 		}
 
 		@Override
@@ -224,13 +261,40 @@ public class RegisterActivity extends Activity {
 
 			if (success)
 			{
+				/*
+				 * Aqui tiene que actualizarse la base de datos!!!!
+				 */
+
+				//Connection.setLogin(mEmail, StringUtils.sha1(mPassword + "--MiniunisHUB"));
+				//We create the intent
+				Intent intent = new Intent(RegisterActivity.this, MainMenuActivity.class);
+
+				//We start the activity
+				startActivity(intent);
+				//We do not want a logged user to go back to login
+				login.send(1, new Bundle());
 				finish();
 			}
 			else
 			{
-				mPasswordView1.setError(getString(R.string.error_incorrect_password));
-				mPasswordView2.setError(getString(R.string.error_incorrect_password));
-				mPasswordView1.requestFocus();
+				if ( ! error)
+				{
+					if ( ! email)
+					{
+						//mEmailView.setError(getString(R.string.error_repeated_email));
+						mEmailView.requestFocus();
+					}
+					if ( ! user)
+					{
+						//mUsernameView.setError(getString(R.string.error_repeated_user));
+						mUsernameView.requestFocus();
+					}
+				}
+				else
+				{
+					//mEmailView.setError(getString(R.string.conection_error));
+					mEmailView.requestFocus();
+				}
 			}
 		}
 
