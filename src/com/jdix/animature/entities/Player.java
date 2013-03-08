@@ -5,9 +5,9 @@ import android.graphics.drawable.Drawable;
 public class Player 
 {
 	public static final int NORTH = 0; 
-	public static final int WEST = 1; 
+	public static final int EAST = 1; 
 	public static final int SOUTH = 2; 
-	public static final int EAST = 3; 
+	public static final int WEST = 3; 
 	
 	private int id_Player;
 	private String name;

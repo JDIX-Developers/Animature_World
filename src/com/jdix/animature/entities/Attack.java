@@ -8,13 +8,13 @@ public class Attack
 	private int max_pp;
 	private int act_pp;
 	private int power;
-	private double probability;			// 0 - 1 (Example: 60% - 0.6)
+	private int probability;			// 0 - 100 (Example: 60% - 60)
 	
 	public Attack(){
 		
 	}
 	public Attack(int id_Attack, String name_Attack, int type_Attack,
-			int max_pp, int act_pp, int power, double probability)
+			int max_pp, int act_pp, int power, int probability)
 	{
 		this.id_Attack = id_Attack;
 		this.name_Attack = name_Attack;
@@ -63,7 +63,7 @@ public class Attack
 	public double getProbability() {
 		return probability;
 	}
-	public void setProbability(double probability) {
+	public void setProbability(int probability) {
 		this.probability = probability;
 	}
 }
