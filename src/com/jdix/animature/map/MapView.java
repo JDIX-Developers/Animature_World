@@ -47,8 +47,8 @@ public class MapView extends View {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
-		mWidth = View.MeasureSpec.getSize(widthMeasureSpec);
-		mHeight = View.MeasureSpec.getSize(heightMeasureSpec);
+		mWidth = MeasureSpec.getSize(widthMeasureSpec);
+		mHeight = MeasureSpec.getSize(heightMeasureSpec);
 
 		setMeasuredDimension(mWidth, mHeight);
 	}
