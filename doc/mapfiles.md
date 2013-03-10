@@ -4,7 +4,7 @@ Un MapFile es un archivo con extensión .map que contiene una porción de univer
 
 El primer dato indicará el ancho y el alto del mapa, el ancho el primer byte y el alto el segundo. A partir de entonces, cada dato será un cuadrado del sprite, con coordenadas XXYY. Una vez completado el ancho y el alto, se incluirán los en laces a otros mapas, como en puertas etc.
 
-Cada enlace tendrá 6 bytes. El primer byte serán las coordenadas del mapa actual en el que estará el enlace. El segundo byte, será el número de mapa al que se accederá desde ahí, y el tercer byte, las coordenadas a las que se llegará.
+Cada enlace tendrá 6 bytes. El primer byte serán las coordenadas del mapa actual en el que estará el enlace. El segundo byte, será el número de mapa al que se accederá desde ahí, y el tercer byte, las coordenadas a las que se llegará. Los mapas se guardarán en *res/raw/* en el formato map_X.map, donde X será el número, que podrá tener múltiples dígitos.
 
 Hay dos tipos de datos especiales, que habilitan la compresión del mapa. Los datos que tengan el primer o el último byte *0xFF* serán de este tipo.
 Los que tengan el segundo byte en *0xFF* serán las repeticiones en la coordenada X. Así que *0x07FF* significará que el dato anterior se repetirá 7 veces en la coordenada X contando el cuadrado actual. El máximo será 255. El traductor no fallará con *0x00FF*, pero a ser posible deberá evitarse. Tampoco es aconsejable usar *0x01FF*, ya que es una notación que puede inducir a error, en su lugar se repetirá el dato de la izquierda.

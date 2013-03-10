@@ -2,6 +2,7 @@ package com.jdix.animature.map;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 
 import android.content.Context;
 
@@ -15,10 +16,11 @@ import com.jdix.animature.utils.MathUtils;
  */
 public class Map {
 
-	private static Context	context;
+	private static Context			context;
 
-	private Square[][]		squares;
-	private int				width, height;
+	private HashMap<Square, Link>	links;
+	private Square[][]				squares;
+	private int						width, height;
 
 	/**
 	 * @param map the map resource to load
@@ -48,10 +50,10 @@ public class Map {
 		}
 
 		calculateDimension(array);
-		getLinks(array);
 
 		try
 		{
+			getLinks(array);
 			generateData(array);
 		}
 		catch (CompressionException e)
@@ -70,9 +72,27 @@ public class Map {
 		this.height = MathUtils.uByteToInt(array[1]);
 	}
 
-	private void getLinks(byte[] array)
+	private void getLinks(byte[] array) throws SpriteException,
+			CompressionException
 	{
-		// TODO New 1.1 specification
+		for (int i = 2 + width * height * 2; i < array.length; i += 6)
+		{
+			Square sq = Square.load(array[i], array[i + 1]);
+
+			int map = (MathUtils.uByteToInt(array[i + 2]) << 8)
+					& MathUtils.uByteToInt(array[i + 3]);
+			int mapId = context.getResources().getIdentifier("map_" + map,
+					"id", context.getPackageName());
+
+			Link l = new Link(mapId, array[i + 4], array[i + 5]);
+
+			if (links == null)
+			{
+				links = new HashMap<Square, Link>();
+			}
+
+			links.put(sq, l);
+		}
 	}
 
 	/**
