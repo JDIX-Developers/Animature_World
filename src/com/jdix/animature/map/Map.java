@@ -2,9 +2,12 @@ package com.jdix.animature.map;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 import com.jdix.animature.exceptions.CompressionException;
 import com.jdix.animature.exceptions.SpriteException;
@@ -21,6 +24,7 @@ public class Map {
 	private HashMap<Square, Link>	links;
 	private Square[][]				squares;
 	private int						width, height;
+	private Bitmap					bitmap;
 
 	/**
 	 * @param map the map resource to load
@@ -38,16 +42,24 @@ public class Map {
 	 */
 	private void load(InputStream stream) throws IOException
 	{
-		byte[] array = new byte[stream.available()];
+		// byte[] array = new byte[stream.available()];
+		//
+		// try
+		// {
+		// stream.read(array);
+		// }
+		// catch (IOException e)
+		// {
+		// e.printStackTrace();
+		// }
 
-		try
-		{
-			stream.read(array);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		byte[] array = { 0x05, 0x06, 0x03, 0x01, 0X03, 0x01, 0x03, 0x01, 0x03,
+				0x01, 0x02, 0x01, 0x03, 0x01, 0x03, 0x01, 0x01, 0x01, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x01, 0x03, 0x01, 0x00, 0x01, 0x03,
+				0x01, 0x00, 0x00, 0x00, 0x01, 0x03, 0x01, 0x00, 0x01, 0x03,
+				0x01, 0x00, 0x01, 0x03, 0x01, 0x03, 0x01, 0x02, 0x01, 0x01,
+				0x00, 0x00, 0x00, 0x02, 0x01, 0x02, 0x01, 0x03, 0x00, 0x00,
+				0x00, 0x00, 0x00 };
 
 		calculateDimension(array);
 
@@ -64,6 +76,8 @@ public class Map {
 		{
 			System.err.println(e.getMessage());
 		}
+
+		generateBitmap();
 	}
 
 	private void calculateDimension(byte[] array)
@@ -75,24 +89,25 @@ public class Map {
 	private void getLinks(byte[] array) throws SpriteException,
 			CompressionException
 	{
-		for (int i = 2 + width * height * 2; i < array.length; i += 6)
-		{
-			Square sq = Square.load(array[i], array[i + 1]);
-
-			int map = (MathUtils.uByteToInt(array[i + 2]) << 8)
-					& MathUtils.uByteToInt(array[i + 3]);
-			int mapId = context.getResources().getIdentifier("map_" + map,
-					"id", context.getPackageName());
-
-			Link l = new Link(mapId, array[i + 4], array[i + 5]);
-
-			if (links == null)
-			{
-				links = new HashMap<Square, Link>();
-			}
-
-			links.put(sq, l);
-		}
+		// TODO
+		// for (int i = 2 + width * height * 2; i < array.length; i += 6)
+		// {
+		// Square sq = Square.load(array[i], array[i + 1]);
+		//
+		// int map = (MathUtils.uByteToInt(array[i + 2]) << 8)
+		// & MathUtils.uByteToInt(array[i + 3]);
+		// int mapId = context.getResources().getIdentifier("map_" + map,
+		// "id", context.getPackageName());
+		//
+		// Link l = new Link(mapId, array[i + 4], array[i + 5]);
+		//
+		// if (links == null)
+		// {
+		// links = new HashMap<Square, Link>();
+		// }
+		//
+		// links.put(sq, l);
+		// }
 	}
 
 	/**
@@ -123,6 +138,7 @@ public class Map {
 				}
 				else if (array[pointer] == (byte) 0xFF)
 				{
+					System.out.println(Arrays.toString(array));
 					// Repetition in Y coordinate
 					for (int r = 0; r < MathUtils
 							.uByteToInt(array[pointer + 1]); r++)
@@ -146,6 +162,23 @@ public class Map {
 		}
 	}
 
+	private void generateBitmap()
+	{
+		bitmap = Bitmap.createBitmap(width * Square.getSize(),
+				height * Square.getSize(), Bitmap.Config.ARGB_8888);
+
+		Canvas c = new Canvas(bitmap);
+
+		for (int i = 0; i < height; i++)
+		{
+			for (int h = 0; h < width; h++)
+			{
+				c.drawBitmap(squares[i][h].getBitmap(), Square.getSize() * h,
+						Square.getSize() * i, null);
+			}
+		}
+	}
+
 	/**
 	 * @return Map's height, in squares
 	 */
@@ -160,6 +193,15 @@ public class Map {
 	public int getWidth()
 	{
 		return this.width;
+	}
+
+	/**
+	 * @return Bitmap of the map
+	 */
+	public Bitmap getBitmap()
+	{
+		// TODO calculate which portion of the bitmap to show
+		return bitmap;
 	}
 
 	/**

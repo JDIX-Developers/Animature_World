@@ -64,6 +64,7 @@ public class Square {
 	public static void setSprite(Bitmap b)
 	{
 		sprite = b;
+		// TODO queda por comprobar la nueva especificación de sprites
 	}
 
 	/**
@@ -72,6 +73,14 @@ public class Square {
 	public static void setSize(short s)
 	{
 		size = s;
+	}
+
+	/**
+	 * @return Size of the sprite's squares
+	 */
+	public static short getSize()
+	{
+		return size;
 	}
 
 	/**
