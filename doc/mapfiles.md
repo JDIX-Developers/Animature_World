@@ -1,8 +1,8 @@
-# Especificación de los MapFiles v1.1 #
+# Especificación de los MapFiles v1.2 #
 
 Un MapFile es un archivo con extensión .map que contiene una porción de universo del juego. Será un archivo binario, que estará codificado según esta especificación. Todo el archivo se dividirá en porciones de 2 bytes. Cada 2 bytes erá un dato.
 
-El primer dato indicará el ancho y el alto del mapa, el ancho el primer byte y el alto el segundo. A partir de entonces, cada dato será un cuadrado del sprite, con coordenadas XXYY. Una vez completado el ancho y el alto, se incluirán los en laces a otros mapas, como en puertas etc.
+El primer dato indicará el ancho y el alto del mapa, el ancho el primer byte y el alto el segundo. A partir de entonces, cada dato será un cuadrado del sprite, con coordenadas XXYY. Una vez completado el ancho y el alto, tras un separador *0xFFFF* se incluirán los en laces a otros mapas, como en puertas etc.
 
 Cada enlace tendrá 6 bytes. El primer byte serán las coordenadas del mapa actual en el que estará el enlace. El segundo byte, será el número de mapa al que se accederá desde ahí, y el tercer byte, las coordenadas a las que se llegará. Los mapas se guardarán en *res/raw/* en el formato map_X.map, donde X será el número, que podrá tener múltiples dígitos.
 

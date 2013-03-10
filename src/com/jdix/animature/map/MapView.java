@@ -3,7 +3,9 @@ package com.jdix.animature.map;
 import java.io.IOException;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.View;
 
 /**
@@ -13,6 +15,8 @@ import android.view.View;
 public class MapView extends View {
 
 	private Map	map;
+	private int	mWidth;
+	private int	mHeight;
 
 	/**
 	 * @param context Context of the application
@@ -41,8 +45,24 @@ public class MapView extends View {
 	}
 
 	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+	{
+		mWidth = View.MeasureSpec.getSize(widthMeasureSpec);
+		mHeight = View.MeasureSpec.getSize(heightMeasureSpec);
+
+		setMeasuredDimension(mWidth, mHeight);
+	}
+
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
-		canvas.drawBitmap(map.getBitmap(), 0, 0, null);
+		super.onDraw(canvas);
+		canvas.drawColor(Color.BLACK);
+		Bitmap mapb = map.getBitmap();
+
+		int cx = (mWidth - mapb.getWidth()) / 2;
+		int cy = (mHeight - mapb.getHeight()) / 2;
+
+		canvas.drawBitmap(mapb, cx, cy, null);
 	}
 }
