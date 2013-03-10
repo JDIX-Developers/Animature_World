@@ -15,4 +15,13 @@ public class MathUtils {
 	{
 		return b & 0x000000FF;
 	}
+
+	/**
+	 * @param b byte to convert
+	 * @return String with hexadecimal representation of the byte
+	 */
+	public static String toHex(byte b)
+	{
+		return String.format("%02X", b);
+	}
 }

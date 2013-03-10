@@ -2,7 +2,5 @@
 <resources>
 
     <string name="app_name">Animature World</string>
-    <string name="menu_settings">Settings</string>    
-    <string name="action_settings">Settings</string>
 
 </resources>

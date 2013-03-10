@@ -1,10 +1,9 @@
 package com.jdix.animature.map;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
+import java.io.InputStream;
+
+import android.content.Context;
 
 import com.jdix.animature.exceptions.CompressionException;
 import com.jdix.animature.exceptions.SpriteException;
@@ -16,106 +15,44 @@ import com.jdix.animature.utils.MathUtils;
  */
 public class Map {
 
-	private File			file;
-	private FileInputStream	stream;
+	private static Context	context;
+
 	private Square[][]		squares;
-	private byte[]			array;
 	private int				width, height;
 
 	/**
-	 * @param args Arguments
-	 * @throws IOException if there is an IO error
+	 * @param map the map resource to load
+	 * @throws IOException if there is an IO exception when loading the map
 	 */
-	public static void main(String[] args) throws IOException
+	public Map(int map) throws IOException
 	{
-		// Square.setSprite("img/sprites/prueba.png");
-
-		byte[] b = { 0x05, 0x06, 0x03, 0x01, 0X03, 0x01, 0x03, 0x01, 0x03,
-				0x01, 0x02, 0x01, 0x03, 0x01, 0x03, 0x01, 0x01, 0x01, 0x00,
-				0x00, 0x00, 0x00, 0x00, 0x01, 0x03, 0x01, 0x00, 0x01, 0x03,
-				0x01, 0x00, 0x00, 0x00, 0x01, 0x03, 0x01, 0x00, 0x01, 0x03,
-				0x01, 0x00, 0x01, 0x03, 0x01, 0x03, 0x01, 0x02, 0x01, 0x01,
-				0x00, 0x00, 0x00, 0x02, 0x01, 0x02, 0x01, 0x03, 0x00, 0x00,
-				0x00, 0x00, 0x00 };
-
-		Map m = new Map(b);
-
-		System.out.println(m.getWidth() + "x" + m.getHeight() + " Cuadrados");
-		m.printArray();
-		m.compress();
-		m.printArray();
-
-		// m.save("mapas/prueba.map");
-		//
-		// Map m2 = new Mapa("mapas/prueba.map");
-		// System.out.println(m.getAncho() + "x" + m.getAlto());
-		// m2.imprimirArray();
-	}
-
-	/**
-	 * @param array Map file's byte array
-	 */
-	public Map(byte[] array)
-	{
-		this.array = array;
-		calculateDimension();
-
-		try
-		{
-			generateData();
-		}
-		catch (CompressionException e)
-		{
-			System.err.println(e.getMessage());
-		}
-		catch (SpriteException e)
-		{
-			System.err.println(e.getMessage());
-		}
-	}
-
-	/**
-	 * @param file Map file
-	 * @throws IOException if there is any IO error
-	 */
-	public Map(File file) throws IOException
-	{
-		this.file = file;
-		FileInputStream s = new FileInputStream(file);
+		InputStream s = context.getResources().openRawResource(map);
 		load(s);
 	}
 
 	/**
-	 * @param file Map file
-	 * @throws IOException if there is any IO error
-	 */
-	public Map(String file) throws IOException
-	{
-		this(new File(file));
-	}
-
-	/**
 	 * @param stream Map file's stream
+	 * @throws IOException if there is an IO exception when loading the map
 	 */
-	private void load(FileInputStream stream)
+	private void load(InputStream stream) throws IOException
 	{
-		this.stream = stream;
-		this.array = new byte[(int) this.file.length()];
+		byte[] array = new byte[stream.available()];
 
 		try
 		{
-			this.stream.read(this.array);
+			stream.read(array);
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 
-		calculateDimension();
+		calculateDimension(array);
+		getLinks(array);
 
 		try
 		{
-			generateData();
+			generateData(array);
 		}
 		catch (CompressionException e)
 		{
@@ -127,37 +64,15 @@ public class Map {
 		}
 	}
 
-	private void calculateDimension()
+	private void calculateDimension(byte[] array)
 	{
-		this.width = MathUtils.uByteToInt(this.array[0]);
-		this.height = MathUtils.uByteToInt(this.array[1]);
+		this.width = MathUtils.uByteToInt(array[0]);
+		this.height = MathUtils.uByteToInt(array[1]);
 	}
 
-	/**
-	 * Generates map's byte array from the data.
-	 */
-	private void generateArray()
+	private void getLinks(byte[] array)
 	{
-		this.array = new byte[2 * width * height + 2];
-
-		this.array[0] = (byte) width;
-		this.array[1] = (byte) height;
-
-		int index = 2;
-		byte[] bytes;
-
-		for (int i = 0; i < height; i++)
-		{
-			for (int h = 0; h < width; h++)
-			{
-				bytes = this.squares[i][h].bytes();
-
-				this.array[index] = bytes[0];
-				this.array[index + 1] = bytes[1];
-
-				index += 2;
-			}
-		}
+		// TODO New 1.1 specification
 	}
 
 	/**
@@ -166,57 +81,49 @@ public class Map {
 	 * @throws CompressionException If there is a compression error
 	 * @throws SpriteException If the sprite is undefined
 	 */
-	private void generateData() throws CompressionException, SpriteException
+	private void generateData(byte[] array) throws CompressionException,
+			SpriteException
 	{
 		this.squares = new Square[height][width];
-		decompress();
 
-		for (int i = 0; i < height; i++)
+		int pointer = 2;
+
+		for (int i = 0; pointer < array.length && i < height; i++)
 		{
-			for (int h = 0; h < width; h++)
+			for (int h = 0; pointer < array.length && h < width; h++)
 			{
-				this.squares[i][h] = Square.load(this.array[2 * h + width * 2
-						* i + 2], this.array[2 * h + height * 2 * i + 3]);
+				// We test if there has been a Y coordinate repetition
+				if (this.squares[i][h] == null && array[pointer] != (byte) 0xFF
+						&& array[pointer + 1] != (byte) 0xFF)
+				{
+					// We write the current square
+					this.squares[i][h] = Square.load(array[pointer],
+							array[pointer + 1]);
+					pointer += 2;
+				}
+				else if (array[pointer] == (byte) 0xFF)
+				{
+					// Repetition in Y coordinate
+					for (int r = 0; r < MathUtils
+							.uByteToInt(array[pointer + 1]); r++)
+					{
+						this.squares[i + r][h] = this.squares[i - 1][h];
+					}
+					pointer += 2;
+				}
+				else if (array[pointer + 1] == (byte) 0xFF)
+				{
+					// Repetition in X coordinate
+					for (int r = 0; r < MathUtils.uByteToInt(array[pointer]); r++)
+					{
+						this.squares[i][h + r] = this.squares[i][h - 1];
+					}
+
+					h += MathUtils.uByteToInt(array[pointer]) - 1;
+					pointer += 2;
+				}
 			}
 		}
-	}
-
-	/**
-	 * Saves current map
-	 */
-	public void save()
-	{
-		compress();
-		try
-		{
-			(new FileOutputStream(this.file)).write(this.array);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Saves current map into specified file
-	 * 
-	 * @param f File to save in
-	 */
-	public void save(String f)
-	{
-		this.file = new File(f);
-		save();
-	}
-
-	/**
-	 * Saves current map into specified file
-	 * 
-	 * @param f File to save in
-	 */
-	public void save(File f)
-	{
-		this.file = f;
-		save();
 	}
 
 	/**
@@ -236,146 +143,10 @@ public class Map {
 	}
 
 	/**
-	 * @return Bidimensional square array
+	 * @param c Current context
 	 */
-	public Square[][] getSquares()
+	public static void setContext(Context c)
 	{
-		return this.squares;
-	}
-
-	/**
-	 * Prints the array in console
-	 */
-	public void printArray()
-	{
-		System.out.println(Arrays.toString(this.array));
-	}
-
-	/**
-	 * Compresses current map
-	 */
-	public void compress()
-	{
-		byte[][] arr2d = new byte[height][2 * width];
-		byte[][] arr2dc = new byte[height][2 * width];
-
-		// We load the bidimensional array, square by square
-		for (int i = 0; i < this.squares.length; i++)
-		{
-			for (int h = 0, j = 0; h < this.squares[i].length; h++)
-			{
-				arr2d[i][j++] = this.squares[i][h].bytes()[0];
-				arr2d[i][j++] = this.squares[i][h].bytes()[1];
-			}
-		}
-
-		short borrados = 0;
-
-		// We compress in X coordinate
-		for (int i = 0; i < arr2d.length; i++)
-		{
-			for (int h = 0; h < arr2d[i].length; h += 2)
-			{
-				arr2dc[i][h] = arr2d[i][h];
-				arr2dc[i][h + 1] = arr2d[i][h + 1];
-				int r = 1;
-
-				while ((h + r * 2) < arr2d[i].length
-						&& arr2d[i][h] == arr2d[i][h + r * 2]
-						&& arr2d[i][h + 1] == arr2d[i][h + r * 2 + 1])
-				{
-					r++;
-				}
-
-				if (r > 2)
-				{
-					arr2dc[i][h + 2] = (byte) (r - 1);
-					arr2dc[i][h + 3] = (byte) 0xFF;
-					for (int j = 4; j < r * 2; j += 2)
-					{
-						arr2dc[i][h + j + 1] = arr2dc[i][h + j] = (byte) 0xFF;
-						borrados++;
-					}
-
-					h += r * 2 - 2;
-				}
-			}
-		}
-
-		// We compress in Y
-		for (int h = 0; h < arr2d[0].length; h += 2)
-		{
-			for (int i = 0; i < arr2d.length; i++)
-			{
-				int r = 1;
-
-				while (i + r < arr2d.length && arr2d[i][h] == arr2d[i + r][h]
-						&& arr2d[i][h + 1] == arr2d[i + r][h + 1])
-				{
-					r++;
-				}
-
-				if (r > 2)
-				{
-					arr2dc[i + 1][h] = (byte) 0xFF;
-					arr2dc[i + 1][h + 1] = (byte) (r - 1);
-					for (int j = 2; j < r; j++)
-					{
-						arr2dc[i + j][h + 1] = arr2dc[i + j][h] = (byte) 0xFF;
-						borrados++;
-					}
-
-					i += r - 1;
-				}
-			}
-		}
-
-		// We create the compressed array
-		byte[] arr = new byte[2 + 2 * height * width - borrados * 2];
-		arr[0] = (byte) width;
-		arr[1] = (byte) height;
-		int índice = 2;
-
-		for (byte[] element : arr2dc)
-		{
-			for (int h = 0; h < element.length; h += 2)
-			{
-				// We only save the byte if it's not deleted
-				if (element[h] != (byte) 0xFF || element[h + 1] != (byte) 0xFF)
-				{
-					arr[índice++] = element[h];
-					arr[índice++] = element[h + 1];
-				}
-			}
-		}
-
-		this.array = arr;
-	}
-
-	/**
-	 * Decompresses current array
-	 * 
-	 * Compression and decompression should be avoided if posible, since they
-	 * are really expensive actions.
-	 */
-	private void decompress()
-	{
-		// byte[][] arr2d = new byte[getAlto()][getAncho()];
-		// this.cuadrados = new Cuadrado[getAlto()][getAncho()];
-		//
-		// //TODO Descomprimir
-		//
-		// this.array = new byte[2+2*getAlto()*getAncho()];
-		// this.array[0] = (byte) getAncho();
-		// this.array[1] = (byte) getAlto();
-		// int índice = 2;
-		//
-		// for (int i = 0; i < arr2d.length; i++)
-		// {
-		// for (int h = 0; h < arr2d[i].length; h++)
-		// {
-		// this.array[índice++] = arr2d[i][h];
-		// }
-		// }
+		context = c;
 	}
 }

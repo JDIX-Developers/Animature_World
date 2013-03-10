@@ -1,18 +1,17 @@
 package com.jdix.animature;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import com.jdix.animature.R;
 
 public class LaunchActivity extends Activity {
-	
+
 	private EditText	editText_UserLogin;
 	private EditText	editText_PasswordLogin;
 	private CheckBox	checkBox_Record;
@@ -66,38 +65,45 @@ public class LaunchActivity extends Activity {
 		username = editText_UserLogin.getText().toString();
 		password = editText_PasswordLogin.getText().toString();
 
-		if(attemptLogin()){
+		if (attemptLogin())
+		{
 			// Provisional
-			Intent intent = new Intent(LaunchActivity.this, MainMenuActivity.class);
+			Intent intent = new Intent(LaunchActivity.this,
+					MainMenuActivity.class);
 			startActivity(intent);
 		}
 	}
+
 	/**
-	 * Attempts to sign in the account specified by the login form.
-	 * If there are form errors (invalid username and password, missing fields, etc.), the
+	 * Attempts to sign in the account specified by the login form. If there are
+	 * form errors (invalid username and password, missing fields, etc.), the
 	 * errors are presented and no actual login attempt is made.
 	 */
 	public boolean attemptLogin()
 	{
 		View focusView = null;
-		boolean isAcepted=true;
-		
-		if(TextUtils.isEmpty(password)){
-			editText_PasswordLogin.setError(getString(R.string.error_field_required));
-			isAcepted=false;
+		boolean isAcepted = true;
+
+		if (TextUtils.isEmpty(password))
+		{
+			editText_PasswordLogin
+					.setError(getString(R.string.error_field_required));
+			isAcepted = false;
 			focusView = editText_PasswordLogin;
 		}
-		if(TextUtils.isEmpty(username)){
-			editText_UserLogin.setError(getString(R.string.error_field_required));
-			isAcepted=false;
+		if (TextUtils.isEmpty(username))
+		{
+			editText_UserLogin
+					.setError(getString(R.string.error_field_required));
+			isAcepted = false;
 			focusView = editText_UserLogin;
 		}
-		
-		if( ! isAcepted)
+
+		if (!isAcepted)
 		{
 			focusView.requestFocus();
 		}
-		
+
 		return isAcepted;
 	}
 }

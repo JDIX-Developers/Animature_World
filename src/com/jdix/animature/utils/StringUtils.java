@@ -3,7 +3,6 @@ package com.jdix.animature.utils;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Locale;
 
 /**
  * String Utilities
@@ -18,27 +17,10 @@ public final class StringUtils {
 	}
 
 	/**
-	 * @param data Bytes to convert to hexadecimal string
-	 * @param up Wether we want it in uppercase or not
-	 * @return The properly formatted string
-	 */
-	public static String toHex(byte[] data, boolean up)
-	{
-		String hex = toHex(data);
-
-		if (up)
-		{
-			hex = hex.toUpperCase(Locale.ENGLISH);
-		}
-
-		return hex;
-	}
-
-	/**
 	 * @param data Data to convert to hexadecimal
 	 * @return String in hexadecimal
 	 */
-	public static String toHex(byte[] data)
+	private static String toHex(byte[] data)
 	{
 		StringBuffer buf = new StringBuffer();
 		for (byte element : data)
