@@ -18,9 +18,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.jdix.animature.R;
+
 import com.jdix.animature.utils.Connection;
 import com.jdix.animature.utils.Database;
+import com.jdix.animature.utils.StringUtils;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -28,51 +29,44 @@ import com.jdix.animature.utils.Database;
  */
 public class RegisterActivity extends Activity {
 	/**
-	 * A dummy authentication store containing known user names and passwords.
-	 * TODO: remove after connecting to a real authentication system.
-	 */
-	private static final String[]	DUMMY_CREDENTIALS	= new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
-
-	/**
 	 * The default email to populate the email field with.
 	 */
-	public static final String		EXTRA_EMAIL			= "com.example.android.authenticatordemo.extra.EMAIL";
+	public static final String	EXTRA_EMAIL	= "com.example.android.authenticatordemo.extra.EMAIL";
 
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
-	private UserLoginTask			mAuthTask			= null;
+	private UserLoginTask		mAuthTask	= null;
 
 	// Values for email and password at the time of the login attempt.
-	private String					mUsername;
-	private String					mPassword1;
-	private String					mPassword2;
-	private String					mEmail;
+	private String				mUsername;
+	private String				mPassword1;
+	private String				mPassword2;
+	private String				mEmail;
 
 	// UI references.
-	private EditText				mUsernameView;
-	private EditText				mPasswordView1;
-	private EditText				mPasswordView2;
-	private EditText				mEmailView;
-	private View					mLoginFormView;
-	private View					mLoginStatusView;
-	private TextView				mLoginStatusMessageView;
+	private EditText			mUsernameView;
+	private EditText			mPasswordView1;
+	private EditText			mPasswordView2;
+	private EditText			mEmailView;
+	private View				mLoginFormView;
+	private View				mLoginStatusView;
+	private TextView			mLoginStatusMessageView;
 
-	public SQLiteDatabase db;
-	
-	private ResultReceiver login;
-	
+	private SQLiteDatabase		db;
+
+	private ResultReceiver		login;
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.activity_register);
 
-		db = (new Database(this, "AnimatureWorldDB", null, 1)).getWritableDatabase();
+		db = (new Database(this, "AnimatureWorldDB", null, 1))
+				.getWritableDatabase();
 		login = (ResultReceiver) getIntent().getExtras().get("login");
-		
+
 		// Set up the login form.
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);
@@ -83,18 +77,16 @@ public class RegisterActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
+	public boolean onCreateOptionsMenu(Menu menu) {
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	/**
-	 * Attempts to register the account specified by the login form.
-	 * If there are form errors (invalid email, missing fields, etc.), the
-	 * errors are presented and no actual login attempt is made.
+	 * Attempts to register the account specified by the login form. If there
+	 * are form errors (invalid email, missing fields, etc.), the errors are
+	 * presented and no actual login attempt is made.
 	 */
-	public void attemptLogin()
-	{
+	public void attemptLogin() {
 		if (mAuthTask != null)
 		{
 			return;
@@ -111,7 +103,7 @@ public class RegisterActivity extends Activity {
 		mPassword1 = mPasswordView1.getText().toString();
 		mPassword2 = mPasswordView2.getText().toString();
 		mEmail = mEmailView.getText().toString();
-		
+
 		boolean cancel = false;
 		View focusView = null;
 
@@ -122,31 +114,37 @@ public class RegisterActivity extends Activity {
 			focusView = mEmailView;
 			cancel = true;
 		}
-		else if (!mEmail.matches("[a-z0-9][\\w\\.-]*[a-z0-9]\\.[a-z][a-z\\.]*[a-z]$"))
+		else if (!mEmail
+				.matches("[a-z0-9][\\w\\.-]*[a-z0-9]\\.[a-z][a-z\\.]*[a-z]$"))
 		{
 			mEmailView.setError(getString(R.string.error_invalid_email));
 			focusView = mEmailView;
 			cancel = true;
 		}
-		
+
 		// Check for a valid password.
 		if (TextUtils.isEmpty(mPassword1))
 		{
 			mPasswordView1.setError(getString(R.string.error_field_required));
 			focusView = mPasswordView1;
 			cancel = true;
-		}else if (mPassword1.length() < 4 || mPassword1.length() > 15){
+		}
+		else if (mPassword1.length() < 4 || mPassword1.length() > 15)
+		{
 			mPasswordView1.setError(getString(R.string.error_invalid_password));
 			focusView = mPasswordView1;
 			cancel = true;
-		}else if(!mPassword1.equals(mPassword2)){
-			mPasswordView2.setError(getString(R.string.error_not_same_password));
+		}
+		else if (!mPassword1.equals(mPassword2))
+		{
+			mPasswordView2
+					.setError(getString(R.string.error_not_same_password));
 			focusView = mPasswordView2;
 			cancel = true;
 		}
-		
+
 		// Check for a valid username.
-		if(TextUtils.isEmpty(mUsername))
+		if (TextUtils.isEmpty(mUsername))
 		{
 			mUsernameView.setError(getString(R.string.error_field_required));
 			focusView = mUsernameView;
@@ -174,8 +172,7 @@ public class RegisterActivity extends Activity {
 	 * Shows the progress UI and hides the login form.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-	private void showProgress(final boolean show)
-	{
+	private void showProgress(final boolean show) {
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
 		// for very easy animations. If available, use these APIs to fade-in
 		// the progress spinner.
@@ -220,19 +217,18 @@ public class RegisterActivity extends Activity {
 	 * the user.
 	 */
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-		
-		boolean user, email, error;
-		
+
+		private boolean	user, email, error;
+
 		@Override
-		protected Boolean doInBackground(Void... params)
-		{
+		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
 			Connection c = Connection.getInstance();
 
 			c.setAction("register");
 			c.addData("user", mUsername);
 			c.addData("email", mEmail);
-			//c.addData("pass", StringUtils.sha1(mPassword1 + "--AnimatureWorld"));
+			c.addData("pass", StringUtils.sha1(mPassword1 + "--AnimatureWorld"));
 
 			JSONObject jsonObject = c.execute();
 			user = email = error = false;
@@ -243,7 +239,9 @@ public class RegisterActivity extends Activity {
 					user = jsonObject.getBoolean("user");
 					email = jsonObject.getBoolean("email");
 				}
-				catch (JSONException e) {}
+				catch (JSONException e)
+				{
+				}
 			}
 			else
 			{
@@ -254,8 +252,7 @@ public class RegisterActivity extends Activity {
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean success)
-		{
+		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
 			showProgress(false);
 
@@ -265,42 +262,43 @@ public class RegisterActivity extends Activity {
 				 * Aqui tiene que actualizarse la base de datos!!!!
 				 */
 
-				//Connection.setLogin(mEmail, StringUtils.sha1(mPassword + "--MiniunisHUB"));
-				//We create the intent
-				Intent intent = new Intent(RegisterActivity.this, MainMenuActivity.class);
+				// Connection.setLogin(mEmail, StringUtils.sha1(mPassword +
+				// "--MiniunisHUB"));
+				// We create the intent
+				Intent intent = new Intent(RegisterActivity.this,
+						MainMenuActivity.class);
 
-				//We start the activity
+				// We start the activity
 				startActivity(intent);
-				//We do not want a logged user to go back to login
+				// We do not want a logged user to go back to login
 				login.send(1, new Bundle());
 				finish();
 			}
 			else
 			{
-				if ( ! error)
+				if (!error)
 				{
-					if ( ! email)
+					if (!email)
 					{
-						//mEmailView.setError(getString(R.string.error_repeated_email));
+						// mEmailView.setError(getString(R.string.error_repeated_email));
 						mEmailView.requestFocus();
 					}
-					if ( ! user)
+					if (!user)
 					{
-						//mUsernameView.setError(getString(R.string.error_repeated_user));
+						// mUsernameView.setError(getString(R.string.error_repeated_user));
 						mUsernameView.requestFocus();
 					}
 				}
 				else
 				{
-					//mEmailView.setError(getString(R.string.conection_error));
+					// mEmailView.setError(getString(R.string.conection_error));
 					mEmailView.requestFocus();
 				}
 			}
 		}
 
 		@Override
-		protected void onCancelled()
-		{
+		protected void onCancelled() {
 			mAuthTask = null;
 			showProgress(false);
 		}

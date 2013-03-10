@@ -6,6 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
+import com.jdix.animature.exceptions.CompressionException;
+import com.jdix.animature.exceptions.SpriteException;
+
+/**
+ * @author Razican (Iban Eguia)
+ *
+ */
 public class Map {
 	
 	private File file;
@@ -20,7 +27,7 @@ public class Map {
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		Square.setSprite("img/sprites/prueba.png");
+	//	Square.setSprite("img/sprites/prueba.png");
 
 		byte[] b = {0x05, 0x06,
 				0x03, 0x01, 0X03, 0x01, 0x03, 0x01, 0x03, 0x01, 0x02, 0x01,
@@ -53,7 +60,18 @@ public class Map {
 		this.array = array;
 		calculateDimension();
 
-		generateData();
+		try
+		{
+			generateData();
+		}
+		catch (CompressionException e)
+		{
+			System.err.println(e.getMessage());
+		}
+		catch (SpriteException e)
+		{
+			System.err.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -95,7 +113,18 @@ public class Map {
 
 		calculateDimension();
 
-		generateData();
+		try
+		{
+			generateData();
+		}
+		catch (CompressionException e)
+		{
+			System.err.println(e.getMessage());
+		}
+		catch (SpriteException e)
+		{
+			System.err.println(e.getMessage());
+		}
 	}
 
 	private void calculateDimension()
