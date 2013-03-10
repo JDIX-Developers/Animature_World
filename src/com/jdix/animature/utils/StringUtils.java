@@ -3,26 +3,47 @@ package com.jdix.animature.utils;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 /**
  * String Utilities
+ * 
  * @author Razican (Iban Eguia)
- *
+ * 
  */
 public final class StringUtils {
 
-	private StringUtils(){}
+	private StringUtils()
+	{
+	}
+
+	/**
+	 * @param data Bytes to convert to hexadecimal string
+	 * @param up Wether we want it in uppercase or not
+	 * @return The properly formatted string
+	 */
+	public static String toHex(byte[] data, boolean up)
+	{
+		String hex = toHex(data);
+
+		if (up)
+		{
+			hex = hex.toUpperCase(Locale.ENGLISH);
+		}
+
+		return hex;
+	}
 
 	/**
 	 * @param data Data to convert to hexadecimal
 	 * @return String in hexadecimal
 	 */
-	private static String toHex(byte[] data)
-    {
+	public static String toHex(byte[] data)
+	{
 		StringBuffer buf = new StringBuffer();
-		for (int i = 0; i < data.length; i++)
+		for (byte element : data)
 		{
-			int halfbyte = (data[i] >>> 4) & 0x0F;
+			int halfbyte = (element >>> 4) & 0x0F;
 			int two_halfs = 0;
 			do
 			{
@@ -34,9 +55,8 @@ public final class StringUtils {
 				{
 					buf.append((char) ('a' + (halfbyte - 10)));
 				}
-				halfbyte = data[i] & 0x0F;
-			}
-			while(two_halfs++ < 1);
+				halfbyte = element & 0x0F;
+			} while (two_halfs++ < 1);
 		}
 		return buf.toString();
 	}

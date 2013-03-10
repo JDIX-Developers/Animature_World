@@ -2,40 +2,41 @@ package com.jdix.animature.entities;
 
 import android.graphics.drawable.Drawable;
 
-public class Player 
-{
-	public static final int NORTH = 0; 
-	public static final int EAST = 1; 
-	public static final int SOUTH = 2; 
-	public static final int WEST = 3; 
-	
-	private int id_Player;
-	private String name;
-	private int sex;				// 0-Boy, 1-Girl
-	private int pet;				// 0-Dog, 1-Cat
-	private String neighborName;
-	private int stage;
-	private int started;
-	private int last_Played;
-	private int steps;
-	private Animature [] activeAnimatures;
-	private int coord_X;
-	private int coord_Y;
-	private int orientation;
-	private int last_Healing;
-	private int medals;
-	private int money;
-	private Drawable [] imgPlayer;
-	
+public class Player {
+
+	public static final int	NORTH	= 0;
+	public static final int	EAST	= 1;
+	public static final int	SOUTH	= 2;
+	public static final int	WEST	= 3;
+
+	private int				id_Player;
+	private String			name;
+	private int				sex;				// 0-Boy, 1-Girl
+	private int				pet;				// 0-Dog, 1-Cat
+	private String			neighborName;
+	private int				stage;
+	private int				started;
+	private int				last_Played;
+	private int				steps;
+	private Animature[]		activeAnimatures;
+	private int				coord_X;
+	private int				coord_Y;
+	private int				orientation;
+	private int				last_Healing;
+	private int				medals;
+	private int				money;
+	private Drawable[]		imgPlayer;
+
 	public Player()
 	{
-		
+
 	}
-	public Player(int id_Animature, String name, int sex, int pet, String neighborName,
-			int stage, int started, int last_Played, int steps,
-			Animature[] activeAnimatures, int coord_X, int coord_Y,
+
+	public Player(int id_Animature, String name, int sex, int pet,
+			String neighborName, int stage, int started, int last_Played,
+			int steps, Animature[] activeAnimatures, int coord_X, int coord_Y,
 			int orientation, int last_Healing, int medals, int money,
-			Drawable [] imgPlayer)
+			Drawable[] imgPlayer)
 	{
 		this.name = name;
 		this.sex = sex;
@@ -54,106 +55,174 @@ public class Player
 		this.money = money;
 		this.imgPlayer = imgPlayer;
 	}
-	public int getId_Player() {
+
+	public int getId_Player()
+	{
 		return id_Player;
 	}
-	public void setId_Player(int id_Player) {
+
+	public void setId_Player(int id_Player)
+	{
 		this.id_Player = id_Player;
 	}
-	public String getName() {
+
+	public String getName()
+	{
 		return name;
 	}
-	public void setName(String name) {
+
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-	public int getSex() {
+
+	public int getSex()
+	{
 		return sex;
 	}
-	public void setSex(int sex) {
+
+	public void setSex(int sex)
+	{
 		this.sex = sex;
 	}
-	public int getPet() {
+
+	public int getPet()
+	{
 		return pet;
 	}
-	public void setPet(int pet) {
+
+	public void setPet(int pet)
+	{
 		this.pet = pet;
 	}
-	public String getNeighborName() {
+
+	public String getNeighborName()
+	{
 		return neighborName;
 	}
-	public void setNeighborName(String neighborName) {
+
+	public void setNeighborName(String neighborName)
+	{
 		this.neighborName = neighborName;
 	}
-	public int getStage() {
+
+	public int getStage()
+	{
 		return stage;
 	}
-	public void setStage(int stage) {
+
+	public void setStage(int stage)
+	{
 		this.stage = stage;
 	}
-	public int getStarted() {
+
+	public int getStarted()
+	{
 		return started;
 	}
-	public void setStarted(int started) {
+
+	public void setStarted(int started)
+	{
 		this.started = started;
 	}
-	public int getLast_Played() {
+
+	public int getLast_Played()
+	{
 		return last_Played;
 	}
-	public void setLast_Played(int last_Played) {
+
+	public void setLast_Played(int last_Played)
+	{
 		this.last_Played = last_Played;
 	}
-	public int getSteps() {
+
+	public int getSteps()
+	{
 		return steps;
 	}
-	public void setSteps(int steps) {
+
+	public void setSteps(int steps)
+	{
 		this.steps = steps;
 	}
-	public Animature[] getActiveAnimatures() {
+
+	public Animature[] getActiveAnimatures()
+	{
 		return activeAnimatures;
 	}
-	public void setActiveAnimatures(Animature[] activeAnimatures) {
+
+	public void setActiveAnimatures(Animature[] activeAnimatures)
+	{
 		this.activeAnimatures = activeAnimatures;
 	}
-	public int getCoord_X() {
+
+	public int getCoord_X()
+	{
 		return coord_X;
 	}
-	public void setCoord_X(int coord_X) {
+
+	public void setCoord_X(int coord_X)
+	{
 		this.coord_X = coord_X;
 	}
-	public int getCoord_Y() {
+
+	public int getCoord_Y()
+	{
 		return coord_Y;
 	}
-	public void setCoord_Y(int coord_Y) {
+
+	public void setCoord_Y(int coord_Y)
+	{
 		this.coord_Y = coord_Y;
 	}
-	public int getOrientation() {
+
+	public int getOrientation()
+	{
 		return orientation;
 	}
-	public void setOrientation(int orientation) {
+
+	public void setOrientation(int orientation)
+	{
 		this.orientation = orientation;
 	}
-	public int getLast_Healing() {
+
+	public int getLast_Healing()
+	{
 		return last_Healing;
 	}
-	public void setLast_Healing(int last_Healing) {
+
+	public void setLast_Healing(int last_Healing)
+	{
 		this.last_Healing = last_Healing;
 	}
-	public int getMedals() {
+
+	public int getMedals()
+	{
 		return medals;
 	}
-	public void setMedals(int medals) {
+
+	public void setMedals(int medals)
+	{
 		this.medals = medals;
 	}
-	public int getMoney() {
+
+	public int getMoney()
+	{
 		return money;
 	}
-	public void setMoney(int money) {
+
+	public void setMoney(int money)
+	{
 		this.money = money;
 	}
-	public Drawable[] getImgPlayer() {
+
+	public Drawable[] getImgPlayer()
+	{
 		return imgPlayer;
 	}
-	public void setImgPlayer(Drawable[] imgPlayer) {
+
+	public void setImgPlayer(Drawable[] imgPlayer)
+	{
 		this.imgPlayer = imgPlayer;
 	}
 }

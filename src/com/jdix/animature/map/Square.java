@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.jdix.animature.exceptions.CompressionException;
 import com.jdix.animature.exceptions.SpriteException;
 import com.jdix.animature.utils.MathUtils;
+import com.jdix.animature.utils.StringUtils;
 
 /**
  * @author Razican (Iban Eguia)
@@ -33,7 +34,8 @@ public class Square {
 		this.x = x;
 		this.y = y;
 
-		this.bitmap = Bitmap.createBitmap(sprite, x, y, size, size);
+		this.bitmap = Bitmap.createBitmap(sprite, x * size, y * size, size,
+				size);
 	}
 
 	/**
@@ -48,8 +50,8 @@ public class Square {
 	@Override
 	public String toString()
 	{
-		return "(0x" + MathUtils.toHex(x, true) + ", 0x"
-				+ MathUtils.toHex(y, true) + ")";
+		return "(0x" + StringUtils.toHex(new byte[x], true) + ", 0x"
+				+ StringUtils.toHex(new byte[y], true) + ")";
 	}
 
 	/**
@@ -93,8 +95,8 @@ public class Square {
 				|| yi > sprite.getHeight() / size - 1)
 		{
 			throw new SpriteException("There is no image for coordinates (0x"
-					+ MathUtils.toHex(x, true) + ", 0x"
-					+ MathUtils.toHex(y, true) + ")");
+					+ StringUtils.toHex(new byte[x], true) + ", 0x"
+					+ StringUtils.toHex(new byte[y], true) + ")");
 		}
 		if (squares[xi][yi] == null)
 		{

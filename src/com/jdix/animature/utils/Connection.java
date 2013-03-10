@@ -20,6 +20,10 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * @author Razican (Iban Eguia)
+ * 
+ */
 public class Connection {
 
 	private static Connection	instance;
@@ -34,11 +38,11 @@ public class Connection {
 	private Connection()
 	{
 		connection = new DefaultHttpClient();
-
 		newQuery();
 	}
 
-	private void newQuery() {
+	private void newQuery()
+	{
 		query = new HttpPost("http://jdix.razican.com/animature/api.php");
 		query.setHeader("User-Agent", "Animature/1.0.0");
 		action = null;
@@ -50,15 +54,25 @@ public class Connection {
 		}
 	}
 
-	private void setToken(String token) {
+	private void setToken(String token)
+	{
 		this.token = token;
 	}
 
-	public void addData(String key, String value) {
+	/**
+	 * @param key Key for the new data
+	 * @param value Value for the new data
+	 */
+	public void addData(String key, String value)
+	{
 		data.add(new BasicNameValuePair(key, value));
 	}
 
-	public JSONObject execute() {
+	/**
+	 * @return JSONObject containing the reply from the server
+	 */
+	public JSONObject execute()
+	{
 		try
 		{
 			query.setEntity(new UrlEncodedFormEntity(data));
@@ -175,25 +189,30 @@ public class Connection {
 		}
 	}
 
-	public String getToken() {
-		return token;
-	}
-
-	public void setAction(String action) {
+	/**
+	 * @param action The action to perform in the server
+	 */
+	public void setAction(String action)
+	{
 		this.action = action;
 		addData("action", action);
 	}
 
-	public boolean isLoggedIn() {
-		return token != null;
-	}
-
-	public static void setLogin(String email, String pass) {
+	/**
+	 * @param email User's email
+	 * @param pass User's encrypted password
+	 */
+	public static void setLogin(String email, String pass)
+	{
 		loginEmail = email;
 		loginPassword = pass;
 	}
 
-	public static Connection getInstance() {
+	/**
+	 * @return Current Connection
+	 */
+	public static Connection getInstance()
+	{
 		if (instance == null)
 		{
 			instance = new Connection();
