@@ -1,6 +1,6 @@
 package com.jdix.animature.entities;
 
-public class AnimatureCaptured extends Animature {
+public class Captured extends Animature {
 
 	private int			idAnimatureCapt;
 	private int			nickname;

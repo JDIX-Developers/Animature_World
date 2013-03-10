@@ -10,16 +10,16 @@ public class Animature {
 	public static final int	STRENGHT	= 3;
 	public static final int	PRECISSION	= 4;
 
-	private int				id_Animature;
-	private String			name;
-	private double			height;
-	private double			weight;
-	private int				type;
-	private int[]			cualities;
-	private int				health;
-	private int				level_evo;
-	private Drawable[]		imgAnimature;		// 0-FrontImage, 1-BackImage
-	private Drawable		iconAnimature;
+	protected int			id_Animature;
+	protected String		name;
+	protected double		height;
+	protected double		weight;
+	protected int			type;
+	protected int[]			cualities;
+	protected int			health;
+	protected int			level_evo;
+	protected Drawable[]	imgAnimature;		// 0-FrontImage, 1-BackImage
+	protected Drawable		iconAnimature;
 
 	public Animature()
 	{
