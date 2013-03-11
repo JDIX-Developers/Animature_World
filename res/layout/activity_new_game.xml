@@ -1,142 +1,94 @@
-<RelativeLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".NewGameActivity" >
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="30sp"
-                android:textColor="#FFFFFF"
-                android:text="@string/title_newGame" />
-
-            <EditText
-                android:id="@+id/editText_playerName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/playerName"
-                android:ems="10"
-                android:inputType="textPersonName" >
-
-                <requestFocus />
-            </EditText>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-				android:textSize="20sp"
-				android:textColor="#FFFFFF"
-				android:layout_marginTop="20dp"
-                android:text="@string/chooseSex"/>
-
-            <RadioGroup
-                android:id="@+id/rbgroup_sex"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
-				android:layout_marginTop="5dp">
-
-                <RadioButton
-                    android:id="@+id/radioButton_boy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-					android:layout_marginLeft="10dp"
-                    android:text="@string/boy" />
-
-                <RadioButton
-                    android:id="@+id/radioButton_girl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/girl" />
-
-            </RadioGroup>
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="20dp" >
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
-				android:layout_marginTop="20dp">
-
-                <EditText
-                    android:id="@+id/editText_neighborName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="20"
-                    android:ems="10"
-                    android:hint="@string/neighborName"
-                    android:inputType="textPersonName" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginRight="60dp"
+                android:gravity="center"
+                android:minWidth="60dp"
+                android:orientation="vertical" >
 
                 <Button
-                    android:id="@+id/btn_generate"
+                    android:id="@+id/btn1NewGame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="generate_NameNeighbor"
-                    android:text="@string/generate_name" />
+                    android:layout_marginBottom="20dp"
+                    android:text="Button"
+                    android:textSize="25sp"
+                    android:visibility="invisible" />
+
+                <Button
+                    android:id="@+id/btn2NewGame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button"
+                    android:textSize="25sp"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/editTextNewGame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible" >
+
+                    <requestFocus />
+                </EditText>
 
             </LinearLayout>
 
-            <TextView
+            <ImageView
+                android:id="@+id/imageViewNewGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-				android:textSize="20sp"
-				android:textColor="#FFFFFF"
-                android:text="@string/choosePet"
-				android:layout_marginTop="20dp"/>
-            
-            <RadioGroup
-                android:id="@+id/rbgroup_pet"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
-				android:layout_marginTop="5dp">
-
-                <RadioButton
-                    android:id="@+id/radioButton_dog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-					android:layout_marginLeft="10dp"
-                    android:text="@string/dog" />
-
-                <RadioButton
-                    android:id="@+id/radioButton_cat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/cat" />
-
-            </RadioGroup>
-
-            <Button
-                android:id="@+id/btnPlay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:textSize="18sp"
-                android:onClick="startNewGame"
-                android:text="@string/play" />
+                android:background="@drawable/oak_image" />
 
         </LinearLayout>
 
-    </ScrollView>
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerPadding="10dp" >
+
+            <TextView
+                android:id="@+id/textViewNewGame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="#FFFFFF"
+                android:clickable="true"
+                android:drawableRight="@drawable/flecha"
+                android:gravity="center_horizontal|center_vertical"
+                android:maxLines="2"
+                android:onClick="next"
+                android:text="@string/newGame1"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

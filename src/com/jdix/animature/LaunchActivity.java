@@ -27,8 +27,9 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
-		startActivity(new Intent(LaunchActivity.this, MapTestActivity.class));
-		finish();
+		// startActivity(new Intent(LaunchActivity.this,
+		// MapTestActivity.class));
+		// finish();
 
 		// We get a reference to the interface controls
 		editText_UserLogin = (EditText) findViewById(R.id.editText_UserLogin);

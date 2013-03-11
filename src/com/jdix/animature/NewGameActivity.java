@@ -1,49 +1,24 @@
 package com.jdix.animature;
 
-import android.os.Bundle;
+import java.util.Vector;
+
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class NewGameActivity extends Activity {
-	
-	private EditText	editText_playerName;
-	private RadioGroup	rgSex;
-	private RadioButton	rButtonBoy;
-	private RadioButton	rButtonGirl;
-	private EditText	editText_neighborName;
-	private Button		generate;
-	private RadioGroup	rgPet;
-	private RadioButton	rButtonDog;
-	private RadioButton	rButtonCat;
-	private Button		btn_play;
 
-	private String		playerName;
-	private int			sex;													// 0
-																				// -
-																				// Boy
-																				// and
-																				// 1
-																				// -
-																				// Girl
-	private String		neighborName;
-	private int			pet;													// 0
-																				// -
-																				// Dog
-																				// and
-																				// 1
-																				// -
-																				// Cat
+	private TextView		textViewNewGame;
+	private EditText		editTextNewGame;
+	private Button			btn1NewGame;
+	private Button			btn2NewGame;
 
-	private String[]	generatedNames	= { "Xabier", "Iban", "David",
-			"Jordan", "Paula", "Lucas", "Nerea", "Javier", "Irene", "Mario", "Lucia", "Daniel" };
-	private int			index			= -1;									// Index
-																				// for
-																				// generatedNames
+	private Vector<String>	strings;
+	private int				index;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -52,16 +27,16 @@ public class NewGameActivity extends Activity {
 		setContentView(R.layout.activity_new_game);
 
 		// We get a reference to the interface controls
-		editText_playerName = (EditText) findViewById(R.id.editText_playerName);
-		rgSex = (RadioGroup) findViewById(R.id.rbgroup_sex);
-		rButtonBoy = (RadioButton) findViewById(R.id.radioButton_boy);
-		rButtonGirl = (RadioButton) findViewById(R.id.radioButton_girl);
-		editText_neighborName = (EditText) findViewById(R.id.editText_neighborName);
-		generate = (Button) findViewById(R.id.btn_generate);
-		rgPet = (RadioGroup) findViewById(R.id.rbgroup_pet);
-		rButtonDog = (RadioButton) findViewById(R.id.radioButton_dog);
-		rButtonCat = (RadioButton) findViewById(R.id.radioButton_cat);
-		btn_play = (Button) findViewById(R.id.btnPlay);
+		textViewNewGame = (TextView) findViewById(R.id.textViewNewGame);
+		editTextNewGame = (EditText) findViewById(R.id.editTextNewGame);
+		btn1NewGame = (Button) findViewById(R.id.btn1NewGame);
+		btn2NewGame = (Button) findViewById(R.id.btn2NewGame);
+
+		index = 0;
+		strings = new Vector<String>();
+		loadVectorStrings(strings);
+
+		textViewNewGame.setText(strings.get(index));
 	}
 
 	@Override
@@ -70,26 +45,48 @@ public class NewGameActivity extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	/**
-	 * Method pressing the generate button
-	 * 
-	 * @param View
-	 */
-	public void generate_NameNeighbor(View view)
+	public void loadVectorStrings(Vector<String> strings)
 	{
-		this.index++;
-		if (this.index > 11)
-			this.index = 0;
-		editText_neighborName.setText(this.generatedNames[this.index]);
+		strings.add(this.getString(R.string.newGame1));
+		strings.add(this.getString(R.string.newGame2));
+		strings.add(this.getString(R.string.newGame3));
+		strings.add(this.getString(R.string.newGame4));
+		strings.add(this.getString(R.string.newGame5));
+		strings.add(this.getString(R.string.newGame6));
+		strings.add(this.getString(R.string.newGame7));
+		strings.add(this.getString(R.string.newGame8));
+		strings.add(this.getString(R.string.newGame9));
+		strings.add(this.getString(R.string.newGame10));
+		strings.add(this.getString(R.string.newGame11));
+
 	}
 
-	/**
-	 * Method pressing the play button
-	 * 
-	 * @param View
-	 */
-	public void startNewGame(View view)
+	public void next(View view)
 	{
+		index++;
+		switch (index)
+		{
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+				textViewNewGame.setText(strings.get(index));
+				break;
+			case 8:
+				textViewNewGame.setText(strings.get(index));
+				btn1NewGame.setVisibility(View.VISIBLE);
+				btn2NewGame.setVisibility(View.VISIBLE);
+				btn1NewGame.setText(this.getString(R.string.boy));
+				btn2NewGame.setText(this.getString(R.string.girl));
+				textViewNewGame.setClickable(false);
+				break;
+			case 11:
+				editTextNewGame.requestFocus();
+				break;
+		}
 
 	}
 }

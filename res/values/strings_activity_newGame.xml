@@ -2,16 +2,23 @@
 	<string name="title_activity_new_game">Sign in</string>
 
     <!-- Strings related to new game -->
-	<string name="title_newGame">Nueva Partida</string>
-	<string name="playerName">Nombre del jugador</string>
-	<string name="chooseSex">¿Qué eres?</string>
+
 	<string name="boy">Chico</string>
 	<string name="girl">Chica</string>
-	<string name="neighborName">Nombre de tu vecino</string>
-	<string name="generate_name">Generar</string>
-	<string name="choosePet">Elige una mascota:</string>
-	<string name="dog">Perro</string>
-	<string name="cat">Gato</string>
-	<string name="play">Jugar</string>					
+	<string name="yesNewGame">Si</string>	
+	<string name="noNewGame">No</string>	
 	
+	
+	<string name="newGame1">¡Hola! ¡Este es el mundo Animature!</string>
+	<string name="newGame2">¡Me llamo OAK!</string>
+	<string name="newGame3">¡Pero la gente me llama profesor Animature!</string>	
+	<string name="newGame4">¡Este mundo está habitado por criaturas llamadas Animature!</string>	
+	<string name="newGame5">Para algunos, los Animatures son mascotas. Pero otros los usan para pelear.</string>	
+	<string name="newGame6">En cuanto a mi...</string>
+	<string name="newGame7">Estudio a los Animatures como profesión.</string>	
+	<string name="newGame8">Bueno, cuéntame algo de ti.</string>	
+	<string name="newGame9">¿Eres chico o chica?</string>
+	<string name="newGame10">Pero primero dime como te llamas.</string>
+	<string name="newGame11">¡Bien! ¡Asi que te llamas *nombreJugador*</string>
+		
 </resources>
