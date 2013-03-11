@@ -8,7 +8,7 @@ import com.jdix.animature.utils.MathUtils;
 
 /**
  * @author Razican (Iban Eguia)
- * 
+ *
  */
 public class Square {
 
@@ -55,7 +55,7 @@ public class Square {
 	@Override
 	public boolean equals(Object sq)
 	{
-		return (sq instanceof Square && ((Square) sq).bytes().equals(bytes()));
+		return (sq instanceof Square && Arrays.equals((Square) sq).bytes(), bytes()));
 	}
 
 	/**
