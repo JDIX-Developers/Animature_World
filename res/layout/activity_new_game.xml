@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginRight="60dp"
+                android:layout_marginRight="80dp"
                 android:gravity="center"
                 android:minWidth="60dp"
                 android:orientation="vertical" >
@@ -33,21 +33,25 @@
                     android:id="@+id/btn1NewGame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:onClick="btn1"
                     android:text="Button"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:visibility="invisible" />
 
                 <Button
                     android:id="@+id/btn2NewGame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+					android:onClick="btn2"
                     android:text="Button"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:visibility="invisible" />
 
                 <EditText
                     android:id="@+id/editTextNewGame"
+                    android:hint="@string/name"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="invisible" >
@@ -80,12 +84,15 @@
                 android:clickable="true"
                 android:drawableRight="@drawable/flecha"
                 android:gravity="center_horizontal|center_vertical"
+                android:height="65dp"
+                android:maxHeight="20dp"
                 android:maxLines="2"
+                android:minHeight="20dp"
                 android:onClick="next"
                 android:text="@string/newGame1"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 

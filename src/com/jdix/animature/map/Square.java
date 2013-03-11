@@ -1,5 +1,7 @@
 package com.jdix.animature.map;
 
+import java.util.Arrays;
+
 import android.graphics.Bitmap;
 
 import com.jdix.animature.exceptions.CompressionException;
@@ -54,7 +56,8 @@ public class Square {
 	@Override
 	public boolean equals(Object sq)
 	{
-		return (sq instanceof Square && Arrays.equals(((Square) sq).bytes(), bytes()));
+		return (sq instanceof Square && Arrays.equals(((Square) sq).bytes(),
+				bytes()));
 	}
 
 	/**

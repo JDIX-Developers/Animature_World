@@ -1,4 +1,4 @@
-package com.jdix.animature;
+package com.jdix.animature.game;
 
 import java.util.Vector;
 
@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.jdix.animature.R;
+
 public class NewGameActivity extends Activity {
 
+	private View			uiView;
 	private TextView		textViewNewGame;
 	private EditText		editTextNewGame;
 	private Button			btn1NewGame;
@@ -19,6 +22,8 @@ public class NewGameActivity extends Activity {
 
 	private Vector<String>	strings;
 	private int				index;
+	private int				sex;				// 0-Boy, 1-Girl
+	private String			name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -27,6 +32,7 @@ public class NewGameActivity extends Activity {
 		setContentView(R.layout.activity_new_game);
 
 		// We get a reference to the interface controls
+		uiView = findViewById(R.layout.activity_new_game);
 		textViewNewGame = (TextView) findViewById(R.id.textViewNewGame);
 		editTextNewGame = (EditText) findViewById(R.id.editTextNewGame);
 		btn1NewGame = (Button) findViewById(R.id.btn1NewGame);
@@ -81,12 +87,49 @@ public class NewGameActivity extends Activity {
 				btn2NewGame.setVisibility(View.VISIBLE);
 				btn1NewGame.setText(this.getString(R.string.boy));
 				btn2NewGame.setText(this.getString(R.string.girl));
+				textViewNewGame.setCompoundDrawables(null, null, null, null);
 				textViewNewGame.setClickable(false);
 				break;
-			case 11:
-				editTextNewGame.requestFocus();
+			case 9:
+				textViewNewGame.setText(strings.get(index));
+				editTextNewGame.setVisibility(View.VISIBLE);
+				break;
+			case 10:
+				name = editTextNewGame.getText().toString().toUpperCase();
+				String s = strings.get(index);
+				s = s.replace("*nombreJugador*", name);
+				textViewNewGame.setText(s);
+				editTextNewGame.setVisibility(View.INVISIBLE);
 				break;
 		}
 
+	}
+
+	public void btn1(View view)
+	{
+		if (index == 8)
+		{
+			sex = 0;
+			btn1NewGame.setVisibility(View.INVISIBLE);
+			btn2NewGame.setVisibility(View.INVISIBLE);
+			next(view);
+		}
+		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
+				getResources().getDrawable(R.drawable.flecha), null);
+		textViewNewGame.setClickable(true);
+	}
+
+	public void btn2(View view)
+	{
+		if (index == 8)
+		{
+			sex = 1;
+			btn1NewGame.setVisibility(View.INVISIBLE);
+			btn2NewGame.setVisibility(View.INVISIBLE);
+			next(view);
+		}
+		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
+				getResources().getDrawable(R.drawable.flecha), null);
+		textViewNewGame.setClickable(true);
 	}
 }

@@ -7,7 +7,7 @@
 	<string name="girl">Chica</string>
 	<string name="yesNewGame">Si</string>	
 	<string name="noNewGame">No</string>	
-	
+	<string name="name">Nombre</string>
 	
 	<string name="newGame1">¡Hola! ¡Este es el mundo Animature!</string>
 	<string name="newGame2">¡Me llamo OAK!</string>
@@ -19,6 +19,6 @@
 	<string name="newGame8">Bueno, cuéntame algo de ti.</string>	
 	<string name="newGame9">¿Eres chico o chica?</string>
 	<string name="newGame10">Pero primero dime como te llamas.</string>
-	<string name="newGame11">¡Bien! ¡Asi que te llamas *nombreJugador*</string>
+	<string name="newGame11">¡Bien! ¡Asi que te llamas *nombreJugador*!</string>
 		
 </resources>
