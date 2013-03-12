@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jdix.animature.utils.Connection;
-import com.jdix.animature.utils.Database;
 import com.jdix.animature.utils.StringUtils;
 
 /**
@@ -64,14 +63,24 @@ public class RegisterActivity extends Activity {
 
 		setContentView(R.layout.activity_register);
 
-		db = (new Database(this, "AnimatureWorldDB", null, 1))
-				.getWritableDatabase();
+		/*
+		 * db = (new Database(this, "AnimatureWorldDB", null, 1))
+		 * .getWritableDatabase();
+		 */
 		login = (ResultReceiver) getIntent().getExtras().get("login");
 
 		// Set up the login form.
+		mUsernameView = (EditText) findViewById(R.id.userName);
+		mUsernameView.setText(mUsername);
+
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);
 		mEmailView.setText(mEmail);
+
+		mPasswordView1 = (EditText) findViewById(R.id.password1);
+
+		mPasswordView2 = (EditText) findViewById(R.id.password2);
+
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
 		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
@@ -88,7 +97,7 @@ public class RegisterActivity extends Activity {
 	 * are form errors (invalid email, missing fields, etc.), the errors are
 	 * presented and no actual login attempt is made.
 	 */
-	public void attemptLogin()
+	public void attemptRegister()
 	{
 		if (mAuthTask != null)
 		{
