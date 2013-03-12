@@ -21,9 +21,11 @@ public class Database extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE user (email TEXT, password TEXT)");
-		db.execSQL("INSERT into user VALUES ('', '')");
-		db.execSQL("CREATE TABLE animatures ()");
+		db.execSQL("CREATE TABLE User (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, username TEXT)");
+		db.execSQL("INSERT into User VALUES ('', '', '', '')");
+		db.execSQL("CREATE TABLE Animature (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, height INTEGER, weight INTEGER, type INTEGER, velocity INTEGER, defense INTEGER, agility INTEGER, strenght INTEGER, precission INTEGER, health INTEGER, level_evo INTEGER)");
+		db.execSQL("INSERT into Animature VALUES ('', '', '', '', '', '', '', '', '', '', '', '')");
+		db.execSQL("");
 		// TODO From file and delete file (maybe)
 	}
 

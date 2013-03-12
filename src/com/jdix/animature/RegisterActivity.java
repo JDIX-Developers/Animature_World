@@ -58,7 +58,8 @@ public class RegisterActivity extends Activity {
 	private ResultReceiver		login;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_register);
@@ -77,7 +78,8 @@ public class RegisterActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -86,7 +88,8 @@ public class RegisterActivity extends Activity {
 	 * are form errors (invalid email, missing fields, etc.), the errors are
 	 * presented and no actual login attempt is made.
 	 */
-	public void attemptLogin() {
+	public void attemptLogin()
+	{
 		if (mAuthTask != null)
 		{
 			return;
@@ -172,7 +175,8 @@ public class RegisterActivity extends Activity {
 	 * Shows the progress UI and hides the login form.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-	private void showProgress(final boolean show) {
+	private void showProgress(final boolean show)
+	{
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
 		// for very easy animations. If available, use these APIs to fade-in
 		// the progress spinner.
@@ -186,7 +190,8 @@ public class RegisterActivity extends Activity {
 					.alpha(show ? 1 : 0)
 					.setListener(new AnimatorListenerAdapter() {
 						@Override
-						public void onAnimationEnd(Animator animation) {
+						public void onAnimationEnd(Animator animation)
+						{
 							mLoginStatusView.setVisibility(show ? View.VISIBLE
 									: View.GONE);
 						}
@@ -197,7 +202,8 @@ public class RegisterActivity extends Activity {
 					.alpha(show ? 0 : 1)
 					.setListener(new AnimatorListenerAdapter() {
 						@Override
-						public void onAnimationEnd(Animator animation) {
+						public void onAnimationEnd(Animator animation)
+						{
 							mLoginFormView.setVisibility(show ? View.GONE
 									: View.VISIBLE);
 						}
@@ -221,7 +227,8 @@ public class RegisterActivity extends Activity {
 		private boolean	user, email, error;
 
 		@Override
-		protected Boolean doInBackground(Void... params) {
+		protected Boolean doInBackground(Void... params)
+		{
 			// TODO: attempt authentication against a network service.
 			Connection c = Connection.getInstance();
 
@@ -252,7 +259,8 @@ public class RegisterActivity extends Activity {
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean success) {
+		protected void onPostExecute(final Boolean success)
+		{
 			mAuthTask = null;
 			showProgress(false);
 
@@ -262,8 +270,9 @@ public class RegisterActivity extends Activity {
 				 * Aqui tiene que actualizarse la base de datos!!!!
 				 */
 
-				// Connection.setLogin(mEmail, StringUtils.sha1(mPassword +
-				// "--MiniunisHUB"));
+				Connection.setLogin(mEmail,
+						StringUtils.sha1(mPassword1 + "--Animature"));
+
 				// We create the intent
 				Intent intent = new Intent(RegisterActivity.this,
 						MainMenuActivity.class);
@@ -280,25 +289,28 @@ public class RegisterActivity extends Activity {
 				{
 					if (!email)
 					{
-						// mEmailView.setError(getString(R.string.error_repeated_email));
+						mEmailView
+								.setError(getString(R.string.error_invalid_email));
 						mEmailView.requestFocus();
 					}
 					if (!user)
 					{
-						// mUsernameView.setError(getString(R.string.error_repeated_user));
+						mUsernameView
+								.setError(getString(R.string.error_user_used));
 						mUsernameView.requestFocus();
 					}
 				}
 				else
 				{
-					// mEmailView.setError(getString(R.string.conection_error));
+					mEmailView.setError(getString(R.string.error_connection));
 					mEmailView.requestFocus();
 				}
 			}
 		}
 
 		@Override
-		protected void onCancelled() {
+		protected void onCancelled()
+		{
 			mAuthTask = null;
 			showProgress(false);
 		}

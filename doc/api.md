@@ -36,7 +36,7 @@ El *email* será el email usado por el usuario al intentar entrar. Deberá estar
 La *pass* será la contraseña usada por el usuario, no podrá ser un string vacío, y se enviará al servidor encriptada en Sha1 incluyendo tras el string de la contraseña el siguiente salt: *--Animature*. Esto aumentará la seguridad.
 
 El servidor devolverá 3 valores: email, pass, token. El *email* será un booleano (TRUE o FALSE) que indicará si el email es válido o no. El *pass* será un booleano que indicará, una vez comprobado el email, si la contraseña es correcta o no.
-En el caso en el que ambos sean TRUE, es decir, que el email y la contraseña son válidos, se incluirá el token, que setá un string hexadecimal de 32 caracteres que controlará la conexión. No es necesario controlarlo, ya que la propia conexión gestionará el token.
+En el caso en el que ambos sean TRUE, es decir, que el email y la contraseña son válidos, se incluirá el token, que será un string hexadecimal de 32 caracteres que controlará la conexión. No es necesario controlarlo, ya que la propia conexión gestionará el token.
 
 Lo que sí es importante es que una vez hecho el login, se le incluya a la conexión los datos del login, para lo que se usará el método estático *setLogin()*:
 

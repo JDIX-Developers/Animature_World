@@ -1,6 +1,6 @@
 # Base de datos #
 
-## Tabla user ##
+## Tabla User ##
 (id, email, password, username)
 
 ## Tabla Animature ##
