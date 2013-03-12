@@ -25,7 +25,7 @@ public class Database extends SQLiteOpenHelper {
 		db.execSQL("INSERT into User VALUES ('', '', '', '')");
 		db.execSQL("CREATE TABLE Animature (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, height INTEGER, weight INTEGER, type INTEGER, velocity INTEGER, defense INTEGER, agility INTEGER, strenght INTEGER, precission INTEGER, health INTEGER, level_evo INTEGER)");
 		db.execSQL("INSERT into Animature VALUES ('', '', '', '', '', '', '', '', '', '', '', '')");
-		db.execSQL("");
+		db.execSQL("CREATE TABLE Save (id INTEGER PRIMARY KEY AUTOINCREMENT, user INTEGER, stage, last_played, started, total_time, steps, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*, *map*, coord_x, coord_y, neighbour, *1st_an*, orientation, last_Healing, medals, money, FOREIGN KEY(user) REFERENCES User(id))");
 		// TODO From file and delete file (maybe)
 	}
 
@@ -33,8 +33,6 @@ public class Database extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 	{
 		// TODO Upgrade
-		db.execSQL("DROP TABLE IF EXISTS user");
-		db.execSQL("CREATE TABLE user (email TEXT, password TEXT)");
-		db.execSQL("INSERT into user VALUES ('', '', '')");
+
 	}
 }
