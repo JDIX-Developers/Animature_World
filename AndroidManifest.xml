@@ -33,7 +33,7 @@
             android:label="@string/title_activity_main_menu" >
         </activity>
         <activity
-            android:name="com.jdix.animature.game.NewGameActivity"
+            android:name="com.jdix.animature.NewGameActivity"
             android:screenOrientation="landscape"
             android:label="@string/title_activity_new_game" 
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">

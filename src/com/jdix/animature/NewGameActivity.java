@@ -1,4 +1,4 @@
-package com.jdix.animature.game;
+package com.jdix.animature;
 
 import java.util.Vector;
 
