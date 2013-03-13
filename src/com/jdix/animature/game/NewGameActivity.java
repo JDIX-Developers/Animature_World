@@ -69,7 +69,7 @@ public class NewGameActivity extends Activity {
 
 	public void next(View view)
 	{
-		index++;
+		index = index + 1;
 		switch (index)
 		{
 			case 1:
