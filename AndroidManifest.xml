@@ -34,8 +34,8 @@
         </activity>
         <activity
             android:name="com.jdix.animature.NewGameActivity"
+            android:label="@string/title_activity_new_game"
             android:screenOrientation="landscape"
-            android:label="@string/title_activity_new_game" 
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         </activity>
         <activity

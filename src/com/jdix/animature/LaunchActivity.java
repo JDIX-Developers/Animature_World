@@ -3,6 +3,7 @@ package com.jdix.animature;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
@@ -36,6 +37,28 @@ public class LaunchActivity extends Activity {
 		editText_PasswordLogin = (EditText) findViewById(R.id.editText_PasswordLogin);
 		checkBox_Record = (CheckBox) findViewById(R.id.checkBox_Record);
 		btn_Register = (Button) findViewById(R.id.btn_Register);
+		btn_Register.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				// We create the intent
+				Intent intent = new Intent(LaunchActivity.this,
+						RegisterActivity.class);
+				intent.putExtra("login", new ResultReceiver(null) {
+					@Override
+					protected void onReceiveResult(int resultCode,
+							Bundle resultData)
+					{
+						LaunchActivity.this.finish();
+					}
+				});
+				// We start the activity
+				startActivityForResult(intent, 1);
+
+				editText_UserLogin.setError(null);
+				editText_PasswordLogin.setError(null);
+			}
+		});
 		btn_Enter = (Button) findViewById(R.id.btn_Enter);
 	}
 
@@ -103,7 +126,7 @@ public class LaunchActivity extends Activity {
 			focusView = editText_UserLogin;
 		}
 
-		if (!isAcepted)
+		if ( ! isAcepted)
 		{
 			focusView.requestFocus();
 		}

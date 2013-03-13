@@ -1,5 +1,14 @@
 <?php
 
+function log_message($message)
+{
+	$fp = fopen('debug.txt', 'a');
+	fwrite($fp, $message."\n");
+	fclose($fp);
+}
+
+log_message("test");
+
 function is_ssl()
 {
 	return TRUE;//( ! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off');
@@ -10,12 +19,38 @@ function is_animature()
 	return (bool) preg_match('/Animature\/[1-9]+\.[0-9]+\.[0-9]+/', $_SERVER['HTTP_USER_AGENT']);
 }
 
+function db()
+{
+	static $db;
+
+	if (empty($db))
+	{
+		require('dbconfig.php');
+
+		$db = new mysqli($dbsettings['server'], $dbsettings['user'], $dbsettings['pass'], $dbsettings['name']);
+		if ( ! is_null($db->connect_error))
+		{
+			log_message("DB connection error");
+			header('Location: http://jdix.razican.com/404.php', 404);
+			exit;
+		}
+
+		$db->set_charset('utf8');
+		unset($dbsettings);
+	}
+
+	return $db;
+}
+
 db()->query("DELETE FROM `sessions` WHERE expiration < ".time().";");
 
 if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['action']))
 {
 	define('IN_API', TRUE);
 	require('functions.php');
+
+	log_message("Start");
+
 	$result = array();
 
 	if (isset($_POST['token']) && preg_match('[a-z]{32}', $_POST['token']))
@@ -92,11 +127,13 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 			}
 			else
 			{
+				log_message("register error");
 				header('Location: http://jdix.razican.com/404.php', 404);
 				exit;
 			}
 		break;
 		default:
+			log_message("No register");
 			header('Location: http://jdix.razican.com/404.php', 404);
 			exit;
 	}
@@ -104,6 +141,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 }
 else
 {
+	log_message("No Animature");
 	header('Location: http://jdix.razican.com/404.php', 404);
 	exit;
 }

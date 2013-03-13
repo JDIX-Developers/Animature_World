@@ -86,24 +86,6 @@ function expiration($token)
 	return 0;
 }
 
-function db()
-{
-	static $db;
 
-	if (empty($db))
-	{
-		require('dbconfig.php');
-
-		$db = new mysqli($dbsettings['server'], $dbsettings['user'], $dbsettings['pass'], $dbsettings['name']);
-		if ( ! is_null($db->connect_error))
-		{
-			header('Location: http://jdix.razican.com/404.php', 404);
-			exit;
-		}
-
-		$db->set_charset('utf8');
-		unset($dbsettings);
-	}
-
-	return $db;
-}
+/* End of file functions.php */
+/* Location: ./animature/functions.php */

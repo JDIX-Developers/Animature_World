@@ -14,12 +14,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jdix.animature.utils.Connection;
+import com.jdix.animature.utils.Database;
 import com.jdix.animature.utils.StringUtils;
 
 /**
@@ -27,34 +29,30 @@ import com.jdix.animature.utils.StringUtils;
  * well.
  */
 public class RegisterActivity extends Activity {
-	/**
-	 * The default email to populate the email field with.
-	 */
-	public static final String	EXTRA_EMAIL	= "com.example.android.authenticatordemo.extra.EMAIL";
 
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
-	private UserLoginTask		mAuthTask	= null;
+	private UserLoginTask	mAuthTask	= null;
 
 	// Values for email and password at the time of the login attempt.
-	private String				mUsername;
-	private String				mPassword1;
-	private String				mPassword2;
-	private String				mEmail;
+	private String			mUsername;
+	private String			mEmail;
+	private String			mPassword1;
+	private String			mPassword2;
 
 	// UI references.
-	private EditText			mUsernameView;
-	private EditText			mPasswordView1;
-	private EditText			mPasswordView2;
-	private EditText			mEmailView;
-	private View				mLoginFormView;
-	private View				mLoginStatusView;
-	private TextView			mLoginStatusMessageView;
+	private EditText		mUsernameView;
+	private EditText		mPasswordView1;
+	private EditText		mPasswordView2;
+	private EditText		mEmailView;
+	private View			mLoginFormView;
+	private View			mLoginStatusView;
+	private TextView		mLoginStatusMessageView;
 
-	private SQLiteDatabase		db;
+	private SQLiteDatabase	db;
 
-	private ResultReceiver		login;
+	private ResultReceiver	login;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -63,23 +61,25 @@ public class RegisterActivity extends Activity {
 
 		setContentView(R.layout.activity_register);
 
-		/*
-		 * db = (new Database(this, "AnimatureWorldDB", null, 1))
-		 * .getWritableDatabase();
-		 */
+		db = (new Database(this, "AnimatureWorldDB", null, 1))
+				.getWritableDatabase();
+
 		login = (ResultReceiver) getIntent().getExtras().get("login");
 
 		// Set up the login form.
 		mUsernameView = (EditText) findViewById(R.id.userName);
-		mUsernameView.setText(mUsername);
-
-		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);
-		mEmailView.setText(mEmail);
-
 		mPasswordView1 = (EditText) findViewById(R.id.password1);
-
 		mPasswordView2 = (EditText) findViewById(R.id.password2);
+
+		findViewById(R.id.register).setOnClickListener(
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View view)
+					{
+						attemptRegister();
+					}
+				});
 
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
@@ -126,8 +126,7 @@ public class RegisterActivity extends Activity {
 			focusView = mEmailView;
 			cancel = true;
 		}
-		else if (!mEmail
-				.matches("[a-z0-9][\\w\\.-]*[a-z0-9]\\.[a-z][a-z\\.]*[a-z]$"))
+		else if ( ! Patterns.EMAIL_ADDRESS.matcher(mEmail).matches())
 		{
 			mEmailView.setError(getString(R.string.error_invalid_email));
 			focusView = mEmailView;
@@ -147,7 +146,7 @@ public class RegisterActivity extends Activity {
 			focusView = mPasswordView1;
 			cancel = true;
 		}
-		else if (!mPassword1.equals(mPassword2))
+		else if ( ! mPassword1.equals(mPassword2))
 		{
 			mPasswordView2
 					.setError(getString(R.string.error_not_same_password));
@@ -238,7 +237,6 @@ public class RegisterActivity extends Activity {
 		@Override
 		protected Boolean doInBackground(Void... params)
 		{
-			// TODO: attempt authentication against a network service.
 			Connection c = Connection.getInstance();
 
 			c.setAction("register");
@@ -275,9 +273,9 @@ public class RegisterActivity extends Activity {
 
 			if (success)
 			{
-				/*
-				 * Aqui tiene que actualizarse la base de datos!!!!
-				 */
+				// db.execSQL("UPDATE user SET email='" + mEmail + "',"
+				// + "password='"
+				// + StringUtils.sha1(mPassword1 + "--MiniunisHUB") + "'");
 
 				Connection.setLogin(mEmail,
 						StringUtils.sha1(mPassword1 + "--Animature"));
@@ -294,15 +292,15 @@ public class RegisterActivity extends Activity {
 			}
 			else
 			{
-				if (!error)
+				if ( ! error)
 				{
-					if (!email)
+					if ( ! email)
 					{
 						mEmailView
 								.setError(getString(R.string.error_invalid_email));
 						mEmailView.requestFocus();
 					}
-					if (!user)
+					if ( ! user)
 					{
 						mUsernameView
 								.setError(getString(R.string.error_user_used));
