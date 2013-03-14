@@ -3,6 +3,21 @@
  deny from all
 </Files>
 
+<Files dbconfig.php>
+ order allow,deny
+ deny from all
+</Files>
+
+<Files index.php>
+ order allow,deny
+ deny from all
+</Files>
+
+<Files functions.php>
+ order allow,deny
+ deny from all
+</Files>
+
 # disable directory browsing
 Options All -Indexes
 
