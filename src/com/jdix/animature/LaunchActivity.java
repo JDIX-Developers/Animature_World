@@ -5,22 +5,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class LaunchActivity extends Activity {
 
-	private EditText	editText_UserLogin;
-	private EditText	editText_PasswordLogin;
-	private CheckBox	checkBox_Record;
+	private EditText	mEditTextUserLogin;
+	private EditText	mEditTextPasswordLogin;
+	private CheckBox	mCheckBoxRecord;
 	private Button		btn_Register;
 	private Button		btn_Enter;
+	private View		mLoginFormView;
+	private View		mLoginStatusView;
+	private TextView	mLoginStatusMessageView;
 
-	private String		username;
+	private String		userEmail;
 	private String		password;
+	private boolean		remember;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -33,9 +40,24 @@ public class LaunchActivity extends Activity {
 		// finish();
 
 		// We get a reference to the interface controls
-		editText_UserLogin = (EditText) findViewById(R.id.editText_UserLogin);
-		editText_PasswordLogin = (EditText) findViewById(R.id.editText_PasswordLogin);
-		checkBox_Record = (CheckBox) findViewById(R.id.checkBox_Record);
+		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
+		mEditTextPasswordLogin = (EditText) findViewById(R.id.editText_PasswordLogin);
+
+		mCheckBoxRecord = (CheckBox) findViewById(R.id.checkBox_Record);
+		mCheckBoxRecord
+				.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked)
+					{
+						remember = isChecked;
+					}
+				});
+
+		mLoginFormView = findViewById(R.id.login_form);
+		mLoginStatusView = findViewById(R.id.login_status);
+		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
+
 		btn_Register = (Button) findViewById(R.id.btn_Register);
 		btn_Register.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -55,8 +77,8 @@ public class LaunchActivity extends Activity {
 				// We start the activity
 				startActivityForResult(intent, 1);
 
-				editText_UserLogin.setError(null);
-				editText_PasswordLogin.setError(null);
+				mEditTextUserLogin.setError(null);
+				mEditTextPasswordLogin.setError(null);
 			}
 		});
 		btn_Enter = (Button) findViewById(R.id.btn_Enter);
@@ -89,8 +111,8 @@ public class LaunchActivity extends Activity {
 	public void enter(View view)
 	{
 		// We get the values from EditText
-		username = editText_UserLogin.getText().toString();
-		password = editText_PasswordLogin.getText().toString();
+		userEmail = mEditTextUserLogin.getText().toString();
+		password = mEditTextPasswordLogin.getText().toString();
 
 		if (attemptLogin())
 		{
@@ -113,17 +135,24 @@ public class LaunchActivity extends Activity {
 
 		if (TextUtils.isEmpty(password))
 		{
-			editText_PasswordLogin
+			mEditTextPasswordLogin
 					.setError(getString(R.string.error_field_required));
 			isAcepted = false;
-			focusView = editText_PasswordLogin;
+			focusView = mEditTextPasswordLogin;
 		}
-		if (TextUtils.isEmpty(username))
+		if (TextUtils.isEmpty(userEmail))
 		{
-			editText_UserLogin
+			mEditTextUserLogin
 					.setError(getString(R.string.error_field_required));
 			isAcepted = false;
-			focusView = editText_UserLogin;
+			focusView = mEditTextUserLogin;
+		}
+		else if ( ! Patterns.EMAIL_ADDRESS.matcher(userEmail).matches())
+		{
+			mEditTextUserLogin
+					.setError(getString(R.string.error_invalid_email));
+			focusView = mEditTextUserLogin;
+			isAcepted = false;
 		}
 
 		if ( ! isAcepted)

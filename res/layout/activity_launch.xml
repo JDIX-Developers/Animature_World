@@ -36,7 +36,7 @@
 	        android:layout_gravity="center"
 	        android:layout_marginTop="50dp"
 			android:singleLine="true"
-	        android:hint="@string/user"
+	        android:hint="@string/user_eMail"
 	        android:ems="10" />
 	
 	    <EditText

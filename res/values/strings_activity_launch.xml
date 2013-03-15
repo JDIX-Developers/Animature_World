@@ -4,7 +4,7 @@
 	
 	<string name="enter">Entrar</string>
     <string name="register">Registrarse</string>
-    <string name="user">Usuario</string>
+    <string name="user_eMail">E-mail usuario</string>
     <string name="password">Contraseña</string>
 	<string name="record_Me">Recordarme</string>
 
