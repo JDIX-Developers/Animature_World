@@ -27,8 +27,9 @@ function cl_version()
 function valid_email($email)
 {
 	$is_valid = (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
-	$has_mx = getmxrr(explode('@', $email), $mxhost);
-	$is_valid = ($is_valid && $has_mx[1]);
+	$domain = explode('@', $email);
+	$has_mx = getmxrr($domain[1], $mxhost);
+	$is_valid = ($is_valid && $has_mx);
 
 	if ($is_valid)
 	{

@@ -7,8 +7,6 @@ function log_message($message)
 	fclose($fp);
 }
 
-log_message("test");
-
 function is_ssl()
 {
 	return TRUE;//( ! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off');
@@ -30,7 +28,6 @@ function db()
 		$db = new mysqli($dbsettings['server'], $dbsettings['user'], $dbsettings['pass'], $dbsettings['name']);
 		if ( ! is_null($db->connect_error))
 		{
-			log_message("DB connection error");
 			header('Location: http://jdix.razican.com/404.php', 404);
 			exit;
 		}
@@ -42,15 +39,12 @@ function db()
 	return $db;
 }
 
+define('IN_API', TRUE);
 db()->query("DELETE FROM `sessions` WHERE expiration < ".time().";");
 
 if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['action']))
 {
-	define('IN_API', TRUE);
 	require('functions.php');
-
-	log_message("Start");
-
 	$result = array();
 
 	if (isset($_POST['token']) && preg_match('[a-z]{32}', $_POST['token']))
@@ -104,7 +98,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 			}
 		break;
 		case 'register':
-			if (isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! preg_match('/[a-f0-9]{40}/', $_POST['pass']))
+			if (isset($_POST['user']) && ! empty($_POST['user']) && isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && preg_match('/[a-f0-9]{40}/', $_POST['pass']))
 			{
 				$valid_email = valid_email($_POST['email']);
 				$exists_user = exists_user($_POST['user']);
@@ -127,13 +121,11 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 			}
 			else
 			{
-				log_message("register error");
 				header('Location: http://jdix.razican.com/404.php', 404);
 				exit;
 			}
 		break;
 		default:
-			log_message("No register");
 			header('Location: http://jdix.razican.com/404.php', 404);
 			exit;
 	}
@@ -141,7 +133,6 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 }
 else
 {
-	log_message("No Animature");
 	header('Location: http://jdix.razican.com/404.php', 404);
 	exit;
 }

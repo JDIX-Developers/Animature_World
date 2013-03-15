@@ -1,4 +1,4 @@
-<?php defined('IN_API') OR exit(header('Location: http://jdix.razican.com/404.php', 404));
+<?php defined('IN_API') OR (header('Location: http://jdix.razican.com/404.php', 404) && exit);
 
 $dbsettings = array(
 	'server'	=> 'localhost',
