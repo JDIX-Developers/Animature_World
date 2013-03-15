@@ -1,12 +1,5 @@
 <?php
 
-function log_message($message)
-{
-	$fp = fopen('debug.txt', 'a');
-	fwrite($fp, $message."\n");
-	fclose($fp);
-}
-
 function is_ssl()
 {
 	return TRUE;//( ! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off');
