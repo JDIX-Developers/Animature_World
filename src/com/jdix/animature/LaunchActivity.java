@@ -340,8 +340,7 @@ public class LaunchActivity extends Activity {
 				{
 					db.execSQL("UPDATE User SET email='" + userEmail + "',"
 							+ "password='"
-							+ StringUtils.sha1(password + "--MiniunisHUB")
-							+ "'");
+							+ StringUtils.sha1(password + "--Animature") + "'");
 					Connection.setLogin(userEmail,
 							StringUtils.sha1(password + "--Animature"));
 				}
