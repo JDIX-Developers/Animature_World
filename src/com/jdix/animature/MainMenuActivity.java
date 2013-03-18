@@ -23,10 +23,45 @@ public class MainMenuActivity extends Activity {
 
 		// We get a reference to the interface controls
 		btnNewGame = (Button) findViewById(R.id.btnNewGame);
+		btnNewGame.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				newGame();
+			}
+		});
 		btnLoadGame = (Button) findViewById(R.id.btnLoadGame);
+		btnLoadGame.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				loadGame();
+			}
+		});
 		btnMultiplayer = (Button) findViewById(R.id.btnMultiplayer);
+		btnMultiplayer.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				multiplayer();
+			}
+		});
 		btnAnimatureShop = (Button) findViewById(R.id.btnAnimatureShop);
+		btnAnimatureShop.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				animatureShop();
+			}
+		});
 		btnOptions = (Button) findViewById(R.id.btnOptions);
+		btnOptions.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				options();
+			}
+		});
 	}
 
 	@Override
@@ -37,10 +72,8 @@ public class MainMenuActivity extends Activity {
 
 	/**
 	 * Method pressing the new game button
-	 * 
-	 * @param View
 	 */
-	public void newGame(View view)
+	public void newGame()
 	{
 		// We create the attempt
 		Intent intent = new Intent(MainMenuActivity.this, NewGameActivity.class);
@@ -50,54 +83,33 @@ public class MainMenuActivity extends Activity {
 
 	/**
 	 * Method pressing the load game button
-	 * 
-	 * @param View
 	 */
-	public void loadGame(View view)
+	public void loadGame()
 	{
 
 	}
 
 	/**
 	 * Method pressing the multiplayer button
-	 * 
-	 * @param View
 	 */
-	public void multiplayer(View view)
+	public void multiplayer()
 	{
 
 	}
 
 	/**
 	 * Method pressing the animature shop button
-	 * 
-	 * @param View
 	 */
-	public void animatureShop(View view)
+	public void animatureShop()
 	{
 
 	}
 
 	/**
 	 * Method pressing the options button
-	 * 
-	 * @param View
 	 */
-	public void options(View view)
+	public void options()
 	{
 
-	}
-
-	/**
-	 * Method pressing the exit button
-	 * 
-	 * @param View
-	 */
-	public void exit(View view)
-	{
-		// Provisional
-		Intent intent = new Intent(MainMenuActivity.this, LaunchActivity.class);
-		startActivity(intent);
-		finish();
 	}
 }

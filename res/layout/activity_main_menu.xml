@@ -24,7 +24,6 @@
                 android:id="@+id/btnNewGame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="newGame"
                 android:text="@string/btnNewGame"
                 android:textSize="25sp" />
             
@@ -33,7 +32,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-				android:onClick="loadGame"
                 android:textSize="25sp"
                 android:text="@string/btnLoadGame" />
             
@@ -42,7 +40,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-				android:onClick="multiplayer"
                 android:textSize="25sp"
                 android:text="@string/btnMultiplayer" />
             
@@ -51,7 +48,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-				android:onClick="animatureShop"
                 android:textSize="25sp"
                 android:text="@string/btnAnimatureShop" />
             
@@ -60,18 +56,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-				android:onClick="options"
                 android:textSize="25sp"
                 android:text="@string/btnOptions" />
-            
-            <Button
-                android:id="@+id/btnExit"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-				android:onClick="exit"
-                android:textSize="25sp"
-                android:text="@string/btnExit" />
 
         </LinearLayout>
         

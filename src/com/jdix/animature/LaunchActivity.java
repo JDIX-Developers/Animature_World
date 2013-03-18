@@ -80,25 +80,17 @@ public class LaunchActivity extends Activity {
 			@Override
 			public void onClick(View view)
 			{
-				// We create the intent
-				Intent intent = new Intent(LaunchActivity.this,
-						RegisterActivity.class);
-				intent.putExtra("login", new ResultReceiver(null) {
-					@Override
-					protected void onReceiveResult(int resultCode,
-							Bundle resultData)
-					{
-						LaunchActivity.this.finish();
-					}
-				});
-				// We start the activity
-				startActivityForResult(intent, 1);
-
-				mEditTextUserLogin.setError(null);
-				mEditTextPasswordLogin.setError(null);
+				register();
 			}
 		});
 		btn_Enter = (Button) findViewById(R.id.btn_Enter);
+		btn_Enter.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				attemptLogin();
+			}
+		});
 
 		Cursor u = db.rawQuery("Select * FROM User", null);
 
@@ -176,24 +168,23 @@ public class LaunchActivity extends Activity {
 	/**
 	 * Method pressing the register button
 	 * 
-	 * @param View
 	 */
-	public void register(View view)
+	public void register()
 	{
-		// We create the attempt
+		// We create the intent
 		Intent intent = new Intent(LaunchActivity.this, RegisterActivity.class);
-		// We started the new activity
-		startActivity(intent);
-	}
+		intent.putExtra("login", new ResultReceiver(null) {
+			@Override
+			protected void onReceiveResult(int resultCode, Bundle resultData)
+			{
+				LaunchActivity.this.finish();
+			}
+		});
+		// We start the activity
+		startActivityForResult(intent, 1);
 
-	/**
-	 * Method pressing the enter button
-	 * 
-	 * @param View
-	 */
-	public void enter(View view)
-	{
-		attemptLogin();
+		mEditTextUserLogin.setError(null);
+		mEditTextPasswordLogin.setError(null);
 	}
 
 	/**
