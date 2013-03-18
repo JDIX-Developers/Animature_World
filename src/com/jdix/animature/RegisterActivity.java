@@ -126,7 +126,7 @@ public class RegisterActivity extends Activity {
 			focusView = mEmailView;
 			cancel = true;
 		}
-		else if (!Patterns.EMAIL_ADDRESS.matcher(mEmail).matches())
+		else if ( ! Patterns.EMAIL_ADDRESS.matcher(mEmail).matches())
 		{
 			mEmailView.setError(getString(R.string.error_invalid_email));
 			focusView = mEmailView;
@@ -146,7 +146,7 @@ public class RegisterActivity extends Activity {
 			focusView = mPasswordView1;
 			cancel = true;
 		}
-		else if (!mPassword1.equals(mPassword2))
+		else if ( ! mPassword1.equals(mPassword2))
 		{
 			mPasswordView2
 					.setError(getString(R.string.error_not_same_password));
@@ -292,15 +292,15 @@ public class RegisterActivity extends Activity {
 			}
 			else
 			{
-				if (!error)
+				if ( ! error)
 				{
-					if (!email)
+					if ( ! email)
 					{
 						mEmailView
 								.setError(getString(R.string.error_invalid_email));
 						mEmailView.requestFocus();
 					}
-					if (!user)
+					if ( ! user)
 					{
 						mUsernameView
 								.setError(getString(R.string.error_user_used));
@@ -309,8 +309,9 @@ public class RegisterActivity extends Activity {
 				}
 				else
 				{
-					mEmailView.setError(getString(R.string.error_connection));
-					mEmailView.requestFocus();
+					mUsernameView
+							.setError(getString(R.string.error_connection));
+					mUsernameView.requestFocus();
 				}
 			}
 		}
