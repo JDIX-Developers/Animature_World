@@ -69,7 +69,6 @@
 	            android:id="@+id/btn_Register"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:onClick="register"
 	            android:text="@string/register"
 	            android:textSize="20sp"
 	            android:width="140dp" />
@@ -78,7 +77,6 @@
 	            android:id="@+id/btn_Enter"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:onClick="enter"
 	            android:text="@string/enter"
 	            android:textSize="20sp"
 	            android:width="120dp" />
