@@ -95,97 +95,104 @@ public class Connection {
 			e.printStackTrace();
 		}
 
-		int responseCode = response.getStatusLine().getStatusCode();
-		String responseBody = null;
-		switch (responseCode)
+		if (response != null)
 		{
-			case 200:
-				HttpEntity entity = response.getEntity();
-				if (entity != null)
+			int responseCode = response.getStatusLine().getStatusCode();
+			String responseBody = null;
+			switch (responseCode)
+			{
+				case 200:
+					HttpEntity entity = response.getEntity();
+					if (entity != null)
+					{
+						try
+						{
+							responseBody = EntityUtils.toString(entity);
+						}
+						catch (ParseException e)
+						{
+						}
+						catch (IOException e)
+						{
+						}
+					}
+					break;
+			}
+
+			System.out.println(responseCode + responseBody);
+
+			boolean regenerate = false;
+			JSONObject jsonObject = null;
+			try
+			{
+				jsonObject = new JSONObject(responseBody);
+				regenerate = jsonObject.getBoolean("regenerate");
+				setToken(jsonObject.getString("token"));
+			}
+			catch (JSONException e)
+			{
+			}
+
+			if (regenerate)
+			{
+				if (loginEmail != null && loginPassword != null)
 				{
+					List<NameValuePair> d = data;
+					String a = action;
+
+					setToken(null);
+					newQuery();
+
+					setAction("login");
+					addData("method", "auto");
+					addData("email", loginEmail);
+					addData("pass", loginPassword);
+
+					JSONObject login = execute();
 					try
 					{
-						responseBody = EntityUtils.toString(entity);
+						setToken(login.getString("token"));
 					}
-					catch (ParseException e)
+					catch (JSONException e)
 					{
+						e.printStackTrace();
 					}
-					catch (IOException e)
+
+					System.err.println("Token: " + token);
+
+					action = a;
+					data = d;
+
+					Iterator<NameValuePair> i = d.iterator();
+
+					while (i.hasNext())
 					{
+						NameValuePair nvp = i.next();
+						if (nvp.getName().equals("token"))
+						{
+							d.remove(nvp);
+							break;
+						}
 					}
+
+					addData("token", token);
+
+					return execute();
 				}
-				break;
-		}
-
-		System.out.println(responseCode + responseBody);
-
-		boolean regenerate = false;
-		JSONObject jsonObject = null;
-		try
-		{
-			jsonObject = new JSONObject(responseBody);
-			regenerate = jsonObject.getBoolean("regenerate");
-			setToken(jsonObject.getString("token"));
-		}
-		catch (JSONException e)
-		{
-		}
-
-		if (regenerate)
-		{
-			if (loginEmail != null && loginPassword != null)
-			{
-				List<NameValuePair> d = data;
-				String a = action;
-
-				setToken(null);
-				newQuery();
-
-				setAction("login");
-				addData("method", "auto");
-				addData("email", loginEmail);
-				addData("pass", loginPassword);
-
-				JSONObject login = execute();
-				try
+				else
 				{
-					setToken(login.getString("token"));
+					return null;
 				}
-				catch (JSONException e)
-				{
-					e.printStackTrace();
-				}
-
-				System.err.println("Token: " + token);
-
-				action = a;
-				data = d;
-
-				Iterator<NameValuePair> i = d.iterator();
-
-				while (i.hasNext())
-				{
-					NameValuePair nvp = i.next();
-					if (nvp.getName().equals("token"))
-					{
-						d.remove(nvp);
-						break;
-					}
-				}
-
-				addData("token", token);
-
-				return execute();
 			}
 			else
 			{
-				return null;
+				newQuery();
+				return jsonObject;
 			}
 		}
 		else
 		{
-			newQuery();
-			return jsonObject;
+			return null;
 		}
 	}
 
