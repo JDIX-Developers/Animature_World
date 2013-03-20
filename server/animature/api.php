@@ -102,7 +102,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 						db()->real_escape_string($_POST['pass'])."', '".db()->real_escape_string($_POST['user'])."');");
 					$token = md5($_POST['email'].$_POST['pass'].microtime(TRUE)."--Animature");
 
-					db()->query("INSERT INTO `sessions` VALUES ('".$token."', SELECT `id` FROM `users` WHERE `email` = '".db()->real_escape_string($_POST['email'])."', ".(time()+7200).");");
+					db()->query("INSERT INTO `sessions` VALUES ('".$token."', (SELECT `id` FROM `users` WHERE `email` = '".db()->real_escape_string($_POST['email'])."'), ".(time()+7200).");");
 				}
 
 				$result['user'] = ! $exists_user;
