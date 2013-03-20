@@ -40,7 +40,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 	require('functions.php');
 	$result = array();
 
-	if (isset($_POST['token']) && preg_match('[a-z]{32}', $_POST['token']))
+	if (isset($_POST['token']) && preg_match('/[0-9a-f]{32}/', $_POST['token']))
 	{
 		$token_expiration = token_expiration($_POST['token']);
 		if ($token_expiration < 900)
@@ -63,7 +63,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 	switch ($_POST['action'])
 	{
 		case 'login':
-			if (isset($_POST['mode']) && ($_POST['mode'] === 'manual' OR $_POST['mode'] === 'auto') &&
+			if (isset($_POST['method']) && ($_POST['method'] === 'manual' OR $_POST['method'] === 'auto') &&
 				isset($_POST['email']) && ! empty($_POST['email']) && isset($_POST['pass']) && ! empty($_POST['pass']))
 			{
 				$exists_email = exists_email($_POST['email']);
@@ -74,7 +74,7 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 					db()->query("INSERT INTO `sessions` VALUES ('".$token."', SELECT `id` FROM `users` WHERE `email` = '".db()->real_escape_string($_POST['email'])."', ".(time()+7200).");");
 				}
 
-				if ($_POST['mode'] === 'auto')
+				if ($_POST['method'] === 'manual')
 				{
 					$result['email'] = $exists_email;
 					$result['pass'] = $valid_login;
@@ -99,10 +99,10 @@ if (is_ssl() && is_animature() && isset($_POST['action']) && ! empty($_POST['act
 				{
 					db()->query("INSERT INTO `users` (`email`, `password`, `username`) ".
 						"VALUES ('".db()->real_escape_string($_POST['email'])."', '".
-						db()->real_escape_string($_POST['password'])."', '".db()->real_escape_string($_POST['user'])."');");
+						db()->real_escape_string($_POST['pass'])."', '".db()->real_escape_string($_POST['user'])."');");
 					$token = md5($_POST['email'].$_POST['pass'].microtime(TRUE)."--Animature");
 
-					db()->query("INSERT INTO `sessions` VALUES ('".$token."', SELECT `id` FROM `users` WHERE `username` = '".db()->real_escape_string($_POST['user'])."', ".(time()+7200).");");
+					db()->query("INSERT INTO `sessions` VALUES ('".$token."', SELECT `id` FROM `users` WHERE `email` = '".db()->real_escape_string($_POST['email'])."', ".(time()+7200).");");
 				}
 
 				$result['user'] = ! $exists_user;

@@ -18,7 +18,6 @@ import android.util.Patterns;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.jdix.animature.utils.Connection;
 import com.jdix.animature.utils.Database;
@@ -46,9 +45,8 @@ public class RegisterActivity extends Activity {
 	private EditText		mPasswordView1;
 	private EditText		mPasswordView2;
 	private EditText		mEmailView;
-	private View			mLoginFormView;
-	private View			mLoginStatusView;
-	private TextView		mLoginStatusMessageView;
+	private View			mRegisterFormView;
+	private View			mRegisterStatusView;
 
 	private SQLiteDatabase	db;
 
@@ -81,9 +79,8 @@ public class RegisterActivity extends Activity {
 					}
 				});
 
-		mLoginFormView = findViewById(R.id.login_form);
-		mLoginStatusView = findViewById(R.id.login_status);
-		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
+		mRegisterFormView = findViewById(R.id.register_form);
+		mRegisterStatusView = findViewById(R.id.register_status);
 	}
 
 	@Override
@@ -118,6 +115,8 @@ public class RegisterActivity extends Activity {
 
 		boolean cancel = false;
 		View focusView = null;
+
+		// TODO Database
 
 		// Check for a valid email address.
 		if (TextUtils.isEmpty(mEmail))
@@ -172,7 +171,6 @@ public class RegisterActivity extends Activity {
 		{
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
-			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
 			mAuthTask = new UserLoginTask();
 			mAuthTask.execute((Void) null);
@@ -193,26 +191,27 @@ public class RegisterActivity extends Activity {
 			int shortAnimTime = getResources().getInteger(
 					android.R.integer.config_shortAnimTime);
 
-			mLoginStatusView.setVisibility(View.VISIBLE);
-			mLoginStatusView.animate().setDuration(shortAnimTime)
+			mRegisterStatusView.setVisibility(View.VISIBLE);
+			mRegisterStatusView.animate().setDuration(shortAnimTime)
 					.alpha(show ? 1 : 0)
 					.setListener(new AnimatorListenerAdapter() {
 						@Override
 						public void onAnimationEnd(Animator animation)
 						{
-							mLoginStatusView.setVisibility(show ? View.VISIBLE
-									: View.GONE);
+							mRegisterStatusView
+									.setVisibility(show ? View.VISIBLE
+											: View.GONE);
 						}
 					});
 
-			mLoginFormView.setVisibility(View.VISIBLE);
-			mLoginFormView.animate().setDuration(shortAnimTime)
+			mRegisterFormView.setVisibility(View.VISIBLE);
+			mRegisterFormView.animate().setDuration(shortAnimTime)
 					.alpha(show ? 0 : 1)
 					.setListener(new AnimatorListenerAdapter() {
 						@Override
 						public void onAnimationEnd(Animator animation)
 						{
-							mLoginFormView.setVisibility(show ? View.GONE
+							mRegisterFormView.setVisibility(show ? View.GONE
 									: View.VISIBLE);
 						}
 					});
@@ -221,8 +220,8 @@ public class RegisterActivity extends Activity {
 		{
 			// The ViewPropertyAnimator APIs are not available, so simply show
 			// and hide the relevant UI components.
-			mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
-			mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+			mRegisterStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
+			mRegisterFormView.setVisibility(show ? View.GONE : View.VISIBLE);
 		}
 	}
 
@@ -242,7 +241,7 @@ public class RegisterActivity extends Activity {
 			c.setAction("register");
 			c.addData("user", mUsername);
 			c.addData("email", mEmail);
-			c.addData("pass", StringUtils.sha1(mPassword1 + "--AnimatureWorld"));
+			c.addData("pass", StringUtils.sha1(mPassword1 + "--Animature"));
 
 			JSONObject jsonObject = c.execute();
 			user = email = error = false;

@@ -1,0 +1,3 @@
+# Especificación de los archivos de lenguaje v1.0#
+
+Los archivos de lenguaje serán archivos *.lang* que contendrán un único objeto, un *HashMap<String, String>* que cuya clave será la clave de la línea de lenguaje, y el valor, el valor de la línea. Los archivos de lenguaje tendrán el nombre [a-z]{2}_[A-Z]{2}, donde las dos primeras letras, minúsculas, indicarán el lenguaje, y las dos segundas, mayúsculas, el país.

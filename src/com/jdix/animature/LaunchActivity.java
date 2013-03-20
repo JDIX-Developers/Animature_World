@@ -22,7 +22,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.jdix.animature.utils.Connection;
 import com.jdix.animature.utils.Database;
@@ -41,10 +40,9 @@ public class LaunchActivity extends Activity {
 	private Button			btn_Enter;
 	private View			mLoginFormView;
 	private View			mLoginStatusView;
-	private TextView		mLoginStatusMessageView;
 
 	private String			userEmail;
-	private String			password;
+	private String			mPassword;
 	private boolean			remember;
 
 	@Override
@@ -73,7 +71,6 @@ public class LaunchActivity extends Activity {
 
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
-		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
 
 		btn_Register = (Button) findViewById(R.id.btn_Register);
 		btn_Register.setOnClickListener(new View.OnClickListener() {
@@ -101,62 +98,62 @@ public class LaunchActivity extends Activity {
 			dbPassword = u.getString(2);
 		}
 
-		if ( ! TextUtils.isEmpty(dbEmail) && ! TextUtils.isEmpty(dbPassword))
-		{
-			showProgress(true);
-
-			Thread t;
-			(t = new Thread() {
-				@Override
-				public void run()
-				{
-					Connection c = Connection.getInstance();
-
-					c.setAction("login");
-					c.addData("method", "auto");
-					c.addData("email", dbEmail);
-					c.addData("pass", dbPassword);
-
-					String token = null;
-					try
-					{
-						JSONObject jsonObject = c.execute();
-						token = jsonObject.getString("token");
-					}
-					catch (JSONException e)
-					{
-					}
-
-					if (token == null)
-					{
-						mEditTextUserLogin
-								.setError(getString(R.string.conection_error));
-						mEditTextUserLogin.requestFocus();
-					}
-
-					if (token != null)
-					{
-						Connection.setLogin(dbEmail, dbPassword);
-					}
-				}
-			}).start();
-
-			try
-			{
-				t.join();
-			}
-			catch (InterruptedException e)
-			{
-			}
-
-			// We create the intent
-			Intent intent = new Intent(LaunchActivity.this,
-					MainMenuActivity.class);
-			// We start the activity
-			startActivity(intent);
-			// We do not want a logged user to go back to login
-			finish();
-		}
+		// if ( ! TextUtils.isEmpty(dbEmail) && ! TextUtils.isEmpty(dbPassword))
+		// {
+		// showProgress(true);
+		//
+		// Thread t;
+		// (t = new Thread() {
+		// @Override
+		// public void run()
+		// {
+		// Connection c = Connection.getInstance();
+		//
+		// c.setAction("login");
+		// c.addData("method", "auto");
+		// c.addData("email", dbEmail);
+		// c.addData("pass", dbPassword);
+		//
+		// String token = null;
+		// try
+		// {
+		// JSONObject jsonObject = c.execute();
+		// token = jsonObject.getString("token");
+		// }
+		// catch (JSONException e)
+		// {
+		// }
+		//
+		// if (token == null)
+		// {
+		// mEditTextUserLogin
+		// .setError(getString(R.string.conection_error));
+		// mEditTextUserLogin.requestFocus();
+		// }
+		//
+		// if (token != null)
+		// {
+		// Connection.setLogin(dbEmail, dbPassword);
+		// }
+		// }
+		// }).start();
+		//
+		// try
+		// {
+		// t.join();
+		// }
+		// catch (InterruptedException e)
+		// {
+		// }
+		//
+		// // We create the intent
+		// Intent intent = new Intent(LaunchActivity.this,
+		// MainMenuActivity.class);
+		// // We start the activity
+		// startActivity(intent);
+		// // We do not want a logged user to go back to login
+		// finish();
+		// }
 	}
 
 	@Override
@@ -205,12 +202,12 @@ public class LaunchActivity extends Activity {
 
 		// We get the values from EditText
 		userEmail = mEditTextUserLogin.getText().toString();
-		password = mEditTextPasswordLogin.getText().toString();
+		mPassword = mEditTextPasswordLogin.getText().toString();
 
 		View focusView = null;
 		boolean isAcepted = true;
 
-		if (TextUtils.isEmpty(password))
+		if (TextUtils.isEmpty(mPassword))
 		{
 			mEditTextPasswordLogin
 					.setError(getString(R.string.error_field_required));
@@ -240,7 +237,6 @@ public class LaunchActivity extends Activity {
 		{
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
-			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
 			mAuthTask = new UserLoginTask();
 			mAuthTask.execute((Void) null);
@@ -296,7 +292,7 @@ public class LaunchActivity extends Activity {
 	 * the user.
 	 */
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-		boolean	bEmail, bPassword, bError;
+		private boolean	email, password, error;
 
 		@Override
 		protected Boolean doInBackground(Void... params)
@@ -306,16 +302,16 @@ public class LaunchActivity extends Activity {
 			c.setAction("login");
 			c.addData("method", "manual");
 			c.addData("email", userEmail);
-			c.addData("pass", StringUtils.sha1(password + "--MiniunisHUB"));
+			c.addData("pass", StringUtils.sha1(mPassword + "--Animature"));
 
 			JSONObject jsonObject = c.execute();
-			bEmail = bPassword = bError = false;
+			email = password = error = false;
 			if (jsonObject != null)
 			{
 				try
 				{
-					bEmail = jsonObject.getBoolean("email");
-					bPassword = jsonObject.getBoolean("pass");
+					email = jsonObject.getBoolean("email");
+					password = jsonObject.getBoolean("pass");
 				}
 				catch (JSONException e)
 				{
@@ -323,9 +319,9 @@ public class LaunchActivity extends Activity {
 			}
 			else
 			{
-				bError = true;
+				error = true;
 			}
-			return bEmail && bPassword;
+			return email && password;
 		}
 
 		@Override
@@ -338,11 +334,12 @@ public class LaunchActivity extends Activity {
 			{
 				if (remember)
 				{
-					db.execSQL("UPDATE User SET email='" + userEmail + "',"
-							+ "password='"
-							+ StringUtils.sha1(password + "--Animature") + "'");
-					Connection.setLogin(userEmail,
-							StringUtils.sha1(password + "--Animature"));
+					// TODO guardar usuario en la base de datos.
+					// db.execSQL("UPDATE User SET email='" + userEmail + "',"
+					// + "password='"
+					// + StringUtils.sha1(password + "--Animature") + "'");
+					// Connection.setLogin(userEmail,
+					// StringUtils.sha1(password + "--Animature"));
 				}
 
 				// We create the intent
@@ -356,15 +353,15 @@ public class LaunchActivity extends Activity {
 			}
 			else
 			{
-				if ( ! bError)
+				if ( ! error)
 				{
-					if ( ! bPassword)
+					if ( ! password)
 					{
 						mEditTextPasswordLogin
 								.setError(getString(R.string.error_incorrect_password));
 						mEditTextPasswordLogin.requestFocus();
 					}
-					if ( ! bEmail)
+					if ( ! email)
 					{
 						mEditTextUserLogin
 								.setError(getString(R.string.error_invalid_email));

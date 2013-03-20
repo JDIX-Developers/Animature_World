@@ -37,7 +37,7 @@ function valid_email($email)
 		$results = 0;
 		foreach ($query->fetch_row() as $number)
 		{
-			$results = (int) $number;
+			$results = (int) $number[0];
 		}
 
 		$is_valid = ($results === 0);
@@ -53,7 +53,7 @@ function exists_user($user)
 	$results = 0;
 	foreach ($query->fetch_row() as $number)
 	{
-		$results = (int) $number;
+		$results = (int) $number[0];
 	}
 
 	return $results > 0;
@@ -66,7 +66,25 @@ function exists_email($email)
 	$results = 0;
 	foreach ($query->fetch_row() as $number)
 	{
-		$results = (int) $number;
+		$results = (int) $number[0];
+	}
+
+	return $results > 0;
+}
+
+function valid_login($email, $pass)
+{
+	if ( ! preg_match('/[0-9a-f]{40}/', $pass))
+	{
+		return FALSE;
+	}
+
+	$query = db()->query("SELECT COUNT(*) FROM `users` WHERE `email` = '".db()->real_escape_string($email)."' AND `password` = '".db()->real_escape_string($pass)."'");
+
+	$results = 0;
+	foreach ($query->fetch_row() as $number)
+	{
+		$results = (int) $number[0];
 	}
 
 	return $results > 0;
@@ -80,7 +98,7 @@ function expiration($token)
 	{
 		foreach ($query->fetch_row() as $expiration)
 		{
-			return $expiration;
+			return (int) $expiration[0];
 		}
 	}
 

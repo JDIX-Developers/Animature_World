@@ -5,7 +5,7 @@
     <!-- Login progress -->
 
     <LinearLayout
-        android:id="@+id/login_status"
+        android:id="@+id/register_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -20,19 +20,19 @@
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:id="@+id/login_status_message"
+            android:id="@+id/register_status_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/login_progress_signing_in"
+            android:text="@string/register_progress"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
     <!-- Login form -->
 
     <ScrollView
-        android:id="@+id/login_form"
+        android:id="@+id/register_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent" 
         android:background="@drawable/background">

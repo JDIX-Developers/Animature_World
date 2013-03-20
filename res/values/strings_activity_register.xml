@@ -7,7 +7,7 @@
     <string name="prompt_password">Contraseña</string>
     <string name="prompt_repeat_password">Repetir contraseña</string>
     <string name="action_sign_in_register">Registrar</string>
-    <string name="login_progress_signing_in">Registrando&#8230;</string>
+    <string name="register_progress">Registrando&#8230;</string>
     <string name="error_invalid_email">Dirección de e-mail no valida</string>
     <string name="error_invalid_password">La contraseña debe tener entre 4 y 15 carácteres</string>
     <string name="error_user_used">Usuario en uso</string>
