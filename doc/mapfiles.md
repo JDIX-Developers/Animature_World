@@ -1,4 +1,4 @@
-# Especificación de los MapFiles v1.2 #
+# Especificación de los MapFiles v1.3 #
 
 Un MapFile es un archivo con extensión .map que contiene una porción de universo del juego. Será un archivo binario, que estará codificado según esta especificación. Todo el archivo se dividirá en porciones de 2 bytes. Cada 2 bytes erá un dato.
 
@@ -6,8 +6,7 @@ El primer dato indicará el ancho y el alto del mapa, el ancho el primer byte y 
 
 Cada enlace tendrá 6 bytes. El primer byte serán las coordenadas del mapa actual en el que estará el enlace. El segundo byte, será el número de mapa al que se accederá desde ahí, y el tercer byte, las coordenadas a las que se llegará. Los mapas se guardarán en *res/raw/* en el formato map_X.map, donde X será el número, que podrá tener múltiples dígitos.
 
-Hay dos tipos de datos especiales, que habilitan la compresión del mapa. Los datos que tengan el primer o el último byte *0xFF* serán de este tipo.
-Los que tengan el segundo byte en *0xFF* serán las repeticiones en la coordenada X. Así que *0x07FF* significará que el dato anterior se repetirá 7 veces en la coordenada X contando el cuadrado actual. El máximo será 255. El traductor no fallará con *0x00FF*, pero a ser posible deberá evitarse. Tampoco es aconsejable usar *0x01FF*, ya que es una notación que puede inducir a error, en su lugar se repetirá el dato de la izquierda.
+Hay dos tipos de datos especiales, que habilitan la compresión del mapa. Los datos que tengan el primer **o** el último byte *0xFF* serán de este tipo. Los que tengan el segundo byte en *0xFF* serán las repeticiones en la coordenada X. Así que *0x07FF* significará que el dato anterior se repetirá 7 veces en la coordenada X contando el cuadrado actual. El máximo será 254. El traductor no fallará con *0x00FF*, pero a ser posible deberá evitarse. Tampoco es aconsejable usar *0x01FF*, ya que es una notación que puede inducir a error, en su lugar se repetirá el dato de la izquierda.
 Por otro lado, los que tienen el primer byte en *0xFF* se repetirán en la coordenada Y, y se aplican las mismas normas.
 
 ## Compresión: ##
@@ -16,4 +15,10 @@ A la hora de comprimir, se debe premiar el menor tamaño posible, ya que mejorar
 
 En el caso en el que los datos se repitan en X y en Y pero sin formar un rectángulo, se hará la repetición de la coordenada que en total tenga más datos. Si ambas tienen la misma cantidad de datos, se usarán las repeticiones en X.
 
-Los links no serán comprimidos, y se colocarán al final del mapa.
+*Esto está todavía por implementar*
+
+Los links no serán comprimidos, y se colocarán al final del mapa, tras el flag *0xFFFF*.
+
+## Mapas de desarrollo ##
+
+Los mapas que no estén acabados se guardarán en un archivo *.dmap* que contendrá un único objeto de tipo Map. Contendrá todo lo necesario para continuar con el desarrollo una vez se abra. No se guardará en el la imagen del mapa, que será creada en el momento de la carga. Dado que no contendrá referencias al Sprite, el seprite deberá cargarse antes de abrir el mapa.
