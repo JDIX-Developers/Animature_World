@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+	<!-- Strings related to Battle Scene -->
+	<string name="btnFight">Luchar</string>
+	<string name="btnAnimature">Animature</string>
+	<string name="btnBag">Mochila</string>
+	<string name="btnScape">Escapar</string>
+</resources>
