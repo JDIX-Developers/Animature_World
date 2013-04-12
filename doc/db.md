@@ -1,13 +1,13 @@
 # Base de datos #
 
 ## Tabla User ##
-(id, email, password, username)
+(id, email, password, username, is_current, *save*)
 
 ## Tabla Animature ##
 (id, name, height, weight, type, speed, defense, agility, strenght, precission, health, level_evo)
 
 ## Tabla Save ##
-(id, *user*, skin, stage, last_played, started, total_time, steps, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*, *map*, coord_x, coord_y, neighbour, *1st_an*, orientation, last_Healing, medals, money)
+(id, skin, stage, last_played, started, total_time, steps, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*, *map*, coord_x, coord_y, neighbour, *1st_an*, orientation, last_Healing, medals, money)
 
 ## Tabla Captured ##
 (id, *animature*, *save*, nickname, sex, *attack1*, attack1_pp, *attack2*, attack2_pp, *attack3*, attack3_pp, *attack4*, attack4_pp, health, exp, box)
