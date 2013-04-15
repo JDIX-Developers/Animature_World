@@ -1,8 +1,9 @@
 package com.jdix.animature.utils;
 
 /**
- * @author Razican (Iban Eguia)
+ * Math Utilities
  * 
+ * @author Razican (Iban Eguia)
  */
 public class MathUtils {
 
@@ -22,6 +23,6 @@ public class MathUtils {
 	 */
 	public static String toHex(byte b)
 	{
-		return String.format("%02X", b);
+		return "0x" + String.format("%02X", b);
 	}
 }

@@ -10,6 +10,9 @@ public class Animature {
 	public static final int	STRENGHT	= 3;
 	public static final int	PRECISSION	= 4;
 
+	public static final int	FRONTIMG	= 0;
+	public static final int	BACKIMG		= 1;
+
 	protected int			id_Animature;
 	protected String		name;
 	protected double		height;
@@ -18,18 +21,17 @@ public class Animature {
 	protected int[]			cualities;
 	protected int			health;
 	protected int			level_evo;
-	protected Drawable[]	imgAnimature;		// 0-FrontImage, 1-BackImage
+	protected Drawable[]	imgAnimature;
 	protected Drawable		iconAnimature;
 
 	public Animature()
 	{
-
+		// TODO
 	}
 
 	public Animature(int id_Animature, String name, double height,
-			double weight, int type, int[] cualities, int health,
-			int level_evo, Attack[] attacks, Drawable[] imgAnimature,
-			Drawable iconAnimature)
+	double weight, int type, int[] cualities, int health, int level_evo,
+	Attack[] attacks, Drawable[] imgAnimature, Drawable iconAnimature)
 	{
 		this.name = name;
 		this.height = height;

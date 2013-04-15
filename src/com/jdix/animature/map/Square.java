@@ -35,7 +35,7 @@ public class Square {
 		this.y = y;
 
 		this.bitmap = Bitmap.createBitmap(sprite, x * size, y * size, size,
-				size);
+		size);
 	}
 
 	/**
@@ -43,21 +43,21 @@ public class Square {
 	 */
 	public byte[] bytes()
 	{
-		byte[] a = { this.x, this.y };
+		byte[] a = {this.x, this.y};
 		return a;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "(0x" + MathUtils.toHex(x) + ", 0x" + MathUtils.toHex(y) + ")";
+		return "(" + MathUtils.toHex(x) + ", " + MathUtils.toHex(y) + ")";
 	}
 
 	@Override
 	public boolean equals(Object sq)
 	{
 		return (sq instanceof Square && Arrays.equals(((Square) sq).bytes(),
-				bytes()));
+		bytes()));
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class Square {
 	 * @throws CompressionException Si ocurre un erro de compresión
 	 */
 	public static Square load(byte x, byte y) throws SpriteException,
-			CompressionException
+	CompressionException
 	{
 		int xi = MathUtils.uByteToInt(x), yi = MathUtils.uByteToInt(y);
 
@@ -112,13 +112,13 @@ public class Square {
 		if (squares == null)
 		{
 			squares = new Square[sprite.getWidth() / size][sprite.getHeight()
-					/ size];
+			/ size];
 		}
 		if (xi > sprite.getWidth() / size - 1
-				|| yi > sprite.getHeight() / size - 1)
+		|| yi > sprite.getHeight() / size - 1)
 		{
 			throw new SpriteException("There is no image for coordinates (0x"
-					+ MathUtils.toHex(x) + ", 0x" + MathUtils.toHex(y) + ")");
+			+ MathUtils.toHex(x) + ", 0x" + MathUtils.toHex(y) + ")");
 		}
 		if (squares[xi][yi] == null)
 		{

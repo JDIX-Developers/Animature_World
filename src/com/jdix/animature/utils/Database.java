@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
 	/**
-	 * @param context Context of the application
-	 * @param name Name of the database
-	 * @param factory Current CursorFactory
-	 * @param version Database version
+	 * @param context - Context of the application
+	 * @param name - Name of the database
+	 * @param factory - Current CursorFactory
+	 * @param version - Database version
 	 */
 	public Database(Context context, String name, CursorFactory factory,
 	int version)
@@ -40,7 +40,6 @@ public class Database extends SQLiteOpenHelper {
 		.execSQL("CREATE TABLE Fights (save INTEGER PRIMARY KEY, enemy INTEGER, FOREIGN KEY(save) REFERENCES Save(id), FOREIGN KEY(enemy) REFERENCES Enemies(id))");
 		db
 		.execSQL("CREATE TABLE Attacks (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, type INTEGER, max_pp INTEGER, power INTEGER, probability INTEGER)");
-		// TODO Create DB in SQLite.
 	}
 
 	@Override
