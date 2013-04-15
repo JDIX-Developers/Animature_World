@@ -1,8 +1,15 @@
 package com.jdix.animature.entities;
 
+import java.util.Vector;
+
 import android.graphics.drawable.Drawable;
 
 public class Player {
+/*
+ * La clase player contiene todos los datos del protagonista
+ * y de la partida. Para poder continuar la partida se utilizan los stage
+ * para saber en que momento del juego estamos.
+ */
 
 	public static final int	NORTH	= 0;
 	public static final int	EAST	= 1;
@@ -12,7 +19,6 @@ public class Player {
 	private int				id_Player;
 	private String			name;
 	private int				sex;				// 0-Boy, 1-Girl
-	private int				pet;				// 0-Dog, 1-Cat
 	private String			neighborName;
 	private int				stage;
 	private int				started;
@@ -26,21 +32,21 @@ public class Player {
 	private int				medals;
 	private int				money;
 	private Drawable[]		imgPlayer;
+	private Vector<Item>	playerItems;
 
 	public Player()
 	{
 
 	}
 
-	public Player(int id_Animature, String name, int sex, int pet,
-			String neighborName, int stage, int started, int last_Played,
-			int steps, Animature[] activeAnimatures, int coord_X, int coord_Y,
-			int orientation, int last_Healing, int medals, int money,
-			Drawable[] imgPlayer)
+	public Player(int id_Animature, String name, int sex, String neighborName,
+	int stage, int started, int last_Played, int steps,
+	Animature[] activeAnimatures, int coord_X, int coord_Y, int orientation,
+	int last_Healing, int medals, int money, Drawable[] imgPlayer,
+	Vector<Item> playerItems)
 	{
 		this.name = name;
 		this.sex = sex;
-		this.pet = pet;
 		this.neighborName = neighborName;
 		this.stage = stage;
 		this.started = started;
@@ -54,6 +60,7 @@ public class Player {
 		this.medals = medals;
 		this.money = money;
 		this.imgPlayer = imgPlayer;
+		this.playerItems = playerItems;
 	}
 
 	public int getId_Player()
@@ -84,16 +91,6 @@ public class Player {
 	public void setSex(int sex)
 	{
 		this.sex = sex;
-	}
-
-	public int getPet()
-	{
-		return pet;
-	}
-
-	public void setPet(int pet)
-	{
-		this.pet = pet;
 	}
 
 	public String getNeighborName()
@@ -224,5 +221,15 @@ public class Player {
 	public void setImgPlayer(Drawable[] imgPlayer)
 	{
 		this.imgPlayer = imgPlayer;
+	}
+
+	public Vector<Item> getPlayerItems()
+	{
+		return playerItems;
+	}
+
+	public void setPlayerItems(Vector<Item> playerItems)
+	{
+		this.playerItems = playerItems;
 	}
 }
