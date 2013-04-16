@@ -26,6 +26,7 @@ public class Animature {
 	protected int			type;
 	protected int[]			cualities;
 	protected int			health;
+	protected int			current_level;
 	protected int			level_evo;
 	protected Drawable[]	imgAnimature;
 	protected Drawable		iconAnimature;
@@ -36,8 +37,9 @@ public class Animature {
 	}
 
 	public Animature(int id_Animature, String name, double height,
-	double weight, int type, int[] cualities, int health, int level_evo,
-	Attack[] attacks, Drawable[] imgAnimature, Drawable iconAnimature)
+	double weight, int type, int[] cualities, int health, int current_level,
+	int level_evo, Attack[] attacks, Drawable[] imgAnimature,
+	Drawable iconAnimature)
 	{
 		this.name = name;
 		this.height = height;
@@ -45,6 +47,7 @@ public class Animature {
 		this.type = type;
 		this.cualities = cualities;
 		this.health = health;
+		this.current_level = current_level;
 		this.level_evo = level_evo;
 		this.imgAnimature = imgAnimature;
 		this.iconAnimature = iconAnimature;
@@ -118,6 +121,16 @@ public class Animature {
 	public void setHealth(int health)
 	{
 		this.health = health;
+	}
+
+	public int getCurrent_level()
+	{
+		return current_level;
+	}
+
+	public void setCurrent_level(int current_level)
+	{
+		this.current_level = current_level;
 	}
 
 	public int getLevel_evo()
