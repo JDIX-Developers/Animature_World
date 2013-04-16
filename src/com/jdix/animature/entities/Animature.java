@@ -4,6 +4,12 @@ import android.graphics.drawable.Drawable;
 
 public class Animature {
 
+	/*
+	 * La clase animature contiene todos los datos de los animatures. Contiene
+	 * los datos necesarios para realizar combates entre ellos mediante
+	 * algoritmos que utilicen las cualidades del animature.
+	 */
+
 	public static final int	VELOCITY	= 0;
 	public static final int	DEFENSE		= 1;
 	public static final int	AGILITY		= 2;
