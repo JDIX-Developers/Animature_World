@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
  * String Utilities
  * 
  * @author Razican (Iban Eguia)
- * 
  */
 public final class StringUtils {
 
@@ -20,10 +19,10 @@ public final class StringUtils {
 	 * @param data Data to convert to hexadecimal
 	 * @return String in hexadecimal
 	 */
-	private static String toHex(byte[] data)
+	private static String toHex(final byte[] data)
 	{
-		StringBuffer buf = new StringBuffer();
-		for (byte element : data)
+		final StringBuffer buf = new StringBuffer();
+		for (final byte element: data)
 		{
 			int halfbyte = (element >>> 4) & 0x0F;
 			int two_halfs = 0;
@@ -38,7 +37,8 @@ public final class StringUtils {
 					buf.append((char) ('a' + (halfbyte - 10)));
 				}
 				halfbyte = element & 0x0F;
-			} while (two_halfs++ < 1);
+			}
+			while (two_halfs++ < 1);
 		}
 		return buf.toString();
 	}
@@ -55,20 +55,20 @@ public final class StringUtils {
 	 * @param str Text to crypt in sha1
 	 * @return Generated sha1 hash
 	 */
-	public static String sha1(String str)
+	public static String sha1(final String str)
 	{
 		byte[] sha1hash = new byte[40];
 		try
 		{
-			MessageDigest md = MessageDigest.getInstance("SHA-1");
+			final MessageDigest md = MessageDigest.getInstance("SHA-1");
 			md.update(str.getBytes("UTF-8"), 0, str.length());
 			sha1hash = md.digest();
 		}
-		catch (NoSuchAlgorithmException e)
+		catch (final NoSuchAlgorithmException e)
 		{
 			e.printStackTrace();
 		}
-		catch (UnsupportedEncodingException e)
+		catch (final UnsupportedEncodingException e)
 		{
 			e.printStackTrace();
 		}

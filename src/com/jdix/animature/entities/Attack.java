@@ -15,8 +15,9 @@ public class Attack {
 
 	}
 
-	public Attack(int id_Attack, String name_Attack, int type_Attack,
-			int max_pp, int act_pp, int power, int probability)
+	public Attack(final int id_Attack, final String name_Attack,
+	final int type_Attack, final int max_pp, final int act_pp, final int power,
+	final int probability)
 	{
 		this.id_Attack = id_Attack;
 		this.name_Attack = name_Attack;
@@ -32,7 +33,7 @@ public class Attack {
 		return id_Attack;
 	}
 
-	public void setId_Attack(int id_Attack)
+	public void setId_Attack(final int id_Attack)
 	{
 		this.id_Attack = id_Attack;
 	}
@@ -42,7 +43,7 @@ public class Attack {
 		return name_Attack;
 	}
 
-	public void setName_Attack(String name_Attack)
+	public void setName_Attack(final String name_Attack)
 	{
 		this.name_Attack = name_Attack;
 	}
@@ -52,7 +53,7 @@ public class Attack {
 		return type_Attack;
 	}
 
-	public void setType_Attack(int type_Attack)
+	public void setType_Attack(final int type_Attack)
 	{
 		this.type_Attack = type_Attack;
 	}
@@ -62,7 +63,7 @@ public class Attack {
 		return max_pp;
 	}
 
-	public void setMax_pp(int max_pp)
+	public void setMax_pp(final int max_pp)
 	{
 		this.max_pp = max_pp;
 	}
@@ -72,7 +73,7 @@ public class Attack {
 		return act_pp;
 	}
 
-	public void setAct_pp(int act_pp)
+	public void setAct_pp(final int act_pp)
 	{
 		this.act_pp = act_pp;
 	}
@@ -82,7 +83,7 @@ public class Attack {
 		return power;
 	}
 
-	public void setPower(int power)
+	public void setPower(final int power)
 	{
 		this.power = power;
 	}
@@ -92,7 +93,7 @@ public class Attack {
 		return probability;
 	}
 
-	public void setProbability(int probability)
+	public void setProbability(final int probability)
 	{
 		this.probability = probability;
 	}

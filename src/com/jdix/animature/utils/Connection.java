@@ -22,7 +22,6 @@ import org.json.JSONObject;
 
 /**
  * @author Razican (Iban Eguia)
- * 
  */
 public class Connection {
 
@@ -31,7 +30,7 @@ public class Connection {
 	private static String		loginPassword;
 	private List<NameValuePair>	data;
 	private HttpPost			query;
-	private HttpClient			connection;
+	private final HttpClient	connection;
 	private String				token;
 	private String				action;
 
@@ -54,7 +53,7 @@ public class Connection {
 		}
 	}
 
-	private void setToken(String token)
+	private void setToken(final String token)
 	{
 		this.token = token;
 	}
@@ -63,7 +62,7 @@ public class Connection {
 	 * @param key Key for the new data
 	 * @param value Value for the new data
 	 */
-	public void addData(String key, String value)
+	public void addData(final String key, final String value)
 	{
 		data.add(new BasicNameValuePair(key, value));
 	}
@@ -77,7 +76,7 @@ public class Connection {
 		{
 			query.setEntity(new UrlEncodedFormEntity(data));
 		}
-		catch (UnsupportedEncodingException e)
+		catch (final UnsupportedEncodingException e)
 		{
 		}
 
@@ -86,37 +85,37 @@ public class Connection {
 		{
 			response = connection.execute(query);
 		}
-		catch (ClientProtocolException e)
+		catch (final ClientProtocolException e)
 		{
 			e.printStackTrace();
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			e.printStackTrace();
 		}
 
 		if (response != null)
 		{
-			int responseCode = response.getStatusLine().getStatusCode();
+			final int responseCode = response.getStatusLine().getStatusCode();
 			String responseBody = null;
 			switch (responseCode)
 			{
 				case 200:
-					HttpEntity entity = response.getEntity();
+					final HttpEntity entity = response.getEntity();
 					if (entity != null)
 					{
 						try
 						{
 							responseBody = EntityUtils.toString(entity);
 						}
-						catch (ParseException e)
+						catch (final ParseException e)
 						{
 						}
-						catch (IOException e)
+						catch (final IOException e)
 						{
 						}
 					}
-					break;
+				break;
 			}
 
 			System.out.println(responseCode + responseBody);
@@ -129,7 +128,7 @@ public class Connection {
 				regenerate = jsonObject.getBoolean("regenerate");
 				setToken(jsonObject.getString("token"));
 			}
-			catch (JSONException e)
+			catch (final JSONException e)
 			{
 			}
 
@@ -137,8 +136,8 @@ public class Connection {
 			{
 				if (loginEmail != null && loginPassword != null)
 				{
-					List<NameValuePair> d = data;
-					String a = action;
+					final List<NameValuePair> d = data;
+					final String a = action;
 
 					setToken(null);
 					newQuery();
@@ -148,12 +147,12 @@ public class Connection {
 					addData("email", loginEmail);
 					addData("pass", loginPassword);
 
-					JSONObject login = execute();
+					final JSONObject login = execute();
 					try
 					{
 						setToken(login.getString("token"));
 					}
-					catch (JSONException e)
+					catch (final JSONException e)
 					{
 						e.printStackTrace();
 					}
@@ -163,11 +162,11 @@ public class Connection {
 					action = a;
 					data = d;
 
-					Iterator<NameValuePair> i = d.iterator();
+					final Iterator<NameValuePair> i = d.iterator();
 
 					while (i.hasNext())
 					{
-						NameValuePair nvp = i.next();
+						final NameValuePair nvp = i.next();
 						if (nvp.getName().equals("token"))
 						{
 							d.remove(nvp);
@@ -199,7 +198,7 @@ public class Connection {
 	/**
 	 * @param action The action to perform in the server
 	 */
-	public void setAction(String action)
+	public void setAction(final String action)
 	{
 		this.action = action;
 		addData("action", action);
@@ -209,7 +208,7 @@ public class Connection {
 	 * @param email User's email
 	 * @param pass User's encrypted password
 	 */
-	public static void setLogin(String email, String pass)
+	public static void setLogin(final String email, final String pass)
 	{
 		loginEmail = email;
 		loginPassword = pass;

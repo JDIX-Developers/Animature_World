@@ -2,7 +2,6 @@ package com.jdix.animature.exceptions;
 
 /**
  * @author Razican (Iban Eguia)
- * 
  */
 public class CompressionException extends Exception {
 
@@ -19,7 +18,7 @@ public class CompressionException extends Exception {
 	/**
 	 * @param detailMessage Error message
 	 */
-	public CompressionException(String detailMessage)
+	public CompressionException(final String detailMessage)
 	{
 		super(detailMessage);
 	}

@@ -8,6 +8,5 @@ public class Captured extends Animature {
 	private Attack[]	attacks;
 	private int			experience;
 	private int			healthAct;
-	
-	
+
 }

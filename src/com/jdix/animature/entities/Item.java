@@ -8,7 +8,7 @@ public class Item {
 
 	private int		id;
 	private String	name;
-	private int 	type;
+	private int		type;
 	private String	description;
 	private int		quantity;
 
@@ -17,7 +17,8 @@ public class Item {
 
 	}
 
-	public Item(int id, String name, int type, String description, int quantity)
+	public Item(final int id, final String name, final int type,
+	final String description, final int quantity)
 	{
 		super();
 		this.id = id;
@@ -32,7 +33,7 @@ public class Item {
 		return id;
 	}
 
-	public void setId(int id)
+	public void setId(final int id)
 	{
 		this.id = id;
 	}
@@ -42,17 +43,17 @@ public class Item {
 		return name;
 	}
 
-	public void setName(String name)
+	public void setName(final String name)
 	{
 		this.name = name;
 	}
-	
+
 	public int getType()
 	{
 		return type;
 	}
-	
-	public void setType(int type)
+
+	public void setType(final int type)
 	{
 		this.type = type;
 	}
@@ -62,7 +63,7 @@ public class Item {
 		return description;
 	}
 
-	public void setDescription(String description)
+	public void setDescription(final String description)
 	{
 		this.description = description;
 	}
@@ -72,7 +73,7 @@ public class Item {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity)
+	public void setQuantity(final int quantity)
 	{
 		this.quantity = quantity;
 	}

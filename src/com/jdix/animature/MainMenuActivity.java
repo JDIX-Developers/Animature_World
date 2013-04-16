@@ -16,48 +16,58 @@ public class MainMenuActivity extends Activity {
 	private Button	btnOptions;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 
 		// We get a reference to the interface controls
 		btnNewGame = (Button) findViewById(R.id.btnNewGame);
-		btnNewGame.setOnClickListener(new View.OnClickListener() {
+		btnNewGame.setOnClickListener(new View.OnClickListener()
+		{
+
 			@Override
-			public void onClick(View view)
+			public void onClick(final View view)
 			{
 				newGame();
 			}
 		});
 		btnLoadGame = (Button) findViewById(R.id.btnLoadGame);
-		btnLoadGame.setOnClickListener(new View.OnClickListener() {
+		btnLoadGame.setOnClickListener(new View.OnClickListener()
+		{
+
 			@Override
-			public void onClick(View view)
+			public void onClick(final View view)
 			{
 				loadGame();
 			}
 		});
 		btnMultiplayer = (Button) findViewById(R.id.btnMultiplayer);
-		btnMultiplayer.setOnClickListener(new View.OnClickListener() {
+		btnMultiplayer.setOnClickListener(new View.OnClickListener()
+		{
+
 			@Override
-			public void onClick(View view)
+			public void onClick(final View view)
 			{
 				multiplayer();
 			}
 		});
 		btnAnimatureShop = (Button) findViewById(R.id.btnAnimatureShop);
-		btnAnimatureShop.setOnClickListener(new View.OnClickListener() {
+		btnAnimatureShop.setOnClickListener(new View.OnClickListener()
+		{
+
 			@Override
-			public void onClick(View view)
+			public void onClick(final View view)
 			{
 				animatureShop();
 			}
 		});
 		btnOptions = (Button) findViewById(R.id.btnOptions);
-		btnOptions.setOnClickListener(new View.OnClickListener() {
+		btnOptions.setOnClickListener(new View.OnClickListener()
+		{
+
 			@Override
-			public void onClick(View view)
+			public void onClick(final View view)
 			{
 				options();
 			}
@@ -65,7 +75,7 @@ public class MainMenuActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
+	public boolean onCreateOptionsMenu(final Menu menu)
 	{
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -76,7 +86,8 @@ public class MainMenuActivity extends Activity {
 	public void newGame()
 	{
 		// We create the attempt
-		Intent intent = new Intent(MainMenuActivity.this, NewGameActivity.class);
+		final Intent intent = new Intent(MainMenuActivity.this,
+		NewGameActivity.class);
 		// We start the new activity
 		startActivity(intent);
 	}

@@ -46,13 +46,13 @@ public class LaunchActivity extends Activity {
 	private boolean			remember;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
 		db = (new Database(this, "AnimatureWorldDB", null, 1))
-				.getWritableDatabase();
+		.getWritableDatabase();
 
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
@@ -60,36 +60,42 @@ public class LaunchActivity extends Activity {
 
 		mCheckBoxRecord = (CheckBox) findViewById(R.id.checkBox_Record);
 		mCheckBoxRecord
-				.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked)
-					{
-						remember = isChecked;
-					}
-				});
+		.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener()
+		{
+
+			@Override
+			public void onCheckedChanged(final CompoundButton buttonView,
+			final boolean isChecked)
+			{
+				remember = isChecked;
+			}
+		});
 
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
 
 		btn_Register = (Button) findViewById(R.id.btn_Register);
-		btn_Register.setOnClickListener(new View.OnClickListener() {
+		btn_Register.setOnClickListener(new View.OnClickListener()
+		{
+
 			@Override
-			public void onClick(View view)
+			public void onClick(final View view)
 			{
 				register();
 			}
 		});
 		btn_Enter = (Button) findViewById(R.id.btn_Enter);
-		btn_Enter.setOnClickListener(new View.OnClickListener() {
+		btn_Enter.setOnClickListener(new View.OnClickListener()
+		{
+
 			@Override
-			public void onClick(View view)
+			public void onClick(final View view)
 			{
 				attemptLogin();
 			}
 		});
 
-		Cursor u = db.rawQuery("Select * FROM User", null);
+		final Cursor u = db.rawQuery("Select * FROM User", null);
 
 		dbEmail = dbPassword = null;
 		if (u.moveToFirst())
@@ -157,22 +163,25 @@ public class LaunchActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
+	public boolean onCreateOptionsMenu(final Menu menu)
 	{
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	/**
 	 * Method pressing the register button
-	 * 
 	 */
 	public void register()
 	{
 		// We create the intent
-		Intent intent = new Intent(LaunchActivity.this, RegisterActivity.class);
-		intent.putExtra("login", new ResultReceiver(null) {
+		final Intent intent = new Intent(LaunchActivity.this,
+		RegisterActivity.class);
+		intent.putExtra("login", new ResultReceiver(null)
+		{
+
 			@Override
-			protected void onReceiveResult(int resultCode, Bundle resultData)
+			protected void onReceiveResult(final int resultCode,
+			final Bundle resultData)
 			{
 				LaunchActivity.this.finish();
 			}
@@ -210,21 +219,21 @@ public class LaunchActivity extends Activity {
 		if (TextUtils.isEmpty(mPassword))
 		{
 			mEditTextPasswordLogin
-					.setError(getString(R.string.error_field_required));
+			.setError(getString(R.string.error_field_required));
 			isAcepted = false;
 			focusView = mEditTextPasswordLogin;
 		}
 		if (TextUtils.isEmpty(userEmail))
 		{
 			mEditTextUserLogin
-					.setError(getString(R.string.error_field_required));
+			.setError(getString(R.string.error_field_required));
 			isAcepted = false;
 			focusView = mEditTextUserLogin;
 		}
 		else if ( ! Patterns.EMAIL_ADDRESS.matcher(userEmail).matches())
 		{
 			mEditTextUserLogin
-					.setError(getString(R.string.error_invalid_email));
+			.setError(getString(R.string.error_invalid_email));
 			focusView = mEditTextUserLogin;
 			isAcepted = false;
 		}
@@ -243,7 +252,7 @@ public class LaunchActivity extends Activity {
 		}
 	}
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+	@TargetApi (Build.VERSION_CODES.HONEYCOMB_MR2)
 	private void showProgress(final boolean show)
 	{
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -251,32 +260,34 @@ public class LaunchActivity extends Activity {
 		// the progress spinner.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
 		{
-			int shortAnimTime = getResources().getInteger(
-					android.R.integer.config_shortAnimTime);
+			final int shortAnimTime = getResources().getInteger(
+			android.R.integer.config_shortAnimTime);
 
 			mLoginStatusView.setVisibility(View.VISIBLE);
 			mLoginStatusView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 1 : 0)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation)
-						{
-							mLoginStatusView.setVisibility(show ? View.VISIBLE
-									: View.GONE);
-						}
-					});
+			.alpha(show ? 1 : 0).setListener(new AnimatorListenerAdapter()
+			{
+
+				@Override
+				public void onAnimationEnd(final Animator animation)
+				{
+					mLoginStatusView.setVisibility(show ? View.VISIBLE
+					: View.GONE);
+				}
+			});
 
 			mLoginFormView.setVisibility(View.VISIBLE);
 			mLoginFormView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 0 : 1)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation)
-						{
-							mLoginFormView.setVisibility(show ? View.GONE
-									: View.VISIBLE);
-						}
-					});
+			.alpha(show ? 0 : 1).setListener(new AnimatorListenerAdapter()
+			{
+
+				@Override
+				public void onAnimationEnd(final Animator animation)
+				{
+					mLoginFormView.setVisibility(show ? View.GONE
+					: View.VISIBLE);
+				}
+			});
 		}
 		else
 		{
@@ -292,19 +303,20 @@ public class LaunchActivity extends Activity {
 	 * the user.
 	 */
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+
 		private boolean	email, password, error;
 
 		@Override
-		protected Boolean doInBackground(Void... params)
+		protected Boolean doInBackground(final Void ... params)
 		{
-			Connection c = Connection.getInstance();
+			final Connection c = Connection.getInstance();
 
 			c.setAction("login");
 			c.addData("method", "manual");
 			c.addData("email", userEmail);
 			c.addData("pass", StringUtils.sha1(mPassword + "--Animature"));
 
-			JSONObject jsonObject = c.execute();
+			final JSONObject jsonObject = c.execute();
 			email = password = error = false;
 			if (jsonObject != null)
 			{
@@ -313,7 +325,7 @@ public class LaunchActivity extends Activity {
 					email = jsonObject.getBoolean("email");
 					password = jsonObject.getBoolean("pass");
 				}
-				catch (JSONException e)
+				catch (final JSONException e)
 				{
 				}
 			}
@@ -343,8 +355,8 @@ public class LaunchActivity extends Activity {
 				}
 
 				// We create the intent
-				Intent intent = new Intent(LaunchActivity.this,
-						MainMenuActivity.class);
+				final Intent intent = new Intent(LaunchActivity.this,
+				MainMenuActivity.class);
 
 				// We start the activity
 				startActivity(intent);
@@ -358,20 +370,20 @@ public class LaunchActivity extends Activity {
 					if ( ! password)
 					{
 						mEditTextPasswordLogin
-								.setError(getString(R.string.error_incorrect_password));
+						.setError(getString(R.string.error_incorrect_password));
 						mEditTextPasswordLogin.requestFocus();
 					}
 					if ( ! email)
 					{
 						mEditTextUserLogin
-								.setError(getString(R.string.error_invalid_email));
+						.setError(getString(R.string.error_invalid_email));
 						mEditTextUserLogin.requestFocus();
 					}
 				}
 				else
 				{
 					mEditTextUserLogin
-							.setError(getString(R.string.conection_error));
+					.setError(getString(R.string.conection_error));
 					mEditTextUserLogin.requestFocus();
 				}
 			}

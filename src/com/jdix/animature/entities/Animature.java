@@ -36,10 +36,11 @@ public class Animature {
 		// TODO
 	}
 
-	public Animature(int id_Animature, String name, double height,
-	double weight, int type, int[] cualities, int health, int current_level,
-	int level_evo, Attack[] attacks, Drawable[] imgAnimature,
-	Drawable iconAnimature)
+	public Animature(final int id_Animature, final String name,
+	final double height, final double weight, final int type,
+	final int[] cualities, final int health, final int current_level,
+	final int level_evo, final Attack[] attacks, final Drawable[] imgAnimature,
+	final Drawable iconAnimature)
 	{
 		this.name = name;
 		this.height = height;
@@ -58,7 +59,7 @@ public class Animature {
 		return id_Animature;
 	}
 
-	public void setId_Animature(int id_Animature)
+	public void setId_Animature(final int id_Animature)
 	{
 		this.id_Animature = id_Animature;
 	}
@@ -68,7 +69,7 @@ public class Animature {
 		return name;
 	}
 
-	public void setName(String name)
+	public void setName(final String name)
 	{
 		this.name = name;
 	}
@@ -78,7 +79,7 @@ public class Animature {
 		return height;
 	}
 
-	public void setHeight(double height)
+	public void setHeight(final double height)
 	{
 		this.height = height;
 	}
@@ -88,7 +89,7 @@ public class Animature {
 		return weight;
 	}
 
-	public void setWeight(double weight)
+	public void setWeight(final double weight)
 	{
 		this.weight = weight;
 	}
@@ -98,7 +99,7 @@ public class Animature {
 		return type;
 	}
 
-	public void setType(int type)
+	public void setType(final int type)
 	{
 		this.type = type;
 	}
@@ -108,7 +109,7 @@ public class Animature {
 		return cualities;
 	}
 
-	public void setCualities(int[] cualities)
+	public void setCualities(final int[] cualities)
 	{
 		this.cualities = cualities;
 	}
@@ -118,7 +119,7 @@ public class Animature {
 		return health;
 	}
 
-	public void setHealth(int health)
+	public void setHealth(final int health)
 	{
 		this.health = health;
 	}
@@ -128,7 +129,7 @@ public class Animature {
 		return current_level;
 	}
 
-	public void setCurrent_level(int current_level)
+	public void setCurrent_level(final int current_level)
 	{
 		this.current_level = current_level;
 	}
@@ -138,7 +139,7 @@ public class Animature {
 		return level_evo;
 	}
 
-	public void setLevel_evo(int level_evo)
+	public void setLevel_evo(final int level_evo)
 	{
 		this.level_evo = level_evo;
 	}
@@ -148,7 +149,7 @@ public class Animature {
 		return imgAnimature;
 	}
 
-	public void setImgAnimature(Drawable[] imgAnimature)
+	public void setImgAnimature(final Drawable[] imgAnimature)
 	{
 		this.imgAnimature = imgAnimature;
 	}
@@ -158,7 +159,7 @@ public class Animature {
 		return iconAnimature;
 	}
 
-	public void setIconAnimature(Drawable iconAnimature)
+	public void setIconAnimature(final Drawable iconAnimature)
 	{
 		this.iconAnimature = iconAnimature;
 	}

@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.jdix.animature.R;
-
 public class NewGameActivity extends Activity {
 
 	private View			uiView;
@@ -26,7 +24,7 @@ public class NewGameActivity extends Activity {
 	private String			name;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_game);
@@ -46,12 +44,12 @@ public class NewGameActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
+	public boolean onCreateOptionsMenu(final Menu menu)
 	{
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	public void loadVectorStrings(Vector<String> strings)
+	public void loadVectorStrings(final Vector<String> strings)
 	{
 		strings.add(this.getString(R.string.newGame1));
 		strings.add(this.getString(R.string.newGame2));
@@ -67,7 +65,7 @@ public class NewGameActivity extends Activity {
 
 	}
 
-	public void next(View view)
+	public void next(final View view)
 	{
 		index = index + 1;
 		switch (index)
@@ -80,7 +78,7 @@ public class NewGameActivity extends Activity {
 			case 6:
 			case 7:
 				textViewNewGame.setText(strings.get(index));
-				break;
+			break;
 			case 8:
 				textViewNewGame.setText(strings.get(index));
 				btn1NewGame.setVisibility(View.VISIBLE);
@@ -89,23 +87,23 @@ public class NewGameActivity extends Activity {
 				btn2NewGame.setText(this.getString(R.string.girl));
 				textViewNewGame.setCompoundDrawables(null, null, null, null);
 				textViewNewGame.setClickable(false);
-				break;
+			break;
 			case 9:
 				textViewNewGame.setText(strings.get(index));
 				editTextNewGame.setVisibility(View.VISIBLE);
-				break;
+			break;
 			case 10:
 				name = editTextNewGame.getText().toString().toUpperCase();
 				String s = strings.get(index);
 				s = s.replace("*nombreJugador*", name);
 				textViewNewGame.setText(s);
 				editTextNewGame.setVisibility(View.INVISIBLE);
-				break;
+			break;
 		}
 
 	}
 
-	public void btn1(View view)
+	public void btn1(final View view)
 	{
 		if (index == 8)
 		{
@@ -115,11 +113,11 @@ public class NewGameActivity extends Activity {
 			next(view);
 		}
 		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
-				getResources().getDrawable(R.drawable.flecha), null);
+		getResources().getDrawable(R.drawable.flecha), null);
 		textViewNewGame.setClickable(true);
 	}
 
-	public void btn2(View view)
+	public void btn2(final View view)
 	{
 		if (index == 8)
 		{
@@ -129,7 +127,7 @@ public class NewGameActivity extends Activity {
 			next(view);
 		}
 		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
-				getResources().getDrawable(R.drawable.flecha), null);
+		getResources().getDrawable(R.drawable.flecha), null);
 		textViewNewGame.setClickable(true);
 	}
 }

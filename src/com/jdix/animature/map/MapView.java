@@ -10,7 +10,6 @@ import android.view.View;
 
 /**
  * @author Razican (Iban Eguia)
- * 
  */
 public class MapView extends View {
 
@@ -21,7 +20,7 @@ public class MapView extends View {
 	/**
 	 * @param context Context of the application
 	 */
-	public MapView(Context context)
+	public MapView(final Context context)
 	{
 		super(context);
 	}
@@ -30,7 +29,7 @@ public class MapView extends View {
 	 * @param context Context of the application
 	 * @param map Map to show
 	 */
-	public MapView(Context context, int map)
+	public MapView(final Context context, final int map)
 	{
 		this(context);
 		Map.setContext(context);
@@ -38,14 +37,15 @@ public class MapView extends View {
 		{
 			this.map = new Map(map);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			System.err.println(e.getMessage());
 		}
 	}
 
 	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+	protected void onMeasure(final int widthMeasureSpec,
+	final int heightMeasureSpec)
 	{
 		mWidth = MeasureSpec.getSize(widthMeasureSpec);
 		mHeight = MeasureSpec.getSize(heightMeasureSpec);
@@ -54,14 +54,14 @@ public class MapView extends View {
 	}
 
 	@Override
-	protected void onDraw(Canvas canvas)
+	protected void onDraw(final Canvas canvas)
 	{
 		super.onDraw(canvas);
 		canvas.drawColor(Color.BLACK);
-		Bitmap mapb = map.getBitmap();
+		final Bitmap mapb = map.getBitmap();
 
-		int cx = (mWidth - mapb.getWidth()) / 2;
-		int cy = (mHeight - mapb.getHeight()) / 2;
+		final int cx = (mWidth - mapb.getWidth()) / 2;
+		final int cy = (mHeight - mapb.getHeight()) / 2;
 
 		canvas.drawBitmap(mapb, cx, cy, null);
 	}

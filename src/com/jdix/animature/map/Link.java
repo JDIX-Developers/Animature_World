@@ -2,20 +2,19 @@ package com.jdix.animature.map;
 
 /**
  * @author Razican (Iban Eguia)
- * 
  */
 public class Link {
 
-	private int		map;
-	private byte	x;
-	private byte	y;
+	private final int	map;
+	private final byte	x;
+	private final byte	y;
 
 	/**
 	 * @param map Map's resource ID to where the link points
 	 * @param x X coordinate to where the link points
 	 * @param y Y coordinate to where the link points
 	 */
-	public Link(int map, byte x, byte y)
+	public Link(final int map, final byte x, final byte y)
 	{
 		this.map = map;
 		this.x = x;

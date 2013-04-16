@@ -13,14 +13,14 @@ public class Database extends SQLiteOpenHelper {
 	 * @param factory - Current CursorFactory
 	 * @param version - Database version
 	 */
-	public Database(Context context, String name, CursorFactory factory,
-	int version)
+	public Database(final Context context, final String name,
+	final CursorFactory factory, final int version)
 	{
 		super(context, name, factory, version);
 	}
 
 	@Override
-	public void onCreate(SQLiteDatabase db)
+	public void onCreate(final SQLiteDatabase db)
 	{
 		db
 		.execSQL("CREATE TABLE User (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, username TEXT, is_current INTEGER, save INTEGER, FOREIGN KEY(save) REFERENCES Save(id))");
@@ -43,7 +43,8 @@ public class Database extends SQLiteOpenHelper {
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+	public void onUpgrade(final SQLiteDatabase db, final int oldVersion,
+	final int newVersion)
 	{
 		// TODO Upgrade
 	}

@@ -5,11 +5,12 @@ import java.util.Vector;
 import android.graphics.drawable.Drawable;
 
 public class Player {
-/*
- * La clase player contiene todos los datos del protagonista
- * y de la partida. Para poder continuar la partida se utilizan los stage
- * para saber en que momento del juego estamos.
- */
+
+	/*
+	 * La clase player contiene todos los datos del protagonista y de la
+	 * partida. Para poder continuar la partida se utilizan los stage para saber
+	 * en que momento del juego estamos.
+	 */
 
 	public static final int	NORTH	= 0;
 	public static final int	EAST	= 1;
@@ -39,11 +40,12 @@ public class Player {
 
 	}
 
-	public Player(int id_Animature, String name, int sex, String neighborName,
-	int stage, int started, int last_Played, int steps,
-	Animature[] activeAnimatures, int coord_X, int coord_Y, int orientation,
-	int last_Healing, int medals, int money, Drawable[] imgPlayer,
-	Vector<Item> playerItems)
+	public Player(final int id_Animature, final String name, final int sex,
+	final String neighborName, final int stage, final int started,
+	final int last_Played, final int steps, final Animature[] activeAnimatures,
+	final int coord_X, final int coord_Y, final int orientation,
+	final int last_Healing, final int medals, final int money,
+	final Drawable[] imgPlayer, final Vector<Item> playerItems)
 	{
 		this.name = name;
 		this.sex = sex;
@@ -68,7 +70,7 @@ public class Player {
 		return id_Player;
 	}
 
-	public void setId_Player(int id_Player)
+	public void setId_Player(final int id_Player)
 	{
 		this.id_Player = id_Player;
 	}
@@ -78,7 +80,7 @@ public class Player {
 		return name;
 	}
 
-	public void setName(String name)
+	public void setName(final String name)
 	{
 		this.name = name;
 	}
@@ -88,7 +90,7 @@ public class Player {
 		return sex;
 	}
 
-	public void setSex(int sex)
+	public void setSex(final int sex)
 	{
 		this.sex = sex;
 	}
@@ -98,7 +100,7 @@ public class Player {
 		return neighborName;
 	}
 
-	public void setNeighborName(String neighborName)
+	public void setNeighborName(final String neighborName)
 	{
 		this.neighborName = neighborName;
 	}
@@ -108,7 +110,7 @@ public class Player {
 		return stage;
 	}
 
-	public void setStage(int stage)
+	public void setStage(final int stage)
 	{
 		this.stage = stage;
 	}
@@ -118,7 +120,7 @@ public class Player {
 		return started;
 	}
 
-	public void setStarted(int started)
+	public void setStarted(final int started)
 	{
 		this.started = started;
 	}
@@ -128,7 +130,7 @@ public class Player {
 		return last_Played;
 	}
 
-	public void setLast_Played(int last_Played)
+	public void setLast_Played(final int last_Played)
 	{
 		this.last_Played = last_Played;
 	}
@@ -138,7 +140,7 @@ public class Player {
 		return steps;
 	}
 
-	public void setSteps(int steps)
+	public void setSteps(final int steps)
 	{
 		this.steps = steps;
 	}
@@ -148,7 +150,7 @@ public class Player {
 		return activeAnimatures;
 	}
 
-	public void setActiveAnimatures(Animature[] activeAnimatures)
+	public void setActiveAnimatures(final Animature[] activeAnimatures)
 	{
 		this.activeAnimatures = activeAnimatures;
 	}
@@ -158,7 +160,7 @@ public class Player {
 		return coord_X;
 	}
 
-	public void setCoord_X(int coord_X)
+	public void setCoord_X(final int coord_X)
 	{
 		this.coord_X = coord_X;
 	}
@@ -168,7 +170,7 @@ public class Player {
 		return coord_Y;
 	}
 
-	public void setCoord_Y(int coord_Y)
+	public void setCoord_Y(final int coord_Y)
 	{
 		this.coord_Y = coord_Y;
 	}
@@ -178,7 +180,7 @@ public class Player {
 		return orientation;
 	}
 
-	public void setOrientation(int orientation)
+	public void setOrientation(final int orientation)
 	{
 		this.orientation = orientation;
 	}
@@ -188,7 +190,7 @@ public class Player {
 		return last_Healing;
 	}
 
-	public void setLast_Healing(int last_Healing)
+	public void setLast_Healing(final int last_Healing)
 	{
 		this.last_Healing = last_Healing;
 	}
@@ -198,7 +200,7 @@ public class Player {
 		return medals;
 	}
 
-	public void setMedals(int medals)
+	public void setMedals(final int medals)
 	{
 		this.medals = medals;
 	}
@@ -208,7 +210,7 @@ public class Player {
 		return money;
 	}
 
-	public void setMoney(int money)
+	public void setMoney(final int money)
 	{
 		this.money = money;
 	}
@@ -218,7 +220,7 @@ public class Player {
 		return imgPlayer;
 	}
 
-	public void setImgPlayer(Drawable[] imgPlayer)
+	public void setImgPlayer(final Drawable[] imgPlayer)
 	{
 		this.imgPlayer = imgPlayer;
 	}
@@ -228,7 +230,7 @@ public class Player {
 		return playerItems;
 	}
 
-	public void setPlayerItems(Vector<Item> playerItems)
+	public void setPlayerItems(final Vector<Item> playerItems)
 	{
 		this.playerItems = playerItems;
 	}

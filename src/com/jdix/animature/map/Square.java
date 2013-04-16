@@ -16,15 +16,15 @@ public class Square {
 	private static Bitmap		sprite;
 	private static short		size;
 	private static Square[][]	squares;
-	private Bitmap				bitmap;
-	private byte				x, y;
+	private final Bitmap		bitmap;
+	private final byte			x, y;
 
 	/**
 	 * @param x X Coordinate
 	 * @param y Y Coordinate
 	 * @throws CompressionException Si ocurre un error de compresión
 	 */
-	private Square(byte x, byte y) throws CompressionException
+	private Square(final byte x, final byte y) throws CompressionException
 	{
 		if (x == 0xFF || y == 0xFF)
 		{
@@ -43,7 +43,7 @@ public class Square {
 	 */
 	public byte[] bytes()
 	{
-		byte[] a = {this.x, this.y};
+		final byte[] a = {this.x, this.y};
 		return a;
 	}
 
@@ -54,7 +54,7 @@ public class Square {
 	}
 
 	@Override
-	public boolean equals(Object sq)
+	public boolean equals(final Object sq)
 	{
 		return (sq instanceof Square && Arrays.equals(((Square) sq).bytes(),
 		bytes()));
@@ -63,7 +63,7 @@ public class Square {
 	/**
 	 * @param b Sprite's bitmap
 	 */
-	public static void setSprite(Bitmap b)
+	public static void setSprite(final Bitmap b)
 	{
 		sprite = b;
 		// TODO queda por comprobar la nueva especificación de sprites
@@ -72,7 +72,7 @@ public class Square {
 	/**
 	 * @param s Size of the squares
 	 */
-	public static void setSize(short s)
+	public static void setSize(final short s)
 	{
 		size = s;
 	}
@@ -100,10 +100,10 @@ public class Square {
 	 * @throws SpriteException Si el sprite no ha sido inicializado
 	 * @throws CompressionException Si ocurre un erro de compresión
 	 */
-	public static Square load(byte x, byte y) throws SpriteException,
-	CompressionException
+	public static Square load(final byte x, final byte y)
+	throws SpriteException, CompressionException
 	{
-		int xi = MathUtils.uByteToInt(x), yi = MathUtils.uByteToInt(y);
+		final int xi = MathUtils.uByteToInt(x), yi = MathUtils.uByteToInt(y);
 
 		if (sprite == null)
 		{

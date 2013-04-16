@@ -53,14 +53,14 @@ public class RegisterActivity extends Activity {
 	private ResultReceiver	login;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_register);
 
 		db = (new Database(this, "AnimatureWorldDB", null, 1))
-				.getWritableDatabase();
+		.getWritableDatabase();
 
 		login = (ResultReceiver) getIntent().getExtras().get("login");
 
@@ -71,20 +71,22 @@ public class RegisterActivity extends Activity {
 		mPasswordView2 = (EditText) findViewById(R.id.password2);
 
 		findViewById(R.id.register).setOnClickListener(
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View view)
-					{
-						attemptRegister();
-					}
-				});
+		new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				attemptRegister();
+			}
+		});
 
 		mRegisterFormView = findViewById(R.id.register_form);
 		mRegisterStatusView = findViewById(R.id.register_status);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
+	public boolean onCreateOptionsMenu(final Menu menu)
 	{
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -148,7 +150,7 @@ public class RegisterActivity extends Activity {
 		else if ( ! mPassword1.equals(mPassword2))
 		{
 			mPasswordView2
-					.setError(getString(R.string.error_not_same_password));
+			.setError(getString(R.string.error_not_same_password));
 			focusView = mPasswordView2;
 			cancel = true;
 		}
@@ -180,7 +182,7 @@ public class RegisterActivity extends Activity {
 	/**
 	 * Shows the progress UI and hides the login form.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+	@TargetApi (Build.VERSION_CODES.HONEYCOMB_MR2)
 	private void showProgress(final boolean show)
 	{
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -188,33 +190,34 @@ public class RegisterActivity extends Activity {
 		// the progress spinner.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
 		{
-			int shortAnimTime = getResources().getInteger(
-					android.R.integer.config_shortAnimTime);
+			final int shortAnimTime = getResources().getInteger(
+			android.R.integer.config_shortAnimTime);
 
 			mRegisterStatusView.setVisibility(View.VISIBLE);
 			mRegisterStatusView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 1 : 0)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation)
-						{
-							mRegisterStatusView
-									.setVisibility(show ? View.VISIBLE
-											: View.GONE);
-						}
-					});
+			.alpha(show ? 1 : 0).setListener(new AnimatorListenerAdapter()
+			{
+
+				@Override
+				public void onAnimationEnd(final Animator animation)
+				{
+					mRegisterStatusView.setVisibility(show ? View.VISIBLE
+					: View.GONE);
+				}
+			});
 
 			mRegisterFormView.setVisibility(View.VISIBLE);
 			mRegisterFormView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 0 : 1)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation)
-						{
-							mRegisterFormView.setVisibility(show ? View.GONE
-									: View.VISIBLE);
-						}
-					});
+			.alpha(show ? 0 : 1).setListener(new AnimatorListenerAdapter()
+			{
+
+				@Override
+				public void onAnimationEnd(final Animator animation)
+				{
+					mRegisterFormView.setVisibility(show ? View.GONE
+					: View.VISIBLE);
+				}
+			});
 		}
 		else
 		{
@@ -234,16 +237,16 @@ public class RegisterActivity extends Activity {
 		private boolean	user, email, error;
 
 		@Override
-		protected Boolean doInBackground(Void... params)
+		protected Boolean doInBackground(final Void ... params)
 		{
-			Connection c = Connection.getInstance();
+			final Connection c = Connection.getInstance();
 
 			c.setAction("register");
 			c.addData("user", mUsername);
 			c.addData("email", mEmail);
 			c.addData("pass", StringUtils.sha1(mPassword1 + "--Animature"));
 
-			JSONObject jsonObject = c.execute();
+			final JSONObject jsonObject = c.execute();
 			user = email = error = false;
 			if (jsonObject != null)
 			{
@@ -252,7 +255,7 @@ public class RegisterActivity extends Activity {
 					user = jsonObject.getBoolean("user");
 					email = jsonObject.getBoolean("email");
 				}
-				catch (JSONException e)
+				catch (final JSONException e)
 				{
 				}
 			}
@@ -277,11 +280,11 @@ public class RegisterActivity extends Activity {
 				// + StringUtils.sha1(mPassword1 + "--Animature") + "'");
 
 				Connection.setLogin(mEmail,
-						StringUtils.sha1(mPassword1 + "--Animature"));
+				StringUtils.sha1(mPassword1 + "--Animature"));
 
 				// We create the intent
-				Intent intent = new Intent(RegisterActivity.this,
-						MainMenuActivity.class);
+				final Intent intent = new Intent(RegisterActivity.this,
+				MainMenuActivity.class);
 
 				// We start the activity
 				startActivity(intent);
@@ -296,20 +299,20 @@ public class RegisterActivity extends Activity {
 					if ( ! email)
 					{
 						mEmailView
-								.setError(getString(R.string.error_invalid_email));
+						.setError(getString(R.string.error_invalid_email));
 						mEmailView.requestFocus();
 					}
 					if ( ! user)
 					{
 						mUsernameView
-								.setError(getString(R.string.error_user_used));
+						.setError(getString(R.string.error_user_used));
 						mUsernameView.requestFocus();
 					}
 				}
 				else
 				{
 					mUsernameView
-							.setError(getString(R.string.error_connection));
+					.setError(getString(R.string.error_connection));
 					mUsernameView.requestFocus();
 				}
 			}
