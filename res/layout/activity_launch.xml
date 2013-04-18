@@ -44,6 +44,8 @@
 		    android:layout_gravity="center"
 		    android:gravity="center"
 		    android:orientation="vertical"
+		    android:paddingLeft="@dimen/Margin15"
+		    android:paddingRight="@dimen/Margin15"
 		    tools:context=".LaunchActivity" >
 	
 			<TextView

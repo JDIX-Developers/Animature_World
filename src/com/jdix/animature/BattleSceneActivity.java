@@ -19,27 +19,27 @@ public class BattleSceneActivity extends Activity {
 	private ProgressBar		enemy_animature_live;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_battle_scene);
 
 		// We get a reference to the interface controls
-		// enemy_information_layout = (LinearLayout)findViewById(R.id.);
-		// enemy_animature_name = (TextView)findViewById(R.id.);
-		// enemy_animature_level = (TextView)findViewById(R.id.);
-		// enemy_animature_live = (ProgressBar) findViewById(R.id.);
+		enemy_information_layout = (LinearLayout) findViewById(R.id.enemy_information_layout);
+		enemy_animature_name = (TextView) findViewById(R.id.enemy_animature_name);
+		enemy_animature_level = (TextView) findViewById(R.id.enemy_animature_level);
+		enemy_animature_live = (ProgressBar) findViewById(R.id.enemy_live_progressbar);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
+	public boolean onCreateOptionsMenu(final Menu menu)
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.battle_scene, menu);
 		return true;
 	}
 
-	private void changeEnemyAnimature(Animature animature)
+	private void changeEnemyAnimature(final Animature animature)
 	{
 		enemy_information_layout.setVisibility(View.VISIBLE);
 		enemy_animature_name.setText(animature.getName());

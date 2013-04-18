@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>    
 	<!-- Strings related to Battle Scene -->
-	<string name="enemyName">Charizard</string>
+	<string name="enemyName">Bulbasur</string>
 	<string name="enemyLevel">36</string>
 </resources>
