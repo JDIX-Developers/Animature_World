@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Captured;
 
 public class BattleSceneActivity extends Activity {
@@ -42,11 +41,11 @@ public class BattleSceneActivity extends Activity {
 		return true;
 	}
 
-	private void changeEnemyAnimature(final Animature animature)
+	private void changeEnemyAnimature(final Captured captured)
 	{
 		enemy_information_layout.setVisibility(View.VISIBLE);
-		enemy_animature_name.setText(animature.getName());
-		enemy_animature_level.setText("Nvl " + animature.getCurrent_level());
-		enemy_animature_live.setMax(animature.getHealth());
+		enemy_animature_name.setText(captured.getName());
+		enemy_animature_level.setText("Nvl " + captured.getLevel());
+		enemy_animature_live.setMax(captured.getHealth());
 	}
 }
