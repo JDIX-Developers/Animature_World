@@ -9,14 +9,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.jdix.animature.entities.Animature;
+import com.jdix.animature.entities.Captured;
 
 public class BattleSceneActivity extends Activity {
 
-	private int				battleType;
-	private LinearLayout	enemy_information_layout;
-	private TextView		enemy_animature_name;
-	private TextView		enemy_animature_level;
-	private ProgressBar		enemy_animature_live;
+	private int					battleType;
+	private LinearLayout		enemy_information_layout;
+	private TextView			enemy_animature_name;
+	private TextView			enemy_animature_level;
+	private ProgressBar			enemy_animature_live;
+
+	private final Captured[]	animSel	= new Captured[6];
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

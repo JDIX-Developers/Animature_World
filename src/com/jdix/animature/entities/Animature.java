@@ -31,6 +31,24 @@ public class Animature {
 	protected Drawable[]	imgAnimature;
 	protected Drawable		iconAnimature;
 
+	private final int		normal		= 0;
+	private final int		fire		= 1;
+	private final int		water		= 2;
+	private final int		grass		= 3;
+	private final int		electric	= 4;
+	private final int		ice			= 5;
+	private final int		fighting	= 6;
+	private final int		poison		= 7;
+	private final int		ground		= 8;
+	private final int		flying		= 9;
+	private final int		psychic		= 10;
+	private final int		bug			= 11;
+	private final int		rock		= 12;
+	private final int		ghost		= 13;
+	private final int		dragon		= 14;
+	private final int		dark		= 15;
+	private final int		steel		= 16;
+
 	public Animature()
 	{
 		// TODO

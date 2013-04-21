@@ -2,13 +2,31 @@ package com.jdix.animature.entities;
 
 public class Attack {
 
-	private int		id_Attack;
-	private String	name_Attack;
-	private int		type_Attack;
-	private int		max_pp;
-	private int		act_pp;
-	private int		power;
-	private int		probability;	// 0 - 100 (Example: 60% - 60)
+	private int			id_Attack;
+	private String		name_Attack;
+	private int			type_Attack;
+	private int			max_pp;
+	private int			act_pp;
+	private int			power;
+	private int			probability;		// 0 - 100 (Example: 60% - 60)
+
+	private final int	normal		= 0;
+	private final int	fire		= 1;
+	private final int	water		= 2;
+	private final int	grass		= 3;
+	private final int	electric	= 4;
+	private final int	ice			= 5;
+	private final int	fighting	= 6;
+	private final int	poison		= 7;
+	private final int	ground		= 8;
+	private final int	flying		= 9;
+	private final int	psychic		= 10;
+	private final int	bug			= 11;
+	private final int	rock		= 12;
+	private final int	ghost		= 13;
+	private final int	dragon		= 14;
+	private final int	dark		= 15;
+	private final int	steel		= 16;
 
 	public Attack()
 	{
