@@ -2,31 +2,31 @@ package com.jdix.animature.entities;
 
 public class Attack {
 
-	private int			id_Attack;
-	private String		name_Attack;
-	private int			type_Attack;
-	private int			max_pp;
-	private int			act_pp;
-	private int			power;
-	private int			probability;		// 0 - 100 (Example: 60% - 60)
+	private int				id_Attack;
+	private String			name_Attack;
+	private int				type_Attack;
+	private int				max_pp;
+	private int				act_pp;
+	private int				power;
+	private int				probability;		// 0 - 100 (Example: 60% - 60)
 
-	private final int	normal		= 0;
-	private final int	fire		= 1;
-	private final int	water		= 2;
-	private final int	grass		= 3;
-	private final int	electric	= 4;
-	private final int	ice			= 5;
-	private final int	fighting	= 6;
-	private final int	poison		= 7;
-	private final int	ground		= 8;
-	private final int	flying		= 9;
-	private final int	psychic		= 10;
-	private final int	bug			= 11;
-	private final int	rock		= 12;
-	private final int	ghost		= 13;
-	private final int	dragon		= 14;
-	private final int	dark		= 15;
-	private final int	steel		= 16;
+	public static final int	NORMAL		= 0;
+	public static final int	FIRE		= 1;
+	public static final int	WATER		= 2;
+	public static final int	GRASS		= 3;
+	public static final int	ELECTRIC	= 4;
+	public static final int	ICE			= 5;
+	public static final int	FIGHTING	= 6;
+	public static final int	POISON		= 7;
+	public static final int	GROUND		= 8;
+	public static final int	FLYING		= 9;
+	public static final int	PSYCHIC		= 10;
+	public static final int	BUG			= 11;
+	public static final int	ROCK		= 12;
+	public static final int	GHOST		= 13;
+	public static final int	DRAGON		= 14;
+	public static final int	DARK		= 15;
+	public static final int	STEEL		= 16;
 
 	public Attack()
 	{

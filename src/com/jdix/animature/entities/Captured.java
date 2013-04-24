@@ -2,16 +2,24 @@ package com.jdix.animature.entities;
 
 public class Captured extends Animature {
 
-	private int			idAnimatureCapt;
-	private int			nickname;
-	private int			capturedTime;
-	private Attack[]	attacks;
-	private int[]		attacksPP;
-	private int			experience;
-	private int			level;
-	private int			healthMax;
-	private int			healthAct;
-	private int			status;
+	public static final int	NORMAL		= 0;
+	public static final int	PARALYZED	= 1;
+	public static final int	BURNED		= 2;
+	public static final int	POISONED	= 3;
+	public static final int	SLEEPED		= 4;
+	public static final int	FROZEN		= 5;
+
+	private int				idAnimatureCapt;
+	private int				nickname;
+	private int				capturedTime;
+	private Attack[]		attacks		= new Attack[4];
+	private int[]			attacksPP	= new int[4];
+	private int				level;
+	private int				current_exp;
+	private int				experience;
+	private int				healthMax;
+	private int				healthAct;
+	private int				status;
 
 	public Captured()
 	{
@@ -21,7 +29,7 @@ public class Captured extends Animature {
 
 	public Captured(final int idAnimatureCapt, final int nickname,
 	final int capturedTime, final Attack[] attacks, final int[] attacksPP,
-	final int experience, final int level, final int healthMax,
+	final int level, final int current_exp, final int experience,
 	final int healthAct, final int status)
 	{
 		super();
@@ -30,9 +38,10 @@ public class Captured extends Animature {
 		this.capturedTime = capturedTime;
 		this.attacks = attacks;
 		this.attacksPP = attacksPP;
-		this.experience = experience;
 		this.level = level;
-		this.healthMax = healthMax;
+		this.current_exp = current_exp;
+		this.experience = experience;
+		this.healthMax = (int) (super.getHealth() * (1.1 * this.level));
 		this.healthAct = healthAct;
 		this.status = status;
 	}
@@ -87,16 +96,6 @@ public class Captured extends Animature {
 		this.attacksPP = attacksPP;
 	}
 
-	public int getExperience()
-	{
-		return experience;
-	}
-
-	public void setExperience(final int experience)
-	{
-		this.experience = experience;
-	}
-
 	public int getLevel()
 	{
 		return level;
@@ -105,6 +104,26 @@ public class Captured extends Animature {
 	public void setLevel(final int level)
 	{
 		this.level = level;
+	}
+
+	public int getCurrent_exp()
+	{
+		return current_exp;
+	}
+
+	public void setCurrent_exp(final int current_exp)
+	{
+		this.current_exp = current_exp;
+	}
+
+	public int getExperience()
+	{
+		return experience;
+	}
+
+	public void setExperience(final int experience)
+	{
+		this.experience = experience;
 	}
 
 	public int getHealthMax()
@@ -137,4 +156,17 @@ public class Captured extends Animature {
 		this.status = status;
 	}
 
+	public boolean levelUp()
+	{
+		boolean levelUp = false;
+
+		if (this.current_exp >= this.experience)
+		{
+			this.level += 1;
+			this.current_exp -= this.experience;
+			this.experience = (int) Math.pow(this.level, 3);
+			levelUp = true;
+		}
+		return levelUp;
+	}
 }
