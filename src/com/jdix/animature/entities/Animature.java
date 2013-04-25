@@ -10,7 +10,7 @@ public class Animature {
 	 * algoritmos que utilicen las cualidades del animature.
 	 */
 
-	public static final int	VELOCITY	= 0;
+	public static final int	SPEED		= 0;
 	public static final int	DEFENSE		= 1;
 	public static final int	AGILITY		= 2;
 	public static final int	STRENGHT	= 3;
@@ -42,6 +42,7 @@ public class Animature {
 	protected double		height;
 	protected double		weight;
 	protected int			type;
+	protected int			type2;
 	protected int[]			cualities;
 	protected int			health;
 	protected int			level_evo;
@@ -54,15 +55,22 @@ public class Animature {
 	}
 
 	public Animature(final int id_Animature, final String name,
-	final double height, final double weight, final int type,
-	final int[] cualities, final int health, final int level_evo,
+	final double height, final double weight, final int type, final int type2,
+	final int speed, final int defense, final int agility, final int strenght,
+	final int precission, final int health, final int level_evo,
 	final Drawable[] imgAnimature, final Drawable iconAnimature)
 	{
+		this.id_Animature = id_Animature;
 		this.name = name;
 		this.height = height;
 		this.weight = weight;
 		this.type = type;
-		this.cualities = cualities;
+		this.type2 = type2;
+		this.cualities[SPEED] = speed;
+		this.cualities[DEFENSE] = defense;
+		this.cualities[AGILITY] = agility;
+		this.cualities[STRENGHT] = strenght;
+		this.cualities[PRECISSION] = precission;
 		this.health = health;
 		this.level_evo = level_evo;
 		this.imgAnimature = imgAnimature;
@@ -117,6 +125,16 @@ public class Animature {
 	public void setType(final int type)
 	{
 		this.type = type;
+	}
+
+	public int getType2()
+	{
+		return type2;
+	}
+
+	public void setType2(final int type2)
+	{
+		this.type2 = type2;
 	}
 
 	public int[] getCualities()

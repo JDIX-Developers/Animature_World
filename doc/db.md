@@ -4,7 +4,7 @@
 (id, email, password, username, is_current, *save*)
 
 ## Tabla Animature ##
-(id, name, height, weight, type, speed, defense, agility, strenght, precission, health, level_evo)
+(id, name, height, weight, type, type2, speed, defense, agility, strenght, precission, health, level_evo)
 
 ## Tabla Save ##
 (id, name, sex, character, stage, last_played, started, total_time, steps, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*, *map*, coord_x, coord_y, neighbour, *1st_an*, orientation, last_Healing, medals, money)
