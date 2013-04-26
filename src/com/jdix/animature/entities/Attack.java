@@ -6,7 +6,6 @@ public class Attack {
 	private String			name_Attack;
 	private int				type_Attack;
 	private int				max_pp;
-	private int				act_pp;
 	private int				power;
 	private int				probability;		// 0 - 100 (Example: 60% - 60)
 
@@ -34,14 +33,13 @@ public class Attack {
 	}
 
 	public Attack(final int id_Attack, final String name_Attack,
-	final int type_Attack, final int max_pp, final int act_pp, final int power,
+	final int type_Attack, final int max_pp, final int power,
 	final int probability)
 	{
 		this.id_Attack = id_Attack;
 		this.name_Attack = name_Attack;
 		this.type_Attack = type_Attack;
 		this.max_pp = max_pp;
-		this.act_pp = act_pp;
 		this.power = power;
 		this.probability = probability;
 	}
@@ -84,16 +82,6 @@ public class Attack {
 	public void setMax_pp(final int max_pp)
 	{
 		this.max_pp = max_pp;
-	}
-
-	public int getAct_pp()
-	{
-		return act_pp;
-	}
-
-	public void setAct_pp(final int act_pp)
-	{
-		this.act_pp = act_pp;
 	}
 
 	public int getPower()

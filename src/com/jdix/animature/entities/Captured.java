@@ -69,7 +69,7 @@ public class Captured extends Animature {
 		this.level = level;
 		this.current_exp = current_exp;
 		this.experience = experience;
-		this.healthMax = (super.getHealth() + (2 * this.level));
+		this.healthMax = (super.health + (2 * this.level));
 		this.healthAct = healthAct;
 		this.status = status;
 
@@ -238,10 +238,29 @@ public class Captured extends Animature {
 		if (this.current_exp >= this.experience)
 		{
 			this.level += 1;
+			this.cualities[SPEED] += 2;
+			this.cualities[DEFENSE] += 2;
+			this.cualities[AGILITY] += 2;
+			this.cualities[STRENGHT] += 2;
+			this.cualities[PRECISSION] += 2;
+			this.healthAct += (2 * this.level);
 			this.current_exp -= this.experience;
 			this.experience = (int) Math.pow(this.level, 3);
 			levelUp = true;
 		}
 		return levelUp;
+	}
+
+	public boolean evolution()
+	{
+		boolean evolution = false;
+
+		if (this.level == this.level_evo)
+		{
+			evolution = true;
+			this.id_Animature += 1;
+		}
+
+		return evolution;
 	}
 }
