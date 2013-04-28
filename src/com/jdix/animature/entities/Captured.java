@@ -1,46 +1,53 @@
 package com.jdix.animature.entities;
 
+import com.jdix.animature.utils.AttackDataSource;
+
 public class Captured extends Animature {
 
-	public static final int	NORMAL		= 0;
-	public static final int	PARALYZED	= 1;
-	public static final int	BURNED		= 2;
-	public static final int	POISONED	= 3;
-	public static final int	SLEEPED		= 4;
-	public static final int	FROZEN		= 5;
+	public static final int		NORMAL		= 0;
+	public static final int		PARALYZED	= 1;
+	public static final int		BURNED		= 2;
+	public static final int		POISONED	= 3;
+	public static final int		SLEEPED		= 4;
+	public static final int		FROZEN		= 5;
 
-	private int				idAnimatureCapt;
-	private int				nickname;
-	private int				capturedTime;
-	private Attack[]		attacks		= new Attack[4];
-	private int[]			attacksPP	= new int[4];
-	private int				level;
-	private int				current_exp;
-	private int				experience;
-	private int				healthMax;
-	private int				healthAct;
-	private int				status;
+	private int					idAnimatureCapt;
+	private int					idAnimature;
+	private int					save;
+	private int					nickname;
+	private int					sex;
+	private int					status;
+	private int					capturedTime;
+	private Attack[]			attacks		= new Attack[4];
+	private int[]				attacksPP	= new int[4];
+	private int					level;
+	private int					current_exp;
+	private int					experience;
+	private int					healthMax;
+	private int					healthAct;
+	private int					box;
+	private AttackDataSource	ads;
 
-	public static final int	NORMALT		= 0;
-	public static final int	FIRE		= 1;
-	public static final int	WATER		= 2;
-	public static final int	GRASS		= 3;
-	public static final int	ELECTRIC	= 4;
-	public static final int	ICE			= 5;
-	public static final int	FIGHTING	= 6;
-	public static final int	POISON		= 7;
-	public static final int	GROUND		= 8;
-	public static final int	FLYING		= 9;
-	public static final int	PSYCHIC		= 10;
-	public static final int	BUG			= 11;
-	public static final int	ROCK		= 12;
-	public static final int	GHOST		= 13;
-	public static final int	DRAGON		= 14;
-	public static final int	DARK		= 15;
-	public static final int	STEEL		= 16;
+	public static final int		NORMALT		= 0;
+	public static final int		FIRE		= 1;
+	public static final int		WATER		= 2;
+	public static final int		GRASS		= 3;
+	public static final int		ELECTRIC	= 4;
+	public static final int		ICE			= 5;
+	public static final int		FIGHTING	= 6;
+	public static final int		POISON		= 7;
+	public static final int		GROUND		= 8;
+	public static final int		FLYING		= 9;
+	public static final int		PSYCHIC		= 10;
+	public static final int		BUG			= 11;
+	public static final int		ROCK		= 12;
+	public static final int		GHOST		= 13;
+	public static final int		DRAGON		= 14;
+	public static final int		DARK		= 15;
+	public static final int		STEEL		= 16;
 
-	private final boolean	weak[]		= new boolean[17];
-	private final boolean	strong[]	= new boolean[17];
+	private final boolean		weak[]		= new boolean[17];
+	private final boolean		strong[]	= new boolean[17];
 
 	public Captured()
 	{
@@ -48,24 +55,26 @@ public class Captured extends Animature {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Captured(final int idAnimatureCapt, final int nickname,
-	final int capturedTime, final Attack a1, final Attack a2, final Attack a3,
-	final Attack a4, final int a1PP, final int a2PP, final int a3PP,
-	final int a4PP, final int level, final int current_exp,
-	final int experience, final int healthAct, final int status)
+	public Captured(final int idAnimatureCapt, final int idAnimature,
+	final int save, final int nickname, final int sex, final int status,
+	final int capturedTime, final int a1, final int a1pp, final int a2,
+	final int a2pp, final int a3, final int a3pp, final int a4, final int a4pp,
+	final int level, final int current_exp, final int experience,
+	final int healthAct, final int box)
 	{
 		super();
 		this.idAnimatureCapt = idAnimatureCapt;
+		this.save = save;
 		this.nickname = nickname;
 		this.capturedTime = capturedTime;
-		this.attacks[0] = a1;
-		this.attacks[1] = a2;
-		this.attacks[2] = a3;
-		this.attacks[3] = a4;
-		this.attacksPP[0] = a1PP;
-		this.attacksPP[1] = a2PP;
-		this.attacksPP[2] = a3PP;
-		this.attacksPP[3] = a4PP;
+		this.attacks[0] = ads.readAttack(a1);
+		this.attacks[1] = ads.readAttack(a2);
+		this.attacks[2] = ads.readAttack(a3);
+		this.attacks[3] = ads.readAttack(a4);
+		this.attacksPP[0] = a1pp;
+		this.attacksPP[1] = a2pp;
+		this.attacksPP[2] = a3pp;
+		this.attacksPP[3] = a4pp;
 		this.level = level;
 		this.current_exp = current_exp;
 		this.experience = experience;
@@ -131,6 +140,26 @@ public class Captured extends Animature {
 		this.idAnimatureCapt = idAnimatureCapt;
 	}
 
+	public int getIdAnimature()
+	{
+		return idAnimature;
+	}
+
+	public void setIdAnimature(final int idAnimature)
+	{
+		this.idAnimature = idAnimature;
+	}
+
+	public int getSave()
+	{
+		return save;
+	}
+
+	public void setSave(final int save)
+	{
+		this.save = save;
+	}
+
 	public int getNickname()
 	{
 		return nickname;
@@ -139,6 +168,26 @@ public class Captured extends Animature {
 	public void setNickname(final int nickname)
 	{
 		this.nickname = nickname;
+	}
+
+	public int getSex()
+	{
+		return sex;
+	}
+
+	public void setSex(final int sex)
+	{
+		this.sex = sex;
+	}
+
+	public int getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(final int status)
+	{
+		this.status = status;
 	}
 
 	public int getCapturedTime()
@@ -219,16 +268,6 @@ public class Captured extends Animature {
 	public void setHealthAct(final int healthAct)
 	{
 		this.healthAct = healthAct;
-	}
-
-	public int getStatus()
-	{
-		return status;
-	}
-
-	public void setStatus(final int status)
-	{
-		this.status = status;
 	}
 
 	public boolean levelUp()
