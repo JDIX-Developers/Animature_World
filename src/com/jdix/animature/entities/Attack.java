@@ -1,13 +1,25 @@
 package com.jdix.animature.entities;
 
+import java.util.Random;
+
 public class Attack {
 
 	private int				id_Attack;
 	private String			name_Attack;
 	private int				type_Attack;
 	private int				max_pp;
+	private int				active;			// 0 if it is a passive attack,
+												// 1 if it is an active attack
+	private int				ifPass;			// If active==0, has the number
+												// of the cuality to change
 	private int				power;
 	private int				probability;		// 0 - 100 (Example: 60% - 60)
+
+	public static final int	SPEED		= 0;
+	public static final int	DEFENSE		= 1;
+	public static final int	AGILITY		= 2;
+	public static final int	STRENGHT	= 3;
+	public static final int	PRECISSION	= 4;
 
 	public static final int	NORMAL		= 0;
 	public static final int	FIRE		= 1;
@@ -33,13 +45,14 @@ public class Attack {
 	}
 
 	public Attack(final int id_Attack, final String name_Attack,
-	final int type_Attack, final int max_pp, final int power,
-	final int probability)
+	final int type_Attack, final int max_pp, final int active,
+	final int ifPass, final int power, final int probability)
 	{
 		this.id_Attack = id_Attack;
 		this.name_Attack = name_Attack;
 		this.type_Attack = type_Attack;
 		this.max_pp = max_pp;
+		this.active = active;
 		this.power = power;
 		this.probability = probability;
 	}
@@ -84,6 +97,16 @@ public class Attack {
 		this.max_pp = max_pp;
 	}
 
+	public int getActive()
+	{
+		return active;
+	}
+
+	public void setActive(final int active)
+	{
+		this.active = active;
+	}
+
 	public int getPower()
 	{
 		return power;
@@ -102,5 +125,39 @@ public class Attack {
 	public void setProbability(final int probability)
 	{
 		this.probability = probability;
+	}
+
+	public Captured getCapturedDamage(final Captured captRec,
+	final Captured captDo)
+	{
+		final Random r = new Random();
+		final int rand = r.nextInt(100);
+
+		if (rand <= (this.probability + (captDo.getCualities(PRECISSION) - captRec
+		.getCualities(AGILITY))))
+		{
+			if (this.active == 0)
+			{
+				if (captRec.getCualities(this.ifPass) > 2)
+				{
+					captRec.setCualities(captRec.getCualities(this.ifPass) - 2,
+					this.ifPass);
+				}
+			}
+			else
+			{
+				captRec.setHealth(captRec.getHealth()
+				- getDamage(captRec, captDo));
+			}
+		}
+
+		return captRec;
+	}
+
+	public int getDamage(final Captured cR, final Captured cD)
+	{
+		final int damage = 0;
+
+		return damage;
 	}
 }

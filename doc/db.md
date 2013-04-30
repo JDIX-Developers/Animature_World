@@ -25,4 +25,4 @@
 (*save*, *enemy*)
 
 ## Tabla Attacks ##
-(id, name, type, max_pp, power, probability)
+(id, name, type, max_pp, active, ifPass, power, probability)

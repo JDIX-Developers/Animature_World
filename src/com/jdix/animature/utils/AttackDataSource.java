@@ -12,8 +12,8 @@ import com.jdix.animature.entities.Attack;
 
 public class AttackDataSource extends DataSource {
 
-	private final String[]	columns	= {"id", "name", "type", "max_pp", "power",
-	"probability"					};
+	private final String[]	columns	= {"id", "name", "type", "max_pp",
+	"active", "ifPass", "power", "probability"};
 
 	public AttackDataSource(final Context context, final String name,
 	final CursorFactory factory, final int version)
@@ -22,12 +22,15 @@ public class AttackDataSource extends DataSource {
 	}
 
 	public void createAttack(final String nombre, final int type,
-	final int max_pp, final int power, final int probability)
+	final int max_pp, final int active, final int ifPas, final int power,
+	final int probability)
 	{
 		final ContentValues values = new ContentValues();
 		values.put("nombre", nombre);
 		values.put("type", type);
 		values.put("max_pp", max_pp);
+		values.put("active", active);
+		values.put("ifPass", ifPas);
 		values.put("power", power);
 		values.put("probability", probability);
 
@@ -36,7 +39,7 @@ public class AttackDataSource extends DataSource {
 
 	public Attack readAttack(final int id)
 	{
-		super.db = super.dbHelper.getReadableDatabase();
+		this.db = this.dbHelper.getReadableDatabase();
 		final Cursor c = db.query("Attacks", columns, "id=" + id, null, null,
 		null, null, null);
 		if (c != null)
@@ -76,13 +79,10 @@ public class AttackDataSource extends DataSource {
 
 	private Attack cursorToAttack(final Cursor cursor)
 	{
-		final Attack attack = new Attack();
-		attack.setId_Attack(cursor.getInt(0));
-		attack.setName_Attack(cursor.getString(1));
-		attack.setType_Attack(cursor.getInt(2));
-		attack.setMax_pp(cursor.getInt(3));
-		attack.setPower(cursor.getInt(4));
-		attack.setProbability(cursor.getInt(5));
+		final Attack attack = new Attack(cursor.getInt(0), cursor.getString(1),
+		cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(5),
+		cursor.getInt(6), cursor.getInt(7));
+
 		return attack;
 	}
 }

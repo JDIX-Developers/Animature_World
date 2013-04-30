@@ -57,7 +57,7 @@ public class CapturedDataSource extends DataSource {
 
 	public Captured readCaptured(final int id)
 	{
-		super.db = super.dbHelper.getReadableDatabase();
+		this.db = this.dbHelper.getReadableDatabase();
 		final Cursor c = db.query("Captured", columns, "id=" + id, null, null,
 		null, null, null);
 		if (c != null)

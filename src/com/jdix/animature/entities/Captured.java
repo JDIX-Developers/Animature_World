@@ -1,5 +1,6 @@
 package com.jdix.animature.entities;
 
+import com.jdix.animature.utils.AnimatureDataSource;
 import com.jdix.animature.utils.AttackDataSource;
 
 public class Captured extends Animature {
@@ -27,6 +28,7 @@ public class Captured extends Animature {
 	private int					healthAct;
 	private int					box;
 	private AttackDataSource	ads;
+	private AnimatureDataSource	ands;
 
 	public static final int		NORMALT		= 0;
 	public static final int		FIRE		= 1;
@@ -46,8 +48,8 @@ public class Captured extends Animature {
 	public static final int		DARK		= 15;
 	public static final int		STEEL		= 16;
 
-	private final boolean		weak[]		= new boolean[17];
-	private final boolean		strong[]	= new boolean[17];
+	private final boolean		isWeak[]	= new boolean[17];
+	private final boolean		isStrong[]	= new boolean[17];
 
 	public Captured()
 	{
@@ -64,6 +66,7 @@ public class Captured extends Animature {
 	{
 		super();
 		this.idAnimatureCapt = idAnimatureCapt;
+		this.idAnimature = idAnimature;
 		this.save = save;
 		this.nickname = nickname;
 		this.capturedTime = capturedTime;
@@ -78,16 +81,21 @@ public class Captured extends Animature {
 		this.level = level;
 		this.current_exp = current_exp;
 		this.experience = experience;
-		this.healthMax = (super.health + (2 * this.level));
+		this.cualities[SPEED] += (2 * this.level);
+		this.cualities[DEFENSE] += (2 * this.level);
+		this.cualities[AGILITY] += (2 * this.level);
+		this.cualities[STRENGHT] += (2 * this.level);
+		this.cualities[PRECISSION] += (2 * this.level);
+		this.healthMax = (this.health + (2 * this.level));
 		this.healthAct = healthAct;
 		this.status = status;
 
-		for (int i = 0; i < weak.length; i++)
+		for (int i = 0; i < isWeak.length; i++)
 		{
-			weak[i] = false;
-			strong[i] = false;
+			isWeak[i] = false;
+			isStrong[i] = false;
 		}
-		switch (super.type)
+		switch (this.type)
 		{
 			case 0:
 			case 1:
@@ -108,7 +116,7 @@ public class Captured extends Animature {
 			case 16:
 		}
 
-		switch (super.type)
+		switch (this.type2)
 		{
 			case 0:
 			case 1:
@@ -268,6 +276,16 @@ public class Captured extends Animature {
 	public void setHealthAct(final int healthAct)
 	{
 		this.healthAct = healthAct;
+	}
+
+	public int getCualities(final int pos)
+	{
+		return this.cualities[pos];
+	}
+
+	public void setCualities(final int quantity, final int pos)
+	{
+		this.cualities[pos] = quantity;
 	}
 
 	public boolean levelUp()
