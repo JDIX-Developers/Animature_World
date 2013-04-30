@@ -69,6 +69,8 @@ public class Captured extends Animature {
 		this.idAnimature = idAnimature;
 		this.save = save;
 		this.nickname = nickname;
+		this.sex = sex;
+		this.status = status;
 		this.capturedTime = capturedTime;
 		this.attacks[0] = ads.readAttack(a1);
 		this.attacks[1] = ads.readAttack(a2);
@@ -81,6 +83,14 @@ public class Captured extends Animature {
 		this.level = level;
 		this.current_exp = current_exp;
 		this.experience = experience;
+
+		this.cualities[SPEED] = ands.readAnimatureColInt(this.idAnimature, 6);
+		this.cualities[DEFENSE] = ands.readAnimatureColInt(this.idAnimature, 7);
+		this.cualities[AGILITY] = ands.readAnimatureColInt(this.idAnimature, 8);
+		this.cualities[STRENGHT] = ands
+		.readAnimatureColInt(this.idAnimature, 9);
+		this.cualities[PRECISSION] = ands.readAnimatureColInt(this.idAnimature,
+		10);
 
 		for (int i = 1; i <= this.level; i++)
 		{
@@ -103,7 +113,7 @@ public class Captured extends Animature {
 			this.cualities[PRECISSION] += (this.cualities[PRECISSION] / 3);
 		}
 
-		this.healthMax = this.health;
+		this.healthMax = ands.readAnimatureColInt(this.idAnimature, 11);
 		if (this.level > 1)
 		{
 			for (int i = 2; i <= this.level; i++)
@@ -113,7 +123,7 @@ public class Captured extends Animature {
 		}
 
 		this.healthAct = healthAct;
-		this.status = status;
+		this.box = box;
 
 		for (int i = 0; i < isWeak.length; i++)
 		{
@@ -347,7 +357,7 @@ public class Captured extends Animature {
 	{
 		boolean evolution = false;
 
-		if (this.level == this.level_evo)
+		if (this.level == ands.readAnimatureColInt(this.idAnimature, 12))
 		{
 			evolution = true;
 			this.id_Animature += 1;

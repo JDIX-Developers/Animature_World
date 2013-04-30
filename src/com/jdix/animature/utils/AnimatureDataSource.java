@@ -45,6 +45,22 @@ public class AnimatureDataSource extends DataSource {
 		db.insert("Animature", null, values);
 	}
 
+	public int readAnimatureColInt(final int id, final int pos)
+	{
+		this.db = this.dbHelper.getReadableDatabase();
+		final Cursor c = db.query("Animature", columns, "id=" + id, null, null,
+		null, null, null);
+		if (c != null)
+		{
+			c.moveToFirst();
+		}
+
+		final int colInt = c.getInt(pos);
+		db.close();
+		c.close();
+		return colInt;
+	}
+
 	public Animature readAnimature(final int id)
 	{
 		this.db = this.dbHelper.getReadableDatabase();
