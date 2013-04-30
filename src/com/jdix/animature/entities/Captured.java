@@ -24,7 +24,7 @@ public class Captured extends Animature {
 	private int					level;
 	private int					current_exp;
 	private int					experience;
-	private int					healthMax;
+	private int					healthMax	= 0;
 	private int					healthAct;
 	private int					box;
 	private AttackDataSource	ads;
@@ -81,12 +81,37 @@ public class Captured extends Animature {
 		this.level = level;
 		this.current_exp = current_exp;
 		this.experience = experience;
-		this.cualities[SPEED] += (2 * this.level);
-		this.cualities[DEFENSE] += (2 * this.level);
-		this.cualities[AGILITY] += (2 * this.level);
-		this.cualities[STRENGHT] += (2 * this.level);
-		this.cualities[PRECISSION] += (2 * this.level);
-		this.healthMax = (this.health + (2 * this.level));
+
+		for (int i = 1; i <= this.level; i++)
+		{
+			this.cualities[SPEED] += (this.cualities[SPEED] / 3);
+		}
+		for (int i = 1; i <= this.level; i++)
+		{
+			this.cualities[DEFENSE] += (this.cualities[DEFENSE] / 3);
+		}
+		for (int i = 1; i <= this.level; i++)
+		{
+			this.cualities[AGILITY] += (this.cualities[AGILITY] / 3);
+		}
+		for (int i = 1; i <= this.level; i++)
+		{
+			this.cualities[STRENGHT] += (this.cualities[STRENGHT] / 3);
+		}
+		for (int i = 1; i <= this.level; i++)
+		{
+			this.cualities[PRECISSION] += (this.cualities[PRECISSION] / 3);
+		}
+
+		this.healthMax = this.health;
+		if (this.level > 1)
+		{
+			for (int i = 2; i <= this.level; i++)
+			{
+				this.healthMax += (this.healthMax / 3);
+			}
+		}
+
 		this.healthAct = healthAct;
 		this.status = status;
 
@@ -288,6 +313,16 @@ public class Captured extends Animature {
 		this.cualities[pos] = quantity;
 	}
 
+	public boolean isWeak(final int type)
+	{
+		return this.isWeak[type];
+	}
+
+	public boolean isStrong(final int type)
+	{
+		return this.isStrong[type];
+	}
+
 	public boolean levelUp()
 	{
 		boolean levelUp = false;
@@ -295,12 +330,12 @@ public class Captured extends Animature {
 		if (this.current_exp >= this.experience)
 		{
 			this.level += 1;
-			this.cualities[SPEED] += 2;
-			this.cualities[DEFENSE] += 2;
-			this.cualities[AGILITY] += 2;
-			this.cualities[STRENGHT] += 2;
-			this.cualities[PRECISSION] += 2;
-			this.healthAct += (2 * this.level);
+			this.cualities[SPEED] += (this.cualities[SPEED] / 3);
+			this.cualities[DEFENSE] += (this.cualities[DEFENSE] / 3);
+			this.cualities[AGILITY] += (this.cualities[AGILITY] / 3);
+			this.cualities[STRENGHT] += (this.cualities[STRENGHT] / 3);
+			this.cualities[PRECISSION] += (this.cualities[PRECISSION] / 3);
+			this.healthAct += (this.healthAct / 3);
 			this.current_exp -= this.experience;
 			this.experience = (int) Math.pow(this.level, 3);
 			levelUp = true;

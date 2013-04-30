@@ -156,7 +156,26 @@ public class Attack {
 
 	public int getDamage(final Captured cR, final Captured cD)
 	{
-		final int damage = 0;
+		int damage = 0;
+
+		if (cR.isWeak(this.type_Attack))
+		{
+			damage = (this.power / 100)
+			* (cD.getCualities(STRENGHT) / cR.getCualities(DEFENSE))
+			* cD.getCualities(STRENGHT) * 2;
+		}
+		else if (cR.isStrong(this.type_Attack))
+		{
+			damage = (this.power / 100)
+			* (cD.getCualities(STRENGHT) / cR.getCualities(DEFENSE))
+			* cD.getCualities(STRENGHT) / 2;
+		}
+		else
+		{
+			damage = (this.power / 100)
+			* (cD.getCualities(STRENGHT) / cR.getCualities(DEFENSE))
+			* cD.getCualities(STRENGHT);
+		}
 
 		return damage;
 	}
