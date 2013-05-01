@@ -14,7 +14,7 @@ public class AnimatureDataSource extends DataSource {
 
 	private final String[]	columns	= {"id", "name", "height", "weight",
 	"type", "type2", "speed", "defense", "agility", "strenght", "precission",
-	"health", "level_evo"			};
+	"health", "level_evo", "baseExp"};
 
 	public AnimatureDataSource(final Context context, final String name,
 	final CursorFactory factory, final int version)
@@ -25,7 +25,8 @@ public class AnimatureDataSource extends DataSource {
 	public void createAnimature(final int id_Animature, final String name,
 	final double height, final double weight, final int type, final int type2,
 	final int speed, final int defense, final int agility, final int strenght,
-	final int precission, final int health, final int level_evo)
+	final int precission, final int health, final int level_evo,
+	final int baseExp)
 	{
 		final ContentValues values = new ContentValues();
 		values.put("id", id_Animature);
@@ -41,6 +42,7 @@ public class AnimatureDataSource extends DataSource {
 		values.put("precission", precission);
 		values.put("health", health);
 		values.put("level_evo", level_evo);
+		values.put("baseExp", baseExp);
 
 		db.insert("Animature", null, values);
 	}
@@ -107,7 +109,7 @@ public class AnimatureDataSource extends DataSource {
 		cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3),
 		cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getInt(7),
 		cursor.getInt(8), cursor.getInt(9), cursor.getInt(10),
-		cursor.getInt(11), cursor.getInt(12), null, null);
+		cursor.getInt(11), cursor.getInt(12), cursor.getInt(13), null, null);
 
 		return animature;
 	}

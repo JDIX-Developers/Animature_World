@@ -25,7 +25,7 @@ public class Database extends SQLiteOpenHelper {
 		db
 		.execSQL("CREATE TABLE User (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, username TEXT, is_current INTEGER, save INTEGER, FOREIGN KEY(save) REFERENCES Save(id))");
 		db
-		.execSQL("CREATE TABLE Animature (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, height INTEGER, weight INTEGER, type INTEGER, type2 INTEGER, speed INTEGER, defense INTEGER, agility INTEGER, strenght INTEGER, precission INTEGER, health INTEGER, level_evo INTEGER)");
+		.execSQL("CREATE TABLE Animature (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, height INTEGER, weight INTEGER, type INTEGER, type2 INTEGER, speed INTEGER, defense INTEGER, agility INTEGER, strenght INTEGER, precission INTEGER, health INTEGER, level_evo INTEGER, baseExp INTEGER)");
 		db
 		.execSQL("CREATE TABLE Save (id INTEGER PRIMARY KEY AUTOINCREMENT, character INTEGER, stage INTEGER, last_played DATE, started DATE, total_time INTEGER, steps INTEGER, an1 INTEGER, an2 INTEGER, an3 INTEGER, an4 INTEGER, an5 INTEGER, an6 INTEGER, map INTEGER, coord_x INTEGER, coord_y INTEGER, neighbour INTEGER, first_an INTEGER, orientation INTEGER, last_HealingMap INTEGER, last_HealingX INTEGER, last_HealingY INTEGER, medals INTEGER, money INTEGER, FOREIGN KEY(an1) REFERENCES Captured(id), FOREIGN KEY(an2) REFERENCES Captured(id), FOREIGN KEY(an3) REFERENCES Captured(id), FOREIGN KEY(an4) REFERENCES Captured(id), FOREIGN KEY(an5) REFERENCES Captured(id), FOREIGN KEY(an6) REFERENCES Captured(id), FOREIGN KEY(first_an) REFERENCES Animature(id))");
 		db

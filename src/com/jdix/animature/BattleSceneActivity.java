@@ -12,13 +12,22 @@ import com.jdix.animature.entities.Captured;
 
 public class BattleSceneActivity extends Activity {
 
-	private int					battleType;
 	private LinearLayout		enemy_information_layout;
 	private TextView			enemy_animature_name;
 	private TextView			enemy_animature_level;
 	private ProgressBar			enemy_animature_live;
 
-	private final Captured[]	animSel	= new Captured[6];
+	private int					battleType;							// If==0->Wild_Animature____if==1->Trainer's_Animature
+	private final boolean		inMain				= true;
+	private final boolean		inFight				= false;
+	private final boolean		inItem				= false;
+	private final boolean		inAnimature			= false;
+	private final boolean		inRun				= false;
+	private final boolean		playerWin			= false;
+	private final boolean		enemyWin			= false;
+	private final boolean		animatureFainted	= false;
+
+	private final Captured[]	animSel				= new Captured[6];
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
