@@ -272,6 +272,11 @@ public class Captured extends Animature {
 		this.attacks = attacks;
 	}
 
+	public Attack getAttack(final int pos)
+	{
+		return attacks[pos];
+	}
+
 	public int[] getAttacksPP()
 	{
 		return attacksPP;
@@ -280,6 +285,16 @@ public class Captured extends Animature {
 	public void setAttacksPP(final int[] attacksPP)
 	{
 		this.attacksPP = attacksPP;
+	}
+
+	public int getAttackPP(final int pos)
+	{
+		return attacksPP[pos];
+	}
+
+	public void reduceAttackPP(final int pos)
+	{
+		this.attacksPP[pos] -= 1;
 	}
 
 	public int getLevel()

@@ -1,5 +1,7 @@
 package com.jdix.animature;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +20,8 @@ public class BattleSceneActivity extends Activity {
 	private ProgressBar			enemy_animature_live;
 
 	private int					battleType;							// If==0->Wild_Animature____if==1->Trainer's_Animature
+	private int					attack;
+	private boolean				finishTurn			= false;
 	private final boolean		inMain				= true;
 	private final boolean		inFight				= false;
 	private final boolean		inItem				= false;
@@ -28,6 +32,7 @@ public class BattleSceneActivity extends Activity {
 	private final boolean		animatureFainted	= false;
 
 	private final Captured[]	animSel				= new Captured[6];
+	private final Captured		enemy				= new Captured();
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -40,6 +45,24 @@ public class BattleSceneActivity extends Activity {
 		enemy_animature_name = (TextView) findViewById(R.id.enemy_animature_name);
 		enemy_animature_level = (TextView) findViewById(R.id.enemy_animature_level);
 		enemy_animature_live = (ProgressBar) findViewById(R.id.enemy_live_progressbar);
+
+		// Enemy battle example
+		int attack = randomAttack();
+		while ( ! finishTurn)
+		{
+			if (enemy.getAttackPP(attack) > 0)
+			{
+				animSel[0] = enemy.getAttack(attack).getCapturedDamage(
+				animSel[0], enemy);
+				enemy.reduceAttackPP(attack);
+				finishTurn = true;
+			}
+			else
+			{
+				attack = randomAttack();
+			}
+		}
+
 	}
 
 	@Override
@@ -50,11 +73,18 @@ public class BattleSceneActivity extends Activity {
 		return true;
 	}
 
-	private void changeEnemyAnimature(final Captured captured)
+	public void showEnemyAnimature(final Captured captured)
 	{
 		enemy_information_layout.setVisibility(View.VISIBLE);
 		enemy_animature_name.setText(captured.getName());
 		enemy_animature_level.setText("Nvl " + captured.getLevel());
 		enemy_animature_live.setMax(captured.getHealth());
+	}
+
+	public int randomAttack()
+	{
+		final Random r = new Random();
+		final int rand = r.nextInt(4);
+		return rand;
 	}
 }
