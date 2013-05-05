@@ -13,7 +13,7 @@ import com.jdix.animature.utils.MathUtils;
  */
 public class Square {
 
-	private static Bitmap		sprite;
+	private static Sprite		sprite;
 	private static short		size;
 	private static Square[][]	squares;
 	private final Bitmap		bitmap;
@@ -34,8 +34,8 @@ public class Square {
 		this.x = x;
 		this.y = y;
 
-		this.bitmap = Bitmap.createBitmap(sprite, x * size, y * size, size,
-		size);
+		this.bitmap = Bitmap.createBitmap(sprite.getBitmap(), x * size, y
+		* size, size, size);
 	}
 
 	/**
@@ -61,28 +61,19 @@ public class Square {
 	}
 
 	/**
-	 * @param b Sprite's bitmap
+	 * @param s - Sprite
 	 */
-	public static void setSprite(final Bitmap b)
+	public static void setSprite(final Sprite s)
 	{
-		sprite = b;
-		// TODO queda por comprobar la nueva especificación de sprites
+		sprite = s;
 	}
 
 	/**
-	 * @param s Size of the squares
+	 * @return The current sprite
 	 */
-	public static void setSize(final short s)
+	public static Sprite getSprite()
 	{
-		size = s;
-	}
-
-	/**
-	 * @return Size of the sprite's squares
-	 */
-	public static short getSize()
-	{
-		return size;
+		return sprite;
 	}
 
 	/**

@@ -162,8 +162,9 @@ public class Map {
 
 	private void generateBitmap()
 	{
-		bitmap = Bitmap.createBitmap(width * Square.getSize(),
-		height * Square.getSize(), Bitmap.Config.ARGB_8888);
+		final short size = Square.getSprite().getSize();
+		bitmap = Bitmap.createBitmap(width * size, height * size,
+		Bitmap.Config.ARGB_8888);
 
 		final Canvas c = new Canvas(bitmap);
 
@@ -171,8 +172,8 @@ public class Map {
 		{
 			for (int h = 0; h < width; h++)
 			{
-				c.drawBitmap(squares[i][h].getBitmap(), Square.getSize() * h,
-				Square.getSize() * i, null);
+				c.drawBitmap(squares[i][h].getBitmap(), size * h, size * i,
+				null);
 			}
 		}
 	}

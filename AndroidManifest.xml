@@ -47,9 +47,13 @@
         </activity>
         <activity
             android:name="com.jdix.animature.BattleSceneActivity"
-            android:label="@string/title_activity_battle_scene" 
-			android:screenOrientation="landscape"
+            android:label="@string/title_activity_battle_scene"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.jdix.animature.MapActivity"
+            android:label="@string/title_activity_map" >
         </activity>
     </application>
 

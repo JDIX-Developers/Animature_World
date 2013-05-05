@@ -9,7 +9,7 @@ import com.jdix.animature.map.MapView;
 /**
  * @author Razican (Iban Eguia)
  */
-public class MapTestActivity extends Activity {
+public class MapActivity extends Activity {
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

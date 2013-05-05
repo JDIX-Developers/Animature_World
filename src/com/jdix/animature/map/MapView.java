@@ -26,12 +26,17 @@ public class MapView extends View {
 	}
 
 	/**
-	 * @param context Context of the application
-	 * @param map Map to show
+	 * @param context - Context of the application
+	 * @param map - Map to show
+	 * @param sprite - The sprite to use
+	 * @param sprbmp - The drawable of the sprite
 	 */
-	public MapView(final Context context, final int map)
+	public MapView(final Context context, final int map, final int sprite,
+	final int sprbmp)
 	{
 		this(context);
+
+		Square.setSprite(new Sprite(context, sprite, sprbmp));
 		Map.setContext(context);
 		try
 		{
@@ -64,5 +69,11 @@ public class MapView extends View {
 		final int cy = (mHeight - mapb.getHeight()) / 2;
 
 		canvas.drawBitmap(mapb, cx, cy, null);
+		drawControls(canvas);
+	}
+
+	private void drawControls(final Canvas canvas)
+	{
+		// TODO Auto-generated method stub
 	}
 }
