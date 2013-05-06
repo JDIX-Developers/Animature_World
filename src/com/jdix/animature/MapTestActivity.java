@@ -15,7 +15,7 @@ public class MapTestActivity extends Activity {
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(new MapView(this, R.raw.map_test, R.raw.sprite,
+		setContentView(new MapView(this, R.raw.map_test, R.raw.sprite64,
 		R.drawable.sprite));
 	}
 

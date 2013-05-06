@@ -2,6 +2,7 @@ package com.jdix.animature;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 
 import com.jdix.animature.map.MapView;
@@ -15,8 +16,29 @@ public class MapActivity extends Activity {
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(new MapView(this, R.raw.map_test, R.raw.sprite,
-		R.drawable.sprite));
+
+		final DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		switch (metrics.densityDpi)
+		{
+			case DisplayMetrics.DENSITY_LOW:
+				setContentView(new MapView(this, R.raw.map_test,
+				R.raw.sprite48, R.drawable.sprite));
+			break;
+			case DisplayMetrics.DENSITY_MEDIUM:
+				setContentView(new MapView(this, R.raw.map_test,
+				R.raw.sprite64, R.drawable.sprite));
+			break;
+			case DisplayMetrics.DENSITY_HIGH:
+				setContentView(new MapView(this, R.raw.map_test,
+				R.raw.sprite96, R.drawable.sprite));
+			break;
+			case DisplayMetrics.DENSITY_XHIGH:
+				setContentView(new MapView(this, R.raw.map_test,
+				R.raw.sprite128, R.drawable.sprite));
+			break;
+
+		}
 	}
 
 	@Override

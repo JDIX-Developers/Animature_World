@@ -51,6 +51,10 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
+		// Map testing
+		startActivity(new Intent(LaunchActivity.this, MapTestActivity.class));
+		finish();
+
 		db = (new Database(this, "AnimatureWorldDB", null, 1))
 		.getWritableDatabase();
 

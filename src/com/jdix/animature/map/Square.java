@@ -14,7 +14,6 @@ import com.jdix.animature.utils.MathUtils;
 public class Square {
 
 	private static Sprite		sprite;
-	private static short		size;
 	private static Square[][]	squares;
 	private final Bitmap		bitmap;
 	private final byte			x, y;
@@ -34,8 +33,9 @@ public class Square {
 		this.x = x;
 		this.y = y;
 
-		this.bitmap = Bitmap.createBitmap(sprite.getBitmap(), x * size, y
-		* size, size, size);
+		this.bitmap = Bitmap.createBitmap(sprite.getBitmap(),
+		x * sprite.getSize(), y * sprite.getSize(), sprite.getSize(),
+		sprite.getSize());
 	}
 
 	/**
@@ -102,11 +102,11 @@ public class Square {
 		}
 		if (squares == null)
 		{
-			squares = new Square[sprite.getWidth() / size][sprite.getHeight()
-			/ size];
+			squares = new Square[sprite.getWidth() / sprite.getSize()][sprite
+			.getHeight() / sprite.getSize()];
 		}
-		if (xi > sprite.getWidth() / size - 1
-		|| yi > sprite.getHeight() / size - 1)
+		if (xi > sprite.getWidth() / sprite.getSize() - 1
+		|| yi > sprite.getHeight() / sprite.getSize() - 1)
 		{
 			throw new SpriteException("There is no image for coordinates (0x"
 			+ MathUtils.toHex(x) + ", 0x" + MathUtils.toHex(y) + ")");
