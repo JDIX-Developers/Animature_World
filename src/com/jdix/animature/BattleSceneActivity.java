@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -14,10 +15,14 @@ import com.jdix.animature.entities.Captured;
 
 public class BattleSceneActivity extends Activity {
 
+	// Enemy's Animature Components
 	private LinearLayout		enemy_information_layout;
 	private TextView			enemy_animature_name;
 	private TextView			enemy_animature_level;
 	private ProgressBar			enemy_animature_live;
+	private ImageView			enemy_animature_image;
+	
+	
 
 	private int					battleType;							// If==0->Wild_Animature____if==1->Trainer's_Animature
 	private int					attack;
@@ -41,10 +46,11 @@ public class BattleSceneActivity extends Activity {
 		setContentView(R.layout.activity_battle_scene);
 
 		// We get a reference to the interface controls
-		enemy_information_layout = (LinearLayout) findViewById(R.id.enemy_information_layout);
+		enemy_information_layout = (LinearLayout) findViewById(R.id.enemyInformationLayout);
 		enemy_animature_name = (TextView) findViewById(R.id.enemy_animature_name);
-		enemy_animature_level = (TextView) findViewById(R.id.enemy_animature_level);
-		enemy_animature_live = (ProgressBar) findViewById(R.id.enemy_live_progressbar);
+		enemy_animature_level = (TextView) findViewById(R.id.enemyAnimatureLevel);
+		enemy_animature_live = (ProgressBar) findViewById(R.id.enemyAnimatureLife);
+		enemy_animature_image = (ImageView) findViewById(R.id.enemyAnimatureImage);
 
 		// Enemy battle example
 		int attack = randomAttack();
@@ -79,6 +85,7 @@ public class BattleSceneActivity extends Activity {
 		enemy_animature_name.setText(captured.getName());
 		enemy_animature_level.setText("Nvl " + captured.getLevel());
 		enemy_animature_live.setMax(captured.getHealth());
+		// enemy_animature_image.
 	}
 
 	public int randomAttack()
