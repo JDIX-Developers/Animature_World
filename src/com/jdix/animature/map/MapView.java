@@ -6,16 +6,20 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Vibrator;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 
 /**
  * @author Razican (Iban Eguia)
  */
-public class MapView extends View {
+public class MapView extends View implements OnTouchListener {
 
-	private Map	map;
-	private int	mWidth;
-	private int	mHeight;
+	private Map		map;
+	private int		mWidth;
+	private int		mHeight;
+	private Context	context;
 
 	/**
 	 * @param context Context of the application
@@ -23,6 +27,7 @@ public class MapView extends View {
 	public MapView(final Context context)
 	{
 		super(context);
+		this.context = context;
 	}
 
 	/**
@@ -35,6 +40,7 @@ public class MapView extends View {
 	final int sprbmp)
 	{
 		this(context);
+		this.context = context;
 
 		Square.setSprite(new Sprite(context, sprite, sprbmp));
 		Map.setContext(context);
@@ -46,6 +52,8 @@ public class MapView extends View {
 		{
 			System.err.println(e.getMessage());
 		}
+
+		setOnTouchListener(this);
 	}
 
 	@Override
@@ -75,5 +83,16 @@ public class MapView extends View {
 	private void drawControls(final Canvas canvas)
 	{
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean onTouch(final View v, final MotionEvent event)
+	{
+		// TODO Controls
+		final Vibrator vibrator = (Vibrator) context
+		.getSystemService(Context.VIBRATOR_SERVICE);
+
+		vibrator.vibrate(100);
+		return false;
 	}
 }
