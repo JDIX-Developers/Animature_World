@@ -52,7 +52,7 @@ public class LaunchActivity extends Activity {
 		setContentView(R.layout.activity_launch);
 
 		// Map testing
-		startActivity(new Intent(LaunchActivity.this, MapTestActivity.class));
+		startActivity(new Intent(LaunchActivity.this, MapActivity.class));
 		finish();
 
 		db = (new Database(this, "AnimatureWorldDB", null, 1))

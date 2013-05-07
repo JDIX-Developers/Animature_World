@@ -27,17 +27,16 @@ public class MapActivity extends Activity {
 			break;
 			case DisplayMetrics.DENSITY_MEDIUM:
 				setContentView(new MapView(this, R.raw.map_test,
-				R.raw.sprite64, R.drawable.sprite));
+				R.raw.sprite48, R.drawable.sprite));
 			break;
 			case DisplayMetrics.DENSITY_HIGH:
 				setContentView(new MapView(this, R.raw.map_test,
-				R.raw.sprite96, R.drawable.sprite));
+				R.raw.sprite48, R.drawable.sprite));
 			break;
 			case DisplayMetrics.DENSITY_XHIGH:
 				setContentView(new MapView(this, R.raw.map_test,
-				R.raw.sprite128, R.drawable.sprite));
+				R.raw.sprite64, R.drawable.sprite));
 			break;
-
 		}
 	}
 

@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.jdix.animature.utils.MathUtils;
 
@@ -13,10 +14,10 @@ import com.jdix.animature.utils.MathUtils;
  */
 public class Sprite {
 
-	private final short	size;
-	private byte		width;
-	private byte		height;
-	private Bitmap		bitmap;
+	private final short		size;
+	private final byte		width;
+	private final byte		height;
+	private final Bitmap	bitmap;
 
 	/**
 	 * @param context - The context of the application
@@ -40,6 +41,13 @@ public class Sprite {
 		}
 
 		size = MathUtils.twoByteToShort(array[0], array[1]);
+		this.bitmap = BitmapFactory.decodeResource(context.getResources(),
+		bitmap);
+
+		width = (byte) (this.bitmap.getWidth() / size);
+		height = (byte) (this.bitmap.getHeight() / size);
+
+		System.out.println(this.bitmap.getWidth());
 	}
 
 	/**

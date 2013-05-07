@@ -102,14 +102,12 @@ public class Square {
 		}
 		if (squares == null)
 		{
-			squares = new Square[sprite.getWidth() / sprite.getSize()][sprite
-			.getHeight() / sprite.getSize()];
+			squares = new Square[sprite.getWidth()][sprite.getHeight()];
 		}
-		if (xi > sprite.getWidth() / sprite.getSize() - 1
-		|| yi > sprite.getHeight() / sprite.getSize() - 1)
+		if (xi > sprite.getWidth() - 1 || yi > sprite.getHeight() - 1)
 		{
-			throw new SpriteException("There is no image for coordinates (0x"
-			+ MathUtils.toHex(x) + ", 0x" + MathUtils.toHex(y) + ")");
+			throw new SpriteException("There is no image for coordinates ("
+			+ MathUtils.toHex(x) + ", " + MathUtils.toHex(y) + ")");
 		}
 		if (squares[xi][yi] == null)
 		{
