@@ -4,12 +4,15 @@ import java.io.IOException;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+
+import com.jdix.animature.R;
 
 /**
  * @author Razican (Iban Eguia)
@@ -82,7 +85,14 @@ public class MapView extends View implements OnTouchListener {
 
 	private void drawControls(final Canvas canvas)
 	{
-		// TODO Auto-generated method stub
+		final Bitmap cross = BitmapFactory.decodeResource(
+		context.getResources(), R.drawable.cross);
+
+		final int x = canvas.getWidth() / 24;
+		final int y = canvas.getHeight() / 2;
+
+		canvas.drawBitmap(cross, x, y, null);
+
 	}
 
 	@Override

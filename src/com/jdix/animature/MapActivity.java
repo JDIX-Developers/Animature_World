@@ -23,11 +23,11 @@ public class MapActivity extends Activity {
 		{
 			case DisplayMetrics.DENSITY_LOW:
 				setContentView(new MapView(this, R.raw.map_test,
-				R.raw.sprite48, R.drawable.sprite));
+				R.raw.sprite24, R.drawable.sprite));
 			break;
 			case DisplayMetrics.DENSITY_MEDIUM:
 				setContentView(new MapView(this, R.raw.map_test,
-				R.raw.sprite48, R.drawable.sprite));
+				R.raw.sprite32, R.drawable.sprite));
 			break;
 			case DisplayMetrics.DENSITY_HIGH:
 				setContentView(new MapView(this, R.raw.map_test,
