@@ -30,6 +30,7 @@ public class MainMenuActivity extends Activity {
 			public void onClick(final View view)
 			{
 				newGame();
+				finish();
 			}
 		});
 		btnLoadGame = (Button) findViewById(R.id.btnLoadGame);
