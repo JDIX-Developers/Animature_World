@@ -117,7 +117,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical|center_horizontal|center"
             android:layout_weight="1"
             android:gravity="center_vertical|center_horizontal|center"
             android:orientation="vertical" >
@@ -127,8 +126,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
-                android:layout_gravity="center_vertical|center_horizontal|center"
-                android:gravity="center_vertical|center_horizontal"
                 android:text="¿Qué debería hacer BLASTOISE?" />
 
         </LinearLayout>
