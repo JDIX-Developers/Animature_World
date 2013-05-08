@@ -120,41 +120,48 @@
             android:id="@+id/btnAtack1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/Margin10"
+            android:layout_marginBottom="@dimen/Margin10"
+            android:layout_marginRight="@dimen/Margin5"
             android:layout_weight="1"
-            android:paddingRight="@dimen/Margin10"
+            android:paddingRight="@dimen/Margin5"
             android:text="Ataque1" />
 
         <Button
             android:id="@+id/btnAtack2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/Margin10"
+            android:layout_marginRight="@dimen/Margin5"
             android:layout_weight="1"
+            android:paddingRight="@dimen/Margin5"
             android:text="Ataque2" />
 
         <Button
             android:id="@+id/btnAtack3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/Margin10"
+            android:layout_marginRight="@dimen/Margin5"
             android:layout_weight="1"
+            android:paddingRight="@dimen/Margin5"
             android:text="Ataque3" />
 
         <Button
             android:id="@+id/btnAtack4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/Margin10"
+            android:layout_marginRight="@dimen/Margin5"
             android:layout_weight="1"
+            android:paddingRight="@dimen/Margin5"
             android:text="Ataque 4" />
 
         <Button
             android:id="@+id/btnExitBattle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/Margin10"
+            android:layout_marginRight="@dimen/Margin5"
             android:layout_weight="1"
+            android:maxLines="1"
+            android:minWidth="100dp"
+            android:paddingRight="@dimen/Margin5"
             android:text="@string/exit_Battle" />
 
     </LinearLayout>

@@ -49,7 +49,8 @@ public class BattleSceneActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_battle_scene);
 
-		loadAnimSel();
+		loadBattleAnimatures();
+
 		animatureIndex = 0;
 
 		// We get a reference to the interface controls
@@ -124,8 +125,9 @@ public class BattleSceneActivity extends Activity {
 			}
 		});
 
-		// loadEnemyAnimature(enemy);
+		loadEnemyAnimature();
 		loadYourAnimature();
+		changeAttacksBackground();
 	}
 
 	@Override
@@ -136,13 +138,14 @@ public class BattleSceneActivity extends Activity {
 		return true;
 	}
 
-	private void loadEnemyAnimature(final Captured captured)
+	private void loadEnemyAnimature()
 	{
-		enemy_animature_name.setText(captured.getNickname());
-		enemy_animature_level.setText("Nvl " + captured.getLevel());
-		enemy_animature_life.setMax(captured.getHealthMax());
+		enemy_animature_name.setText(enemy.getNickname());
+		enemy_animature_level.setText("Nvl " + enemy.getLevel());
+		enemy_animature_life.setMax(enemy.getHealthMax());
+		enemy_animature_life.setProgress(enemy.getHealthAct());
 		final int id = getResources().getIdentifier(
-		"f" + captured.getIdAnimature(), "drawable", getPackageName());
+		"f" + enemy.getIdAnimature(), "drawable", getPackageName());
 		enemy_animature_image.setImageDrawable(this.getResources().getDrawable(
 		id));
 	}
@@ -171,10 +174,26 @@ public class BattleSceneActivity extends Activity {
 		return rand;
 	}
 
-	private void loadAnimSel()
+	private void loadBattleAnimatures()
 	{
 		animSel[0] = new Captured(0, 2, 0, "BLASTOISE", 0, 0, 0, 0, 10, 0, 10,
 		0, 10, 0, 10, 40, 100, 200, 100, 0);
+
+		final Attack a = new Attack(0, "Placaje", 0, 20, 1, 35, 90);
+		final Attack a1 = new Attack(1, "Latigo", 0, 25, 0, - 1, 100);
+		final Attack a2 = new Attack(2, "Pistola agua", 2, 15, 1, 50, 100);
+		final Attack a3 = new Attack(3, "Gruñido", 0, 20, 0, - 1, 100);
+
+		final Attack[] aAttacks = new Attack[4];
+		aAttacks[0] = a;
+		aAttacks[1] = a1;
+		aAttacks[2] = a2;
+		aAttacks[3] = a3;
+
+		animSel[0].setAttacks(aAttacks);
+
+		enemy = new Captured(0, 1, 0, "CHARIZARD", 0, 0, 0, 0, 10, 0, 10, 0,
+		10, 0, 10, 40, 100, 200, 100, 0);
 
 	}
 
@@ -189,60 +208,26 @@ public class BattleSceneActivity extends Activity {
 			+ this.animSel[animatureIndex].getAttackPP(i) + "/" + a.getMax_pp()
 			+ ")");
 
-			switch (a.getType_Attack())
-			{
-				case 0:
-					this.attacksBtns[i].setBackgroundColor(0xDACDB3);
-				break;
-				case 1:
-					this.attacksBtns[i].setBackgroundColor(0xFF5930);
-				break;
-				case 2:
-					this.attacksBtns[i].setBackgroundColor(0x308AFF);
-				break;
-				case 3:
-					this.attacksBtns[i].setBackgroundColor(0x30FF35);
-				break;
-				case 4:
-					this.attacksBtns[i].setBackgroundColor(0xFFF930);
-				break;
-				case 5:
-					this.attacksBtns[i].setBackgroundColor(0x77FFF9);
-				break;
-				case 6:
-					this.attacksBtns[i].setBackgroundColor(0xDF8A60);
-				break;
-				case 7:
-					this.attacksBtns[i].setBackgroundColor(0xEF58C4);
-				break;
-				case 8:
-					this.attacksBtns[i].setBackgroundColor(0xD59751);
-				break;
-				case 9:
-					this.attacksBtns[i].setBackgroundColor(0xB2A9FA);
-				break;
-				case 10:
-					this.attacksBtns[i].setBackgroundColor(0xAB6292);
-				break;
-				case 11:
-					this.attacksBtns[i].setBackgroundColor(0x6ABF6C);
-				break;
-				case 12:
-					this.attacksBtns[i].setBackgroundColor(0xA19989);
-				break;
-				case 13:
-					this.attacksBtns[i].setBackgroundColor(0x9F9F9F);
-				break;
-				case 14:
-					this.attacksBtns[i].setBackgroundColor(0xBA3343);
-				break;
-				case 15:
-					this.attacksBtns[i].setBackgroundColor(0x6E6E6E);
-				break;
-				case 16:
-					this.attacksBtns[i].setBackgroundColor(0xC2C2C2);
-				break;
-			}
+			/*
+			 * switch (a.getType_Attack()) { case 0:
+			 * this.attacksBtns[i].setBackgroundColor(0xDACDB3); break; case 1:
+			 * this.attacksBtns[i].setBackgroundColor(0xFF5930); break; case 2:
+			 * this.attacksBtns[i].setBackgroundColor(0x308AFF); break; case 3:
+			 * this.attacksBtns[i].setBackgroundColor(0x30FF35); break; case 4:
+			 * this.attacksBtns[i].setBackgroundColor(0xFFF930); break; case 5:
+			 * this.attacksBtns[i].setBackgroundColor(0x77FFF9); break; case 6:
+			 * this.attacksBtns[i].setBackgroundColor(0xDF8A60); break; case 7:
+			 * this.attacksBtns[i].setBackgroundColor(0xEF58C4); break; case 8:
+			 * this.attacksBtns[i].setBackgroundColor(0xD59751); break; case 9:
+			 * this.attacksBtns[i].setBackgroundColor(0xB2A9FA); break; case 10:
+			 * this.attacksBtns[i].setBackgroundColor(0xAB6292); break; case 11:
+			 * this.attacksBtns[i].setBackgroundColor(0x6ABF6C); break; case 12:
+			 * this.attacksBtns[i].setBackgroundColor(0xA19989); break; case 13:
+			 * this.attacksBtns[i].setBackgroundColor(0x9F9F9F); break; case 14:
+			 * this.attacksBtns[i].setBackgroundColor(0xBA3343); break; case 15:
+			 * this.attacksBtns[i].setBackgroundColor(0x6E6E6E); break; case 16:
+			 * this.attacksBtns[i].setBackgroundColor(0xC2C2C2); break; }
+			 */
 		}
 	}
 }
