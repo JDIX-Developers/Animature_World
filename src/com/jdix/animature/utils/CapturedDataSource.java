@@ -57,7 +57,7 @@ public class CapturedDataSource extends DataSource {
 
 	public Captured readCaptured(final int id)
 	{
-		this.db = this.dbHelper.getReadableDatabase();
+		db = dbHelper.getReadableDatabase();
 		final Cursor c = db.query("Captured", columns, "id=" + id, null, null,
 		null, null, null);
 		if (c != null)
@@ -98,12 +98,12 @@ public class CapturedDataSource extends DataSource {
 	private Captured cursorToCaptured(final Cursor cursor)
 	{
 		final Captured captured = new Captured(cursor.getInt(0),
-		cursor.getInt(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4),
-		cursor.getInt(5), cursor.getInt(6), cursor.getInt(7), cursor.getInt(8),
-		cursor.getInt(9), cursor.getInt(10), cursor.getInt(11),
-		cursor.getInt(12), cursor.getInt(13), cursor.getInt(14),
-		cursor.getInt(15), cursor.getInt(16), cursor.getInt(17),
-		cursor.getInt(18), cursor.getInt(19));
+		cursor.getInt(1), cursor.getInt(2), cursor.getString(3),
+		cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getInt(7),
+		cursor.getInt(8), cursor.getInt(9), cursor.getInt(10),
+		cursor.getInt(11), cursor.getInt(12), cursor.getInt(13),
+		cursor.getInt(14), cursor.getInt(15), cursor.getInt(16),
+		cursor.getInt(17), cursor.getInt(18), cursor.getInt(19));
 
 		return captured;
 	}

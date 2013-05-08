@@ -3,6 +3,7 @@ package com.jdix.animature;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -99,6 +100,12 @@ public class NewGameActivity extends Activity {
 				textViewNewGame.setText(s);
 				editTextNewGame.setVisibility(View.INVISIBLE);
 			break;
+			case 11:
+				// We create the attempt
+				final Intent intent = new Intent(NewGameActivity.this,
+				MapActivity.class);
+				// We start the new activity
+				startActivity(intent);
 		}
 
 	}

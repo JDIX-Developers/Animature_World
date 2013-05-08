@@ -51,12 +51,12 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
-		// Map testing
-		startActivity(new Intent(LaunchActivity.this, MapActivity.class));
-		finish();
-
 		db = (new Database(this, "AnimatureWorldDB", null, 1))
 		.getWritableDatabase();
+
+		// Battle testing
+		startActivity(new Intent(LaunchActivity.this, NewGameActivity.class));
+		finish();
 
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);

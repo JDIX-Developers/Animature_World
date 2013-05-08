@@ -133,20 +133,20 @@ public class Attack {
 		final Random r = new Random();
 		final int rand = r.nextInt(100);
 
-		if (rand <= (this.probability + (captDo.getCualities(PRECISSION) - captRec
-		.getCualities(AGILITY))))
+		if (rand <= (this.probability + (captDo.getCualitiesC(PRECISSION) - captRec
+		.getCualitiesC(AGILITY))))
 		{
 			if (this.active == 0)
 			{
-				if (captRec.getCualities(this.ifPass) > 2)
+				if (captRec.getCualitiesC(this.ifPass) > 2)
 				{
-					captRec.setCualities(captRec.getCualities(this.ifPass) - 2,
-					this.ifPass);
+					captRec.setCualitiesC(
+					captRec.getCualitiesC(this.ifPass) - 2, this.ifPass);
 				}
 			}
 			else
 			{
-				captRec.setHealth(captRec.getHealth()
+				captRec.setHealthAct(captRec.getHealthAct()
 				- getDamage(captRec, captDo));
 			}
 		}
@@ -161,20 +161,20 @@ public class Attack {
 		if (cR.isWeak(this.type_Attack))
 		{
 			damage = (this.power / 100)
-			* (cD.getCualities(STRENGHT) / cR.getCualities(DEFENSE))
-			* cD.getCualities(STRENGHT) * 2;
+			* (cD.getCualitiesC(STRENGHT) / cR.getCualitiesC(DEFENSE))
+			* cD.getCualitiesC(STRENGHT) * 2;
 		}
 		else if (cR.isStrong(this.type_Attack))
 		{
 			damage = (this.power / 100)
-			* (cD.getCualities(STRENGHT) / cR.getCualities(DEFENSE))
-			* cD.getCualities(STRENGHT) / 2;
+			* (cD.getCualitiesC(STRENGHT) / cR.getCualitiesC(DEFENSE))
+			* cD.getCualitiesC(STRENGHT) / 2;
 		}
 		else
 		{
 			damage = (this.power / 100)
-			* (cD.getCualities(STRENGHT) / cR.getCualities(DEFENSE))
-			* cD.getCualities(STRENGHT);
+			* (cD.getCualitiesC(STRENGHT) / cR.getCualitiesC(DEFENSE))
+			* cD.getCualitiesC(STRENGHT);
 		}
 
 		return damage;
