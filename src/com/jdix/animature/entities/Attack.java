@@ -45,8 +45,8 @@ public class Attack {
 	}
 
 	public Attack(final int id_Attack, final String name_Attack,
-	final int type_Attack, final int max_pp, final int active,
-	final int ifPass, final int power, final int probability)
+	final int type_Attack, final int max_pp, final int active, final int power,
+	final int probability)
 	{
 		this.id_Attack = id_Attack;
 		this.name_Attack = name_Attack;
