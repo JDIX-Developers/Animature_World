@@ -106,6 +106,7 @@ public class NewGameActivity extends Activity {
 				MapActivity.class);
 				// We start the new activity
 				startActivity(intent);
+				finish();
 		}
 
 	}
