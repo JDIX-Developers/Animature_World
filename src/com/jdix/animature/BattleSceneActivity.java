@@ -43,6 +43,9 @@ public class BattleSceneActivity extends Activity {
 	private final Captured[]	animSel	= new Captured[6];
 	private int					animatureIndex;
 
+	boolean						yourTurn;
+	boolean						animatureFainted;
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -53,9 +56,11 @@ public class BattleSceneActivity extends Activity {
 
 		animatureIndex = 0;
 
+		yourTurn = true;
+
 		// We get a reference to the interface controls
 		// Enemy's Animature Components
-		enemy_animature_name = (TextView) findViewById(R.id.enemy_animature_name);
+		enemy_animature_name = (TextView) findViewById(R.id.enemyAnimatureName);
 		enemy_animature_level = (TextView) findViewById(R.id.enemyAnimatureLevel);
 		enemy_animature_life = (ProgressBar) findViewById(R.id.enemyAnimatureLife);
 		enemy_animature_image = (ImageView) findViewById(R.id.enemyAnimatureImage);
@@ -77,7 +82,10 @@ public class BattleSceneActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-
+				if (yourTurn)
+				{
+					attack(0);
+				}
 			}
 		});
 		attack2 = (Button) findViewById(R.id.btnAtack2);
@@ -88,7 +96,10 @@ public class BattleSceneActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-
+				if (yourTurn)
+				{
+					attack(1);
+				}
 			}
 		});
 		attack3 = (Button) findViewById(R.id.btnAtack3);
@@ -99,7 +110,10 @@ public class BattleSceneActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-
+				if (yourTurn)
+				{
+					attack(2);
+				}
 			}
 		});
 		attack4 = (Button) findViewById(R.id.btnAtack4);
@@ -110,7 +124,10 @@ public class BattleSceneActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-
+				if (yourTurn)
+				{
+					attack(3);
+				}
 			}
 		});
 
@@ -121,7 +138,10 @@ public class BattleSceneActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				finish();
+				if (yourTurn)
+				{
+					finish();
+				}
 			}
 		});
 
@@ -136,6 +156,47 @@ public class BattleSceneActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.battle_scene, menu);
 		return true;
+	}
+
+	private void attack(final int index)
+	{
+		while ( ! animatureFainted)
+		{
+			if (animSel[animatureIndex].getCualitiesC(Attack.SPEED) >= enemy
+			.getCualitiesC(Attack.SPEED))
+			{
+				yourTurn = true;
+			}
+
+			if (yourTurn)
+			{
+				if (animSel[animatureIndex].getAttackPP(index) > 0)
+				{
+					enemy = animSel[animatureIndex].getAttack(index)
+					.getCapturedDamage(enemy, animSel[animatureIndex]);
+					animSel[animatureIndex].reduceAttackPP(index);
+					enemy_animature_life.setProgress(enemy.getHealthAct());
+				}
+			}
+			// Enemy battle example
+			int attack = randomAttack();
+			while ( ! yourTurn)
+			{
+				if (enemy.getAttackPP(attack) > 0)
+				{
+					animSel[animatureIndex] = enemy.getAttack(attack)
+					.getCapturedDamage(animSel[animatureIndex], enemy);
+					your_animature_life.setProgress(animSel[animatureIndex]
+					.getHealthAct());
+					enemy.reduceAttackPP(attack);
+					yourTurn = true;
+				}
+				else
+				{
+					attack = randomAttack();
+				}
+			}
+		}
 	}
 
 	private void loadEnemyAnimature()
