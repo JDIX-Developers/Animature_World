@@ -2,6 +2,7 @@ package com.jdix.animature.map;
 
 import java.io.IOException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,8 +15,6 @@ import android.view.View.OnTouchListener;
 
 import com.jdix.animature.R;
 import com.jdix.animature.entities.Player;
-import com.jdix.animature.exceptions.CompressionException;
-import com.jdix.animature.exceptions.SpriteException;
 
 /**
  * @author Razican (Iban Eguia)
@@ -28,15 +27,17 @@ public class MapView extends View implements OnTouchListener {
 	private Context		context;
 	private int			control;
 	private int			map0x, map0y;
+	private MoveThread	move;
 
 	private static int	NONE	= 0;
 	private static int	UP		= 1;
 	private static int	DOWN	= 2;
-	private static int	LEFT	= 3;
-	private static int	RIGHT	= 4;
-	private static int	A		= 5;
-	private static int	B		= 6;
+	private static int	LEFT	= 4;
+	private static int	RIGHT	= 8;
+	private static int	A		= 16;
+	private static int	B		= 32;
 
+	private int[]		posCross;
 	private int[]		posA;
 	private int[]		posB;
 	private int[]		posUP;
@@ -44,7 +45,7 @@ public class MapView extends View implements OnTouchListener {
 	private int[]		posLEFT;
 	private int[]		posRIGHT;
 
-	Player				player;
+	private Player		player;
 
 	/**
 	 * @param context Context of the application
@@ -68,9 +69,6 @@ public class MapView extends View implements OnTouchListener {
 		this.context = context;
 		this.control = NONE;
 
-		this.player = new Player("TestName", Player.BOY, "TestEnemy", 0, 0, 0,
-		0, null, 3, 3, Player.SOUTH, 0, 0, 0, null, null);
-
 		Square.setSprite(new Sprite(context, sprite, sprbmp));
 		Map.setContext(context);
 		try
@@ -82,7 +80,69 @@ public class MapView extends View implements OnTouchListener {
 			System.err.println(e.getMessage());
 		}
 
+		this.player = new Player("TestName", Player.BOY, "TestEnemy", 0, 0, 0,
+		0, null, 3, 3, Player.SOUTH, 0, 0, 0, BitmapFactory.decodeResource(
+		context.getResources(), R.drawable.player), null);
+
+		this.move = new MoveThread();
+
 		setOnTouchListener(this);
+	}
+
+	private void calculateControlPositions(final Bitmap cross,
+	final Bitmap ctrlA, final Bitmap ctrlB, final Canvas canvas)
+	{
+		// Cross
+		final int cx = canvas.getWidth() / 24;
+		final int cy = canvas.getHeight() / 2;
+
+		posCross = new int[2];
+		posCross[0] = cx;
+		posCross[1] = cy;
+
+		posUP = new int[4];
+		posUP[0] = cx + cross.getWidth() / 3;
+		posUP[1] = cy;
+		posUP[2] = cx + 2 * cross.getWidth() / 3;
+		posUP[3] = cy + cross.getHeight() / 3;
+
+		posDOWN = new int[4];
+		posDOWN[0] = cx + cross.getWidth() / 3;
+		posDOWN[1] = cy + 2 * cross.getHeight() / 3;
+		posDOWN[2] = cx + 2 * cross.getWidth() / 3;
+		posDOWN[3] = cy + cross.getHeight();
+
+		posLEFT = new int[4];
+		posLEFT[0] = cx;
+		posLEFT[1] = cy + cross.getHeight() / 3;
+		posLEFT[2] = cx + cross.getWidth() / 3;
+		posLEFT[3] = cy + 2 * cross.getHeight() / 3;
+
+		posRIGHT = new int[4];
+		posRIGHT[0] = cx + 2 * cross.getWidth() / 3;
+		posRIGHT[1] = cy + cross.getHeight() / 3;
+		posRIGHT[2] = cx + cross.getWidth();
+		posRIGHT[3] = cy + 2 * cross.getHeight() / 3;
+
+		// A
+		final int ax = 17 * canvas.getWidth() / 20;
+		final int ay = canvas.getHeight() / 3;
+
+		posA = new int[4];
+		posA[0] = ax;
+		posA[1] = ay;
+		posA[2] = ax + ctrlA.getWidth();
+		posA[3] = ay + ctrlA.getHeight();
+
+		// B
+		final int bx = 15 * canvas.getWidth() / 20;
+		final int by = canvas.getHeight() / 2;
+
+		posB = new int[4];
+		posB[0] = bx;
+		posB[1] = by;
+		posB[2] = bx + ctrlB.getWidth();
+		posB[3] = by + ctrlB.getHeight();
 	}
 
 	@Override
@@ -109,8 +169,8 @@ public class MapView extends View implements OnTouchListener {
 		map0y = cy;
 
 		canvas.drawBitmap(mapb, cx, cy, null);
-		drawControls(canvas);
 		drawCharacter(canvas);
+		drawControls(canvas);
 	}
 
 	private void drawControls(final Canvas canvas)
@@ -122,192 +182,357 @@ public class MapView extends View implements OnTouchListener {
 		final Bitmap ctrlB = BitmapFactory.decodeResource(
 		context.getResources(), R.drawable.ctrlb);
 
-		// Cross
-		final int cx = canvas.getWidth() / 24;
-		final int cy = canvas.getHeight() / 2;
+		if (posUP == null)
+		{
+			calculateControlPositions(cross, ctrlA, ctrlB, canvas);
+		}
 
-		posUP = new int[4];
-		posUP[0] = cx + cross.getWidth() / 3;
-		posUP[1] = cy;
-		posUP[2] = cx + 2 * cross.getWidth() / 3;
-		posUP[3] = cy + cross.getHeight() / 3;
-
-		posDOWN = new int[4];
-		posDOWN[0] = cx + cross.getWidth() / 3;
-		posDOWN[1] = cy + 2 * cross.getHeight() / 3;
-		posDOWN[2] = cx + 2 * cross.getWidth() / 3;
-		posDOWN[3] = cy + cross.getHeight();
-
-		posLEFT = new int[4];
-		posLEFT[0] = cx;
-		posLEFT[1] = cy + cross.getHeight() / 3;
-		posLEFT[2] = cx + cross.getWidth() / 3;
-		posLEFT[3] = cy + 2 * cross.getHeight() / 3;
-
-		posRIGHT = new int[4];
-		posRIGHT[0] = cx + 2 * cross.getWidth() / 3;
-		posRIGHT[1] = cy + cross.getHeight() / 3;
-		posRIGHT[2] = cx + cross.getWidth();
-		posRIGHT[3] = cy + 2 * cross.getHeight() / 3;
-
-		canvas.drawBitmap(cross, cx, cy, null);
-
-		// A
-		final int ax = 17 * canvas.getWidth() / 20;
-		final int ay = canvas.getHeight() / 3;
-
-		posA = new int[4];
-		posA[0] = ax;
-		posA[1] = ay;
-		posA[2] = ax + ctrlA.getWidth();
-		posA[3] = ay + ctrlA.getHeight();
-
-		canvas.drawBitmap(ctrlA, ax, ay, null);
-
-		// B
-		final int bx = 15 * canvas.getWidth() / 20;
-		final int by = canvas.getHeight() / 2;
-
-		posB = new int[4];
-		posB[0] = bx;
-		posB[1] = by;
-		posB[2] = bx + ctrlB.getWidth();
-		posB[3] = by + ctrlB.getHeight();
-
-		canvas.drawBitmap(ctrlB, bx, by, null);
+		canvas.drawBitmap(cross, posCross[0], posCross[1], null);
+		canvas.drawBitmap(ctrlA, posA[0], posA[1], null);
+		canvas.drawBitmap(ctrlB, posB[0], posB[1], null);
 	}
 
 	private void drawCharacter(final Canvas canvas)
 	{
-		Bitmap plyrbmpb = null, plyrbmpt = null;
-		try
-		{
-			plyrbmpt = Square.load((byte) 1, (byte) 9).getBitmap();
-			plyrbmpb = Square.load((byte) 0, (byte) 9).getBitmap();
-		}
-		catch (final SpriteException e)
-		{
-			e.printStackTrace();
-		}
-		catch (final CompressionException e)
-		{
-			e.printStackTrace();
-		}
-		canvas.drawBitmap(plyrbmpb, map0x + player.getCoord_X()
-		* Square.getSprite().getSize(), map0y + player.getCoord_Y()
-		* Square.getSprite().getSize(), null);
-		canvas.drawBitmap(plyrbmpt, map0x + player.getCoord_X()
-		* Square.getSprite().getSize(), map0y + (player.getCoord_Y() - 1)
-		* Square.getSprite().getSize(), null);
-		// TODO Get bitmap from Player
+		canvas.drawBitmap(move.getBitmap(), map0x + move.getX(),
+		map0y + move.getY() - Square.getSprite().getSize() / 2, null);
 	}
 
 	@Override
 	public boolean onTouch(final View v, final MotionEvent event)
 	{
-		// TODO varios controles
 		final Vibrator vibrator = (Vibrator) context
 		.getSystemService(Context.VIBRATOR_SERVICE);
+
+		final int control = getControl(event);
 
 		if (event.getAction() == MotionEvent.ACTION_DOWN
 		|| event.getAction() == MotionEvent.ACTION_MOVE)
 		{
-			final int control = getControl((int) event.getX(),
-			(int) event.getY());
-			if (control == UP)
+			if ((control & UP) == UP
+			&& (control & (DOWN | LEFT | RIGHT)) == NONE)
 			{
-				if (this.control != UP)
+				if ((this.control & UP) == NONE)
 				{
 					this.control = UP;
 					vibrator.vibrate(50);
+					move.setOnFinishedListener(new Runnable()
+					{
+
+						@Override
+						public void run()
+						{
+							(move = new MoveThread()).start();
+						}
+					});
 				}
 			}
-			else if (control == DOWN)
+			else if ((control & DOWN) == DOWN
+			&& (control & (UP | LEFT | RIGHT)) == NONE)
 			{
-				if (this.control != DOWN)
+				if ((this.control & DOWN) == NONE)
 				{
 					this.control = DOWN;
 					vibrator.vibrate(50);
+					move.setOnFinishedListener(new Runnable()
+					{
+
+						@Override
+						public void run()
+						{
+							(move = new MoveThread()).start();
+						}
+					});
 				}
 			}
-			else if (control == LEFT)
+			else if ((control & LEFT) == LEFT
+			&& (control & (DOWN | UP | RIGHT)) == NONE)
 			{
-				if (this.control != LEFT)
+				if ((this.control & LEFT) == NONE)
 				{
 					this.control = LEFT;
 					vibrator.vibrate(50);
+					move.setOnFinishedListener(new Runnable()
+					{
+
+						@Override
+						public void run()
+						{
+							(move = new MoveThread()).start();
+						}
+					});
 				}
 			}
-			else if (control == RIGHT)
+			else if ((control & RIGHT) == RIGHT
+			&& (control & (DOWN | LEFT | UP)) == NONE)
 			{
-				if (this.control != RIGHT)
+				if ((this.control & RIGHT) == NONE)
 				{
 					this.control = RIGHT;
 					vibrator.vibrate(50);
+					move.setOnFinishedListener(new Runnable()
+					{
+
+						@Override
+						public void run()
+						{
+							(move = new MoveThread()).start();
+						}
+					});
 				}
 			}
-			else if (control == A)
+
+			if ((control & A) == A)
 			{
-				if (this.control != A)
+				if ((this.control & A) == NONE)
 				{
-					this.control = A;
+					this.control = control;
 					vibrator.vibrate(50);
 				}
 			}
-			else if (control == B)
+
+			if ((control & B) == B)
 			{
-				if (this.control != B)
+				if ((this.control & B) == NONE)
 				{
-					this.control = B;
+					this.control = control;
 					vibrator.vibrate(50);
 				}
 			}
 		}
 
-		if (event.getAction() == MotionEvent.ACTION_UP)
+		if (event.getAction() == MotionEvent.ACTION_UP || control == NONE
+		|| control != this.control)
 		{
 			this.control = NONE;
+			move.stay();
+			move.setOnFinishedListener(null);
 		}
-		// TODO Controls
-
 		return true;
 	}
 
-	private int getControl(final int x, final int y)
+	private int getControl(final MotionEvent event)
 	{
-		if (x >= posUP[0] && y >= posUP[1] && x <= posUP[2] && y <= posUP[3])
+		int control = NONE;
+
+		for (int i = 0; i < event.getPointerCount(); i++)
 		{
-			return UP;
+			final int x = (int) event.getX(i);
+			final int y = (int) event.getY(i);
+
+			if (x >= posUP[0] && y >= posUP[1] && x <= posUP[2]
+			&& y <= posUP[3])
+			{
+				control |= UP;
+			}
+
+			if (x >= posDOWN[0] && y >= posDOWN[1] && x <= posDOWN[2]
+			&& y <= posDOWN[3])
+			{
+				control |= DOWN;
+			}
+
+			if (x >= posLEFT[0] && y >= posLEFT[1] && x <= posLEFT[2]
+			&& y <= posLEFT[3])
+			{
+				control |= LEFT;
+			}
+
+			if (x >= posRIGHT[0] && y >= posRIGHT[1] && x <= posRIGHT[2]
+			&& y <= posRIGHT[3])
+			{
+				control |= RIGHT;
+			}
+
+			if (x >= posA[0] && y >= posA[1] && x <= posA[2] && y <= posA[3])
+			{
+				control |= A;
+			}
+
+			if (x >= posB[0] && y >= posB[1] && x <= posB[2] && y <= posB[3])
+			{
+				control |= B;
+			}
 		}
 
-		if (x >= posDOWN[0] && y >= posDOWN[1] && x <= posDOWN[2]
-		&& y <= posDOWN[3])
+		return control;
+	}
+
+	private class MoveThread extends Thread {
+
+		private boolean		stopped;
+		private boolean		finished;
+		private int			x, y;
+		private Bitmap		bitmap;
+		private Runnable	onFinishedListener;
+
+		public MoveThread()
 		{
-			return DOWN;
+			super();
+			stopped = finished = true;
+			x = y = 0;
+			bitmap = player.getBitmap(player.getOrientation());
 		}
 
-		if (x >= posLEFT[0] && y >= posLEFT[1] && x <= posLEFT[2]
-		&& y <= posLEFT[3])
+		@Override
+		public void run()
 		{
-			return LEFT;
+			stopped = finished = false;
+			final int control = MapView.this.control;
+
+			while ( ! stopped)
+			{
+				if ((control & UP) != NONE)
+				{
+					move(Player.NORTH, Player.NORTHLEFT, Player.NORTHRIGHT, 0,
+					- 1, false);
+				}
+				else if ((control & DOWN) != NONE)
+				{
+					move(Player.SOUTH, Player.SOUTHLEFT, Player.SOUTHRIGHT, 0,
+					1, false);
+				}
+				else if ((control & LEFT) != NONE)
+				{
+					move(Player.WEST, Player.WESTLEFT, Player.WESTRIGHT, - 1,
+					0, false);
+				}
+				else if ((control & RIGHT) != NONE)
+				{
+					move(Player.EAST, Player.EASTLEFT, Player.EASTRIGHT, 1, 0,
+					false);
+				}
+			}
+			if ( ! finished)
+			{
+				finish();
+			}
 		}
 
-		if (x >= posRIGHT[0] && y >= posRIGHT[1] && x <= posRIGHT[2]
-		&& y <= posRIGHT[3])
+		private void move(final int direction, final int left, final int right,
+		final int x, final int y, final boolean trainers)
 		{
-			return RIGHT;
+
+			if (player.getOrientation() != direction)
+			{
+				bitmap = player.getBitmap(direction);
+				player.setOrientation(direction);
+				((Activity) context).runOnUiThread(new Runnable()
+				{
+
+					@Override
+					public void run()
+					{
+						invalidate();
+					}
+				});
+				try
+				{
+					Thread.sleep(200);
+				}
+				catch (final InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				for (int i = 0; i < Square.getSprite().getSize(); i++)
+				{
+					if ( ! trainers)
+					{
+						if (i < Square.getSprite().getSize() / 2)
+						{
+							bitmap = player.getBitmap(left);
+						}
+						else
+						{
+							bitmap = player.getBitmap(right);
+						}
+					}
+					else
+					{
+						if (i < Square.getSprite().getSize() / 4
+						|| (i > Square.getSprite().getSize() / 2 && i < 3 * Square
+						.getSprite().getSize() / 4))
+						{
+							bitmap = player.getBitmap(left);
+						}
+						else
+						{
+							bitmap = player.getBitmap(right);
+						}
+					}
+					this.x += x;
+					this.y += y;
+
+					((Activity) context).runOnUiThread(new Runnable()
+					{
+
+						@Override
+						public void run()
+						{
+							invalidate();
+						}
+					});
+
+					try
+					{
+						Thread.sleep(trainers ? 5 : 10);
+					}
+					catch (final InterruptedException e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+			bitmap = player.getBitmap(direction);
+			player.setOrientation(direction);
 		}
 
-		if (x >= posA[0] && y >= posA[1] && x <= posA[2] && y <= posA[3])
+		private void finish()
 		{
-			return A;
+			player.setCoord_X(player.getCoord_X()
+			+ Math.round((float) x / Square.getSprite().getSize()));
+			player.setCoord_Y(player.getCoord_Y()
+			+ Math.round((float) y / Square.getSprite().getSize()));
+			x = 0;
+			y = 0;
+			finished = true;
+
+			if (this.onFinishedListener != null)
+			{
+				this.onFinishedListener.run();
+			}
 		}
 
-		if (x >= posB[0] && y >= posB[1] && x <= posB[2] && y <= posB[3])
+		public void stay()
 		{
-			return B;
+			stopped = true;
 		}
 
-		return NONE;
+		public Bitmap getBitmap()
+		{
+			return bitmap;
+		}
+
+		public int getX()
+		{
+			return player.getCoord_X() * Square.getSprite().getSize() + x;
+		}
+
+		public int getY()
+		{
+			return player.getCoord_Y() * Square.getSprite().getSize() + y;
+		}
+
+		public void setOnFinishedListener(final Runnable r)
+		{
+			this.onFinishedListener = r;
+			if (finished && r != null)
+			{
+				r.run();
+			}
+		}
 	}
 }

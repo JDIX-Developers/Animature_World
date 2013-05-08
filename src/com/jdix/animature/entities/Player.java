@@ -2,7 +2,9 @@ package com.jdix.animature.entities;
 
 import java.util.Vector;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+
+import com.jdix.animature.map.Square;
 
 public class Player {
 
@@ -12,13 +14,22 @@ public class Player {
 	 * en que momento del juego estamos.
 	 */
 
-	public static final int	NORTH	= 0;
-	public static final int	EAST	= 1;
-	public static final int	SOUTH	= 2;
-	public static final int	WEST	= 3;
+	public static final int	NORTH		= 0;
+	public static final int	EAST		= 1;
+	public static final int	SOUTH		= 2;
+	public static final int	WEST		= 3;
 
-	public static final int	BOY		= 0;
-	public static final int	GIRL	= 1;
+	public static final int	NORTHLEFT	= 4;
+	public static final int	NORTHRIGHT	= 5;
+	public static final int	EASTLEFT	= 6;
+	public static final int	EASTRIGHT	= 7;
+	public static final int	SOUTHLEFT	= 8;
+	public static final int	SOUTHRIGHT	= 9;
+	public static final int	WESTLEFT	= 10;
+	public static final int	WESTRIGHT	= 11;
+
+	public static final int	BOY			= 0;
+	public static final int	GIRL		= 1;
 
 	private int				id_Player;
 	private String			name;
@@ -35,19 +46,14 @@ public class Player {
 	private int				last_Healing;
 	private int				medals;
 	private int				money;
-	private Drawable[]		imgPlayer;
+	private final Bitmap	bitmap;
 	private Vector<Item>	playerItems;
-
-	public Player()
-	{
-
-	}
 
 	public Player(final String name, final int sex, final String neighborName,
 	final int stage, final int started, final int last_Played, final int steps,
 	final Animature[] activeAnimatures, final int coord_X, final int coord_Y,
 	final int orientation, final int last_Healing, final int medals,
-	final int money, final Drawable[] imgPlayer, final Vector<Item> playerItems)
+	final int money, final Bitmap bitmap, final Vector<Item> playerItems)
 	{
 		this.name = name;
 		this.sex = sex;
@@ -63,8 +69,9 @@ public class Player {
 		this.last_Healing = last_Healing;
 		this.medals = medals;
 		this.money = money;
-		this.imgPlayer = imgPlayer;
 		this.playerItems = playerItems;
+
+		this.bitmap = bitmap;
 	}
 
 	public int getId_Player()
@@ -217,19 +224,17 @@ public class Player {
 		this.money = money;
 	}
 
-	public Drawable[] getImgPlayer()
+	/**
+	 * @param position - The position of the player
+	 * @return The current bitmap of the player.
+	 */
+	public Bitmap getBitmap(final int position)
 	{
-		return imgPlayer;
-	}
-
-	public void setImgPlayer(final Drawable[] imgPlayer)
-	{
-		this.imgPlayer = imgPlayer;
-	}
-
-	public Vector<Item> getPlayerItems()
-	{
-		return playerItems;
+		return Bitmap.createBitmap(bitmap, position
+		* Square.getSprite().getSize(),
+		(int) Math.round(sex * 1.5 * position * Square.getSprite().getSize()),
+		Square.getSprite().getSize(),
+		(int) Math.round(1.5 * Square.getSprite().getSize()));
 	}
 
 	public void setPlayerItems(final Vector<Item> playerItems)
