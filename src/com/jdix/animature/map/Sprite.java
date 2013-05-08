@@ -46,8 +46,6 @@ public class Sprite {
 
 		width = (byte) (this.bitmap.getWidth() / size);
 		height = (byte) (this.bitmap.getHeight() / size);
-
-		System.out.println(this.bitmap.getWidth());
 	}
 
 	/**
