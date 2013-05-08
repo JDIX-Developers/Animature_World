@@ -17,9 +17,12 @@ public class Player {
 	public static final int	SOUTH	= 2;
 	public static final int	WEST	= 3;
 
+	public static final int	BOY		= 0;
+	public static final int	GIRL	= 1;
+
 	private int				id_Player;
 	private String			name;
-	private int				sex;				// 0-Boy, 1-Girl
+	private int				sex;
 	private String			neighborName;
 	private int				stage;
 	private int				started;
@@ -40,12 +43,11 @@ public class Player {
 
 	}
 
-	public Player(final int id_Animature, final String name, final int sex,
-	final String neighborName, final int stage, final int started,
-	final int last_Played, final int steps, final Animature[] activeAnimatures,
-	final int coord_X, final int coord_Y, final int orientation,
-	final int last_Healing, final int medals, final int money,
-	final Drawable[] imgPlayer, final Vector<Item> playerItems)
+	public Player(final String name, final int sex, final String neighborName,
+	final int stage, final int started, final int last_Played, final int steps,
+	final Animature[] activeAnimatures, final int coord_X, final int coord_Y,
+	final int orientation, final int last_Healing, final int medals,
+	final int money, final Drawable[] imgPlayer, final Vector<Item> playerItems)
 	{
 		this.name = name;
 		this.sex = sex;

@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 
 import com.jdix.animature.R;
+import com.jdix.animature.entities.Player;
+import com.jdix.animature.exceptions.CompressionException;
+import com.jdix.animature.exceptions.SpriteException;
 
 /**
  * @author Razican (Iban Eguia)
@@ -23,6 +26,8 @@ public class MapView extends View implements OnTouchListener {
 	private int			mWidth;
 	private int			mHeight;
 	private Context		context;
+	private int			control;
+	private int			map0x, map0y;
 
 	private static int	NONE	= 0;
 	private static int	UP		= 1;
@@ -32,14 +37,14 @@ public class MapView extends View implements OnTouchListener {
 	private static int	A		= 5;
 	private static int	B		= 6;
 
-	private int			control;
-
 	private int[]		posA;
 	private int[]		posB;
 	private int[]		posUP;
 	private int[]		posDOWN;
 	private int[]		posLEFT;
 	private int[]		posRIGHT;
+
+	Player				player;
 
 	/**
 	 * @param context Context of the application
@@ -62,6 +67,9 @@ public class MapView extends View implements OnTouchListener {
 		this(context);
 		this.context = context;
 		this.control = NONE;
+
+		this.player = new Player("TestName", Player.BOY, "TestEnemy", 0, 0, 0,
+		0, null, 3, 3, Player.SOUTH, 0, 0, 0, null, null);
 
 		Square.setSprite(new Sprite(context, sprite, sprbmp));
 		Map.setContext(context);
@@ -97,8 +105,12 @@ public class MapView extends View implements OnTouchListener {
 		final int cx = (mWidth - mapb.getWidth()) / 2;
 		final int cy = (mHeight - mapb.getHeight()) / 2;
 
+		map0x = cx;
+		map0y = cy;
+
 		canvas.drawBitmap(mapb, cx, cy, null);
 		drawControls(canvas);
+		drawCharacter(canvas);
 	}
 
 	private void drawControls(final Canvas canvas)
@@ -144,18 +156,56 @@ public class MapView extends View implements OnTouchListener {
 		final int ax = 17 * canvas.getWidth() / 20;
 		final int ay = canvas.getHeight() / 3;
 
+		posA = new int[4];
+		posA[0] = ax;
+		posA[1] = ay;
+		posA[2] = ax + ctrlA.getWidth();
+		posA[3] = ay + ctrlA.getHeight();
+
 		canvas.drawBitmap(ctrlA, ax, ay, null);
 
 		// B
 		final int bx = 15 * canvas.getWidth() / 20;
 		final int by = canvas.getHeight() / 2;
 
+		posB = new int[4];
+		posB[0] = bx;
+		posB[1] = by;
+		posB[2] = bx + ctrlB.getWidth();
+		posB[3] = by + ctrlB.getHeight();
+
 		canvas.drawBitmap(ctrlB, bx, by, null);
+	}
+
+	private void drawCharacter(final Canvas canvas)
+	{
+		Bitmap plyrbmpb = null, plyrbmpt = null;
+		try
+		{
+			plyrbmpt = Square.load((byte) 1, (byte) 9).getBitmap();
+			plyrbmpb = Square.load((byte) 0, (byte) 9).getBitmap();
+		}
+		catch (final SpriteException e)
+		{
+			e.printStackTrace();
+		}
+		catch (final CompressionException e)
+		{
+			e.printStackTrace();
+		}
+		canvas.drawBitmap(plyrbmpb, map0x + player.getCoord_X()
+		* Square.getSprite().getSize(), map0y + player.getCoord_Y()
+		* Square.getSprite().getSize(), null);
+		canvas.drawBitmap(plyrbmpt, map0x + player.getCoord_X()
+		* Square.getSprite().getSize(), map0y + (player.getCoord_Y() - 1)
+		* Square.getSprite().getSize(), null);
+		// TODO Get bitmap from Player
 	}
 
 	@Override
 	public boolean onTouch(final View v, final MotionEvent event)
 	{
+		// TODO varios controles
 		final Vibrator vibrator = (Vibrator) context
 		.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -196,6 +246,22 @@ public class MapView extends View implements OnTouchListener {
 					vibrator.vibrate(50);
 				}
 			}
+			else if (control == A)
+			{
+				if (this.control != A)
+				{
+					this.control = A;
+					vibrator.vibrate(50);
+				}
+			}
+			else if (control == B)
+			{
+				if (this.control != B)
+				{
+					this.control = B;
+					vibrator.vibrate(50);
+				}
+			}
 		}
 
 		if (event.getAction() == MotionEvent.ACTION_UP)
@@ -232,6 +298,16 @@ public class MapView extends View implements OnTouchListener {
 			return RIGHT;
 		}
 
-		return 0;
+		if (x >= posA[0] && y >= posA[1] && x <= posA[2] && y <= posA[3])
+		{
+			return A;
+		}
+
+		if (x >= posB[0] && y >= posB[1] && x <= posB[2] && y <= posB[3])
+		{
+			return B;
+		}
+
+		return NONE;
 	}
 }
