@@ -2,64 +2,54 @@ package com.jdix.animature.entities;
 
 import android.content.Context;
 
-import com.jdix.animature.utils.AnimatureDataSource;
-import com.jdix.animature.utils.AttackDataSource;
-
 public class Captured extends Animature {
 
-	public static final int				NORMAL		= 0;
-	public static final int				PARALYZED	= 1;
-	public static final int				BURNED		= 2;
-	public static final int				POISONED	= 3;
-	public static final int				SLEEPED		= 4;
-	public static final int				FROZEN		= 5;
+	public static final int	NORMAL		= 0;
+	public static final int	PARALYZED	= 1;
+	public static final int	BURNED		= 2;
+	public static final int	POISONED	= 3;
+	public static final int	SLEEPED		= 4;
+	public static final int	FROZEN		= 5;
 
-	private int							idAnimatureCapt;
-	private int							idAnimature;
-	private int							save;
-	private int							nickname;
-	private int							sex;
-	private int							status;
-	private int							capturedTime;
-	private Attack[]					attacks		= new Attack[4];
-	private int[]						attacksPP	= new int[4];
-	private int							level;
-	private int							current_exp;
-	private int							experience;
-	private int							healthMax	= 0;
-	private int							healthAct;
-	private int							box;
-	private final int[]					cualitiesC	= new int[5];
-	private Context						context;
-	private final AttackDataSource		ads			= new AttackDataSource(
-													context
-													.getApplicationContext(),
-													"AnimatureWorldDB", null, 1);
-	private final AnimatureDataSource	ands		= new AnimatureDataSource(
-													context
-													.getApplicationContext(),
-													"AnimatureWorldDB", null, 1);
+	private int				idAnimatureCapt;
+	private int				idAnimature;
+	private int				save;
+	private String			nickname;
+	private int				sex;
+	private int				status;
+	private int				capturedTime;
+	private Attack[]		attacks		= new Attack[4];
+	private final int[]		attackN		= new int[4];
+	private int[]			attacksPP	= new int[4];
+	private int				level;
+	private int				current_exp;
+	private int				experience;
+	private int				healthMax	= 0;
+	private int				healthAct;
+	private int				box;
+	private final int[]		cualitiesC	= new int[5];
+	private Context			context;
 
-	public static final int				NORMALT		= 0;
-	public static final int				FIRE		= 1;
-	public static final int				WATER		= 2;
-	public static final int				GRASS		= 3;
-	public static final int				ELECTRIC	= 4;
-	public static final int				ICE			= 5;
-	public static final int				FIGHTING	= 6;
-	public static final int				POISON		= 7;
-	public static final int				GROUND		= 8;
-	public static final int				FLYING		= 9;
-	public static final int				PSYCHIC		= 10;
-	public static final int				BUG			= 11;
-	public static final int				ROCK		= 12;
-	public static final int				GHOST		= 13;
-	public static final int				DRAGON		= 14;
-	public static final int				DARK		= 15;
-	public static final int				STEEL		= 16;
+	public static final int	NORMALT		= 0;
+	public static final int	FIRE		= 1;
+	public static final int	WATER		= 2;
+	public static final int	GRASS		= 3;
+	public static final int	ELECTRIC	= 4;
+	public static final int	ICE			= 5;
+	public static final int	FIGHTING	= 6;
+	public static final int	POISON		= 7;
+	public static final int	GROUND		= 8;
+	public static final int	FLYING		= 9;
+	public static final int	PSYCHIC		= 10;
+	public static final int	BUG			= 11;
+	public static final int	ROCK		= 12;
+	public static final int	GHOST		= 13;
+	public static final int	DRAGON		= 14;
+	public static final int	DARK		= 15;
+	public static final int	STEEL		= 16;
 
-	private final boolean				isWeak[]	= new boolean[17];
-	private final boolean				isStrong[]	= new boolean[17];
+	private final boolean	isWeak[]	= new boolean[17];
+	private final boolean	isStrong[]	= new boolean[17];
 
 	public Captured()
 	{
@@ -68,16 +58,13 @@ public class Captured extends Animature {
 	}
 
 	public Captured(final int idAnimatureCapt, final int idAnimature,
-	final int save, final int nickname, final int sex, final int status,
+	final int save, final String nickname, final int sex, final int status,
 	final int capturedTime, final int a1, final int a1pp, final int a2,
 	final int a2pp, final int a3, final int a3pp, final int a4, final int a4pp,
 	final int level, final int current_exp, final int experience,
 	final int healthAct, final int box)
 	{
 		super();
-
-		ads.open();
-		ands.open();
 
 		this.idAnimatureCapt = idAnimatureCapt;
 		this.idAnimature = idAnimature;
@@ -86,10 +73,10 @@ public class Captured extends Animature {
 		this.sex = sex;
 		this.status = status;
 		this.capturedTime = capturedTime;
-		this.attacks[0] = ads.readAttack(a1);
-		this.attacks[1] = ads.readAttack(a2);
-		this.attacks[2] = ads.readAttack(a3);
-		this.attacks[3] = ads.readAttack(a4);
+		this.attackN[0] = a1;
+		this.attackN[1] = a2;
+		this.attackN[2] = a3;
+		this.attackN[3] = a4;
 		this.attacksPP[0] = a1pp;
 		this.attacksPP[1] = a2pp;
 		this.attacksPP[2] = a3pp;
@@ -97,47 +84,6 @@ public class Captured extends Animature {
 		this.level = level;
 		this.current_exp = current_exp;
 		this.experience = experience;
-
-		this.cualitiesC[SPEED] = ands.readAnimatureColInt(this.idAnimature, 6);
-		this.cualitiesC[DEFENSE] = ands
-		.readAnimatureColInt(this.idAnimature, 7);
-		this.cualitiesC[AGILITY] = ands
-		.readAnimatureColInt(this.idAnimature, 8);
-		this.cualitiesC[STRENGHT] = ands.readAnimatureColInt(this.idAnimature,
-		9);
-		this.cualitiesC[PRECISSION] = ands.readAnimatureColInt(
-		this.idAnimature, 10);
-
-		for (int i = 1; i <= this.level; i++)
-		{
-			this.cualitiesC[SPEED] += (this.cualities[SPEED] / 3);
-		}
-		for (int i = 1; i <= this.level; i++)
-		{
-			this.cualitiesC[DEFENSE] += (this.cualities[DEFENSE] / 3);
-		}
-		for (int i = 1; i <= this.level; i++)
-		{
-			this.cualitiesC[AGILITY] += (this.cualities[AGILITY] / 3);
-		}
-		for (int i = 1; i <= this.level; i++)
-		{
-			this.cualitiesC[STRENGHT] += (this.cualities[STRENGHT] / 3);
-		}
-		for (int i = 1; i <= this.level; i++)
-		{
-			this.cualitiesC[PRECISSION] += (this.cualities[PRECISSION] / 3);
-		}
-
-		this.healthMax = ands.readAnimatureColInt(this.idAnimature, 11);
-		if (this.level > 1)
-		{
-			for (int i = 2; i <= this.level; i++)
-			{
-				this.healthMax += (this.healthMax / 3);
-			}
-		}
-
 		this.healthAct = healthAct;
 		this.box = box;
 
@@ -187,9 +133,6 @@ public class Captured extends Animature {
 			case 15:
 			case 16:
 		}
-
-		ads.close();
-		ands.close();
 	}
 
 	public int getIdAnimatureCapt()
@@ -222,12 +165,12 @@ public class Captured extends Animature {
 		this.save = save;
 	}
 
-	public int getNickname()
+	public String getNickname()
 	{
 		return nickname;
 	}
 
-	public void setNickname(final int nickname)
+	public void setNickname(final String nickname)
 	{
 		this.nickname = nickname;
 	}
@@ -272,9 +215,19 @@ public class Captured extends Animature {
 		this.attacks = attacks;
 	}
 
+	public int getAttackN(final int pos)
+	{
+		return this.attackN[pos];
+	}
+
 	public Attack getAttack(final int pos)
 	{
 		return attacks[pos];
+	}
+
+	public void setAttack(final int pos, final Attack attack)
+	{
+		this.attacks[pos] = attack;
 	}
 
 	public int[] getAttacksPP()
@@ -347,14 +300,14 @@ public class Captured extends Animature {
 		this.healthAct = healthAct;
 	}
 
-	public int getCualities(final int pos)
+	public int getCualitiesC(final int pos)
 	{
-		return this.cualities[pos];
+		return this.cualitiesC[pos];
 	}
 
-	public void setCualities(final int quantity, final int pos)
+	public void setCualitiesC(final int quantity, final int pos)
 	{
-		this.cualities[pos] = quantity;
+		this.cualitiesC[pos] = quantity;
 	}
 
 	public boolean isWeak(final int type)
@@ -367,41 +320,24 @@ public class Captured extends Animature {
 		return this.isStrong[type];
 	}
 
-	public boolean levelUp()
-	{
-		boolean levelUp = false;
-		ands.open();
+	/*
+	 * public boolean levelUp() { boolean levelUp = false; ands.open(); while
+	 * (this.current_exp >= this.experience) { this.level += 1;
+	 * this.cualitiesC[SPEED] += (this.cualities[SPEED] / 3);
+	 * this.cualitiesC[DEFENSE] += (this.cualities[DEFENSE] / 3);
+	 * this.cualitiesC[AGILITY] += (this.cualities[AGILITY] / 3);
+	 * this.cualitiesC[STRENGHT] += (this.cualities[STRENGHT] / 3);
+	 * this.cualitiesC[PRECISSION] += (this.cualities[PRECISSION] / 3);
+	 * this.healthAct += (this.healthAct / 3); this.current_exp -=
+	 * this.experience; this.experience = (int) Math.pow(this.level, 3); levelUp
+	 * = true; } ands.close(); return levelUp; }
+	 */
 
-		while (this.current_exp >= this.experience)
-		{
-			this.level += 1;
-			this.cualitiesC[SPEED] += (this.cualities[SPEED] / 3);
-			this.cualitiesC[DEFENSE] += (this.cualities[DEFENSE] / 3);
-			this.cualitiesC[AGILITY] += (this.cualities[AGILITY] / 3);
-			this.cualitiesC[STRENGHT] += (this.cualities[STRENGHT] / 3);
-			this.cualitiesC[PRECISSION] += (this.cualities[PRECISSION] / 3);
-			this.healthAct += (this.healthAct / 3);
-			this.current_exp -= this.experience;
-			this.experience = (int) Math.pow(this.level, 3);
-			levelUp = true;
-		}
-		ands.close();
-
-		return levelUp;
-	}
-
-	public boolean evolution()
-	{
-		boolean evolution = false;
-
-		if (this.level == ands.readAnimatureColInt(this.idAnimature, 12))
-		{
-			evolution = true;
-			this.id_Animature += 1;
-		}
-
-		return evolution;
-	}
+	/*
+	 * public boolean evolution() { boolean evolution = false; if (this.level ==
+	 * ands.readAnimatureColInt(this.idAnimature, 12)) { evolution = true;
+	 * this.id_Animature += 1; } return evolution; }
+	 */
 
 	public boolean heal()
 	{
@@ -416,25 +352,11 @@ public class Captured extends Animature {
 		return healed;
 	}
 
-	public int giveExp(final int battleType, final int idC)
-	{
-		int gExp = 0;
-		int baseExp;
-
-		ands.open();
-		baseExp = ands.readAnimatureColInt(idC, 13);
-
-		if (battleType == 0)
-		{
-			gExp = (baseExp * (this.level)) / 7;
-		}
-		else
-		{
-			gExp = (int) ((baseExp * (this.level) * 1.5) / 7);
-		}
-		ands.close();
-
-		return gExp;
-
-	}
+	/*
+	 * public int giveExp(final int battleType, final int idC) { int gExp = 0;
+	 * int baseExp; ands.open(); baseExp = ands.readAnimatureColInt(idC, 13); if
+	 * (battleType == 0) { gExp = (baseExp * (this.level)) / 7; } else { gExp =
+	 * (int) ((baseExp * (this.level) * 1.5) / 7); } ands.close(); return gExp;
+	 * }
+	 */
 }

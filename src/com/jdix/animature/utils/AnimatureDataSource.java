@@ -22,14 +22,13 @@ public class AnimatureDataSource extends DataSource {
 		dbHelper = new Database(context, name, factory, version);
 	}
 
-	public void createAnimature(final int id_Animature, final String name,
-	final double height, final double weight, final int type, final int type2,
-	final int speed, final int defense, final int agility, final int strenght,
+	public void createAnimature(final String name, final double height,
+	final double weight, final int type, final int type2, final int speed,
+	final int defense, final int agility, final int strenght,
 	final int precission, final int health, final int level_evo,
 	final int baseExp)
 	{
 		final ContentValues values = new ContentValues();
-		values.put("id", id_Animature);
 		values.put("name", name);
 		values.put("height", height);
 		values.put("weight", weight);

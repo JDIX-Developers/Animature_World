@@ -21,16 +21,16 @@ public class AttackDataSource extends DataSource {
 		dbHelper = new Database(context, name, factory, version);
 	}
 
-	public void createAttack(final String nombre, final int type,
-	final int max_pp, final int active, final int ifPas, final int power,
+	public void createAttack(final String name, final int type,
+	final int max_pp, final int active, final int ifPass, final int power,
 	final int probability)
 	{
 		final ContentValues values = new ContentValues();
-		values.put("nombre", nombre);
+		values.put("name", name);
 		values.put("type", type);
 		values.put("max_pp", max_pp);
 		values.put("active", active);
-		values.put("ifPass", ifPas);
+		values.put("ifPass", ifPass);
 		values.put("power", power);
 		values.put("probability", probability);
 
