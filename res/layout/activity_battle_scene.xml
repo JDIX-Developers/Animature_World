@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/background_gradient"
     android:orientation="vertical"
     tools:context=".BattleSceneActivity" >
 
@@ -17,6 +17,7 @@
             android:id="@+id/enemyAnimatureName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             android:layout_marginRight="@dimen/Margin15"
             android:text="CHARIZARD" />
 
@@ -24,6 +25,7 @@
             android:id="@+id/enemyAnimatureLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             android:layout_marginRight="@dimen/Margin15"
             android:text="Nvl: 45" />
 
@@ -74,6 +76,7 @@
             android:id="@+id/your_animature_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             android:layout_marginRight="@dimen/Margin15"
             android:text="BLASTOISE" />
 
@@ -81,6 +84,7 @@
             android:id="@+id/your_animature_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             android:layout_marginRight="@dimen/Margin15"
             android:text="Nvl: 45" />
 
