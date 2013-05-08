@@ -55,7 +55,7 @@ public class LaunchActivity extends Activity {
 		.getWritableDatabase();
 
 		// Battle testing
-		startActivity(new Intent(LaunchActivity.this, BattleSceneActivity.class));
+		startActivity(new Intent(LaunchActivity.this, NewGameActivity.class));
 		finish();
 
 		// We get a reference to the interface controls
