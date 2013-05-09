@@ -9,7 +9,7 @@
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -50,7 +50,12 @@
             android:name="com.jdix.animature.MapActivity"
             android:label="@string/title_activity_map"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.jdix.animature.GameMenuActivity"
+            android:label="@string/title_activity_game_menu" 
+            android:screenOrientation="landscape">
         </activity>
     </application>
 

@@ -7,6 +7,9 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * @author Jordan Aranda Tejada
+ */
 public class MainMenuActivity extends Activity {
 
 	private Button	btnNewGame;

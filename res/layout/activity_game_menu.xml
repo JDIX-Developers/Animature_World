@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/game_menu_background_gradient"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/Margin20"
+    android:paddingLeft="@dimen/Margin20"
+    android:paddingRight="@dimen/Margin20"
+    android:paddingTop="@dimen/Margin50"
+    tools:context=".GameMenuActivity" >
+
+    <Button
+        android:id="@+id/btn_game_menu_animax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/animax_game_menu"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btn_game_menu_animatures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/Margin20"
+        android:text="@string/animatures_game_menu"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btn_game_menu_objects"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/Margin20"
+        android:text="@string/objects_game_menu"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btn_game_menu_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/Margin20"
+        android:text="@string/player_game_menu"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btn_game_menu_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/Margin20"
+        android:text="@string/save_game_menu"
+        android:textSize="30sp" />
+    
+</LinearLayout>

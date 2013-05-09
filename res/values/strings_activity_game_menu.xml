@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    	<string name="animax_game_menu">ANIMAX</string>
+    	<string name="animatures_game_menu">ANIMATURES</string>
+    	<string name="player_game_menu">*PlayerName*</string>
+    	<string name="objects_game_menu">OBJETOS</string>
+    	<string name="save_game_menu">GUARDAR</string>    	
+    	
+</resources>
