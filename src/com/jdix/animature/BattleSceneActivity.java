@@ -160,50 +160,64 @@ public class BattleSceneActivity extends Activity {
 
 	private void attack(final int index)
 	{
-		while ( ! animatureFainted)
+		if (animSel[animatureIndex].getAttackPP(index) > 0)
 		{
-			if (animSel[animatureIndex].getCualitiesC(Attack.SPEED) >= enemy
-			.getCualitiesC(Attack.SPEED))
+			// enemy = animSel[animatureIndex].getAttack(index)
+			// .getCapturedDamage(enemy, animSel[animatureIndex]);
+			// animSel[animatureIndex].reduceAttackPP(index);
+			enemy.setHealthAct(enemy.getHealthAct() - 10);
+			System.out.println(enemy.getHealthAct() - 10);
+			animatureFainted = enemy.getHealthAct() <= 0;
+			enemy_animature_life.setProgress(enemy.getHealthAct());
+
+			yourTurn = false;
+		}
+		yourTurn = false;
+		while ( ! yourTurn)
+		{
+			int attack = randomAttack();
+			if (enemy.getAttackPP(attack) > 0)
 			{
+				// animSel[animatureIndex] = enemy.getAttack(attack)
+				// .getCapturedDamage(animSel[animatureIndex], enemy);
+				animSel[animatureIndex].setHealthAct(animSel[animatureIndex]
+				.getHealthAct() - 10);
+				your_animature_life.setProgress(animSel[animatureIndex]
+				.getHealthAct());
+				animatureFainted = animSel[animatureIndex].getHealthAct() <= 0;
+				// enemy.reduceAttackPP(attack);
 				yourTurn = true;
 			}
-
-			if (yourTurn)
+			else
 			{
-				if (animSel[animatureIndex].getAttackPP(index) > 0)
-				{
-					// enemy = animSel[animatureIndex].getAttack(index)
-					// .getCapturedDamage(enemy, animSel[animatureIndex]);
-					// animSel[animatureIndex].reduceAttackPP(index);
-					enemy.setHealthAct(enemy.getHealthAct() - 10);
-					animatureFainted = enemy.getHealthAct() <= 0;
-					enemy_animature_life.setProgress(enemy.getHealthAct());
-
-					yourTurn = false;
-				}
-			}
-			// Enemy battle example
-			while ( ! yourTurn)
-			{
-				int attack = randomAttack();
-				if (enemy.getAttackPP(attack) > 0)
-				{
-					// animSel[animatureIndex] = enemy.getAttack(attack)
-					// .getCapturedDamage(animSel[animatureIndex], enemy);
-					animSel[animatureIndex]
-					.setHealthAct(animSel[animatureIndex].getHealthAct() - 10);
-					your_animature_life.setProgress(animSel[animatureIndex]
-					.getHealthAct());
-					animatureFainted = animSel[animatureIndex].getHealthAct() <= 0;
-					// enemy.reduceAttackPP(attack);
-					yourTurn = true;
-				}
-				else
-				{
-					attack = randomAttack();
-				}
+				attack = randomAttack();
 			}
 		}
+
+		/*
+		 * while ( ! animatureFainted) { /* if
+		 * (animSel[animatureIndex].getCualitiesC(Attack.SPEED) >= enemy
+		 * .getCualitiesC(Attack.SPEED)) { yourTurn = true; } yourTurn = true;
+		 * if (yourTurn) { if (animSel[animatureIndex].getAttackPP(index) > 0) {
+		 * // enemy = animSel[animatureIndex].getAttack(index) //
+		 * .getCapturedDamage(enemy, animSel[animatureIndex]); //
+		 * animSel[animatureIndex].reduceAttackPP(index);
+		 * enemy.setHealthAct(enemy.getHealthAct() - 10);
+		 * System.out.println(enemy.getHealthAct() - 10); animatureFainted =
+		 * enemy.getHealthAct() <= 0;
+		 * enemy_animature_life.setProgress(enemy.getHealthAct()); yourTurn =
+		 * false; } } // Enemy battle example while ( ! yourTurn) { int attack =
+		 * randomAttack(); if (enemy.getAttackPP(attack) > 0) { //
+		 * animSel[animatureIndex] = enemy.getAttack(attack) //
+		 * .getCapturedDamage(animSel[animatureIndex], enemy);
+		 * animSel[animatureIndex]
+		 * .setHealthAct(animSel[animatureIndex].getHealthAct() - 10);
+		 * your_animature_life.setProgress(animSel[animatureIndex]
+		 * .getHealthAct()); animatureFainted =
+		 * animSel[animatureIndex].getHealthAct() <= 0; //
+		 * enemy.reduceAttackPP(attack); yourTurn = true; } else { attack =
+		 * randomAttack(); } } }
+		 */
 	}
 
 	private void loadEnemyAnimature()
