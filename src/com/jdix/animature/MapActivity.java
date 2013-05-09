@@ -1,6 +1,7 @@
 package com.jdix.animature;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Menu;
@@ -43,6 +44,10 @@ public class MapActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
-		return super.onCreateOptionsMenu(menu);
+		super.onCreateOptionsMenu(menu);
+
+		startActivity(new Intent(MapActivity.this, GameMenuActivity.class));
+
+		return true;
 	}
 }
