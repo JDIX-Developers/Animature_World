@@ -502,8 +502,7 @@ public class MapView extends View implements OnTouchListener {
 			y = 0;
 			finished = true;
 
-			if (player.getCoord_X() >= 8 && player.getCoord_X() <= 11
-			&& player.getCoord_Y() == 4)
+			if (player.getCoord_X() == 8 && player.getCoord_Y() == 4)
 			{
 				context.startActivity(new Intent(context,
 				BattleSceneActivity.class));
