@@ -54,10 +54,6 @@ public class LaunchActivity extends Activity {
 		db = (new Database(this, "AnimatureWorldDB", null, 1))
 		.getWritableDatabase();
 
-		// Battle testing
-		startActivity(new Intent(LaunchActivity.this, BattleSceneActivity.class));
-		finish();
-
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
 		mEditTextPasswordLogin = (EditText) findViewById(R.id.editText_PasswordLogin);

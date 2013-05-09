@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+import com.jdix.animature.BattleSceneActivity;
 import com.jdix.animature.R;
 import com.jdix.animature.entities.Player;
 
@@ -499,6 +501,13 @@ public class MapView extends View implements OnTouchListener {
 			x = 0;
 			y = 0;
 			finished = true;
+
+			if (player.getCoord_X() >= 8 && player.getCoord_X() <= 11
+			&& player.getCoord_Y() == 4)
+			{
+				context.startActivity(new Intent(context,
+				BattleSceneActivity.class));
+			}
 
 			if (this.onFinishedListener != null)
 			{
