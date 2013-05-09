@@ -172,23 +172,30 @@ public class BattleSceneActivity extends Activity {
 			{
 				if (animSel[animatureIndex].getAttackPP(index) > 0)
 				{
-					enemy = animSel[animatureIndex].getAttack(index)
-					.getCapturedDamage(enemy, animSel[animatureIndex]);
-					animSel[animatureIndex].reduceAttackPP(index);
+					// enemy = animSel[animatureIndex].getAttack(index)
+					// .getCapturedDamage(enemy, animSel[animatureIndex]);
+					// animSel[animatureIndex].reduceAttackPP(index);
+					enemy.setHealthAct(enemy.getHealthAct() - 10);
+					animatureFainted = enemy.getHealthAct() <= 0;
 					enemy_animature_life.setProgress(enemy.getHealthAct());
+
+					yourTurn = false;
 				}
 			}
 			// Enemy battle example
-			int attack = randomAttack();
 			while ( ! yourTurn)
 			{
+				int attack = randomAttack();
 				if (enemy.getAttackPP(attack) > 0)
 				{
-					animSel[animatureIndex] = enemy.getAttack(attack)
-					.getCapturedDamage(animSel[animatureIndex], enemy);
+					// animSel[animatureIndex] = enemy.getAttack(attack)
+					// .getCapturedDamage(animSel[animatureIndex], enemy);
+					animSel[animatureIndex]
+					.setHealthAct(animSel[animatureIndex].getHealthAct() - 10);
 					your_animature_life.setProgress(animSel[animatureIndex]
 					.getHealthAct());
-					enemy.reduceAttackPP(attack);
+					animatureFainted = animSel[animatureIndex].getHealthAct() <= 0;
+					// enemy.reduceAttackPP(attack);
 					yourTurn = true;
 				}
 				else
@@ -203,7 +210,7 @@ public class BattleSceneActivity extends Activity {
 	{
 		enemy_animature_name.setText(enemy.getNickname());
 		enemy_animature_level.setText("Nvl " + enemy.getLevel());
-		enemy_animature_life.setMax(enemy.getHealthMax());
+		enemy_animature_life.setMax(100);// enemy.getHealthMax());
 		enemy_animature_life.setProgress(enemy.getHealthAct());
 		final int id = getResources().getIdentifier(
 		"f" + enemy.getIdAnimature(), "drawable", getPackageName());
@@ -216,7 +223,7 @@ public class BattleSceneActivity extends Activity {
 		your_animature_name.setText(animSel[animatureIndex].getNickname());
 		your_animature_level.setText("Nvl "
 		+ animSel[animatureIndex].getLevel());
-		your_animature_life.setMax(animSel[animatureIndex].getHealthMax());
+		your_animature_life.setMax(100);// animSel[animatureIndex].getHealthMax());
 		your_animature_life.setProgress(animSel[animatureIndex].getHealthAct());
 		your_animature_exp.setMax(animSel[animatureIndex].getExperience());
 		your_animature_exp
@@ -230,9 +237,7 @@ public class BattleSceneActivity extends Activity {
 
 	private int randomAttack()
 	{
-		final Random r = new Random();
-		final int rand = r.nextInt(4);
-		return rand;
+		return (new Random()).nextInt(4);
 	}
 
 	private void loadBattleAnimatures()
