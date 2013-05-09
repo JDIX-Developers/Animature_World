@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="@dimen/Margin5"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/animax_row_animature_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_marginRight="@dimen/Margin10"
+        android:text="1" />
+
+    <TextView
+        android:id="@+id/animax_row_animature_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:textSize="25sp"
+        android:layout_marginRight="@dimen/Margin10"
+        android:text="Charmander" />
+
+    <ImageView
+        android:id="@+id/animax_row_animature_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/b2" />
+
+</LinearLayout>
