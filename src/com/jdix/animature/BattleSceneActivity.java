@@ -311,4 +311,9 @@ public class BattleSceneActivity extends Activity {
 			 */
 		}
 	}
+
+	@Override
+	public void onBackPressed()
+	{
+	}
 }
