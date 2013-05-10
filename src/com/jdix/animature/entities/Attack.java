@@ -45,14 +45,15 @@ public class Attack {
 	}
 
 	public Attack(final int id_Attack, final String name_Attack,
-	final int type_Attack, final int max_pp, final int active, final int power,
-	final int probability)
+	final int type_Attack, final int max_pp, final int active,
+	final int ifPass, final int power, final int probability)
 	{
 		this.id_Attack = id_Attack;
 		this.name_Attack = name_Attack;
 		this.type_Attack = type_Attack;
 		this.max_pp = max_pp;
 		this.active = active;
+		this.ifPass = ifPass;
 		this.power = power;
 		this.probability = probability;
 	}
@@ -105,6 +106,16 @@ public class Attack {
 	public void setActive(final int active)
 	{
 		this.active = active;
+	}
+
+	public int getIfPass()
+	{
+		return ifPass;
+	}
+
+	public void setIfPass(final int ifPass)
+	{
+		this.ifPass = ifPass;
 	}
 
 	public int getPower()
