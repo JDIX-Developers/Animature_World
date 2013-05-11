@@ -31,6 +31,7 @@
             android:id="@+id/animax_row_animature_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/Margin5"
             android:layout_marginRight="@dimen/Margin10"
             android:gravity="center"
             android:height="@dimen/Margin50"
