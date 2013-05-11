@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_normal">#DACDB3</color>
+	<color name="color_fire">#FF5930</color>
+	<color name="color_water">#308AFF</color>
+	<color name="color_grass">#1E7F19</color>
+	<color name="color_electric">#FFF930</color>
+	<color name="color_ice">#77FFF9</color>
+	<color name="color_fighting">#DF8A60</color>
+	<color name="color_poison">#EF58C4</color>
+	<color name="color_ground">#D59751</color>
+</resources>

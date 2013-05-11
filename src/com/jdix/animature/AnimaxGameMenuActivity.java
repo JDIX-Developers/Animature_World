@@ -2,41 +2,51 @@ package com.jdix.animature;
 
 import java.util.ArrayList;
 
-import android.app.ListActivity;
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ListView;
 
-public class AnimaxGameMenuActivity extends ListActivity {
+import com.jdix.animature.entities.Animature;
+import com.jdix.animature.utils.AdapterAnimatures;
 
-	private ArrayList	evento;
+/**
+ * @author Jordan Aranda Tejada
+ */
+public class AnimaxGameMenuActivity extends Activity {
+
+	private ListView				list;
+	private ArrayList<Animature>	animatures;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
-		/*
-		 * super.onCreate(savedInstanceState);
-		 * setContentView(R.layout.activity_animax_game_menu); final
-		 * ArrayList<String[]> lista = new ArrayList<String[]>();      final
-		 * String[] evento1 = {"1","Charmander",""};     lista.add(evento1);  
-		 *      final String[] evento2 = {"2","Charmeleon",""};
-		 *     lista.add(evento2);       final String[] evento3 =
-		 * {"3","Charizard",""};     lista.add(evento3); // Transformamos los
-		 * elementos String[] en HashMap para // posteriormente incluirlos en el
-		 * Array Global que se utilizará // para rellenar la lista evento = new
-		 * ArrayList<HashMap<String, String>>(); for (final String[] evento:
-		 * lista) { final HashMap<String, String> datosEvento = new
-		 * HashMap<String, String>(); // Aquí es dónde utilizamos las
-		 * referencias creadas inicialmente // en el elemento "from"
-		 * datosEvento.put("Number", evento[0]); datosEvento.put("Name",
-		 * evento[1]); datosEvento.put("Type", evento[2]);
-		 * eventos.add(datosEvento); } // Una vez tenemos toda la información
-		 * necesaria para rellenar la lista // creamos un elemento que nos
-		 * facilitará la tarea: // SimpleAdapter(Actividad, Array de HashMap con
-		 * elementos, Fichero XML // del // diseño de cada fila, Cadenas del
-		 * HashMap, Ids del Fichero XML del // diseño de cada fila) final
-		 * SimpleAdapter ListadoAdapter = new SimpleAdapter(this, Eventos,
-		 * R.layout.row, from, to); setListAdapter(ListadoAdapter);
-		 */
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_animax_game_menu);
+
+		// We get a reference to the interface controls
+		list = (ListView) findViewById(R.id.list_Animax);
+		animatures = new ArrayList<Animature>();
+
+		// Example data
+		final Animature a1 = new Animature(1, "BULBASUR", 100, 50, 3, 7, 80,
+		80, 70, 75, 85, 120, 16, 12000, new Drawable[2], null);
+		final Animature a2 = new Animature(2, "IVYSAUR", 150, 75, 3, 7, 80, 80,
+		70, 75, 85, 240, 36, 100000, new Drawable[2], null);
+		final Animature a3 = new Animature(3, "VENUSAUR", 250, 125, 3, 7, 80,
+		80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
+		animatures.add(a1);
+		animatures.add(a2);
+		animatures.add(a3);
+
+		// Creo el adapter personalizado
+		final AdapterAnimatures adapter = new AdapterAnimatures(this,
+		animatures);
+
+		// Lo aplico
+		list.setAdapter(adapter);
+
 	}
 
 	@Override

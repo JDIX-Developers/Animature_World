@@ -2,29 +2,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:layout_gravity="center"
     android:layout_margin="@dimen/Margin5"
+    android:gravity="left|center_vertical"
+    android:minHeight="30dp"
     android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/animax_row_animature_name"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_marginRight="@dimen/Margin10"
-        android:text="1" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="@dimen/Margin20"
+        android:layout_weight="1"
+        android:gravity="center|left"
+        android:paddingRight="@dimen/Margin40" >
 
-    <TextView
-        android:id="@+id/animax_row_animature_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		android:textSize="25sp"
-        android:layout_marginRight="@dimen/Margin10"
-        android:text="Charmander" />
+        <TextView
+            android:id="@+id/animax_row_animature_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/Margin20"
+            android:gravity="center"
+            android:height="@dimen/Margin50"
+            android:text="1"
+            android:textSize="25sp" />
 
-    <ImageView
-        android:id="@+id/animax_row_animature_type"
+        <TextView
+            android:id="@+id/animax_row_animature_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/Margin10"
+            android:gravity="center"
+            android:height="@dimen/Margin50"
+            android:text="Bulbasur"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/b2" />
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:gravity="center|right|left" >
+
+        <TextView
+            android:id="@+id/animax_row_type1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/Margin20"
+            android:background="@color/color_grass"
+            android:paddingBottom="@dimen/Margin5"
+            android:paddingLeft="@dimen/Margin5"
+            android:paddingRight="@dimen/Margin5"
+            android:paddingTop="@dimen/Margin5"
+            android:text="Planta"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/animax_row_type2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/Margin10"
+            android:background="@color/color_poison"
+            android:paddingBottom="@dimen/Margin5"
+            android:paddingLeft="@dimen/Margin5"
+            android:paddingRight="@dimen/Margin5"
+            android:paddingTop="@dimen/Margin5"
+            android:text="Veneno"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    </LinearLayout>
 
 </LinearLayout>
