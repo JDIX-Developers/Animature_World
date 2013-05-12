@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.View;
@@ -51,6 +52,7 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
+		Log.e("INICIO", "INICIO");
 		startActivity(new Intent(LaunchActivity.this,
 		AnimaxGameMenuActivity.class));
 		this.finish();
@@ -107,7 +109,8 @@ public class LaunchActivity extends Activity {
 			dbEmail = u.getString(1);
 			dbPassword = u.getString(2);
 		}
-
+		u.close();
+		db.close();
 		// if ( ! TextUtils.isEmpty(dbEmail) && ! TextUtils.isEmpty(dbPassword))
 		// {
 		// showProgress(true);

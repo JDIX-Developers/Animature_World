@@ -70,7 +70,8 @@ public class AdapterAnimatures extends BaseAdapter {
 		// ID
 		final TextView idAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_id);
-		idAnimature.setText(animature.getId_Animature() + "");
+		idAnimature
+		.setText(getFormatedIdAnimature(animature.getId_Animature()));
 		// NAME
 		final TextView nameAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_name);
@@ -86,6 +87,22 @@ public class AdapterAnimatures extends BaseAdapter {
 
 		// Retornamos la vista
 		return v;
+	}
+
+	private String getFormatedIdAnimature(final int id)
+	{
+		if (id < 10)
+		{
+			return "00" + id;
+		}
+		else if (id < 100)
+		{
+			return "0" + id;
+		}
+		else
+		{
+			return "" + id;
+		}
 	}
 
 	private void modifyTypeTextView(final TextView textView, final int type)

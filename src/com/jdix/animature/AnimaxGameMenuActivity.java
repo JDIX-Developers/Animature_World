@@ -67,6 +67,8 @@ public class AnimaxGameMenuActivity extends Activity {
 		animatures.add(a8);
 		animatures.add(a9);
 
+		loadAnimatureArrayList();
+
 		final AdapterAnimatures adapter = new AdapterAnimatures(this,
 		animatures);
 
@@ -84,12 +86,21 @@ public class AnimaxGameMenuActivity extends Activity {
 
 	private void loadAnimatureArrayList()
 	{
-		final Cursor u = db.rawQuery("Select * FROM User", null);
-		while (u.moveToNext())
+		final Cursor c = db.rawQuery("SELECT * FROM ANIMATURE", null);
+		if (c.getCount() > 0)
 		{
-			// LOAD ANIMATURE DATA
-			// animatures.add(new Animature());
+			c.moveToFirst();
+			while ( ! c.isAfterLast())
+			{
+				animatures.add(new Animature(c.getInt(0), c.getString(1), c
+				.getDouble(2), c.getDouble(3), c.getInt(4), c.getInt(5), c
+				.getInt(6), c.getInt(7), c.getInt(8), c.getInt(9),
+				c.getInt(10), c.getInt(11), c.getInt(12), c.getInt(13), null,
+				null));
+				c.moveToNext();
+			}
 		}
+		c.close();
+		db.close();
 	}
-
 }

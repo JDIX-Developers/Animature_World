@@ -1,0 +1,166 @@
+PRAGMA encoding = "UTF-8";
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE USER (
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	"email" TEXT, 
+	"password" TEXT, 
+	"username" TEXT, 
+	"is_current" INTEGER, 
+	"save" INTEGER, 
+	FOREIGN KEY(save) REFERENCES Save(id));
+
+CREATE TABLE ANIMATURE (
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	"name" TEXT, 
+	"height" INTEGER, 
+	"weight" INTEGER, 
+	"type" INTEGER, 
+	"type2" INTEGER, 
+	"speed" INTEGER, 
+	"defense" INTEGER, 
+	"agility" INTEGER, 
+	"strenght" INTEGER, 
+	"precission" INTEGER, 
+	"health" INTEGER, 
+	"level_evo" INTEGER, 
+	"baseExp" INTEGER);
+
+CREATE TABLE ATTACKS (
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	"name" TEXT, 
+	"type" INTEGER, 
+	"max_pp" INTEGER, 
+	"active" INTEGER, 
+	"ifPass" INTEGER, 
+	"power" INTEGER, 
+	"probability" INTEGER);
+
+CREATE TABLE CAPTURED (
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	"animature" INTEGER, 
+	"save" INTEGER, 
+	"nickname" TEXT, 
+	"sex" INTEGER, 
+	"status" INTEGER, 
+	"capturedTime" INTEGER, 
+	"attack1" INTEGER, 
+	"attack1_pp" INTEGER, 
+	"attack2" INTEGER, 
+	"attack2_pp" INTEGER, 
+	"attack3" INTEGER, 
+	"attack3_pp" INTEGER, 
+	"attack4" INTEGER, 
+	"attack4_pp" INTEGER, 
+	"health" INTEGER, 
+	"level" INTEGER, 
+	"cur_exp" INTEGER, 
+	"exp" INTEGER, 
+	box INTEGER, 
+	FOREIGN KEY(animature) REFERENCES Animature(id), 
+	FOREIGN KEY(save) REFERENCES Save(id), 
+	FOREIGN KEY(attack1) REFERENCES Attacks(id), 
+	FOREIGN KEY(attack2) REFERENCES Attacks(id), 
+	FOREIGN KEY(attack3) REFERENCES Attacks(id), 
+	FOREIGN KEY(attack4) REFERENCES Attacks(id));
+
+CREATE TABLE OBJECTS (
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	"description" TEXT);
+
+CREATE TABLE ENEMIES (
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	"map" INTEGER, 
+	"coord_x" INTEGER, 
+	"coord_y" INTEGER, 
+	"money" INTEGER,
+	"an1" INTEGER, 
+	"an2" INTEGER, 
+	"an3" INTEGER, 
+	"an4" INTEGER, 
+	"an5" INTEGER, 
+	"an6" INTEGER, 
+	FOREIGN KEY(an1) REFERENCES Captured(id), 
+	FOREIGN KEY(an2) REFERENCES Captured(id), 
+	FOREIGN KEY(an3) REFERENCES Captured(id), 
+	FOREIGN KEY(an4) REFERENCES Captured(id), 
+	FOREIGN KEY(an5) REFERENCES Captured(id), 
+	FOREIGN KEY(an6) REFERENCES Captured(id))
+
+CREATE TABLE SAVE (
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	"character" INTEGER, 
+	"stage" INTEGER, 
+	"last_played" DATE, 
+	"started" DATE, 
+	"total_time" INTEGER, 
+	"steps" INTEGER, 
+	"an1" INTEGER, 
+	"an2" INTEGER, 
+	"an3" INTEGER, 
+	"an4" INTEGER, 
+	"an5" INTEGER, 
+	"an6" INTEGER, 
+	"map" INTEGER, 
+	"coord_x" INTEGER, 
+	"coord_y" INTEGER, 
+	"neighbour" INTEGER, 
+	"first_an" INTEGER, 
+	"orientation" INTEGER, 
+	"last_HealingMap" INTEGER, 
+	"last_HealingX" INTEGER, 
+	"last_HealingY" INTEGER, 
+	"medals" INTEGER, 
+	"money" INTEGER, 
+	FOREIGN KEY(an1) REFERENCES Captured(id), 
+	FOREIGN KEY(an2) REFERENCES Captured(id), 
+	FOREIGN KEY(an3) REFERENCES Captured(id), 
+	FOREIGN KEY(an4) REFERENCES Captured(id), 
+	FOREIGN KEY(an5) REFERENCES Captured(id), 
+	FOREIGN KEY(an6) REFERENCES Captured(id), 
+	FOREIGN KEY(first_an) REFERENCES Animature(id));
+
+CREATE TABLE BAG (
+	"save" INTEGER PRIMARY KEY, 
+	"object" INTEGER, 
+	"quantity" INTEGER, 
+	FOREIGN KEY(save) REFERENCES Save(id), 
+	FOREIGN KEY(object) REFERENCES Objects(id));
+
+CREATE TABLE VIEWEDANIMATURE (
+	"id_Save" INTEGER REFERENCES Save(id),
+	"id_Animature" INTEGER REFERENCES Animature(id),
+	PRIMARY KEY (id_Save, id_Animature));
+
+CREATE TABLE FIGHTS (
+	"save" INTEGER PRIMARY KEY, 
+	"enemy" INTEGER, 
+	FOREIGN KEY(save) REFERENCES Save(id), 
+	FOREIGN KEY(enemy) REFERENCES Enemies(id));
+
+INSERT INTO ANIMATURE VALUES (1, 'BULBASUR', 0.7, 6.9, 3, 7, 100, 120, 100, 120, 100, 80, 16, 150);
+INSERT INTO ANIMATURE VALUES (2, 'IVYSAUR', 1, 13, 3, 7, 100, 120, 100, 120, 100, 80, 36, 500);
+INSERT INTO ANIMATURE VALUES (3, 'VENUSAUR', 2, 100, 3, 7, 100, 120, 100, 120, 100, 80, -1, 1200);
+
+INSERT INTO ANIMATURE VALUES (4, 'CHARMANDER', 0.6, 8.5, 1, -1, 100, 120, 100, 120, 100, 80, 16, 150);
+INSERT INTO ANIMATURE VALUES (5, 'CHARMELEON', 1.1, 19, 1, -1, 100, 120, 100, 120, 100, 80, 36, 500);
+INSERT INTO ANIMATURE VALUES (6, 'CHARIZARD', 1.7, 90.5, 1, 9, 100, 120, 100, 120, 100, 80, -1, 1200);
+
+INSERT INTO ANIMATURE VALUES (7, 'SQUIRTLE', 0.5, 9, 2, -1, 100, 120, 100, 120, 100, 80, 16, 150);
+INSERT INTO ANIMATURE VALUES (8, 'WARTORTLE', 1, 22.5, 2, -1, 100, 120, 100, 120, 100, 80, 36, 500);
+INSERT INTO ANIMATURE VALUES (9, 'BLASTOISE', 1.6, 85.5, 2, -1, 100, 120, 100, 120, 100, 80, -1, 1200);
+
+INSERT INTO ANIMATURE VALUES (10, 'CATERPIE', 0.3, 2.9, 11, -1, 100, 120, 100, 120, 100, 80, 8, 150);
+INSERT INTO ANIMATURE VALUES (11, 'METAPOD', 0.7, 9.9, 11, -1, 100, 120, 100, 120, 100, 80, 18, 500);
+INSERT INTO ANIMATURE VALUES (12, 'BUTTERFREE', 1.1, 32, 11, 9, 100, 120, 100, 120, 100, 80, -1, 1200);
+
+INSERT INTO ANIMATURE VALUES (13, 'WEEDLE', 0.3, 3.2, 11, 7, 100, 120, 100, 120, 100, 80, 8, 150);
+INSERT INTO ANIMATURE VALUES (14, 'KAKUNA', 0.6, 10, 11, 7, 100, 120, 100, 120, 100, 80, 18, 500);
+INSERT INTO ANIMATURE VALUES (15, 'BEEDRILL', 1, 29.5, 11, 7, 100, 120, 100, 120, 100, 80, -1, 1200);
+
+INSERT INTO ANIMATURE VALUES (16, 'PIDGEY', 0.3, 3.2, 0, 9, 100, 120, 100, 120, 100, 80, 16, 150);
+INSERT INTO ANIMATURE VALUES (17, 'PIDGEOTTO', 0.6, 10, 0, 9, 100, 120, 100, 120, 100, 80, 36, 500);
+INSERT INTO ANIMATURE VALUES (18, 'PIDGEOT', 1, 29.5, 0, 9, 100, 120, 100, 120, 100, 80, -1, 1200);
+
+INSERT INTO ANIMATURE VALUES (19, 'RATTATA', 0.3, 3.5, 0, -1, 100, 120, 100, 120, 100, 80, 12, 150);
+INSERT INTO ANIMATURE VALUES (20, 'RATICATE', 0.7, 18.5, 0, -1, 100, 120, 100, 120, 100, 80, 25, 500);
