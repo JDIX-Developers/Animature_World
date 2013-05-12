@@ -1,15 +1,6 @@
 PRAGMA encoding = "UTF-8";
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE USER (
-	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
-	"email" TEXT, 
-	"password" TEXT, 
-	"username" TEXT, 
-	"is_current" INTEGER, 
-	"save" INTEGER, 
-	FOREIGN KEY(save) REFERENCES Save(id));
-
 CREATE TABLE ANIMATURE (
 	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
 	"name" TEXT, 
@@ -56,7 +47,7 @@ CREATE TABLE CAPTURED (
 	"level" INTEGER, 
 	"cur_exp" INTEGER, 
 	"exp" INTEGER, 
-	box INTEGER, 
+	"box" INTEGER, 
 	FOREIGN KEY(animature) REFERENCES Animature(id), 
 	FOREIGN KEY(save) REFERENCES Save(id), 
 	FOREIGN KEY(attack1) REFERENCES Attacks(id), 
@@ -119,6 +110,16 @@ CREATE TABLE SAVE (
 	FOREIGN KEY(an5) REFERENCES Captured(id), 
 	FOREIGN KEY(an6) REFERENCES Captured(id), 
 	FOREIGN KEY(first_an) REFERENCES Animature(id));
+
+CREATE TABLE USER (
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	"email" TEXT, 
+	"password" TEXT, 
+	"username" TEXT, 
+	"is_current" INTEGER, 
+	"save" INTEGER, 
+	FOREIGN KEY(save) REFERENCES SAVE(id));
+
 
 CREATE TABLE BAG (
 	"save" INTEGER PRIMARY KEY, 

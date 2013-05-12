@@ -9,7 +9,6 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -27,58 +26,45 @@ public class Database extends SQLiteOpenHelper {
 	final CursorFactory factory, final int version)
 	{
 		super(context, name, factory, version);
-		create_tables();
 	}
 
 	@Override
 	public void onCreate(final SQLiteDatabase db)
 	{
-		Log.e("INICIO2", "INICIO2");
 		this.update("PRAGMA foreign_keys=ON;");
 		this.update("PRAGMA encoding = \"UTF-8\";");
-		Log.e("INFORMATION", "NUMERO DE TABLAS: " + numberOfTables());
-		if (numberOfTables() == 0)
-		{
-			create_tables();
-		}
+		create_tables(db);
+
 	}
 
-	private void create_tables()
+	private void create_tables(final SQLiteDatabase db)
 	{
 		try
 		{
-
 			FileInputStream stream = null;
 			try
 			{
 				stream = new FileInputStream(new File("createDB.sql"));
+				final FileChannel fc = stream.getChannel();
+				final MappedByteBuffer bb = fc.map(
+				FileChannel.MapMode.READ_ONLY, 0, fc.size());
+
+				final String content = Charset.defaultCharset().decode(bb)
+				.toString();
+
+				stream.close();
+				update(content);
 			}
 			catch (final FileNotFoundException e)
 			{
 				Log.e("ERROR", "PROBLEMA AL LEER FICHERO");
 			}
-
-			final FileChannel fc = stream.getChannel();
-			final MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY,
-			0, fc.size());
-
-			final String content = Charset.defaultCharset().decode(bb)
-			.toString();
-
-			stream.close();
-			this.update(content);
 		}
 		catch (final IOException e)
 		{
 			e.printStackTrace();
 		}
 		(new File("createDB.sql")).delete();
-	}
-
-	public Cursor consult(final String consult)
-	{
-		final Cursor c = this.getReadableDatabase().rawQuery(consult, null);
-		return c;
 	}
 
 	public int update(final String consult)
@@ -92,23 +78,6 @@ public class Database extends SQLiteOpenHelper {
 		{
 			return 0;
 		}
-	}
-
-	public int count(final String table, final String condition)
-	{
-		int number;
-		final String where = condition == null ? "" : " WHERE " + condition;
-		final String consult = "SELECT COUNT(*) as number FROM " + table
-		+ where + ";";
-		final Cursor cursor = consult(consult);
-		number = cursor.getCount();
-		cursor.close();
-		return number;
-	}
-
-	private int numberOfTables()
-	{
-		return count("sqlite_master", "type='table'");
 	}
 
 	@Override
