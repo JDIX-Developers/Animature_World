@@ -3,6 +3,8 @@ package com.jdix.animature;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.widget.ListView;
 
 import com.jdix.animature.entities.Animature;
 import com.jdix.animature.utils.AdapterAnimatures;
+import com.jdix.animature.utils.Database;
 
 /**
  * @author Jordan Aranda Tejada
@@ -17,6 +20,7 @@ import com.jdix.animature.utils.AdapterAnimatures;
 public class AnimaxGameMenuActivity extends Activity {
 
 	private ListView				list;
+	public SQLiteDatabase			db;
 	private ArrayList<Animature>	animatures;
 
 	@Override
@@ -24,6 +28,9 @@ public class AnimaxGameMenuActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_animax_game_menu);
+
+		db = (new Database(this, "AnimatureWorldDB", null, 1))
+		.getReadableDatabase();
 
 		// We get a reference to the interface controls
 		list = (ListView) findViewById(R.id.list_Animax);
@@ -40,31 +47,29 @@ public class AnimaxGameMenuActivity extends Activity {
 		animatures.add(a2);
 		animatures.add(a3);
 
-		final Animature a4 = new Animature(4, "CHARMANDER", 250, 125, 3, 7, 80,
-		80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
-		final Animature a5 = new Animature(5, "CHARMELEON", 250, 125, 3, 7, 80,
-		80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
-		final Animature a6 = new Animature(6, "CHARIZARD", 250, 125, 3, 7, 80,
+		final Animature a4 = new Animature(4, "CHARMANDER", 250, 125, 1, - 1,
+		80, 80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
+		final Animature a5 = new Animature(5, "CHARMELEON", 250, 125, 1, - 1,
+		80, 80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
+		final Animature a6 = new Animature(6, "CHARIZARD", 250, 125, 1, 9, 80,
 		80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
 		animatures.add(a4);
 		animatures.add(a5);
 		animatures.add(a6);
 
-		final Animature a7 = new Animature(7, "SQUIRTLE", 250, 125, 3, 7, 80,
+		final Animature a7 = new Animature(7, "SQUIRTLE", 250, 125, 2, - 1, 80,
 		80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
-		final Animature a8 = new Animature(8, "WARTORTLE", 250, 125, 3, 7, 80,
-		80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
-		final Animature a9 = new Animature(9, "BLASTOISE", 250, 125, 3, 7, 80,
-		80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
+		final Animature a8 = new Animature(8, "WARTORTLE", 250, 125, 2, - 1,
+		80, 80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
+		final Animature a9 = new Animature(9, "BLASTOISE", 250, 125, 16, - 1,
+		80, 80, 70, 75, 85, 380, - 1, 200000, new Drawable[2], null);
 		animatures.add(a7);
 		animatures.add(a8);
 		animatures.add(a9);
 
-		// Creo el adapter personalizado
 		final AdapterAnimatures adapter = new AdapterAnimatures(this,
 		animatures);
 
-		// Lo aplico
 		list.setAdapter(adapter);
 
 	}
@@ -75,6 +80,16 @@ public class AnimaxGameMenuActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.animax_game_menu, menu);
 		return true;
+	}
+
+	private void loadAnimatureArrayList()
+	{
+		final Cursor u = db.rawQuery("Select * FROM User", null);
+		while (u.moveToNext())
+		{
+			// LOAD ANIMATURE DATA
+			// animatures.add(new Animature());
+		}
 	}
 
 }

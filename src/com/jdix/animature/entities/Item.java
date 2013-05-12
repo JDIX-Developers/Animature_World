@@ -2,13 +2,8 @@ package com.jdix.animature.entities;
 
 public class Item {
 
-	/*
-	 * La clase item sirve para t
-	 */
-
 	private int		id;
 	private String	name;
-	private int		type;
 	private String	description;
 	private int		quantity;
 
@@ -17,13 +12,12 @@ public class Item {
 
 	}
 
-	public Item(final int id, final String name, final int type,
-	final String description, final int quantity)
+	public Item(final int id, final String name, final String description,
+	final int quantity)
 	{
 		super();
 		this.id = id;
 		this.name = name;
-		this.type = type;
 		this.description = description;
 		this.quantity = quantity;
 	}
@@ -46,16 +40,6 @@ public class Item {
 	public void setName(final String name)
 	{
 		this.name = name;
-	}
-
-	public int getType()
-	{
-		return type;
-	}
-
-	public void setType(final int type)
-	{
-		this.type = type;
 	}
 
 	public String getDescription()

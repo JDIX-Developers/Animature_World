@@ -43,15 +43,17 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="left|center_vertical"
         android:layout_weight="0"
-        android:gravity="center|right|left" >
+        android:gravity="left|center_vertical" >
 
         <TextView
             android:id="@+id/animax_row_type1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
             android:layout_marginRight="@dimen/Margin20"
-            android:background="@color/color_grass"
+            android:gravity="left"
             android:paddingBottom="@dimen/Margin5"
             android:paddingLeft="@dimen/Margin5"
             android:paddingRight="@dimen/Margin5"
@@ -59,12 +61,21 @@
             android:text="Planta"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|center_vertical"
+        android:layout_weight="0"
+        android:gravity="left|center_vertical" >
+
         <TextView
             android:id="@+id/animax_row_type2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
             android:layout_marginRight="@dimen/Margin10"
-            android:background="@color/color_poison"
             android:paddingBottom="@dimen/Margin5"
             android:paddingLeft="@dimen/Margin5"
             android:paddingRight="@dimen/Margin5"

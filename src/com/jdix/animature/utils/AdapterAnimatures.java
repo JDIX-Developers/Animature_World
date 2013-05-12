@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,11 +78,11 @@ public class AdapterAnimatures extends BaseAdapter {
 		// TYPE 1
 		final TextView type1Animature = (TextView) v
 		.findViewById(R.id.animax_row_type1);
-		// modifyTypeTextView(type1Animature, animature.getType());
+		modifyTypeTextView(type1Animature, animature.getType());
 		// TYPE 2
 		final TextView type2Animature = (TextView) v
 		.findViewById(R.id.animax_row_type2);
-		// modifyTypeTextView(type2Animature, animature.getType2());
+		modifyTypeTextView(type2Animature, animature.getType2());
 
 		// Retornamos la vista
 		return v;
@@ -96,80 +97,91 @@ public class AdapterAnimatures extends BaseAdapter {
 			break;
 			case 0:
 				textView.setText("NORMAL");
-				textView.setBackgroundColor(0x7f050003);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_normal));
 			break;
 			case 1:
 				textView.setText("FUEGO");
-				textView.setBackgroundColor(0xFF5930);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_fire));
 			break;
 			case 2:
 				textView.setText("AGUA");
-				textView.setBackgroundColor(0x308AFF);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_water));
 			break;
 			case 3:
 				textView.setText("PLANTA");
-				textView.setBackgroundColor(0x1E7F19);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_grass));
 			break;
 			case 4:
 				textView.setText("ELÉCTRICO");
-				textView.setBackgroundColor(0xFFF930);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_electric));
 			break;
 			case 5:
 				textView.setText("HIELO");
-				textView.setBackgroundColor(0x77FFF9);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_ice));
 			break;
 			case 6:
 				textView.setText("LUCHA");
-				textView.setBackgroundColor(0xDF8A60);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_fighting));
 			break;
 			case 7:
 				textView.setText("VENENO");
-				textView.setBackgroundColor(0xEF58C4);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_poison));
 			break;
 			case 8:
 				textView.setText("TIERRA");
-				textView.setBackgroundColor(0xD59751);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_ground));
 			break;
 			case 9:
 				textView.setText("VOLADOR");
-				textView.setBackgroundColor(0xB2A9FA);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_flying));
 			break;
 			case 10:
 				textView.setText("PSÍQUICO");
-				textView.setBackgroundColor(0xAB6292);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_psychic));
 			break;
 			case 11:
 				textView.setText("BICHO");
-				textView.setBackgroundColor(0x6ABF6C);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_bug));
 			break;
 			case 12:
 				textView.setText("ROCA");
-				textView.setBackgroundColor(0xA19989);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_rock));
 			break;
 			case 13:
 				textView.setText("FANTASMA");
-				textView.setBackgroundColor(0x9F9F9F);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_ghost));
 			break;
 			case 14:
 				textView.setText("DRAGÓN");
-				textView.setBackgroundColor(0xBA3343);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_dragon));
 			break;
 			case 15:
 				textView.setText("SINIESTRO");
-				textView.setBackgroundColor(0x6E6E6E);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_dark));
 			break;
 			case 16:
 				textView.setText("ACERO");
-				textView.setBackgroundColor(0xC2C2C2);
+				textView.setBackgroundColor(activity.getResources().getColor(
+				R.color.color_steel));
 			break;
 		}
+		textView.setTextColor(Color.BLACK);
 
 	}
-
-	private Object getResources()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
