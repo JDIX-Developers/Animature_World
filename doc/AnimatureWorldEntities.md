@@ -5,7 +5,8 @@ String	nameAnimature		Nombre del animature.
 double	heightAnimature		Altura del animature.
 double	weightAnimature		Peso del animature.
 int		typeAnimature[2]	Tipo/s del animature. (Veneno, planta, agua, fuego,...)
-int		cualities[5]		Cualidades del animature. (0-Velocidad, 1-Defensa. 2-Agilidad, 3-Fuerza, 4-Precisión)
+String	information			DescripciÃ³n del animature. (Para visualizarla en el Animax)
+int		cualities[5]		Cualidades del animature. (0-Velocidad, 1-Defensa. 2-Agilidad, 3-Fuerza, 4-PrecisiÃ³n)
 int		healthAnimature		Vida del Animature.
 int		levelEvoAnimature	Nivel en el que evoluciona el animature. (0 si no evoluciona)
 int		expericeBase		Experiencia base del animature. (Para obtener la de los siguientes niveles)
@@ -32,7 +33,7 @@ boolean	box						Es igual a true si el Animature captured esta entre los 6 elegi
 int		id_Attack			Identificador del ataque.
 String	nameAttack			Nombre del ataque.
 int		typeAttack			Tipo del ataque. (Veneno, planta, agua, fuego,...)
-int 	maxPPAttack			Número máximo de veces que puede ser utilizado el ataque.
+int 	maxPPAttack			NÃºmero mÃ¡ximo de veces que puede ser utilizado el ataque.
 int		powerAttack			Poder del ataque.
 int		probabilityAttack	Probabilidad de que el ataque tenga exito.
 boolean passiveAttack		Es true si el ataque no quita vida, sino que, aumenta una de las cualidades de tu animature.
@@ -40,10 +41,10 @@ boolean passiveAttack		Es true si el ataque no quita vida, sino que, aumenta una
 
 -- CLASE ITEM --
 
-int 	id_Item				Identificador del ítem.
-String 	nameItem			Nombre del ítem.
-String	description			Descripción del ítem.
-int 	quantituy			Número de ítems.
+int 	id_Item				Identificador del Ã­tem.
+String 	nameItem			Nombre del Ã­tem.
+String	description			DescripciÃ³n del Ã­tem.
+int 	quantituy			NÃºmero de Ã­tems.
 
 -- CLASE PLAYER --
 
@@ -54,18 +55,18 @@ String	playerEnemyName			Nombre del enemigo del jugador.
 int 	stage					Etapa del juego.
 long 	startedTime				Tiempo de inicio del juego en milisegundos.
 long	lastPlayedTime			Ultima vez que se ha jugado en milisegundos.
-long	stepsPlayer				Número de pasos que ha dado el jugador.
+long	stepsPlayer				NÃºmero de pasos que ha dado el jugador.
 Animature activeAnimatures[6]	Animatures que el jugador lleva encima.
-int 	coord_X					Número de la coordenada x del jugador.
-int 	coord_Y					Número de la coordenada y del jugador.
-int 	orientation				Orientación del jugador. (1-Arriba, 2-Derecha, 3-Abajo, 5-Izquierda)
-int 	medals					Número de medallas que ha conseguido el jugador.
+int 	coord_X					NÃºmero de la coordenada x del jugador.
+int 	coord_Y					NÃºmero de la coordenada y del jugador.
+int 	orientation				OrientaciÃ³n del jugador. (1-Arriba, 2-Derecha, 3-Abajo, 5-Izquierda)
+int 	medals					NÃºmero de medallas que ha conseguido el jugador.
 long 	money					Dinero del jugador.
-Vector <Item> items				Ítems del jugador.
+Vector <Item> items				Ãtems del jugador.
 
 
 ---> PROBLEMAS <---
 
-¿Como recordamos el último centro de curación donde se ha curado para que cuando el jugador sea derrotado vuelva a aparecer en ese mismo lugar?
+Â¿Como recordamos el Ãºltimo centro de curaciÃ³n donde se ha curado para que cuando el jugador sea derrotado vuelva a aparecer en ese mismo lugar?
 
-¿Como recordamos el orden de los Animatures que lleva el jugador encima?
+Â¿Como recordamos el orden de los Animatures que lleva el jugador encima?
