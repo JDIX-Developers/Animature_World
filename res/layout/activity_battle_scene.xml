@@ -47,7 +47,7 @@
             android:id="@+id/enemyAnimatureImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/f1" />
+            android:src="@drawable/f6" />
 
     </LinearLayout>
 
