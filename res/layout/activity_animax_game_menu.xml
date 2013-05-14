@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
  
         <ListView
-            android:id="@+id/list_Animax"
+            android:id="@+id/list_Animatures"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginLeft="@dimen/Margin15"

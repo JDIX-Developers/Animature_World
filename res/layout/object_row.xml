@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/Margin20"
+        android:layout_weight="1"
+        android:gravity="center|left" >
+
+        <TextView
+            android:id="@+id/object_row_object_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/Margin20"
+            android:gravity="center"
+            android:height="@dimen/Margin50"
+            android:text="Poción"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|center_vertical"
+        android:layout_weight="0"
+        android:gravity="left|center_vertical" >
+
+        <TextView
+            android:id="@+id/object_row_object_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/Margin10"
+            android:padding="@dimen/Margin5"
+            android:text="x15"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

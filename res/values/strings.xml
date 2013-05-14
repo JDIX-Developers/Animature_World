@@ -8,6 +8,6 @@
     <string name="title_activity_map">Map</string>
     <string name="title_activity_game_menu">GameMenuActivity</string>
     <string name="title_activity_animax_game_menu">AnimaxGameMenuActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_bag">BagActivity</string>
 
 </resources>

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,7 +109,7 @@ public class AdapterAnimatures extends BaseAdapter {
 		switch (type)
 		{
 			case - 1:
-			// INVISIBLE
+				textView.setVisibility(View.INVISIBLE);
 			break;
 			case 0:
 				textView.setText("NORMAL");
@@ -198,7 +197,5 @@ public class AdapterAnimatures extends BaseAdapter {
 				R.color.color_steel));
 			break;
 		}
-		textView.setTextColor(Color.BLACK);
-
 	}
 }

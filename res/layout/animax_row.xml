@@ -24,7 +24,7 @@
             android:layout_marginRight="@dimen/Margin20"
             android:gravity="center"
             android:height="@dimen/Margin50"
-            android:text="1"
+            android:text=""
             android:textSize="25sp" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_marginRight="@dimen/Margin10"
             android:gravity="center"
             android:height="@dimen/Margin50"
-            android:text="Bulbasur"
+            android:text=""
             android:textSize="25sp" />
 
     </LinearLayout>
@@ -58,7 +58,8 @@
             android:paddingLeft="@dimen/Margin5"
             android:paddingRight="@dimen/Margin5"
             android:paddingTop="@dimen/Margin5"
-            android:text="Planta"
+            android:text=""
+            android:textColor="#000000"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>
@@ -80,7 +81,8 @@
             android:paddingLeft="@dimen/Margin5"
             android:paddingRight="@dimen/Margin5"
             android:paddingTop="@dimen/Margin5"
-            android:text="Veneno"
+            android:text=""
+			android:textColor="#000000"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>

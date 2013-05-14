@@ -59,9 +59,13 @@
         </activity>
         <activity
             android:name="com.jdix.animature.AnimaxGameMenuActivity"
-            android:label="@string/title_activity_animax_game_menu" 
-            android:screenOrientation="landscape" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:label="@string/title_activity_animax_game_menu"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.jdix.animature.BagActivity"
+            android:label="@string/title_activity_bag" >
         </activity>
     </application>
 

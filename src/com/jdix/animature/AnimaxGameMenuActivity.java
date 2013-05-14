@@ -33,7 +33,7 @@ public class AnimaxGameMenuActivity extends Activity {
 		.getReadableDatabase();
 
 		// We get a reference to the interface controls
-		list = (ListView) findViewById(R.id.list_Animax);
+		list = (ListView) findViewById(R.id.list_Animatures);
 		animatures = new ArrayList<Animature>();
 
 		// Example data
