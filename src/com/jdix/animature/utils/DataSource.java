@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Attack;
 import com.jdix.animature.entities.Captured;
+import com.jdix.animature.entities.Item;
 
 public class DataSource {
 
@@ -32,6 +33,8 @@ public class DataSource {
 	"an4", "an5", "an6", "map", "coord_x", "coord_y", "neighbour", "first_an",
 	"orientation", "last_HealingMap", "last_HealingX", "last_HealingY",
 	"medals", "money"						};
+	private final String[]		columnsItem	= {"id", "name", "type",
+	"description"							};
 
 	public DataSource(final Context context, final String name,
 	final CursorFactory factory, final int version)
@@ -61,7 +64,8 @@ public class DataSource {
 		values.put("ifPass", ifPass);
 		values.put("power", power);
 		values.put("probability", probability);
-		db.insert("Attacks", null, values);
+
+		db.insert("ATTACK", null, values);
 	}
 
 	public void createCaptured(final int animature, final int save,
@@ -93,7 +97,7 @@ public class DataSource {
 		values.put("exp", exp);
 		values.put("box", box);
 
-		db.insert("Captured", null, values);
+		db.insert("CAPTURED", null, values);
 	}
 
 	public void createAnimature(final String name, final double height,
@@ -117,7 +121,7 @@ public class DataSource {
 		values.put("level_evo", level_evo);
 		values.put("baseExp", baseExp);
 
-		db.insert("Animature", null, values);
+		db.insert("ANIMATURE", null, values);
 	}
 
 	public void createSave(final int id, final int character, final int stage,
@@ -154,13 +158,24 @@ public class DataSource {
 		values.put("medals", medals);
 		values.put("money", money);
 
-		db.insert("Save", null, values);
+		db.insert("SAVE", null, values);
+	}
+
+	public void createItem(final String name, final int type,
+	final String description)
+	{
+		final ContentValues values = new ContentValues();
+		values.put("name", name);
+		values.put("type", type);
+		values.put("description", description);
+
+		db.insert("ITEM", null, values);
 	}
 
 	public Attack readAttack(final int id)
 	{
 		this.db = this.dbHelper.getReadableDatabase();
-		final Cursor c = db.query("Attacks", columnsA, "id=" + id, null, null,
+		final Cursor c = db.query("ATTACK", columnsA, "id=" + id, null, null,
 		null, null, null);
 		if (c != null)
 		{
@@ -175,7 +190,7 @@ public class DataSource {
 	public List<Attack> getAllAttacks()
 	{
 		final List<Attack> AttackList = new ArrayList<Attack>();
-		final Cursor cursor = db.query("Attacks", columnsA, null, null, null,
+		final Cursor cursor = db.query("ATTACK", columnsA, null, null, null,
 		null, null);
 		cursor.moveToFirst();
 		while ( ! cursor.isAfterLast())
@@ -191,7 +206,7 @@ public class DataSource {
 	public void deleteAttack(final Attack attack)
 	{
 		final int id = attack.getId_Attack();
-		db.delete("Attacks", "id" + " = " + id, null);
+		db.delete("ATTACK", "id" + " = " + id, null);
 	}
 
 	public Attack cursorToAttack(final Cursor cursor)
@@ -216,7 +231,7 @@ public class DataSource {
 	public Captured readCaptured(final int id)
 	{
 		db = dbHelper.getReadableDatabase();
-		final Cursor c = db.query("Captured", columnsCap, "id=" + id, null,
+		final Cursor c = db.query("CAPTURED", columnsCap, "id=" + id, null,
 		null, null, null, null);
 		if (c != null)
 		{
@@ -233,7 +248,7 @@ public class DataSource {
 	{
 		final List<Captured> CapturedList = new ArrayList<Captured>();
 
-		final Cursor cursor = db.query("Captured", columnsCap, null, null,
+		final Cursor cursor = db.query("CAPTURED", columnsCap, null, null,
 		null, null, null);
 		cursor.moveToFirst();
 		while ( ! cursor.isAfterLast())
@@ -250,7 +265,7 @@ public class DataSource {
 	public void deleteCaptured(final Captured captured)
 	{
 		final int id = captured.getIdAnimatureCapt();
-		db.delete("Captured", "id" + " = " + id, null);
+		db.delete("CAPTURED", "id" + " = " + id, null);
 	}
 
 	public Captured cursorToCaptured(final Cursor cursor)
@@ -288,7 +303,7 @@ public class DataSource {
 	public int readAnimatureColInt(final int id, final int pos)
 	{
 		this.db = this.dbHelper.getReadableDatabase();
-		final Cursor c = db.query("Animature", columnsAnim, "id=" + id, null,
+		final Cursor c = db.query("ANIMATURE", columnsAnim, "id=" + id, null,
 		null, null, null, null);
 		if (c != null)
 		{
@@ -304,7 +319,7 @@ public class DataSource {
 	public Animature readAnimature(final int id)
 	{
 		this.db = this.dbHelper.getReadableDatabase();
-		final Cursor c = db.query("Animature", columnsAnim, "id=" + id, null,
+		final Cursor c = db.query("ANIMATURE", columnsAnim, "id=" + id, null,
 		null, null, null, null);
 		if (c != null)
 		{
@@ -321,7 +336,7 @@ public class DataSource {
 	{
 		final List<Animature> AnimatureList = new ArrayList<Animature>();
 
-		final Cursor cursor = db.query("Animature", columnsAnim, null, null,
+		final Cursor cursor = db.query("ANIMATURE", columnsAnim, null, null,
 		null, null, null);
 		cursor.moveToFirst();
 		while ( ! cursor.isAfterLast())
@@ -338,7 +353,7 @@ public class DataSource {
 	public void deleteAnimature(final Animature animature)
 	{
 		final int id = animature.getId_Animature();
-		db.delete("Animature", "id" + " = " + id, null);
+		db.delete("ANIMATURE", "id" + " = " + id, null);
 	}
 
 	public Animature cursorToAnimature(final Cursor cursor)
@@ -355,7 +370,7 @@ public class DataSource {
 	public int readSaveColInt(final int id, final int pos)
 	{
 		this.db = this.dbHelper.getReadableDatabase();
-		final Cursor c = db.query("Save", columnsSave, "id=" + id, null, null,
+		final Cursor c = db.query("SAVE", columnsSave, "id=" + id, null, null,
 		null, null, null);
 		if (c != null)
 		{
@@ -370,6 +385,60 @@ public class DataSource {
 
 	public void deleteSave(final int id)
 	{
-		db.delete("Animature", "id" + " = " + id, null);
+		db.delete("SAVE", "id" + " = " + id, null);
+	}
+
+	public Item readItem(final int id)
+	{
+		db = dbHelper.getReadableDatabase();
+		final Cursor c = db.query("ITEM", columnsItem, "id=" + id, null, null,
+		null, null, null);
+		if (c != null)
+		{
+			c.moveToFirst();
+		}
+
+		final Item item = cursorToItem(c);
+		db.close();
+		c.close();
+		return item;
+	}
+
+	public List<Item> getAllItems()
+	{
+		final List<Item> ItemList = new ArrayList<Item>();
+
+		final Cursor cursor = db.query("ITEM", columnsItem, null, null, null,
+		null, null);
+		cursor.moveToFirst();
+		while ( ! cursor.isAfterLast())
+		{
+			final Item item = cursorToItem(cursor);
+			ItemList.add(item);
+			cursor.moveToNext();
+		}
+
+		cursor.close();
+		return ItemList;
+	}
+
+	public void deleteItem(final Item item)
+	{
+		final int id = item.getId();
+		db.delete("ITEM", "id" + " = " + id, null);
+	}
+
+	public Item cursorToItem(final Cursor cursor)
+	{
+		final Item item;
+
+		final int id = cursor.getInt(0);
+		final String name = cursor.getString(1);
+		final int type = cursor.getInt(2);
+		final String description = cursor.getString(3);
+
+		item = new Item(id, name, type, description, 0);
+
+		return item;
 	}
 }

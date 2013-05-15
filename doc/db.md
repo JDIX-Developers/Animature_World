@@ -13,10 +13,10 @@
 (id, *animature*, *save*, nickname, sex, status, capturedTime, *attack1*, attack1_pp, *attack2*, attack2_pp, *attack3*, attack3_pp, *attack4*, attack4_pp, health, level, cur_exp, exp, box)
 
 ## Tabla Bag ##
-(*save*, *object*, quantity)
+(*save*, *item*, quantity)
 
-## Tabla Objects ##
-(id, type)
+## Tabla Items ##
+(id, name, type, description)
 
 ## Tabla Enemies ##
 (id, map, coord_x, coord_y, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*)
