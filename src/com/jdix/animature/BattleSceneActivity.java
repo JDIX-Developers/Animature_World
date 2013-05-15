@@ -14,8 +14,12 @@ import android.widget.TextView;
 import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Attack;
 import com.jdix.animature.entities.Captured;
+import com.jdix.animature.utils.DataSource;
 
 public class BattleSceneActivity extends Activity {
+
+	// Database source
+	private DataSource			dataSource;
 
 	// Enemy's Animature Components
 	private Captured			enemy;
@@ -41,6 +45,7 @@ public class BattleSceneActivity extends Activity {
 	// Exit Button
 	private Button				exitBtn;
 
+	private int					battleType;
 	private final Captured[]	animSel	= new Captured[6];
 	private int					animatureIndex;
 
@@ -52,6 +57,8 @@ public class BattleSceneActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_battle_scene);
+
+		dataSource = new DataSource(this, "AnimatureWorldDB", null, 1);
 
 		loadBattleAnimatures();
 
@@ -318,5 +325,49 @@ public class BattleSceneActivity extends Activity {
 	@Override
 	public void onBackPressed()
 	{
+	}
+
+	private boolean throwAnimatureBall(final Captured enemy, final int ball)
+	{
+		boolean captured = false;
+		float capture;
+		int effectiveness;
+		final int m = enemy.getHealthMax();
+		final int h = enemy.getHealthAct();
+		final int r = enemy.getCaptureRange();
+		final int status = enemy.getStatus();
+		int s = 0;
+		int ballEffect = 100;
+		final int rand = (new Random()).nextInt(100);
+
+		if (status > 0 && status < 4)
+		{
+			s = 5;
+		}
+		if (status > 3)
+		{
+			s = 10;
+		}
+
+		switch (ball)
+		{
+			case 1:
+				ballEffect = 150;
+			break;
+			case 2:
+				ballEffect = 200;
+			break;
+		}
+
+		capture = (((m * 4) - (h * 2) * r) / m) + s + 1;
+
+		effectiveness = (int) capture * (ballEffect / 100);
+
+		if (rand <= effectiveness)
+		{
+			captured = true;
+		}
+
+		return captured;
 	}
 }

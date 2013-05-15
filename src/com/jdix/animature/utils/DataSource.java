@@ -27,7 +27,7 @@ public class DataSource {
 	"level", "cur_exp", "exp", "box"		};
 	private final String[]		columnsAnim	= {"id", "name", "height",
 	"weight", "type", "type2", "speed", "defense", "agility", "strenght",
-	"precission", "health", "level_evo", "baseExp"};
+	"precission", "health", "level_evo", "baseExp", "captureRange"};
 	private final String[]		columnsSave	= {"id", "character", "stage",
 	"last_played", "started", "total_time", "steps", "an1", "an2", "an3",
 	"an4", "an5", "an6", "map", "coord_x", "coord_y", "neighbour", "first_an",
@@ -104,7 +104,7 @@ public class DataSource {
 	final double weight, final int type, final int type2, final int speed,
 	final int defense, final int agility, final int strenght,
 	final int precission, final int health, final int level_evo,
-	final int baseExp)
+	final int baseExp, final int captureRange)
 	{
 		final ContentValues values = new ContentValues();
 		values.put("name", name);
@@ -120,6 +120,7 @@ public class DataSource {
 		values.put("health", health);
 		values.put("level_evo", level_evo);
 		values.put("baseExp", baseExp);
+		values.put("captureRange", captureRange);
 
 		db.insert("ANIMATURE", null, values);
 	}
@@ -362,7 +363,8 @@ public class DataSource {
 		cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3),
 		cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getInt(7),
 		cursor.getInt(8), cursor.getInt(9), cursor.getInt(10),
-		cursor.getInt(11), cursor.getInt(12), cursor.getInt(13), null, null);
+		cursor.getInt(11), cursor.getInt(12), cursor.getInt(13),
+		cursor.getInt(14), null, null);
 
 		return animature;
 	}

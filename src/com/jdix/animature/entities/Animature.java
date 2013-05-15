@@ -47,6 +47,7 @@ public class Animature {
 	protected int			health;
 	protected int			level_evo;
 	protected int			baseExp;
+	protected int			captureRange;
 
 	protected Drawable[]	imgAnimature;
 	protected Drawable		iconAnimature;
@@ -60,7 +61,7 @@ public class Animature {
 	final double height, final double weight, final int type, final int type2,
 	final int speed, final int defense, final int agility, final int strenght,
 	final int precission, final int health, final int level_evo,
-	final int baseExp, final Drawable[] imgAnimature,
+	final int baseExp, final int captureRange, final Drawable[] imgAnimature,
 	final Drawable iconAnimature)
 	{
 		this.id_Animature = id_Animature;
@@ -77,6 +78,7 @@ public class Animature {
 		this.health = health;
 		this.level_evo = level_evo;
 		this.baseExp = baseExp;
+		this.captureRange = captureRange;
 		this.imgAnimature = imgAnimature;
 		this.iconAnimature = iconAnimature;
 	}
@@ -179,6 +181,16 @@ public class Animature {
 	public void setBaseExp(final int baseExp)
 	{
 		this.baseExp = baseExp;
+	}
+
+	public int getCaptureRange()
+	{
+		return captureRange;
+	}
+
+	public void setCaptureRange(final int captureRange)
+	{
+		this.captureRange = captureRange;
 	}
 
 	public Drawable[] getImgAnimature()
