@@ -85,12 +85,12 @@ public class DataSource {
 		values.put("capturedTime", capturedTime);
 		values.put("attack1", attack1);
 		values.put("attack1_pp", attack1_pp);
-		values.put("attack2", attack1);
-		values.put("attack2_pp", attack1_pp);
-		values.put("attack3", attack1);
-		values.put("attack3_pp", attack1_pp);
-		values.put("attack4", attack1);
-		values.put("attack4_pp", attack1_pp);
+		values.put("attack2", attack2);
+		values.put("attack2_pp", attack2_pp);
+		values.put("attack3", attack3);
+		values.put("attack3_pp", attack3_pp);
+		values.put("attack4", attack4);
+		values.put("attack4_pp", attack4_pp);
 		values.put("health", health);
 		values.put("level", level);
 		values.put("cur_exp", cur_exp);

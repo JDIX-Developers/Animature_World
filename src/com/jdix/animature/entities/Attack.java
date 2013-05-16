@@ -141,8 +141,7 @@ public class Attack {
 	public Captured getCapturedDamage(final Captured captRec,
 	final Captured captDo)
 	{
-		final Random r = new Random();
-		final int rand = r.nextInt(100);
+		final int rand = (new Random()).nextInt(100);
 
 		if (rand <= (this.probability + (captDo.getCualitiesC(PRECISSION) - captRec
 		.getCualitiesC(AGILITY))))

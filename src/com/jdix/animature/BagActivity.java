@@ -42,10 +42,11 @@ public class BagActivity extends Activity {
 		items = new ArrayList<Item>();
 
 		// Example data
-		final Item i1 = new Item(1, "POCIÓN", "Cura 50 PS de tu Animature.", 10);
-		final Item i2 = new Item(2, "ANTIDOTO",
+		final Item i1 = new Item(1, "POCIÓN", 0, "Cura 50 PS de tu Animature.",
+		10);
+		final Item i2 = new Item(2, "ANTIDOTO", 1,
 		"Cura del envenenamiento a tu Animature.", 12);
-		final Item i3 = new Item(3, "SUPERPOCIÓN",
+		final Item i3 = new Item(3, "SUPERPOCIÓN", 0,
 		"Cura 100 PS de tu Animature.", 5);
 		items.add(i1);
 		items.add(i2);

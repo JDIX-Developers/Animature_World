@@ -231,6 +231,27 @@ public class BattleSceneActivity extends Activity {
 
 	private void loadEnemyAnimature()
 	{
+		/*
+		 * dataSource.open(); enemy.setCualitiesC(
+		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 6),
+		 * Animature.SPEED); enemy.setCualitiesC(
+		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 7),
+		 * Animature.DEFENSE); enemy.setCualitiesC(
+		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 8),
+		 * Animature.AGILITY); enemy.setCualitiesC(
+		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 9),
+		 * Animature.STRENGHT); enemy.setCualitiesC(
+		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 10),
+		 * Animature.PRECISSION); for (int i = 1; i <= enemy.getLevel(); i++) {
+		 * for (int j = 0; j < 5; j++) { enemy.setCualitiesC(
+		 * enemy.getCualitiesC(j) + (enemy.getCualitiesC(j) / 3), j); } }
+		 * enemy.setHealthMax(dataSource.readAnimatureColInt(
+		 * enemy.getIdAnimature(), 11)); if (enemy.getLevel() > 1) { for (int i
+		 * = 2; i <= enemy.getLevel(); i++) {
+		 * enemy.setHealthMax(enemy.getHealthMax() + enemy.getHealthMax() / 3);
+		 * } } dataSource.close();
+		 */
+
 		enemy_animature_name.setText(enemy.getNickname());
 		enemy_animature_level.setText("Nvl " + enemy.getLevel());
 		enemy_animature_life.setMax(100);// enemy.getHealthMax());
@@ -243,6 +264,31 @@ public class BattleSceneActivity extends Activity {
 
 	private void loadYourAnimature()
 	{
+		/*
+		 * dataSource.open();
+		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
+		 * animSel[animatureIndex].getIdAnimature(), 6), Animature.SPEED);
+		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
+		 * animSel[animatureIndex].getIdAnimature(), 7), Animature.DEFENSE);
+		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
+		 * animSel[animatureIndex].getIdAnimature(), 8), Animature.AGILITY);
+		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
+		 * animSel[animatureIndex].getIdAnimature(), 9), Animature.STRENGHT);
+		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
+		 * animSel[animatureIndex].getIdAnimature(), 10), Animature.PRECISSION);
+		 * for (int i = 1; i <= animSel[animatureIndex].getLevel(); i++) { for
+		 * (int j = 0; j < 5; j++) { animSel[animatureIndex].setCualitiesC(
+		 * animSel[animatureIndex].getCualitiesC(j) +
+		 * (animSel[animatureIndex].getCualitiesC(j) / 3), j); } }
+		 * animSel[animatureIndex].setHealthMax(dataSource.readAnimatureColInt(
+		 * animSel[animatureIndex].getIdAnimature(), 11)); if
+		 * (animSel[animatureIndex].getLevel() > 1) { for (int i = 2; i <=
+		 * animSel[animatureIndex].getLevel(); i++) {
+		 * animSel[animatureIndex].setHealthMax(animSel[animatureIndex]
+		 * .getHealthMax() + animSel[animatureIndex].getHealthMax() / 3); } }
+		 * dataSource.close();
+		 */
+
 		your_animature_name.setText(animSel[animatureIndex].getNickname());
 		your_animature_level.setText("Nvl "
 		+ animSel[animatureIndex].getLevel());
@@ -265,6 +311,19 @@ public class BattleSceneActivity extends Activity {
 
 	private void loadBattleAnimatures()
 	{
+		/*
+		 * dataSource.open(); dataSource.createCaptured(1, - 1, "Pepe", 0, 0, 0,
+		 * 1, 32, 2, 37, 4, 24, 3, 40, 44, 5, 50, 250, 0);
+		 * dataSource.createCaptured(2, - 1, "Juan", 1, 0, 0, 1, 32, 2, 37, 5,
+		 * 24, 3, 40, 48, 5, 60, 250, 0); animatureIndex = 0;
+		 * animSel[animatureIndex] = dataSource.readCaptured(1); enemy =
+		 * dataSource.readCaptured(2); for (int i = 0; i < 4; i++) {
+		 * animSel[animatureIndex].setAttack(i,
+		 * dataSource.readAttack(animSel[animatureIndex].getAttackN(i)));
+		 * enemy.setAttack(i, dataSource.readAttack(enemy.getAttackN(i))); }
+		 * dataSource.close();
+		 */
+
 		animSel[0] = new Captured(0, 2, 0, "BLASTOISE", 0, 0, 0, 0, 5, 0, 10,
 		0, 10, 0, 10, 40, 100, 200, 100, 0);
 
@@ -356,6 +415,9 @@ public class BattleSceneActivity extends Activity {
 			break;
 			case 2:
 				ballEffect = 200;
+			break;
+			case 3:
+				captured = true;
 			break;
 		}
 
