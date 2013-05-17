@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Player_Data_View">Información del jugador</string>
+    <string name="Player_Id_View">ID:</string>
+    <string name="Player_Name_View">Nombre:</string>
+    <string name="Player_Time_Played_View">Tiempo jugado:</string>
+    <string name="Player_ViewedAnimatures_View">Animax:</string>
+    <string name="Player_CapturedAnimatures_View">Animatures capturados:</string>
+</resources>

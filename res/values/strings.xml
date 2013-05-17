@@ -9,5 +9,6 @@
     <string name="title_activity_game_menu">GameMenuActivity</string>
     <string name="title_activity_animax_game_menu">AnimaxGameMenuActivity</string>
     <string name="title_activity_bag">BagActivity</string>
+    <string name="title_activity_player_data_view">PlayerDataViewActivity</string>
 
 </resources>
