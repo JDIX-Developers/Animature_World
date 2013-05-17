@@ -1,6 +1,5 @@
 package com.jdix.animature.entities;
 
-import java.util.Random;
 
 public class Attack {
 
@@ -136,57 +135,5 @@ public class Attack {
 	public void setProbability(final int probability)
 	{
 		this.probability = probability;
-	}
-
-	public Captured getCapturedDamage(final Captured captRec,
-	final Captured captDo)
-	{
-		final int rand = (new Random()).nextInt(100);
-
-		if (rand <= (this.probability + (captDo.getCualitiesC(PRECISSION) - captRec
-		.getCualitiesC(AGILITY))))
-		{
-			if (this.active == 0)
-			{
-				if (captRec.getCualitiesC(this.ifPass) > 2)
-				{
-					captRec.setCualitiesC(
-					captRec.getCualitiesC(this.ifPass) - 2, this.ifPass);
-				}
-			}
-			else
-			{
-				captRec.setHealthAct(captRec.getHealthAct()
-				- getDamage(captRec, captDo));
-			}
-		}
-
-		return captRec;
-	}
-
-	public int getDamage(final Captured cR, final Captured cD)
-	{
-		int damage = 0;
-
-		if (cR.isWeak(this.type_Attack))
-		{
-			damage = (this.power / 100)
-			* (cD.getCualitiesC(STRENGHT) / cR.getCualitiesC(DEFENSE))
-			* cD.getCualitiesC(STRENGHT) * 2;
-		}
-		else if (cR.isStrong(this.type_Attack))
-		{
-			damage = (this.power / 100)
-			* (cD.getCualitiesC(STRENGHT) / cR.getCualitiesC(DEFENSE))
-			* cD.getCualitiesC(STRENGHT) / 2;
-		}
-		else
-		{
-			damage = (this.power / 100)
-			* (cD.getCualitiesC(STRENGHT) / cR.getCualitiesC(DEFENSE))
-			* cD.getCualitiesC(STRENGHT);
-		}
-
-		return damage;
 	}
 }

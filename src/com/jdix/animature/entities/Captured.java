@@ -1,5 +1,7 @@
 package com.jdix.animature.entities;
 
+import java.util.Random;
+
 import android.content.Context;
 
 public class Captured extends Animature {
@@ -341,4 +343,56 @@ public class Captured extends Animature {
 	 * (int) ((baseExp * (this.level) * 1.5) / 7); } ands.close(); return gExp;
 	 * }
 	 */
+
+	public Captured getCapturedDamage(final Captured captDo, final int atk)
+	{
+		final int rand = (new Random()).nextInt(100);
+		final Attack attack = captDo.getAttack(atk);
+
+		if (rand <= (attack.getProbability() + (captDo
+		.getCualitiesC(PRECISSION) - this.getCualitiesC(AGILITY))))
+		{
+			if (attack.getActive() == 0)
+			{
+				if (this.getCualitiesC(attack.getIfPass()) > 2)
+				{
+					this.setCualitiesC(
+					this.getCualitiesC(attack.getIfPass()) - 2,
+					attack.getIfPass());
+				}
+			}
+			else
+			{
+				this.setHealthAct(this.getHealthAct()
+				- getDamage(captDo, attack));
+			}
+		}
+		return this;
+	}
+
+	public int getDamage(final Captured cD, final Attack attack)
+	{
+		int damage = 0;
+
+		if (this.isWeak(attack.getType_Attack()))
+		{
+			damage = (attack.getPower() / 100)
+			* (cD.getCualitiesC(STRENGHT) / this.getCualitiesC(DEFENSE))
+			* cD.getCualitiesC(STRENGHT) * 2;
+		}
+		else if (this.isStrong(attack.getType_Attack()))
+		{
+			damage = (attack.getPower() / 100)
+			* (cD.getCualitiesC(STRENGHT) / this.getCualitiesC(DEFENSE))
+			* cD.getCualitiesC(STRENGHT) / 2;
+		}
+		else
+		{
+			damage = (attack.getPower() / 100)
+			* (cD.getCualitiesC(STRENGHT) / this.getCualitiesC(DEFENSE))
+			* cD.getCualitiesC(STRENGHT);
+		}
+
+		return damage;
+	}
 }
