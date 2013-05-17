@@ -9,6 +9,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -77,6 +78,18 @@ public class Database extends SQLiteOpenHelper {
 		catch (final Exception e)
 		{
 			return 0;
+		}
+	}
+
+	public Cursor consult(final String consult)
+	{
+		try
+		{
+			return this.getReadableDatabase().rawQuery(consult, null);
+		}
+		catch (final Exception e)
+		{
+			return null;
 		}
 	}
 

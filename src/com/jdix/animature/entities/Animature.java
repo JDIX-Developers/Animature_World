@@ -45,6 +45,7 @@ public class Animature {
 	protected int			health;
 	protected int			level_evo;
 	protected int			baseExp;
+	protected int			captureRange;
 
 	public Animature()
 	{
@@ -55,7 +56,7 @@ public class Animature {
 	final double height, final double weight, final int type, final int type2,
 	final int speed, final int defense, final int agility, final int strenght,
 	final int precission, final int health, final int level_evo,
-	final int baseExp)
+	final int baseExp, final int captureRange)
 	{
 		this.id_Animature = id_Animature;
 		this.name = name;
@@ -71,6 +72,7 @@ public class Animature {
 		this.health = health;
 		this.level_evo = level_evo;
 		this.baseExp = baseExp;
+		this.captureRange = captureRange;
 	}
 
 	public int getId_Animature()
@@ -172,4 +174,15 @@ public class Animature {
 	{
 		this.baseExp = baseExp;
 	}
+
+	public int getCaptureRange()
+	{
+		return captureRange;
+	}
+
+	public void setCaptureRange(final int captureRange)
+	{
+		this.captureRange = captureRange;
+	}
+
 }
