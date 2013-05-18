@@ -28,8 +28,7 @@ public class AnimaxGameMenuActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_animax_game_menu);
 
-		db = (new Database(this, "AnimatureWorldDB", null, 1))
-		.getReadableDatabase();
+		db = (new Database(this)).getReadableDatabase();
 
 		// We get a reference to the interface controls
 		list = (ListView) findViewById(R.id.list_Animatures);

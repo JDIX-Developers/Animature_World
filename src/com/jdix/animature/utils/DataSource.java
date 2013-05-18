@@ -7,7 +7,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 
 import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Attack;
@@ -36,10 +35,9 @@ public class DataSource {
 	private final String[]		columnsItem	= {"id", "name", "type",
 	"description"							};
 
-	public DataSource(final Context context, final String name,
-	final CursorFactory factory, final int version)
+	public DataSource(final Context context)
 	{
-		dbHelper = new Database(context, name, factory, version);
+		dbHelper = new Database(context);
 	}
 
 	public void open()

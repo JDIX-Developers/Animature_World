@@ -58,7 +58,7 @@ public class BattleSceneActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_battle_scene);
 
-		dataSource = new DataSource(this, "AnimatureWorldDB", null, 1);
+		dataSource = new DataSource(this);
 
 		loadBattleAnimatures();
 

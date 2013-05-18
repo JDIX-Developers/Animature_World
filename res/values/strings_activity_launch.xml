@@ -9,6 +9,6 @@
 	<string name="record_Me">Recordarme</string>
 	<string name="error_incorrect_password">Contraseña incorrecta</string>
 	<string name="conection_error">Error de conexión</string>
-	<string name="login_progress">Entrando...</string>
+	<string name="login_progress">Entrando…</string>
 
 </resources>

@@ -480,7 +480,7 @@ public class MapView extends View implements OnTouchListener {
 
 					try
 					{
-						Thread.sleep(trainers ? 5 : 10);
+						Thread.sleep(trainers ? 4 : 8);
 					}
 					catch (final InterruptedException e)
 					{

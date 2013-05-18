@@ -51,12 +51,11 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
-		startActivity(new Intent(LaunchActivity.this,
-		AnimaxGameMenuActivity.class));
-		this.finish();
+		// startActivity(new Intent(LaunchActivity.this,
+		// AnimaxGameMenuActivity.class));
+		// this.finish();
 
-		db = (new Database(this, "AnimatureWorldDB", null, 1))
-		.getWritableDatabase();
+		db = (new Database(this)).getWritableDatabase();
 
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);

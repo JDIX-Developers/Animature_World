@@ -59,8 +59,7 @@ public class RegisterActivity extends Activity {
 
 		setContentView(R.layout.activity_register);
 
-		db = (new Database(this, "AnimatureWorldDB", null, 1))
-		.getWritableDatabase();
+		db = (new Database(this)).getWritableDatabase();
 
 		login = (ResultReceiver) getIntent().getExtras().get("login");
 

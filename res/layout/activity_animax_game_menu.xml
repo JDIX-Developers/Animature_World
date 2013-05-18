@@ -7,7 +7,7 @@
         <ListView
             android:id="@+id/list_Animatures"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="0dip"
             android:layout_marginLeft="@dimen/Margin15"
             android:layout_weight="1"
             android:cacheColorHint="#00000000"

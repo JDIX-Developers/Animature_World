@@ -26,8 +26,7 @@ public class PlayerDataViewActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_player_data_view);
 
-		db = (new Database(this, "AnimatureWorldDB", null, 1))
-		.getWritableDatabase();
+		db = (new Database(this)).getWritableDatabase();
 
 		// We get a reference to the interface controls
 		playerId = (TextView) findViewById(R.id.player_id_view);

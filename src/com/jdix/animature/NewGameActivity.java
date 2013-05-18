@@ -1,5 +1,6 @@
 package com.jdix.animature;
 
+import java.util.Locale;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -94,7 +95,8 @@ public class NewGameActivity extends Activity {
 				editTextNewGame.setVisibility(View.VISIBLE);
 			break;
 			case 10:
-				name = editTextNewGame.getText().toString().toUpperCase();
+				name = editTextNewGame.getText().toString()
+				.toUpperCase(Locale.getDefault());
 				String s = strings.get(index);
 				s = s.replace("*nombreJugador*", name);
 				textViewNewGame.setText(s);

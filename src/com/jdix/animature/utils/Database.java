@@ -1,21 +1,19 @@
 package com.jdix.animature.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
+import com.jdix.animature.R;
 
 public class Database extends SQLiteOpenHelper {
+
+	private final Context	context;
 
 	/**
 	 * @param context - Context of the application
@@ -23,80 +21,73 @@ public class Database extends SQLiteOpenHelper {
 	 * @param factory - Current CursorFactory
 	 * @param version - Database version
 	 */
-	public Database(final Context context, final String name,
-	final CursorFactory factory, final int version)
+	public Database(final Context context)
 	{
-		super(context, name, factory, version);
+		super(context, "AnimatureWorldDB", null, 1);
+		this.context = context;
 	}
 
 	@Override
 	public void onCreate(final SQLiteDatabase db)
 	{
-		this.update("PRAGMA foreign_keys=ON;");
-		this.update("PRAGMA encoding = \"UTF-8\";");
+		db.execSQL("PRAGMA foreign_keys=ON;");
+		db.execSQL("PRAGMA encoding = \"UTF-8\";");
 		create_tables(db);
-
 	}
 
 	private void create_tables(final SQLiteDatabase db)
 	{
+		StringBuilder contents = new StringBuilder();
+		final String sep = System.getProperty("line.separator");
+
 		try
 		{
-			FileInputStream stream = null;
+			final InputStream is = context.getResources().openRawResource(
+			R.raw.createdb);
+
+			final BufferedReader input = new BufferedReader(
+			new InputStreamReader(is), is.available());
+
 			try
 			{
-				stream = new FileInputStream(new File("createDB.sql"));
-				final FileChannel fc = stream.getChannel();
-				final MappedByteBuffer bb = fc.map(
-				FileChannel.MapMode.READ_ONLY, 0, fc.size());
-
-				final String content = Charset.defaultCharset().decode(bb)
-				.toString();
-
-				stream.close();
-				update(content);
+				String line = null;
+				while ((line = input.readLine()) != null)
+				{
+					contents.append(line);
+					contents.append(sep);
+					if (line.contains(";")
+					&& ! line.substring(0, 2).equals("--"))
+					{
+						db.execSQL(contents.toString());
+						contents = new StringBuilder();
+					}
+				}
 			}
-			catch (final FileNotFoundException e)
+			finally
 			{
-				Log.e("ERROR", "PROBLEMA AL LEER FICHERO");
+				input.close();
 			}
 		}
 		catch (final IOException e)
 		{
 			e.printStackTrace();
 		}
-		(new File("createDB.sql")).delete();
 	}
 
-	public int update(final String consult)
+	@Override
+	public SQLiteDatabase getWritableDatabase()
 	{
-		try
-		{
-			this.getWritableDatabase().execSQL(consult);
-			return 1;
-		}
-		catch (final Exception e)
-		{
-			return 0;
-		}
-	}
+		final SQLiteDatabase db = super.getWritableDatabase();
+		db.execSQL("PRAGMA foreign_keys=ON;");
+		db.execSQL("PRAGMA encoding = \"UTF-8\";");
 
-	public Cursor consult(final String consult)
-	{
-		try
-		{
-			return this.getReadableDatabase().rawQuery(consult, null);
-		}
-		catch (final Exception e)
-		{
-			return null;
-		}
+		return db;
 	}
 
 	@Override
 	public void onUpgrade(final SQLiteDatabase db, final int oldVersion,
 	final int newVersion)
 	{
-		// TODO Upgrade
+		// TODO upgrade
 	}
 }
