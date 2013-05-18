@@ -52,7 +52,7 @@ public class LaunchActivity extends Activity {
 		setContentView(R.layout.activity_launch);
 
 		startActivity(new Intent(LaunchActivity.this,
-		AnimaxGameMenuActivity.class));
+		AnimaxMenuActivity.class));
 		this.finish();
 
 		db = (new Database(this)).getWritableDatabase();

@@ -8,6 +8,5 @@
 	<string name="btnMultiplayer">Multijugador</string>
 	<string name="btnAnimatureShop">Tienda Animature</string>
 	<string name="btnOptions">Opciones</string>
-	<string name="btnExit">Salir</string>
-    
+
 </resources>

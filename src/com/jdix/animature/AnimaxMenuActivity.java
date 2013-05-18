@@ -22,13 +22,13 @@ import com.jdix.animature.utils.Database;
 /**
  * @author Jordan Aranda Tejada
  */
-public class AnimaxGameMenuActivity extends Activity {
+public class AnimaxMenuActivity extends Activity {
 
 	private ListView				list;
 	private SQLiteDatabase			db;
 	private ArrayList<Animature>	animatures;
-	private String[]				animaturesNames;
-	private String[]				animaturesDescriptions;
+	private String[]				animatureNames;
+	private String[]				animatureDescriptions;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -42,13 +42,10 @@ public class AnimaxGameMenuActivity extends Activity {
 		list = (ListView) findViewById(R.id.list_Animatures);
 		animatures = new ArrayList<Animature>();
 
-		animaturesNames = this.getResources().getStringArray(
-		getResources().getIdentifier("Animature_Names", "array",
-		getPackageName()));
+		animatureNames = getResources().getStringArray(R.array.animature_names);
 
-		animaturesDescriptions = this.getResources().getStringArray(
-		getResources().getIdentifier("Animature_Descriptions", "array",
-		getPackageName()));
+		animatureDescriptions = getResources().getStringArray(
+		R.array.animature_descriptions);
 
 		final Cursor c = db.rawQuery("SELECT * FROM ANIMATURE", null);
 		if (c.getCount() > 0)
@@ -56,8 +53,8 @@ public class AnimaxGameMenuActivity extends Activity {
 			c.moveToFirst();
 			while ( ! c.isAfterLast())
 			{
-				animatures.add(new Animature(c.getInt(0), animaturesNames[c
-				.getInt(0) - 1], animaturesDescriptions[c.getInt(0) - 1], c
+				animatures.add(new Animature(c.getInt(0), animatureNames[c
+				.getInt(0) - 1], animatureDescriptions[c.getInt(0) - 1], c
 				.getDouble(1), c.getDouble(2), c.getInt(3), c.getInt(4), c
 				.getInt(5), c.getInt(6), c.getInt(7), c.getInt(8), c.getInt(9),
 				c.getInt(10), c.getInt(11), c.getInt(12)));
@@ -83,8 +80,8 @@ public class AnimaxGameMenuActivity extends Activity {
 				((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
 				.vibrate(50);
 
-				final Intent intent = new Intent(AnimaxGameMenuActivity.this,
-				AnimaxAnimatureViewActivity.class);
+				final Intent intent = new Intent(AnimaxMenuActivity.this,
+				AnimaxAnimatureActivity.class);
 				final Bundle b = new Bundle();
 				b.putSerializable("Animature", animatures.get(pos));
 				intent.putExtras(b);

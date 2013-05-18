@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="Animature_Names">
+    <string-array name="animature_names">
         <item>Bulbasur</item>
         <item>Ivysaur</item>
         <item>Venusaur</item>
@@ -23,7 +23,7 @@
         <item>Raticate</item>
     </string-array>
     
-    <string-array name="Animature_Descriptions">
+    <string-array name="animature_descriptions">
         <item>Después de nacer, crece alimentándose de la semilla de su lomo.</item>
         <item>Cuando el capullo de su lomo se hincha, desprende un dulce aroma para indicar el florecimiento.</item>
         <item>Después de un día de lluvia, la flor de su lomo tiene un aroma más potente y atrae a otros Pokémon.</item>

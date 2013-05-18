@@ -16,23 +16,23 @@ public class Animature implements Serializable {
 	public static final int	STRENGHT	= 3;
 	public static final int	PRECISSION	= 4;
 
-	public static final int	NORMAL		= 0;
-	public static final int	FIRE		= 1;
-	public static final int	WATER		= 2;
-	public static final int	GRASS		= 3;
-	public static final int	ELECTRIC	= 4;
-	public static final int	ICE			= 5;
-	public static final int	FIGHTING	= 6;
-	public static final int	POISON		= 7;
-	public static final int	GROUND		= 8;
-	public static final int	FLYING		= 9;
-	public static final int	PSYCHIC		= 10;
-	public static final int	BUG			= 11;
-	public static final int	ROCK		= 12;
-	public static final int	GHOST		= 13;
-	public static final int	DRAGON		= 14;
-	public static final int	DARK		= 15;
-	public static final int	STEEL		= 16;
+	public static final int	NORMAL		= 1;
+	public static final int	FIRE		= 2;
+	public static final int	WATER		= 4;
+	public static final int	GRASS		= 8;
+	public static final int	ELECTRIC	= 16;
+	public static final int	ICE			= 32;
+	public static final int	FIGHTING	= 64;
+	public static final int	POISON		= 128;
+	public static final int	GROUND		= 256;
+	public static final int	FLYING		= 512;
+	public static final int	PSYCHIC		= 1024;
+	public static final int	BUG			= 2048;
+	public static final int	ROCK		= 4096;
+	public static final int	GHOST		= 8192;
+	public static final int	DRAGON		= 16384;
+	public static final int	DARK		= 32768;
+	public static final int	STEEL		= 65536;
 
 	protected int			id_Animature;
 	protected String		name;
@@ -186,6 +186,86 @@ public class Animature implements Serializable {
 
 	public boolean isNormal()
 	{
-		return true;
+		return (type & NORMAL) == NORMAL;
+	}
+
+	public boolean isFire()
+	{
+		return (type & FIRE) == FIRE;
+	}
+
+	public boolean isWater()
+	{
+		return (type & WATER) == WATER;
+	}
+
+	public boolean isGrass()
+	{
+		return (type & GRASS) == GRASS;
+	}
+
+	public boolean isElectric()
+	{
+		return (type & ELECTRIC) == ELECTRIC;
+	}
+
+	public boolean isIce()
+	{
+		return (type & ICE) == ICE;
+	}
+
+	public boolean isFighting()
+	{
+		return (type & FIGHTING) == FIGHTING;
+	}
+
+	public boolean isPoison()
+	{
+		return (type & POISON) == POISON;
+	}
+
+	public boolean isGround()
+	{
+		return (type & GROUND) == GROUND;
+	}
+
+	public boolean isFlying()
+	{
+		return (type & FLYING) == FLYING;
+	}
+
+	public boolean isPsychic()
+	{
+		return (type & PSYCHIC) == PSYCHIC;
+	}
+
+	public boolean isBug()
+	{
+		return (type & BUG) == BUG;
+	}
+
+	public boolean isRock()
+	{
+		return (type & ROCK) == ROCK;
+	}
+
+	public boolean isGhost()
+	{
+		return (type & GHOST) == GHOST;
+	}
+
+	public boolean isDragon()
+	{
+		return (type & DRAGON) == DRAGON;
+	}
+
+	public boolean isDark()
+	{
+		return (type & DARK) == DARK;
+	}
+
+	public boolean isSteel()
+	{
+		return (type & STEEL) == STEEL;
 	}
 }

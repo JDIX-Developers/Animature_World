@@ -5,8 +5,6 @@
 
 	<string name="boy">Chico</string>
 	<string name="girl">Chica</string>
-	<string name="yesNewGame">Si</string>	
-	<string name="noNewGame">No</string>	
 	<string name="name">Nombre</string>
 	
 	<string name="newGame1">¡Hola! ¡Este es el mundo Animature!</string>
@@ -14,7 +12,7 @@
 	<string name="newGame3">¡Pero la gente me llama profesor Animature!</string>	
 	<string name="newGame4">¡Este mundo está habitado por criaturas llamadas Animature!</string>	
 	<string name="newGame5">Para algunos, los Animatures son mascotas. Pero otros los usan para pelear.</string>	
-	<string name="newGame6">En cuanto a mi...</string>
+	<string name="newGame6">En cuanto a mi…</string>
 	<string name="newGame7">Estudio a los Animatures como profesión.</string>	
 	<string name="newGame8">Bueno, cuéntame algo de ti.</string>	
 	<string name="newGame9">¿Eres chico o chica?</string>

@@ -1,6 +1,5 @@
 <resources>
-	<string name="title_activity_login">Sign in</string>
-	 <!-- Strings related to login -->
+	<!-- Strings related to login -->
 	
 	<string name="enter">Entrar</string>
     <string name="register">Registrarse</string>

@@ -11,7 +11,7 @@ import com.jdix.animature.entities.Animature;
 /**
  * @author Jordan Aranda Tejada
  */
-public class AnimaxAnimatureViewActivity extends Activity {
+public class AnimaxAnimatureActivity extends Activity {
 
 	private Animature	animature;
 	private TextView	animatureId;
