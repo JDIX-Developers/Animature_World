@@ -14,9 +14,6 @@ public class Animature {
 	public static final int	STRENGHT	= 3;
 	public static final int	PRECISSION	= 4;
 
-	public static final int	FRONTIMG	= 0;
-	public static final int	BACKIMG		= 1;
-
 	public static final int	NORMAL		= 0;
 	public static final int	FIRE		= 1;
 	public static final int	WATER		= 2;
@@ -37,10 +34,10 @@ public class Animature {
 
 	protected int			id_Animature;
 	protected String		name;
+	protected String		description;
 	protected double		height;
 	protected double		weight;
 	protected int			type;
-	protected int			type2;
 	protected int[]			cualities	= new int[5];
 	protected int			health;
 	protected int			level_evo;
@@ -53,17 +50,17 @@ public class Animature {
 	}
 
 	public Animature(final int id_Animature, final String name,
-	final double height, final double weight, final int type, final int type2,
-	final int speed, final int defense, final int agility, final int strenght,
-	final int precission, final int health, final int level_evo,
-	final int baseExp, final int captureRange)
+	final String description, final double height, final double weight,
+	final int type, final int speed, final int defense, final int agility,
+	final int strenght, final int precission, final int health,
+	final int level_evo, final int baseExp, final int captureRange)
 	{
 		this.id_Animature = id_Animature;
 		this.name = name;
+		this.description = description;
 		this.height = height;
 		this.weight = weight;
 		this.type = type;
-		this.type2 = type2;
 		this.cualities[SPEED] = speed;
 		this.cualities[DEFENSE] = defense;
 		this.cualities[AGILITY] = agility;
@@ -95,6 +92,16 @@ public class Animature {
 		this.name = name;
 	}
 
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public void setDescription(final String description)
+	{
+		this.description = description;
+	}
+
 	public double getHeight()
 	{
 		return height;
@@ -123,16 +130,6 @@ public class Animature {
 	public void setType(final int type)
 	{
 		this.type = type;
-	}
-
-	public int getType2()
-	{
-		return type2;
-	}
-
-	public void setType2(final int type2)
-	{
-		this.type2 = type2;
 	}
 
 	public int[] getCualities()

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Animature_Names">
+        <item>Bulbasur</item>
+        <item>Ivysaur</item>
+        <item>Venusaur</item>
+        <item>Charmander</item>
+        <item>Charmeleon</item>
+        <item>Charizard</item>
+        <item>Squirtle</item>
+        <item>Wartortle</item>
+        <item>Blastoise</item>
+        <item>Caterpie</item>
+        <item>Metapod</item>
+        <item>Butterfree</item>
+        <item>Weedle</item>
+        <item>Kakuna</item>
+        <item>Beedrill</item>
+        <item>Pidgey</item>
+        <item>Pidgeotto</item>
+        <item>Pidgeot</item>
+        <item>Rattata</item>
+        <item>Raticate</item>
+    </string-array>
+    
+    <string-array name="Animature_Descriptions">
+        <item>Después de nacer, crece alimentándose de la semilla de su lomo.</item>
+        <item>Cuando el capullo de su lomo se hincha, desprende un dulce aroma para indicar el florecimiento.</item>
+        <item>Después de un día de lluvia, la flor de su lomo tiene un aroma más potente y atrae a otros Pokémon.</item>
+        
+        <item>La llama de la punta de su cola indica su salud. Si Charmander está sano arderá con más fuerza.</item>
+        <item>En las montañas rocosas donde viven los Charmeleon, sus colas ardientes brillan como estrellas.</item>
+        <item>Se dice que el fuego de Charizard arde con más fuerza si ha vivido duras batallas.</item>
+        
+        <item>Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.</item>
+        <item>Se dice que vive 10.000 años. Su peluda cola es un símbolo de longevidad.</item>
+        <item>Los chorros de agua que lanza por los tubos de su caparazón pueden atravesar el acero.</item>
+       
+        <item>Su antena roja desprende un gran hedor para repeler a los enemigos. Crece mudándose repetidamente.</item>
+        <item>Su frágil cuerpo está recubierto de una coraza dura como el acero. Permanece quieto en su desarrollo.</item>
+        <item>Adora el néctar de las flores. Puede localizar hasta las más pequeñas cantidades de polen.</item>
+        
+        <item>Come el equivalente a su peso en hojas todos los días. Se defiende con el aguijón de su cabeza.</item>
+        <item>Se esconde de sus atacantes entre las ramas de los árboles mientras espera a evolucionar.</item>
+        <item>Atacan volando alrededor del objetivo y usando su aguijón venenoso antes de huir.</item>
+        
+        <item>Es manso y prefiere evitar los problemas. Sin embargo, si le molestan, atacará ferozmente.</item>
+        <item>Sobrevuela su extenso territorio en busca de presas y ataca con sus poderosas garras.</item>
+        <item>Aleteando con toda su fuerza, Pidgeot crea corrientes de aire capaces de doblar grandes árboles.</item>
+        
+        <item>Su capacidad de adaptación le permite vivir en cualquier lugar. Es tremendamente cauteloso.</item>
+        <item>Lima sus colmillos royendo objetos duros. Con ellos puede destruir incluso paredes de hormigón.</item>
+    </string-array>
+</resources>

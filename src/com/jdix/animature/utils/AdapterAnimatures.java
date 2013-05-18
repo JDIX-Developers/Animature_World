@@ -79,10 +79,6 @@ public class AdapterAnimatures extends BaseAdapter {
 		final TextView type1Animature = (TextView) v
 		.findViewById(R.id.animax_row_type1);
 		modifyTypeTextView(type1Animature, animature.getType());
-		// TYPE 2
-		final TextView type2Animature = (TextView) v
-		.findViewById(R.id.animax_row_type2);
-		modifyTypeTextView(type2Animature, animature.getType2());
 
 		// Retornamos la vista
 		return v;

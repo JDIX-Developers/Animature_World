@@ -2,10 +2,9 @@
 
 CREATE TABLE ANIMATURE (
 	"id" INTEGER NOT NULL PRIMARY KEY,
-	"height" INTEGER NOT NULL,
-	"weight" INTEGER NOT NULL,
+	"height" REAL NOT NULL,
+	"weight" REAL NOT NULL,
 	"type" INTEGER NOT NULL,
-	"description" TEXT NOT NULL,
 	"speed" INTEGER NOT NULL,
 	"defense" INTEGER NOT NULL,
 	"agility" INTEGER NOT NULL,
@@ -124,8 +123,9 @@ CREATE TABLE FIGHT (
 
 --DATA INSERTION--
 
---INSERT INTO ANIMATURE VALUES (1, 0.7, 6.9, 3, 7, 100, 120, 100, 120, 100, 80, 16, 150);
---INSERT INTO ANIMATURE VALUES (2, 1, 13, 3, 7, 100, 120, 100, 120, 100, 80, 36, 500);
+-- ANIMATURE (id, height, weight, type, speed, defense, agility, strenght, precission, health, evo_level, base_exp, capture_range)
+INSERT INTO ANIMATURE VALUES (1, 0.7, 6.9, 3, 100, 120, 100, 120, 100, 80, 16, 150, 10);
+INSERT INTO ANIMATURE VALUES (2, 1, 13, 3, 100, 120, 100, 120, 100, 80, 36, 500, 10);
 --INSERT INTO ANIMATURE VALUES (3, 2, 100, 3, 7, 100, 120, 100, 120, 100, 80, -1, 1200);
 
 --INSERT INTO ANIMATURE VALUES (4, 0.6, 8.5, 1, -1, 100, 120, 100, 120, 100, 80, 16, 150);

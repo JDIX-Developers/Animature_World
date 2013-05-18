@@ -8,7 +8,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Attack;
 import com.jdix.animature.entities.Captured;
 import com.jdix.animature.entities.Item;
@@ -315,57 +314,28 @@ public class DataSource {
 		return colInt;
 	}
 
-	public Animature readAnimature(final int id)
-	{
-		this.db = this.dbHelper.getReadableDatabase();
-		final Cursor c = db.query("ANIMATURE", columnsAnim, "id=" + id, null,
-		null, null, null, null);
-		if (c != null)
-		{
-			c.moveToFirst();
-		}
-
-		final Animature animature = cursorToAnimature(c);
-		db.close();
-		c.close();
-		return animature;
-	}
-
-	public List<Animature> getAllAnimatures()
-	{
-		final List<Animature> AnimatureList = new ArrayList<Animature>();
-
-		final Cursor cursor = db.query("ANIMATURE", columnsAnim, null, null,
-		null, null, null);
-		cursor.moveToFirst();
-		while ( ! cursor.isAfterLast())
-		{
-			final Animature animature = cursorToAnimature(cursor);
-			AnimatureList.add(animature);
-			cursor.moveToNext();
-		}
-
-		cursor.close();
-		return AnimatureList;
-	}
-
-	public void deleteAnimature(final Animature animature)
-	{
-		final int id = animature.getId_Animature();
-		db.delete("ANIMATURE", "id" + " = " + id, null);
-	}
-
-	public Animature cursorToAnimature(final Cursor cursor)
-	{
-		final Animature animature = new Animature(cursor.getInt(0),
-		cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3),
-		cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getInt(7),
-		cursor.getInt(8), cursor.getInt(9), cursor.getInt(10),
-		cursor.getInt(11), cursor.getInt(12), cursor.getInt(13),
-		cursor.getInt(14));
-
-		return animature;
-	}
+	/*
+	 * public Animature readAnimature(final int id) { this.db =
+	 * this.dbHelper.getReadableDatabase(); final Cursor c =
+	 * db.query("ANIMATURE", columnsAnim, "id=" + id, null, null, null, null,
+	 * null); if (c != null) { c.moveToFirst(); } final Animature animature =
+	 * cursorToAnimature(c); db.close(); c.close(); return animature; } public
+	 * List<Animature> getAllAnimatures() { final List<Animature> AnimatureList
+	 * = new ArrayList<Animature>(); final Cursor cursor = db.query("ANIMATURE",
+	 * columnsAnim, null, null, null, null, null); cursor.moveToFirst(); while (
+	 * ! cursor.isAfterLast()) { final Animature animature =
+	 * cursorToAnimature(cursor); AnimatureList.add(animature);
+	 * cursor.moveToNext(); } cursor.close(); return AnimatureList; } public
+	 * void deleteAnimature(final Animature animature) { final int id =
+	 * animature.getId_Animature(); db.delete("ANIMATURE", "id" + " = " + id,
+	 * null); } public Animature cursorToAnimature(final Cursor cursor) { final
+	 * Animature animature = new Animature(cursor.getInt(0),
+	 * cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3),
+	 * cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getInt(7),
+	 * cursor.getInt(8), cursor.getInt(9), cursor.getInt(10), cursor.getInt(11),
+	 * cursor.getInt(12), cursor.getInt(13), cursor.getInt(14)); return
+	 * animature; }
+	 */
 
 	public int readSaveColInt(final int id, final int pos)
 	{
