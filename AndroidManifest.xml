@@ -65,11 +65,21 @@
         </activity>
         <activity
             android:name="com.jdix.animature.BagActivity"
-            android:label="@string/title_activity_bag" >
+            android:label="@string/title_activity_bag"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.jdix.animature.PlayerDataViewActivity"
-            android:label="@string/title_activity_player_data_view" >
+            android:label="@string/title_activity_player_data_view" 
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        </activity>
+        <activity
+            android:name="com.jdix.animature.AnimaxAnimatureViewActivity"
+            android:label="@string/title_activity_animax_animature_view" 
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         </activity>
     </application>
 

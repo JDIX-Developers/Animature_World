@@ -10,5 +10,5 @@
     <string name="title_activity_animax_game_menu">AnimaxGameMenuActivity</string>
     <string name="title_activity_bag">BagActivity</string>
     <string name="title_activity_player_data_view">PlayerDataViewActivity</string>
-
+    <string name="title_activity_animax_animature_view">AnimaxAnimatureViewActivity</string>
 </resources>

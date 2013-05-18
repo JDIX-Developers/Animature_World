@@ -1,6 +1,8 @@
 package com.jdix.animature.entities;
 
-public class Animature {
+import java.io.Serializable;
+
+public class Animature implements Serializable {
 
 	/*
 	 * La clase animature contiene todos los datos de los animatures. Contiene

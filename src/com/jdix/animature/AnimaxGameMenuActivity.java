@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -81,6 +82,14 @@ public class AnimaxGameMenuActivity extends Activity {
 				// Log.e("SELECCIONADO", "- " + animaturesNames[pos]);
 				((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
 				.vibrate(50);
+
+				final Intent intent = new Intent(AnimaxGameMenuActivity.this,
+				AnimaxAnimatureViewActivity.class);
+				final Bundle b = new Bundle();
+				b.putSerializable("Animature", animatures.get(pos));
+				intent.putExtras(b);
+
+				startActivity(intent);
 			}
 		});
 	}
