@@ -1,6 +1,7 @@
 package com.jdix.animature;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -31,7 +32,9 @@ public class GameMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-
+				final Intent intent = new Intent(GameMenuActivity.this,
+				AnimaxMenuActivity.class);
+				startActivity(intent);
 			}
 		});
 		btnAnimatures = (Button) findViewById(R.id.btn_game_menu_animatures);
@@ -83,8 +86,7 @@ public class GameMenuActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.game_menu, menu);
+		finish();
 		return true;
 	}
 

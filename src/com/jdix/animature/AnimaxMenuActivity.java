@@ -3,12 +3,10 @@ package com.jdix.animature;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -77,8 +75,6 @@ public class AnimaxMenuActivity extends Activity {
 			final int pos, final long arg3)
 			{
 				// Log.e("SELECCIONADO", "- " + animaturesNames[pos]);
-				((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
-				.vibrate(50);
 
 				final Intent intent = new Intent(AnimaxMenuActivity.this,
 				AnimaxAnimatureActivity.class);
@@ -94,8 +90,6 @@ public class AnimaxMenuActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.animax_game_menu, menu);
 		return true;
 	}
 }

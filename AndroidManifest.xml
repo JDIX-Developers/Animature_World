@@ -55,6 +55,7 @@
         <activity
             android:name="com.jdix.animature.GameMenuActivity"
             android:label="@string/title_activity_game_menu"
+			android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity

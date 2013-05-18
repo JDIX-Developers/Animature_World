@@ -69,10 +69,7 @@ public class AnimaxAnimatureActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.animax_animature_view, menu);
 		return true;
-
 	}
 
 	private String getFormatedIdAnimature(final int id)
