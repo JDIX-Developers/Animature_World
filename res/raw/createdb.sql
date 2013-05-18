@@ -12,7 +12,7 @@ CREATE TABLE ANIMATURE (
 	"strenght" INTEGER NOT NULL,
 	"precission" INTEGER NOT NULL,
 	"health" INTEGER NOT NULL,
-	"level_evo" INTEGER,
+	"evo_level" INTEGER,
 	"base_exp" INTEGER  NOT NULL,
 	"capture_range" INTEGER NOT NULL);
 

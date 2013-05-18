@@ -51,9 +51,9 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
-		// startActivity(new Intent(LaunchActivity.this,
-		// AnimaxGameMenuActivity.class));
-		// this.finish();
+		startActivity(new Intent(LaunchActivity.this,
+		AnimaxGameMenuActivity.class));
+		this.finish();
 
 		db = (new Database(this)).getWritableDatabase();
 

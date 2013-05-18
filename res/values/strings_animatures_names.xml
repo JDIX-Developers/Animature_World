@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="anim_1">BULBASUR</string>
+    <string name="anim_2">IVYSAUR</string>
+    <string name="anim_3">VENUSAUR</string>
+    <string name="anim_4">CHARMANDER</string>
+    <string name="anim_5">CHARMELEON</string>
+    <string name="anim_6">CHARIZARD</string>
+    <string name="anim_7">SQUIRTLE</string>
+    <string name="anim_8">WARTORTLE</string>
+    <string name="anim_9">BLASTOISE</string>
+    <string name="anim_10">CATERPIE</string>
+    <string name="anim_11">METAPOD</string>
+    <string name="anim_12">BUTTERFREE</string>
+    <string name="anim_13">WEEDLE</string>
+    <string name="anim_14">KAKUNA</string>
+    <string name="anim_15">BEEDRILL</string>
+    <string name="anim_16">PIDGEY</string>
+    <string name="anim_17">PIDGEOTTO</string>
+    <string name="anim_18">PIDGEOT</string>
+    <string name="anim_19">RATTATA</string>
+    <string name="anim_20">RATICATE</string>
+</resources>
