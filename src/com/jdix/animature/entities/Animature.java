@@ -182,4 +182,8 @@ public class Animature {
 		this.captureRange = captureRange;
 	}
 
+	public boolean isNormal()
+	{
+		return true;
+	}
 }

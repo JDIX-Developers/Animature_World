@@ -3,10 +3,15 @@ package com.jdix.animature;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.jdix.animature.entities.Animature;
@@ -51,7 +56,7 @@ public class AnimaxGameMenuActivity extends Activity {
 			while ( ! c.isAfterLast())
 			{
 				animatures.add(new Animature(c.getInt(0), animaturesNames[c
-				.getInt(0)], animaturesDescriptions[c.getInt(0)], c
+				.getInt(0) - 1], animaturesDescriptions[c.getInt(0) - 1], c
 				.getDouble(1), c.getDouble(2), c.getInt(3), c.getInt(4), c
 				.getInt(5), c.getInt(6), c.getInt(7), c.getInt(8), c.getInt(9),
 				c.getInt(10), c.getInt(11), c.getInt(12)));
@@ -65,6 +70,19 @@ public class AnimaxGameMenuActivity extends Activity {
 		animatures);
 
 		list.setAdapter(adapter);
+
+		list.setOnItemClickListener(new OnItemClickListener()
+		{
+
+			@Override
+			public void onItemClick(final AdapterView<?> arg0, final View view,
+			final int pos, final long arg3)
+			{
+				// Log.e("SELECCIONADO", "- " + animaturesNames[pos]);
+				((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
+				.vibrate(50);
+			}
+		});
 	}
 
 	@Override
