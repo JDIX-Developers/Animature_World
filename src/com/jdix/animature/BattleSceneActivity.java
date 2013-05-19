@@ -168,7 +168,10 @@ public class BattleSceneActivity extends Activity {
 
 	private void attack(final int index)
 	{
-
+		/*
+		 * if(animSel[animatureIndex].getCualitiesC(Attack.SPEED) >=
+		 * enemy.getCualitiesC(Attack.SPEED)) yourTurn = true; if (yourTurn)
+		 */
 		if (animSel[animatureIndex].getAttackPP(index) > 0)
 		{
 			enemy.setHealthAct(enemy.getHealthAct() - 10);
@@ -202,31 +205,6 @@ public class BattleSceneActivity extends Activity {
 		{
 			finish();
 		}
-
-		/*
-		 * while ( ! animatureFainted) { /* if
-		 * (animSel[animatureIndex].getCualitiesC(Attack.SPEED) >= enemy
-		 * .getCualitiesC(Attack.SPEED)) { yourTurn = true; } yourTurn = true;
-		 * if (yourTurn) { if (animSel[animatureIndex].getAttackPP(index) > 0) {
-		 * // enemy = animSel[animatureIndex].getAttack(index) //
-		 * .getCapturedDamage(enemy, animSel[animatureIndex]); //
-		 * animSel[animatureIndex].reduceAttackPP(index);
-		 * enemy.setHealthAct(enemy.getHealthAct() - 10);
-		 * System.out.println(enemy.getHealthAct() - 10); animatureFainted =
-		 * enemy.getHealthAct() <= 0;
-		 * enemy_animature_life.setProgress(enemy.getHealthAct()); yourTurn =
-		 * false; } } // Enemy battle example while ( ! yourTurn) { int attack =
-		 * randomAttack(); if (enemy.getAttackPP(attack) > 0) { //
-		 * animSel[animatureIndex] = enemy.getAttack(attack) //
-		 * .getCapturedDamage(animSel[animatureIndex], enemy);
-		 * animSel[animatureIndex]
-		 * .setHealthAct(animSel[animatureIndex].getHealthAct() - 10);
-		 * your_animature_life.setProgress(animSel[animatureIndex]
-		 * .getHealthAct()); animatureFainted =
-		 * animSel[animatureIndex].getHealthAct() <= 0; //
-		 * enemy.reduceAttackPP(attack); yourTurn = true; } else { attack =
-		 * randomAttack(); } } }
-		 */
 	}
 
 	private void loadEnemyAnimature()
@@ -242,9 +220,16 @@ public class BattleSceneActivity extends Activity {
 		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 9),
 		 * Animature.STRENGHT); enemy.setCualitiesC(
 		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 10),
-		 * Animature.PRECISSION); for (int i = 1; i <= enemy.getLevel(); i++) {
-		 * for (int j = 0; j < 5; j++) { enemy.setCualitiesC(
-		 * enemy.getCualitiesC(j) + (enemy.getCualitiesC(j) / 3), j); } }
+		 * Animature.PRECISSION);
+		 */
+
+		/*
+		 * for (int i = 1; i <= enemy.getLevel(); i++) { for (int j = 0; j < 5;
+		 * j++) { enemy.setCualitiesC( enemy.getCualitiesC(j) +
+		 * (enemy.getCualitiesC(j) / 3), j); } }
+		 */
+
+		/*
 		 * enemy.setHealthMax(dataSource.readAnimatureColInt(
 		 * enemy.getIdAnimature(), 11)); if (enemy.getLevel() > 1) { for (int i
 		 * = 2; i <= enemy.getLevel(); i++) {
@@ -276,10 +261,16 @@ public class BattleSceneActivity extends Activity {
 		 * animSel[animatureIndex].getIdAnimature(), 9), Animature.STRENGHT);
 		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
 		 * animSel[animatureIndex].getIdAnimature(), 10), Animature.PRECISSION);
+		 */
+
+		/*
 		 * for (int i = 1; i <= animSel[animatureIndex].getLevel(); i++) { for
 		 * (int j = 0; j < 5; j++) { animSel[animatureIndex].setCualitiesC(
 		 * animSel[animatureIndex].getCualitiesC(j) +
 		 * (animSel[animatureIndex].getCualitiesC(j) / 3), j); } }
+		 */
+
+		/*
 		 * animSel[animatureIndex].setHealthMax(dataSource.readAnimatureColInt(
 		 * animSel[animatureIndex].getIdAnimature(), 11)); if
 		 * (animSel[animatureIndex].getLevel() > 1) { for (int i = 2; i <=
@@ -312,13 +303,19 @@ public class BattleSceneActivity extends Activity {
 	private void loadBattleAnimatures()
 	{
 		/*
-		 * dataSource.open(); dataSource.createCaptured(1, - 1, "Pepe", 0, 0, 0,
-		 * 1, 32, 2, 37, 4, 24, 3, 40, 44, 5, 50, 250, 0);
-		 * dataSource.createCaptured(2, - 1, "Juan", 1, 0, 0, 1, 32, 2, 37, 5,
-		 * 24, 3, 40, 48, 5, 60, 250, 0); animatureIndex = 0;
+		 * dataSource.open(); dataSource.createCaptured(0, 2, 0, "BLASTOISE", 0,
+		 * 0, 0, 0, 5, 0, 10, 0, 10, 0, 10, 40, 100, 200, 100, 0);
+		 * dataSource.createCaptured(0, 1, 0, "CHARIZARD", 0, 0, 0, 0, 10, 0,
+		 * 10, 0, 10, 0, 10, 40, 100, 200, 100, 0); animatureIndex = 0;
+		 */
+
+		/*
 		 * animSel[animatureIndex] = dataSource.readCaptured(1); enemy =
-		 * dataSource.readCaptured(2); for (int i = 0; i < 4; i++) {
-		 * animSel[animatureIndex].setAttack(i,
+		 * dataSource.readCaptured(2);
+		 */
+
+		/*
+		 * for (int i = 0; i < 4; i++) { animSel[animatureIndex].setAttack(i,
 		 * dataSource.readAttack(animSel[animatureIndex].getAttackN(i)));
 		 * enemy.setAttack(i, dataSource.readAttack(enemy.getAttackN(i))); }
 		 * dataSource.close();
