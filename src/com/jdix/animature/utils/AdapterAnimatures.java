@@ -78,7 +78,12 @@ public class AdapterAnimatures extends BaseAdapter {
 		// TYPE 1
 		final TextView type1Animature = (TextView) v
 		.findViewById(R.id.animax_row_type1);
-		modifyTypeTextView(type1Animature, animature.getType());
+		// TYPE 2
+		final TextView type2Animature = (TextView) v
+		.findViewById(R.id.animax_row_type2);
+
+		final TextView[] textViews = {type1Animature, type2Animature};
+		modifyTypeTextView(textViews, animature);
 
 		// Retornamos la vista
 		return v;
@@ -100,98 +105,129 @@ public class AdapterAnimatures extends BaseAdapter {
 		}
 	}
 
-	private void modifyTypeTextView(final TextView textView, final int type)
+	private void modifyTypeTextView(final TextView[] textViews,
+	final Animature animature)
 	{
-		switch (type)
+		int cont = 0;
+		if (animature.isNormal())
 		{
-			case - 1:
-				textView.setVisibility(View.INVISIBLE);
-			break;
-			case 0:
-				textView.setText("NORMAL");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_normal));
-			break;
-			case 1:
-				textView.setText("FUEGO");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_fire));
-			break;
-			case 2:
-				textView.setText("AGUA");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_water));
-			break;
-			case 3:
-				textView.setText("PLANTA");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_grass));
-			break;
-			case 4:
-				textView.setText("ELÉCTRICO");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_electric));
-			break;
-			case 5:
-				textView.setText("HIELO");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_ice));
-			break;
-			case 6:
-				textView.setText("LUCHA");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_fighting));
-			break;
-			case 7:
-				textView.setText("VENENO");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_poison));
-			break;
-			case 8:
-				textView.setText("TIERRA");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_ground));
-			break;
-			case 9:
-				textView.setText("VOLADOR");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_flying));
-			break;
-			case 10:
-				textView.setText("PSÍQUICO");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_psychic));
-			break;
-			case 11:
-				textView.setText("BICHO");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_bug));
-			break;
-			case 12:
-				textView.setText("ROCA");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_rock));
-			break;
-			case 13:
-				textView.setText("FANTASMA");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_ghost));
-			break;
-			case 14:
-				textView.setText("DRAGÓN");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_dragon));
-			break;
-			case 15:
-				textView.setText("SINIESTRO");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_dark));
-			break;
-			case 16:
-				textView.setText("ACERO");
-				textView.setBackgroundColor(activity.getResources().getColor(
-				R.color.color_steel));
-			break;
+			textViews[cont].setText("NORMAL");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_normal));
+			cont++;
 		}
+		if (animature.isFire())
+		{
+			textViews[cont].setText("FUEGO");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_fire));
+			cont++;
+		}
+		if (animature.isWater())
+		{
+			textViews[cont].setText("AGUA");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_water));
+			cont++;
+		}
+		if (animature.isGrass())
+		{
+			textViews[cont].setText("PLANTA");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_grass));
+			cont++;
+		}
+		if (animature.isElectric())
+		{
+			textViews[cont].setText("ELÉCTRICO");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_electric));
+			cont++;
+		}
+		if (animature.isIce())
+		{
+			textViews[cont].setText("HIELO");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_ice));
+			cont++;
+		}
+		if (animature.isFighting())
+		{
+			textViews[cont].setText("LUCHA");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_fighting));
+			cont++;
+		}
+		if (animature.isPoison())
+		{
+			textViews[cont].setText("VENENO");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_poison));
+			cont++;
+		}
+		if (animature.isGround())
+		{
+			textViews[cont].setText("TIERRA");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_ground));
+			cont++;
+		}
+		if (animature.isFlying())
+		{
+			textViews[cont].setText("VOLADOR");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_flying));
+			cont++;
+		}
+		if (animature.isPsychic())
+		{
+			textViews[cont].setText("PSÍQUICO");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_psychic));
+			cont++;
+		}
+		if (animature.isBug())
+		{
+			textViews[cont].setText("BICHO");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_bug));
+			cont++;
+		}
+		if (animature.isRock())
+		{
+			textViews[cont].setText("ROCA");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_rock));
+			cont++;
+		}
+		if (animature.isGhost())
+		{
+			textViews[cont].setText("FANTASMA");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_ghost));
+			cont++;
+		}
+		if (animature.isDragon())
+		{
+			textViews[cont].setText("DRAGÓN");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_dragon));
+			cont++;
+		}
+		if (animature.isDark())
+		{
+			textViews[cont].setText("SINIESTRO");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_dark));
+			cont++;
+		}
+		if (animature.isSteel())
+		{
+			textViews[cont].setText("ACERO");
+			textViews[cont].setBackgroundColor(activity.getResources()
+			.getColor(R.color.color_steel));
+			cont++;
+		}
+
 	}
 }
