@@ -1,8 +1,10 @@
 package com.jdix.animature;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +34,8 @@ public class GameMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
+				((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
+				.vibrate(50);
 				final Intent intent = new Intent(GameMenuActivity.this,
 				AnimaxMenuActivity.class);
 				startActivity(intent);
@@ -54,7 +58,11 @@ public class GameMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-
+				((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
+				.vibrate(50);
+				final Intent intent = new Intent(GameMenuActivity.this,
+				BagActivity.class);
+				startActivity(intent);
 			}
 		});
 		btnPlayer = (Button) findViewById(R.id.btn_game_menu_player);
@@ -88,6 +96,7 @@ public class GameMenuActivity extends Activity {
 	{
 		if (keyCode == KeyEvent.KEYCODE_MENU)
 		{
+			((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
 			finish();
 		}
 

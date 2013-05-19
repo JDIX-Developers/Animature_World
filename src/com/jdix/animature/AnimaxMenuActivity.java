@@ -3,11 +3,13 @@ package com.jdix.animature;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
+import android.os.Vibrator;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -88,8 +90,14 @@ public class AnimaxMenuActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onKeyDown(final int keyCode, final KeyEvent event)
 	{
-		return super.onCreateOptionsMenu(menu);
+		if (keyCode == KeyEvent.KEYCODE_MENU)
+		{
+			((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
+			finish();
+		}
+
+		return super.onKeyDown(keyCode, event);
 	}
 }

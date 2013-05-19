@@ -18,7 +18,8 @@
             android:layout_marginRight="@dimen/Margin20"
             android:gravity="center"
             android:height="@dimen/Margin50"
-            android:text="Poción"
+            android:text=""
+            android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
     </LinearLayout>
@@ -36,7 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/Margin10"
             android:padding="@dimen/Margin5"
-            android:text="x15"
+            android:text=""
+			android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
     </LinearLayout>

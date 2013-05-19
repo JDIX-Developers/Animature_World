@@ -3,9 +3,11 @@ package com.jdix.animature;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
+import android.os.Vibrator;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -69,10 +71,14 @@ public class BagActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onKeyDown(final int keyCode, final KeyEvent event)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.bag, menu);
-		return true;
+		if (keyCode == KeyEvent.KEYCODE_MENU)
+		{
+			((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
+			finish();
+		}
+
+		return super.onKeyDown(keyCode, event);
 	}
 }
