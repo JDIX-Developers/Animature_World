@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
+import android.view.KeyEvent;
 
 import com.jdix.animature.map.MapView;
 
@@ -42,12 +42,13 @@ public class MapActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onKeyDown(final int keyCode, final KeyEvent event)
 	{
-		super.onCreateOptionsMenu(menu);
+		if (keyCode == KeyEvent.KEYCODE_MENU)
+		{
+			startActivity(new Intent(MapActivity.this, GameMenuActivity.class));
+		}
 
-		startActivity(new Intent(MapActivity.this, GameMenuActivity.class));
-
-		return true;
+		return super.onKeyDown(keyCode, event);
 	}
 }

@@ -90,6 +90,6 @@ public class AnimaxMenuActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 }

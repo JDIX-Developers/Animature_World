@@ -3,7 +3,7 @@ package com.jdix.animature;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -84,10 +84,14 @@ public class GameMenuActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onKeyDown(final int keyCode, final KeyEvent event)
 	{
-		finish();
-		return true;
+		if (keyCode == KeyEvent.KEYCODE_MENU)
+		{
+			finish();
+		}
+
+		return super.onKeyDown(keyCode, event);
 	}
 
 	/**
