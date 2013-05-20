@@ -27,7 +27,7 @@
 
             <TextView
                 android:id="@+id/object_description"
-                android:layout_width="wrap_content"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/Margin10"
@@ -36,7 +36,7 @@
                 android:padding="@dimen/Margin10"
                 android:background="#FFFFFF"
                 android:textColor="#000000"
-                android:text="Cura 50 PS de tu animature."
+                android:text=""
                 android:textSize="20sp" />
 
             <Button

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="objects_names">
+       <item>Poción</item>
+       <item>superpoción</item>
+       <item>Hiperpoción</item>
+       <item>Revivir</item>
+       <item>Antidoto</item>
+       <item>Antiquemar</item>
+       <item>Repelente</item>
+       <item>PokeBall</item>
+       <item>SuperBall</item>
+       <item>UltraBall</item>
+    </string-array>
+</resources>

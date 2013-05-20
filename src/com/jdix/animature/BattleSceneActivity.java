@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Attack;
-import com.jdix.animature.entities.Captured;
+import com.jdix.animature.entities.Capturable;
 import com.jdix.animature.utils.DataSource;
 
 public class BattleSceneActivity extends Activity {
@@ -22,7 +22,7 @@ public class BattleSceneActivity extends Activity {
 	private DataSource			dataSource;
 
 	// Enemy's Animature Components
-	private Captured			enemy;
+	private Capturable			enemy;
 	private TextView			enemy_animature_name;
 	private TextView			enemy_animature_level;
 	private ProgressBar			enemy_animature_life;
@@ -46,7 +46,7 @@ public class BattleSceneActivity extends Activity {
 	private Button				exitBtn;
 
 	private int					battleType;
-	private final Captured[]	animSel	= new Captured[6];
+	private final Capturable[]	animSel	= new Capturable[6];
 	private int					animatureIndex;
 
 	boolean						yourTurn;
@@ -321,7 +321,7 @@ public class BattleSceneActivity extends Activity {
 		 * dataSource.close();
 		 */
 
-		animSel[0] = new Captured(0, 2, 0, "BLASTOISE", 0, 0, 0, 0, 5, 0, 10,
+		animSel[0] = new Capturable(0, 2, 0, "BLASTOISE", 0, 0, 0, 0, 5, 0, 10,
 		0, 10, 0, 10, 40, 100, 200, 100, 0);
 
 		final Attack a = new Attack(0, "Placaje", 0, 20, 1, - 1, 35, 90);
@@ -339,7 +339,7 @@ public class BattleSceneActivity extends Activity {
 
 		animSel[0].setAttacks(aAttacks);
 
-		enemy = new Captured(0, 1, 0, "CHARIZARD", 0, 0, 0, 0, 10, 0, 10, 0,
+		enemy = new Capturable(0, 1, 0, "CHARIZARD", 0, 0, 0, 0, 10, 0, 10, 0,
 		10, 0, 10, 40, 100, 200, 100, 0);
 
 	}

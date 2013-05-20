@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:layout_marginRight="@dimen/Margin15"
-            android:text="CHARIZARD" />
+            android:text="" />
 
         <TextView
             android:id="@+id/enemyAnimatureLevel"
@@ -27,12 +27,12 @@
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:layout_marginRight="@dimen/Margin15"
-            android:text="Nvl: 45" />
+            android:text="" />
 
         <ProgressBar
             android:id="@+id/enemyAnimatureLife"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>
@@ -47,7 +47,7 @@
             android:id="@+id/enemyAnimatureImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/f6" />
+            android:contentDescription="@string/image_of_enemy_Animature"/>
 
     </LinearLayout>
 
@@ -60,7 +60,7 @@
             android:id="@+id/your_animature_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/b2" />
+            android:contentDescription="@string/image_of_your_Animature"/>
 
     </LinearLayout>
 
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:layout_marginRight="@dimen/Margin15"
-            android:text="BLASTOISE" />
+            android:text="" />
 
         <TextView
             android:id="@+id/your_animature_level"
@@ -86,12 +86,12 @@
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:layout_marginRight="@dimen/Margin15"
-            android:text="Nvl: 45" />
+            android:text="" />
 
         <ProgressBar
             android:id="@+id/your_animature_life"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>
@@ -103,7 +103,7 @@
         <ProgressBar
             android:id="@+id/your_animature_exp"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="5dp"
             android:layout_marginLeft="@dimen/Margin10"
             android:layout_marginRight="@dimen/Margin10"
@@ -124,7 +124,7 @@
             android:layout_marginRight="@dimen/Margin5"
             android:layout_weight="1"
             android:paddingRight="@dimen/Margin5"
-            android:text="Ataque1" />
+            android:text="" />
 
         <Button
             android:id="@+id/btnAtack2"
@@ -133,7 +133,7 @@
             android:layout_marginRight="@dimen/Margin5"
             android:layout_weight="1"
             android:paddingRight="@dimen/Margin5"
-            android:text="Ataque2" />
+            android:text="" />
 
         <Button
             android:id="@+id/btnAtack3"
@@ -142,7 +142,7 @@
             android:layout_marginRight="@dimen/Margin5"
             android:layout_weight="1"
             android:paddingRight="@dimen/Margin5"
-            android:text="Ataque3" />
+            android:text="" />
 
         <Button
             android:id="@+id/btnAtack4"
@@ -151,7 +151,7 @@
             android:layout_marginRight="@dimen/Margin5"
             android:layout_weight="1"
             android:paddingRight="@dimen/Margin5"
-            android:text="Ataque 4" />
+            android:text="" />
 
         <Button
             android:id="@+id/btnExitBattle"

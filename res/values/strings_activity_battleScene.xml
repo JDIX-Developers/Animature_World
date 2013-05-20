@@ -2,4 +2,6 @@
 <resources>    
 	<!-- Strings related to Battle Scene -->
 	<string name="exit_Battle">Escapar</string>
+	<string name="image_of_enemy_Animature">Imagen del animature enemigo</string>
+	<string name="image_of_your_Animature">Imagen de tu animature</string>
 </resources>

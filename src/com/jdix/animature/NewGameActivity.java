@@ -12,9 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * @author Jordan Aranda Tejada
+ */
 public class NewGameActivity extends Activity {
 
-	private View			uiView;
 	private TextView		textViewNewGame;
 	private EditText		editTextNewGame;
 	private Button			btn1NewGame;
@@ -32,7 +34,6 @@ public class NewGameActivity extends Activity {
 		setContentView(R.layout.activity_new_game);
 
 		// We get a reference to the interface controls
-		uiView = findViewById(R.layout.activity_new_game);
 		textViewNewGame = (TextView) findViewById(R.id.textViewNewGame);
 		editTextNewGame = (EditText) findViewById(R.id.editTextNewGame);
 		btn1NewGame = (Button) findViewById(R.id.btn1NewGame);
@@ -51,7 +52,7 @@ public class NewGameActivity extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	public void loadVectorStrings(final Vector<String> strings)
+	private void loadVectorStrings(final Vector<String> strings)
 	{
 		strings.add(this.getString(R.string.newGame1));
 		strings.add(this.getString(R.string.newGame2));
@@ -67,7 +68,7 @@ public class NewGameActivity extends Activity {
 
 	}
 
-	public void next(final View view)
+	private void next(final View view)
 	{
 		index = index + 1;
 		switch (index)
@@ -113,7 +114,7 @@ public class NewGameActivity extends Activity {
 
 	}
 
-	public void btn1(final View view)
+	private void btn1(final View view)
 	{
 		if (index == 8)
 		{
@@ -127,7 +128,7 @@ public class NewGameActivity extends Activity {
 		textViewNewGame.setClickable(true);
 	}
 
-	public void btn2(final View view)
+	private void btn2(final View view)
 	{
 		if (index == 8)
 		{

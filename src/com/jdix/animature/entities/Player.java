@@ -1,5 +1,7 @@
 package com.jdix.animature.entities;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Vector;
 
 import android.graphics.Bitmap;
@@ -36,8 +38,8 @@ public class Player {
 	private int				sex;
 	private String			neighborName;
 	private int				stage;
-	private int				started;
-	private int				last_Played;
+	private long			started;
+	private long			last_Played;
 	private int				steps;
 	private Animature[]		activeAnimatures;
 	private int				coord_X;
@@ -49,12 +51,14 @@ public class Player {
 	private final Bitmap	bitmap;
 	private Vector<Item>	playerItems;
 
-	public Player(final String name, final int sex, final String neighborName,
-	final int stage, final int started, final int last_Played, final int steps,
+	public Player(final int idPlayer, final String name, final int sex,
+	final String neighborName, final int stage, final long started,
+	final long last_Played, final int steps,
 	final Animature[] activeAnimatures, final int coord_X, final int coord_Y,
 	final int orientation, final int last_Healing, final int medals,
 	final int money, final Bitmap bitmap, final Vector<Item> playerItems)
 	{
+		this.id_Player = idPlayer;
 		this.name = name;
 		this.sex = sex;
 		this.neighborName = neighborName;
@@ -70,7 +74,6 @@ public class Player {
 		this.medals = medals;
 		this.money = money;
 		this.playerItems = playerItems;
-
 		this.bitmap = bitmap;
 	}
 
@@ -124,22 +127,22 @@ public class Player {
 		this.stage = stage;
 	}
 
-	public int getStarted()
+	public long getStarted()
 	{
 		return started;
 	}
 
-	public void setStarted(final int started)
+	public void setStarted(final long started)
 	{
 		this.started = started;
 	}
 
-	public int getLast_Played()
+	public long getLast_Played()
 	{
 		return last_Played;
 	}
 
-	public void setLast_Played(final int last_Played)
+	public void setLast_Played(final long last_Played)
 	{
 		this.last_Played = last_Played;
 	}
@@ -222,6 +225,27 @@ public class Player {
 	public void setMoney(final int money)
 	{
 		this.money = money;
+	}
+
+	public String getPlayedTime()
+	{
+		final Calendar calendar = new GregorianCalendar();
+
+		calendar.set(calendar.get(Calendar.YEAR),
+		calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DATE),
+		calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
+		calendar.get(Calendar.SECOND));
+
+		this.last_Played = calendar.getTimeInMillis();
+
+		final long playedTime = this.last_Played - this.started;
+		final long hora = playedTime / 3600000;
+		final long restohora = playedTime % 3600000;
+		final long minuto = restohora / 60000;
+		final long restominuto = restohora % 60000;
+		final long segundo = restominuto / 1000;
+
+		return hora + ":" + minuto + ":" + segundo;
 	}
 
 	/**

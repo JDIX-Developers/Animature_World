@@ -9,7 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.jdix.animature.entities.Attack;
-import com.jdix.animature.entities.Captured;
+import com.jdix.animature.entities.Capturable;
 import com.jdix.animature.entities.Item;
 
 public class DataSource {
@@ -226,7 +226,7 @@ public class DataSource {
 		return attack;
 	}
 
-	public Captured readCaptured(final int id)
+	public Capturable readCaptured(final int id)
 	{
 		db = dbHelper.getReadableDatabase();
 		final Cursor c = db.query("CAPTURED", columnsCap, "id=" + id, null,
@@ -236,22 +236,22 @@ public class DataSource {
 			c.moveToFirst();
 		}
 
-		final Captured captured = cursorToCaptured(c);
+		final Capturable captured = cursorToCaptured(c);
 		db.close();
 		c.close();
 		return captured;
 	}
 
-	public List<Captured> getAllCaptureds()
+	public List<Capturable> getAllCaptureds()
 	{
-		final List<Captured> CapturedList = new ArrayList<Captured>();
+		final List<Capturable> CapturedList = new ArrayList<Capturable>();
 
 		final Cursor cursor = db.query("CAPTURED", columnsCap, null, null,
 		null, null, null);
 		cursor.moveToFirst();
 		while ( ! cursor.isAfterLast())
 		{
-			final Captured captured = cursorToCaptured(cursor);
+			final Capturable captured = cursorToCaptured(cursor);
 			CapturedList.add(captured);
 			cursor.moveToNext();
 		}
@@ -260,15 +260,15 @@ public class DataSource {
 		return CapturedList;
 	}
 
-	public void deleteCaptured(final Captured captured)
+	public void deleteCaptured(final Capturable captured)
 	{
 		final int id = captured.getIdAnimatureCapt();
 		db.delete("CAPTURED", "id" + " = " + id, null);
 	}
 
-	public Captured cursorToCaptured(final Cursor cursor)
+	public Capturable cursorToCaptured(final Cursor cursor)
 	{
-		final Captured captured;
+		final Capturable captured;
 
 		final int id = cursor.getInt(0);
 		final int idAnimature = cursor.getInt(1);
@@ -291,7 +291,7 @@ public class DataSource {
 		final int exp = cursor.getInt(18);
 		final int box = cursor.getInt(19);
 
-		captured = new Captured(id, idAnimature, save, nickname, sex, status,
+		captured = new Capturable(id, idAnimature, save, nickname, sex, status,
 		capturedTime, attack1, attack1_pp, attack2, attack2_pp, attack3,
 		attack3_pp, attack4, attack4_pp, health, level, cur_exp, exp, box);
 

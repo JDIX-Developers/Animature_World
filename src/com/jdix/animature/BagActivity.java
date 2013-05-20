@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.KeyEvent;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 
 import com.jdix.animature.entities.Item;
 import com.jdix.animature.utils.AdapterObjects;
-import com.jdix.animature.utils.Database;
 
 /**
  * @author Jordan Aranda Tejada
@@ -25,7 +23,6 @@ public class BagActivity extends Activity {
 
 	private ListView		list;
 	private TextView		objectInformationTextView;
-	public SQLiteDatabase	db;
 	private ArrayList<Item>	items;
 
 	@Override
@@ -33,8 +30,6 @@ public class BagActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bag);
-
-		db = (new Database(this)).getReadableDatabase();
 
 		// We get a reference to the interface controls
 		list = (ListView) findViewById(R.id.list_Objects);

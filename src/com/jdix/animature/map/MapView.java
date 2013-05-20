@@ -82,8 +82,8 @@ public class MapView extends View implements OnTouchListener {
 			System.err.println(e.getMessage());
 		}
 
-		this.player = new Player("TestName", Player.BOY, "TestEnemy", 0, 0, 0,
-		0, null, 3, 3, Player.SOUTH, 0, 0, 0, BitmapFactory.decodeResource(
+		this.player = new Player(1, "TestName", Player.BOY, "TestEnemy", 0, 0,
+		0, 0, null, 3, 3, Player.SOUTH, 0, 0, 0, BitmapFactory.decodeResource(
 		context.getResources(), R.drawable.player), null);
 
 		this.move = new MoveThread();

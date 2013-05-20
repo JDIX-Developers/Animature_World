@@ -4,7 +4,7 @@ import java.util.Random;
 
 import android.content.Context;
 
-public class Captured extends Animature {
+public class Capturable extends Animature {
 
 	public static final int	NORMAL		= 0;
 	public static final int	PARALYZED	= 1;
@@ -35,13 +35,13 @@ public class Captured extends Animature {
 	private final boolean	isWeak[]	= new boolean[17];
 	private final boolean	isStrong[]	= new boolean[17];
 
-	public Captured()
+	public Capturable()
 	{
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Captured(final int idAnimatureCapt, final int idAnimature,
+	public Capturable(final int idAnimatureCapt, final int idAnimature,
 	final int save, final String nickname, final int sex, final int status,
 	final int capturedTime, final int a1, final int a1pp, final int a2,
 	final int a2pp, final int a3, final int a3pp, final int a4, final int a4pp,
@@ -75,26 +75,6 @@ public class Captured extends Animature {
 		{
 			isWeak[i] = false;
 			isStrong[i] = false;
-		}
-		switch (this.type)
-		{
-			case 0:
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-			case 11:
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-			case 16:
 		}
 	}
 
@@ -323,7 +303,7 @@ public class Captured extends Animature {
 	 * }
 	 */
 
-	public Captured getCapturedDamage(final Captured captDo, final int atk)
+	public Capturable getCapturedDamage(final Capturable captDo, final int atk)
 	{
 		final int rand = (new Random()).nextInt(100);
 		final Attack attack = captDo.getAttack(atk);
@@ -349,7 +329,7 @@ public class Captured extends Animature {
 		return this;
 	}
 
-	public int getDamage(final Captured cD, final Attack attack)
+	public int getDamage(final Capturable cD, final Attack attack)
 	{
 		int damage = 0;
 
