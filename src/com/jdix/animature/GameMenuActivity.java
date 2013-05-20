@@ -72,7 +72,11 @@ public class GameMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-
+				((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
+				.vibrate(50);
+				final Intent intent = new Intent(GameMenuActivity.this,
+				PlayerDataViewActivity.class);
+				startActivity(intent);
 			}
 		});
 		btnSave = (Button) findViewById(R.id.btn_game_menu_save);

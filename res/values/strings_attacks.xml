@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string-array name="attacks_names">
+        <item>Placaje</item>
+        <item>Ataque rápido</item>
+        <item>Gruñido</item>
+        <item>Látigo</item>
+        <item>Arañazo</item>
+        <item>Ascuas</item>
+        <item>Burbuja</item>
+        <item>Látigo cepa</item>
+        <item>Pistola agua</item>
+        <item>Picotazo venenoso</item>
+    </string-array>
+</resources>

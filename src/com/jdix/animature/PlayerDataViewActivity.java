@@ -1,9 +1,11 @@
 package com.jdix.animature;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
+import android.os.Vibrator;
+import android.view.KeyEvent;
 import android.widget.TextView;
 
 import com.jdix.animature.utils.Database;
@@ -34,13 +36,18 @@ public class PlayerDataViewActivity extends Activity {
 		playerPlayedTime = (TextView) findViewById(R.id.player_playedTime_view);
 		playerViewAnimatures = (TextView) findViewById(R.id.player_viewedAnimatures_view);
 		playerCapturedAnimatures = (TextView) findViewById(R.id.player_capturedAnimatures_view);
+
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onKeyDown(final int keyCode, final KeyEvent event)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.player_data_view, menu);
-		return true;
+		if (keyCode == KeyEvent.KEYCODE_MENU)
+		{
+			((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
+			finish();
+		}
+
+		return super.onKeyDown(keyCode, event);
 	}
 }
