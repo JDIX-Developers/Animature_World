@@ -219,9 +219,10 @@ public class DataSource {
 		final int ifPass = cursor.getInt(5);
 		final int power = cursor.getInt(6);
 		final int probability = cursor.getInt(7);
+		final boolean isFirst = cursor.getInt(7) == 1;
 
 		attack = new Attack(id, name, type, max_pp, active, ifPass, power,
-		probability);
+		probability, isFirst);
 
 		return attack;
 	}

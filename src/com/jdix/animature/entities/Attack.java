@@ -1,6 +1,5 @@
 package com.jdix.animature.entities;
 
-
 public class Attack {
 
 	private int				id_Attack;
@@ -13,6 +12,7 @@ public class Attack {
 												// of the cuality to change
 	private int				power;
 	private int				probability;		// 0 - 100 (Example: 60% - 60)
+	private boolean			isFirst;
 
 	public static final int	SPEED		= 0;
 	public static final int	DEFENSE		= 1;
@@ -45,7 +45,8 @@ public class Attack {
 
 	public Attack(final int id_Attack, final String name_Attack,
 	final int type_Attack, final int max_pp, final int active,
-	final int ifPass, final int power, final int probability)
+	final int ifPass, final int power, final int probability,
+	final boolean isFirst)
 	{
 		this.id_Attack = id_Attack;
 		this.name_Attack = name_Attack;
@@ -55,6 +56,7 @@ public class Attack {
 		this.ifPass = ifPass;
 		this.power = power;
 		this.probability = probability;
+		this.isFirst = isFirst;
 	}
 
 	public int getId_Attack()
@@ -136,4 +138,15 @@ public class Attack {
 	{
 		this.probability = probability;
 	}
+
+	public boolean isFirst()
+	{
+		return isFirst;
+	}
+
+	public void setFirst(final boolean isFirst)
+	{
+		this.isFirst = isFirst;
+	}
+
 }
