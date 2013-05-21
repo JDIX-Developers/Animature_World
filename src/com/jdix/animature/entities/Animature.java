@@ -34,7 +34,7 @@ public class Animature implements Serializable {
 	public static final int	DARK		= 32768;
 	public static final int	STEEL		= 65536;
 
-	protected int			id_Animature;
+	protected int			id;
 	protected String		name;
 	protected String		description;
 	protected double		height;
@@ -51,13 +51,13 @@ public class Animature implements Serializable {
 		// TODO
 	}
 
-	public Animature(final int id_Animature, final String name,
-	final String description, final double height, final double weight,
-	final int type, final int speed, final int defense, final int agility,
-	final int strenght, final int precission, final int health,
-	final int level_evo, final int baseExp, final int captureRange)
+	public Animature(final int id, final String name, final String description,
+	final double height, final double weight, final int type, final int speed,
+	final int defense, final int agility, final int strenght,
+	final int precission, final int health, final int level_evo,
+	final int baseExp, final int captureRange)
 	{
-		this.id_Animature = id_Animature;
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.height = height;
@@ -74,14 +74,14 @@ public class Animature implements Serializable {
 		this.captureRange = captureRange;
 	}
 
-	public int getId_Animature()
+	public int getId()
 	{
-		return id_Animature;
+		return id;
 	}
 
-	public void setId_Animature(final int id_Animature)
+	public void setId(final int id_Animature)
 	{
-		this.id_Animature = id_Animature;
+		this.id = id_Animature;
 	}
 
 	public String getName()

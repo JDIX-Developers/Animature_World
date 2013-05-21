@@ -16,6 +16,7 @@ import android.view.View.OnTouchListener;
 import com.jdix.animature.R;
 import com.jdix.animature.entities.Capturable;
 import com.jdix.animature.entities.Player;
+import com.jdix.animature.entities.User;
 
 /**
  * @author Razican (Iban Eguia)
@@ -65,18 +66,17 @@ public class MapView extends View implements OnTouchListener {
 		this.control = NONE;
 
 		Square.setSprite(new Sprite(context, sprite, sprbmp));
-		Map.setContext(context);
 		try
 		{
-			this.map = new Map(map);
+			this.map = new Map(context, map);
 		}
 		catch (final IOException e)
 		{
 			System.err.println(e.getMessage());
 		}
 
-		Player.set("TestName", Player.BOY, "TestEnemy", new Capturable[6], 5,
-		5, Player.SOUTH, null, context);
+		Player.set(User.getCurrent(), this.map, Player.BOY, "TestEnemy",
+		new Capturable[6], 5, 5, Player.SOUTH, null, context);
 
 		this.move = new MoveThread();
 

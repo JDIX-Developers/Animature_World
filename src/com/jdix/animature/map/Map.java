@@ -17,19 +17,20 @@ import com.jdix.animature.utils.MathUtils;
  */
 public class Map {
 
-	private static Context			context;
-
+	private final int				id;
 	private HashMap<Square, Link>	links;
 	private Square[][]				squares;
 	private int						width, height;
 	private Bitmap					bitmap;
 
 	/**
-	 * @param map the map resource to load
+	 * @param context - The context of the application
+	 * @param map - The map resource to load
 	 * @throws IOException if there is an IO exception when loading the map
 	 */
-	public Map(final int map) throws IOException
+	public Map(final Context context, final int map) throws IOException
 	{
+		this.id = map;
 		final InputStream s = context.getResources().openRawResource(map);
 		load(s);
 	}
@@ -91,6 +92,7 @@ public class Map {
 	private void generateData(final byte[] array) throws CompressionException,
 	SpriteException
 	{
+		// TODO errors on double X, Y compression
 		this.squares = new Square[height][width];
 
 		int pointer = 2;
@@ -177,11 +179,11 @@ public class Map {
 	}
 
 	/**
-	 * @param c Current context
+	 * @return The id of the map
 	 */
-	public static void setContext(final Context c)
+	public int getId()
 	{
-		context = c;
+		return id;
 	}
 
 	/**

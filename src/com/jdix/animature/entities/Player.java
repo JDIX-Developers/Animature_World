@@ -1,10 +1,9 @@
 package com.jdix.animature.entities;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Vector;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.jdix.animature.R;
+import com.jdix.animature.map.Map;
 import com.jdix.animature.map.Square;
 import com.jdix.animature.utils.Database;
 
@@ -42,20 +42,21 @@ public class Player {
 
 	public static Player	player;
 
+	private final User		user;
+	private Map				map;
 	private int				id;
 	private String			name;
 	private int				sex;
 	private String			neighborName;
-	private int				idFirstAnimature;
 	private int				stage;
 	private Date			startDate;
-	private Date			lastPlayed;
+	private Date			lastSaved;
 	private int				steps;
 	private Capturable[]	activeAnimatures;
 	private int				posX;
 	private int				posY;
 	private int				orientation;
-	private int				lastHealingMap;
+	private Map				lastHealingMap;
 	private int				lastHealingX;
 	private int				lastHealingY;
 	private int				medals;
@@ -64,23 +65,23 @@ public class Player {
 	private final Animature	firstAnim;
 	private Vector<Item>	items;
 
-	// private SQLiteDatabase db; // TODO check
-
-	private Player(final int id, final String name, final int sex,
+	private Player(final User user, final Map map, final int id, final int sex,
 	final String neighborName, final int stage, final Date startDate,
-	final Date lastPlayed, final int steps,
-	final Capturable[] activeAnimatures, final int posX, final int posY,
-	final int orientation, final int lastHealingMap, final int lastHealingX,
-	final int lastHealingY, final int medals, final int money,
-	final Vector<Item> items, final Animature firstAnim, final Context context)
+	final Date lastSaved, final int steps, final Capturable[] activeAnimatures,
+	final int posX, final int posY, final int orientation,
+	final Map lastHealingMap, final int lastHealingX, final int lastHealingY,
+	final int medals, final int money, final Vector<Item> items,
+	final Animature firstAnim, final Context context)
 	{
+		this.user = user;
+		this.map = map;
 		this.id = id;
-		this.name = name;
+		this.name = user.getUsername();
 		this.sex = sex;
 		this.neighborName = neighborName;
 		this.stage = stage;
 		this.startDate = startDate;
-		this.lastPlayed = lastPlayed;
+		this.lastSaved = lastSaved;
 		this.steps = steps;
 		this.activeAnimatures = activeAnimatures;
 		this.posX = posX;
@@ -108,7 +109,8 @@ public class Player {
 	/**
 	 * Sets a new player, for starting the game
 	 * 
-	 * @param name - The name of the player
+	 * @param user - The user starting the game
+	 * @param map - The map for the user
 	 * @param sex - The sex of the player
 	 * @param neighborName - The name of the neighbor
 	 * @param activeAnimatures - The Animatures in it's bag
@@ -118,15 +120,14 @@ public class Player {
 	 * @param firstAnim - The first animature of the player
 	 * @param context - The context of the application
 	 */
-	public static void set(final String name, final int sex,
+	public static void set(final User user, final Map map, final int sex,
 	final String neighborName, final Capturable[] activeAnimatures,
 	final int posX, final int posY, final int orientation,
 	final Animature firstAnim, final Context context)
 	{
-		final Date now = new Date();
-		player = new Player(0, name, sex, neighborName, 0, now, now, 0,
-		activeAnimatures, posX, posY, orientation, 0, 0, 0, 0, 0,
-		new Vector<Item>(), firstAnim, context);
+		player = new Player(user, map, 0, sex, neighborName, 0, new Date(),
+		new Date(0), 0, activeAnimatures, posX, posY, orientation, null, 0, 0,
+		0, 0, new Vector<Item>(), firstAnim, context);
 	}
 
 	/**
@@ -136,14 +137,50 @@ public class Player {
 	 */
 	public void save(final Context context)
 	{
+		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
+
+		final ContentValues values = new ContentValues(22);
+		values.put("user", user.getId());
+		values.put("sex", sex);
+		values.put("stage", stage);
+		values.put("last_played", (new Date()).getTime());
+		values.put("start_date", startDate.getTime());
+		values.put("total_time", 0); // TODO totalTime
+		values.put("steps", 0); // TODO steps
+		values.put("an1", activeAnimatures[0].getId());
+		values.put("an2", activeAnimatures[1].getId());
+		values.put("an3", activeAnimatures[2].getId());
+		values.put("an4", activeAnimatures[3].getId());
+		values.put("an5", activeAnimatures[4].getId());
+		values.put("an6", activeAnimatures[5].getId());
+		values.put("map", map.getId());
+		values.put("coord_x", posX);
+		values.put("coord_y", posY);
+		values.put("neighbor", neighborName);
+		values.put("first_an", firstAnim.getId());
+		values.put("orientation", orientation);
+		values.put("last_healing_map", lastHealingMap.getId());
+		values.put("medals", medals);
+		values.put("money", money);
+
 		if (this.id == 0)
 		{
-			// TODO insert new record and update ID
+			db.insert("SAVE", null, values);
+
+			final Cursor c = db.rawQuery("SELECT max(id) FROM SAVE", null);
+			if (c.moveToFirst())
+			{
+				this.id = c.getInt(0);
+			}
 		}
 		else
 		{
-			// TODO update the save
+			db.update("SAVE", values, "id = " + this.id, null);
 		}
+
+		// TODO save to server
+
+		this.lastSaved = new Date();
 	}
 
 	/**
@@ -156,6 +193,22 @@ public class Player {
 	public static void load(final int id, final Context context)
 	{
 		// TODO
+	}
+
+	/**
+	 * @param map - Changes the map of the player
+	 */
+	public void setMap(final Map map)
+	{
+		this.map = map;
+	}
+
+	/**
+	 * @return The current map of the player
+	 */
+	public Map getMap()
+	{
+		return this.map;
 	}
 
 	public int getId()
@@ -218,14 +271,12 @@ public class Player {
 		this.startDate = startDate;
 	}
 
-	public Date getLastPlayed()
+	/**
+	 * @return The last saved date
+	 */
+	public Date getLastSaved()
 	{
-		return lastPlayed;
-	}
-
-	public void setLastPlayed(final Date lastPlayed)
-	{
-		this.lastPlayed = lastPlayed;
+		return lastSaved;
 	}
 
 	public int getSteps()
@@ -291,7 +342,7 @@ public class Player {
 	/**
 	 * @return The last map there healed
 	 */
-	public int getLastHealingMap()
+	public Map getLastHealingMap()
 	{
 		return lastHealingMap;
 	}
@@ -318,7 +369,7 @@ public class Player {
 	 * 
 	 * @param map - The current map index
 	 */
-	public void heal(final int map)
+	public void heal()
 	{
 		this.lastHealingMap = map;
 		this.lastHealingX = posX;
@@ -347,24 +398,26 @@ public class Player {
 
 	public String getPlayedTime()
 	{
-		final Calendar calendar = new GregorianCalendar();
-
-		calendar.set(calendar.get(Calendar.YEAR),
-		calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DATE),
-		calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
-		calendar.get(Calendar.SECOND));
-
-		this.lastPlayed = new Date(calendar.getTimeInMillis());
-
-		final long playedTime = this.lastPlayed.getTime()
-		- this.startDate.getTime();
-		final long hour = playedTime / 3600000;
-		final long rHour = playedTime % 3600000;
-		final long minute = rHour / 60000;
-		final long rMinute = rHour % 60000;
-		final long second = rMinute / 1000;
-
-		return hour + ":" + minute + ":" + second;
+		return null;
+		// TODO timer && update
+		// final Calendar calendar = new GregorianCalendar();
+		//
+		// calendar.set(calendar.get(Calendar.YEAR),
+		// calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DATE),
+		// calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
+		// calendar.get(Calendar.SECOND));
+		//
+		// this.lastPlayed = new Date(calendar.getTimeInMillis());
+		//
+		// final long playedTime = this.lastPlayed.getTime()
+		// - this.startDate.getTime();
+		// final long hour = playedTime / 3600000;
+		// final long rHour = playedTime % 3600000;
+		// final long minute = rHour / 60000;
+		// final long rMinute = rHour % 60000;
+		// final long second = rMinute / 1000;
+		//
+		// return hour + ":" + minute + ":" + second;
 	}
 
 	/**
