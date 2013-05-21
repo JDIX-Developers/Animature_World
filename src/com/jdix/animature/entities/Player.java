@@ -46,7 +46,6 @@ public class Player {
 	private String			name;
 	private int				sex;
 	private String			neighborName;
-	private int				idFirstAnimature;
 	private int				stage;
 	private Date			startDate;
 	private Date			lastPlayed;
@@ -444,5 +443,4 @@ public class Player {
 		db.close();
 		return total;
 	}
-
 }
