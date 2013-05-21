@@ -4,9 +4,13 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 
 import com.jdix.animature.map.Square;
+import com.jdix.animature.utils.Database;
 
 public class Player {
 
@@ -52,6 +56,7 @@ public class Player {
 	private int				money;
 	private final Bitmap	bitmap;
 	private Vector<Item>	playerItems;
+	private SQLiteDatabase	db;
 
 	private Player(final int idPlayer, final String name, final int sex,
 	final String neighborName, final int stage, final long started,
@@ -258,13 +263,13 @@ public class Player {
 		this.last_Played = calendar.getTimeInMillis();
 
 		final long playedTime = this.last_Played - this.started;
-		final long hora = playedTime / 3600000;
-		final long restohora = playedTime % 3600000;
-		final long minuto = restohora / 60000;
-		final long restominuto = restohora % 60000;
-		final long segundo = restominuto / 1000;
+		final long hour = playedTime / 3600000;
+		final long rHour = playedTime % 3600000;
+		final long minute = rHour / 60000;
+		final long rMinute = rHour % 60000;
+		final long second = rMinute / 1000;
 
-		return hora + ":" + minuto + ":" + segundo;
+		return hour + ":" + minute + ":" + second;
 	}
 
 	/**
@@ -280,8 +285,65 @@ public class Player {
 		(int) Math.round(1.5 * Square.getSprite().getSize()));
 	}
 
+	/**
+	 * Changes the player items vector.
+	 * 
+	 * @param playerItems
+	 */
 	public void setPlayerItems(final Vector<Item> playerItems)
 	{
 		this.playerItems = playerItems;
 	}
+
+	/**
+	 * Method to get the player captured animatures.
+	 * 
+	 * @param context The game context
+	 * @return The number of captured animatures of player
+	 */
+	public int getPlayerCaptured(final Context context)
+	{
+		int total = 0;
+		db = (new Database(context)).getReadableDatabase();
+		final Cursor c = db.rawQuery(
+		"SELECT COUNT(*) FROM CAPTURABLE WHERE save="
+		+ Player.getInstance().getId_Player(), null);
+		if (c.getCount() > 0)
+		{
+			c.moveToFirst();
+			while ( ! c.isAfterLast())
+			{
+				total = c.getInt(0);
+			}
+		}
+		c.close();
+		db.close();
+		return total;
+	}
+
+	/**
+	 * Method to get the player viewed animatures.
+	 * 
+	 * @param context The game context
+	 * @return The number of viewed animatures of player
+	 */
+	public int getPlayerViewed(final Context context)
+	{
+		int total = 0;
+		db = (new Database(context)).getReadableDatabase();
+		final Cursor c = db.rawQuery("SELECT COUNT(*) FROM VIEWED WHERE save="
+		+ Player.getInstance().getId_Player(), null);
+		if (c.getCount() > 0)
+		{
+			c.moveToFirst();
+			while ( ! c.isAfterLast())
+			{
+				total = c.getInt(0);
+			}
+		}
+		c.close();
+		db.close();
+		return total;
+	}
+
 }
