@@ -27,8 +27,11 @@ public class PlayerDataViewActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_player_data_view);
 
-		Player.setPlayer(1, "JORDAN", 0, "El Puma", 2, 1371725970906L,
-		1371726970906L, 350, null, 10, 25, 2, 1, 3, 100, null, null);
+		/*
+		 * Player.set("JORDAN", 0, "PEPE",new Date( 1371726970906L), 350, new
+		 * Animature[6], 10, 25, 2, 1, 3, 100, 3, 200, new Vector<Item>(),
+		 * null);
+		 */
 
 		// We get a reference to the interface controls
 		playerId = (TextView) findViewById(R.id.player_id_view);
@@ -38,13 +41,14 @@ public class PlayerDataViewActivity extends Activity {
 		playerCapturedAnimatures = (TextView) findViewById(R.id.player_capturedAnimatures_view);
 		playerMoney = (TextView) findViewById(R.id.player_money_view);
 
-		playerId.setText("ID: " + Player.getInstance().getId_Player());
+		playerId.setText("ID: " + Player.getInstance().getId());
+		playerName.setText("Nombre: " + Player.getInstance().getName());
 		playerPlayedTime.setText("Tiempo jugado:"
 		+ Player.getInstance().getPlayedTime());
 		playerViewAnimatures.setText("Animax: "
-		+ Player.getInstance().getPlayerViewed(this));
+		+ Player.getInstance().getViewed(this));
 		playerCapturedAnimatures.setText("Animatures caputarados: "
-		+ Player.getInstance().getPlayerCaptured(this));
+		+ Player.getInstance().getCaptured(this));
 		playerMoney.setText("Monedas: " + Player.getInstance().getMoney());
 	}
 

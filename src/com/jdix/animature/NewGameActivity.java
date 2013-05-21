@@ -1,12 +1,9 @@
 package com.jdix.animature;
 
 import java.util.Locale;
-import java.util.Vector;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -16,10 +13,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.jdix.animature.entities.Capturable;
-import com.jdix.animature.entities.Item;
 import com.jdix.animature.entities.Player;
-import com.jdix.animature.utils.Database;
 
 /**
  * @author Jordan Aranda Tejada
@@ -38,17 +32,17 @@ public class NewGameActivity extends Activity {
 
 	private int				index;
 	private String[]		strings;
+
 	private String			playerName;
 	private String			enemyName;
+	private int				playerSex;
+	private int				idAnimatureSelected;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_game);
-
-		Player.setPlayer(getLastPlayerId() + 1, "", 0, "", 0, 0, 0, 0,
-		new Capturable[6], 0, 0, 2, 0, 0, 0, null, new Vector<Item>());
 
 		index = 0;
 
@@ -64,9 +58,9 @@ public class NewGameActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				if ( ! (index == 8 && editTextNewGame.getText().toString()
+				if ( ! (index == 9 && editTextNewGame.getText().toString()
 				.trim().equals(""))
-				&& ! (index == 11 && editTextNewGame.getText().toString()
+				&& ! (index == 12 && editTextNewGame.getText().toString()
 				.trim().equals("")))
 				{
 					changeDialog();
@@ -81,7 +75,7 @@ public class NewGameActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				btnYes();
+				btnUP();
 			}
 		});
 		btn2NewGame = (Button) findViewById(R.id.btn2NewGame);
@@ -91,7 +85,7 @@ public class NewGameActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				btnNo();
+				btnDOWN();
 			}
 		});
 
@@ -131,8 +125,6 @@ public class NewGameActivity extends Activity {
 		strings = getResources().getStringArray(R.array.new_game_strings);
 
 		textViewNewGame.setText(strings[index]);
-		btn1NewGame.setText(getString(R.string.yes_option));
-		btn2NewGame.setText(getString(R.string.no_option));
 	}
 
 	@Override
@@ -156,42 +148,48 @@ public class NewGameActivity extends Activity {
 				makeDialog(strings[index]);
 			break;
 			case 8:
-				makeNameQuestion(strings[index]);
+				makeBinaryQuestion(strings[index], "Chico", "Chica");
 			break;
 			case 9:
-				this.playerName = editTextNewGame.getText().toString().trim()
-				.toUpperCase(Locale.getDefault());
-				makeYesNoQuestion(strings[index].replace("%s", this.playerName));
-			break;
-			case 10:
-				makeDialog(strings[index]);
-			break;
-			case 11:
 				makeNameQuestion(strings[index]);
 			break;
-			case 12:
-				this.enemyName = editTextNewGame.getText().toString().trim()
+			case 10:
+				this.playerName = editTextNewGame.getText().toString().trim()
 				.toUpperCase(Locale.getDefault());
-				makeYesNoQuestion(strings[index].replace("%s", this.enemyName));
+				makeBinaryQuestion(
+				strings[index].replace("%s", this.playerName), "Si", "No");
+			break;
+			case 11:
+				makeDialog(strings[index]);
+			break;
+			case 12:
+				makeNameQuestion(strings[index]);
 			break;
 			case 13:
-				makeDialog(strings[index].replace("%s", this.playerName));
+				this.enemyName = editTextNewGame.getText().toString().trim()
+				.toUpperCase(Locale.getDefault());
+				makeBinaryQuestion(
+				strings[index].replace("%s", this.enemyName), "Si", "No");
 			break;
 			case 14:
-				makeDialog(strings[index]);
+				makeDialog(strings[index].replace("%s", this.playerName));
 			break;
 			case 15:
 				makeDialog(strings[index]);
 			break;
 			case 16:
-				makeAnimatureSelector(strings[index]);
+				makeDialog(strings[index]);
 			break;
 			case 17:
-				layoutAnimOptions.setVisibility(View.GONE);
-				layoutOak.setVisibility(View.VISIBLE);
-				makeYesNoQuestion(strings[index]);
+				makeAnimatureSelector(strings[index]);
 			break;
 			case 18:
+				layoutAnimOptions.setVisibility(View.GONE);
+				layoutOak.setVisibility(View.VISIBLE);
+				final String text = makeSelectorQuestionString(strings[index]);
+				makeBinaryQuestion(text, "Si", "No");
+			break;
+			case 19:
 				startActivity(new Intent(NewGameActivity.this,
 				MapActivity.class));
 				finish();
@@ -222,9 +220,12 @@ public class NewGameActivity extends Activity {
 		textViewNewGame.setClickable(true);
 	}
 
-	private void makeYesNoQuestion(final String text)
+	private void makeBinaryQuestion(final String text, final String op1,
+	final String op2)
 	{
 		textViewNewGame.setText(text);
+		btn1NewGame.setText(op1);
+		btn2NewGame.setText(op2);
 		btn1NewGame.setVisibility(View.VISIBLE);
 		btn2NewGame.setVisibility(View.VISIBLE);
 		editTextNewGame.setVisibility(View.GONE);
@@ -245,44 +246,63 @@ public class NewGameActivity extends Activity {
 		layoutAnimOptions.setVisibility(View.VISIBLE);
 	}
 
-	private void btnYes()
+	private void btnUP()
 	{
-		if (index == 9)
+		if (index == 8)
 		{
-			Player.getInstance().setName(playerName);
-		}
-		else if (index == 12)
-		{
-			Player.getInstance().setNeighborName(enemyName);
+			playerSex = Player.BOY;
 		}
 		changeDialog();
 	}
 
-	private void btnNo()
+	private void btnDOWN()
 	{
-		if (index == 9)
+		if (index == 8)
 		{
-			this.index = 7;
+			playerSex = Player.GIRL;
 		}
-		else if (index == 12)
+		else if (index == 10)
 		{
-			this.index = 10;
+			this.index = 8;
+		}
+		else if (index == 13)
+		{
+			this.index = 11;
 		}
 		changeDialog();
 	}
 
 	private void animatureChosen(final int id)
 	{
-
+		idAnimatureSelected = id;
+		changeDialog();
 	}
 
-	private int getLastPlayerId()
+	private String makeSelectorQuestionString(final String text)
 	{
-		final SQLiteDatabase db = (new Database(this)).getReadableDatabase();
-		final Cursor c = db.rawQuery("SELECT * FROM SAVE", null);
-		final int id = c.getCount();
-		c.close();
-		db.close();
-		return id;
+		String name = "";
+		if (idAnimatureSelected == 1)
+		{
+			name = getResources().getString(
+			getResources().getIdentifier("animatureOption1", "string",
+			getPackageName()));
+			text.replace("type", "Planta");
+		}
+		else if (idAnimatureSelected == 4)
+		{
+			name = getResources().getString(
+			getResources().getIdentifier("animatureOption2", "string",
+			getPackageName()));
+			text.replace("type", "Fuego");
+		}
+		else if (idAnimatureSelected == 7)
+		{
+			name = getResources().getString(
+			getResources().getIdentifier("animatureOption3", "string",
+			getPackageName()));
+			text.replace("type", "Agua");
+		}
+		text.replace("ANIM", name);
+		return text;
 	}
 }

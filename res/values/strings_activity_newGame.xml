@@ -5,8 +5,6 @@
     <string name="profesor_oak_image_description">Imagen de Oak</string>
 
 	<string name="name">Nombre</string>
-	<string name="yes_option">Si</string>
-	<string name="no_option">No</string>
 	
 	<string-array name="new_game_strings">
 	    <item>¡Hola! ¡Este es el mundo Animature!</item>											// 0
@@ -17,18 +15,20 @@
 	    <item>En cuanto a mi…</item>																// 5
 	    <item>Estudio a los Animatures como profesión.</item>										// 6
 	    <item>Bueno, cuéntame algo de ti.</item>													// 7
-	    <item>¿Como te llamas?</item>																// 8
-	    <item>¡Bien! ¿Asi que te llamas %s?</item>													// 9
-	    <item>He oido que tienes un vecino de tu misma edad.</item>									// 10
-	    <item>¿Podrías decirme como se llamaba?</item>												// 11
-	    <item >A ya recuerdo ¿se llamaba %s?</item>													// 12
-	    <item>¡%s! Tu aventura está a punto de comenzar.</item>										// 13
-	    <item>Pero antes…</item>																	// 14
-	    <item>Tienes que elegir uno de los siguientes Animatures…</item>								// 15
-	    <item>¿Cuál quieres?</item>																	// 16
-	    <item>Asi que ANIM, ¿quieres a ANIM el animature de tipo type?</item>						// 17
-	    <item>¡%s! Tu aventura comienza ahora…</item>												// 18
-	    <item>captura todos los Animatures que puedas y vence a los entrenadores.</item>			// 19
+	   	<item>¿Eres chico o chica?</item>															// 8
+	 
+	    <item>¿Como te llamas?</item>																// 9
+	    <item>¡Bien! ¿Asi que te llamas %s?</item>													// 10
+	    <item>He oido que tienes un vecino de tu misma edad.</item>									// 11
+	    <item>¿Podrías decirme como se llamaba?</item>												// 12
+	    <item >A ya recuerdo ¿se llamaba %s?</item>													// 13
+	    <item>¡%s! Tu aventura está a punto de comenzar.</item>										// 14
+	    <item>Pero antes…</item>																	// 15
+	    <item>Tienes que elegir uno de los siguientes Animatures…</item>							// 16
+	    <item>¿Cuál quieres?</item>																	// 17
+	    <item>Asi que ANIM, ¿quieres a ANIM el animature de tipo type?</item>						// 18
+	    <item>¡%s! Tu aventura comienza ahora…</item>												// 19
+	    <item>captura todos los Animatures que puedas y vence a los entrenadores.</item>			// 20
 	</string-array>		
 	
 	<string name="animatureOption1">Bulbasur</string>

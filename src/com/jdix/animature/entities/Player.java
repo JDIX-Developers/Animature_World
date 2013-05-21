@@ -497,5 +497,4 @@ public class Player {
 		db.close();
 		return total;
 	}
-
 }
