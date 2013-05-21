@@ -19,6 +19,7 @@ public class PlayerDataViewActivity extends Activity {
 	private TextView	playerPlayedTime;
 	private TextView	playerViewAnimatures;
 	private TextView	playerCapturedAnimatures;
+	private TextView	playerMoney;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -35,12 +36,16 @@ public class PlayerDataViewActivity extends Activity {
 		playerPlayedTime = (TextView) findViewById(R.id.player_playedTime_view);
 		playerViewAnimatures = (TextView) findViewById(R.id.player_viewedAnimatures_view);
 		playerCapturedAnimatures = (TextView) findViewById(R.id.player_capturedAnimatures_view);
+		playerMoney = (TextView) findViewById(R.id.player_money_view);
 
 		playerId.setText("ID: " + Player.getInstance().getId_Player());
 		playerPlayedTime.setText("Tiempo jugado:"
 		+ Player.getInstance().getPlayedTime());
-		playerViewAnimatures.setText("Animax: 13");
-		playerCapturedAnimatures.setText("Animatures caputarados: 3");
+		playerViewAnimatures.setText("Animax: "
+		+ Player.getInstance().getPlayerViewed(this));
+		playerCapturedAnimatures.setText("Animatures caputarados: "
+		+ Player.getInstance().getPlayerCaptured(this));
+		playerMoney.setText("Monedas: " + Player.getInstance().getMoney());
 	}
 
 	@Override
