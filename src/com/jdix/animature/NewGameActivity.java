@@ -35,9 +35,36 @@ public class NewGameActivity extends Activity {
 
 		// We get a reference to the interface controls
 		textViewNewGame = (TextView) findViewById(R.id.textViewNewGame);
+		textViewNewGame.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				next();
+			}
+		});
 		editTextNewGame = (EditText) findViewById(R.id.editTextNewGame);
 		btn1NewGame = (Button) findViewById(R.id.btn1NewGame);
+		btn1NewGame.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				btn1();
+			}
+		});
 		btn2NewGame = (Button) findViewById(R.id.btn2NewGame);
+		btn2NewGame.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				btn2();
+			}
+		});
 
 		index = 0;
 		strings = new Vector<String>();
@@ -68,7 +95,7 @@ public class NewGameActivity extends Activity {
 
 	}
 
-	private void next(final View view)
+	private void next()
 	{
 		index = index + 1;
 		switch (index)
@@ -114,28 +141,28 @@ public class NewGameActivity extends Activity {
 
 	}
 
-	private void btn1(final View view)
+	private void btn1()
 	{
 		if (index == 8)
 		{
 			sex = 0;
 			btn1NewGame.setVisibility(View.INVISIBLE);
 			btn2NewGame.setVisibility(View.INVISIBLE);
-			next(view);
+			next();
 		}
 		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
 		getResources().getDrawable(R.drawable.flecha), null);
 		textViewNewGame.setClickable(true);
 	}
 
-	private void btn2(final View view)
+	private void btn2()
 	{
 		if (index == 8)
 		{
 			sex = 1;
 			btn1NewGame.setVisibility(View.INVISIBLE);
 			btn2NewGame.setVisibility(View.INVISIBLE);
-			next(view);
+			next();
 		}
 		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
 		getResources().getDrawable(R.drawable.flecha), null);

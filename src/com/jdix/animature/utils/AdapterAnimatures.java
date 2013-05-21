@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,8 @@ public class AdapterAnimatures extends BaseAdapter {
 
 	protected Activity				activity;
 	protected ArrayList<Animature>	items;
+	protected String[]				typesNames;
+	protected String[]				typesColors;
 
 	/**
 	 * @param activity The activity of the list.
@@ -64,6 +68,10 @@ public class AdapterAnimatures extends BaseAdapter {
 			v = inf.inflate(R.layout.animax_row, null);
 		}
 
+		typesNames = getResources().getStringArray(R.array.animature_types);
+		typesColors = getResources().getStringArray(
+		R.array.animature_types_colors);
+
 		// Creamos un objeto Animature
 		final Animature animature = items.get(position);
 		// ID
@@ -85,8 +93,13 @@ public class AdapterAnimatures extends BaseAdapter {
 		final TextView[] textViews = {type1Animature, type2Animature};
 		modifyTypeTextView(textViews, animature);
 
-		// Retornamos la vista
 		return v;
+	}
+
+	private Resources getResources()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private String getFormatedIdAnimature(final int id)
@@ -113,9 +126,10 @@ public class AdapterAnimatures extends BaseAdapter {
 		{
 			if (animature.isOfType(i))
 			{
-				textViews[cont].setText("");// TODO arrray de tipos
-				textViews[cont].setBackgroundColor(activity.getResources()
-				.getColor(0));// TODO array de colores
+				textViews[cont].setText(typesNames[(int) (Math.log(i) / Math
+				.log(2))]);
+				textViews[cont].setBackgroundColor(Color
+				.parseColor(typesColors[(int) (Math.log(i) / Math.log(2))]));
 				cont++;
 			}
 		}
