@@ -26,9 +26,8 @@ public class PlayerDataViewActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_player_data_view);
 
-		final Player player = new Player(1, "JORDAN", 0, "El Puma", 2,
-		1371725970906L, 1371726970906L, 350, null, 10, 25, 2, 1, 3, 100, null,
-		null);
+		Player.setPlayer(1, "JORDAN", 0, "El Puma", 2, 1371725970906L,
+		1371726970906L, 350, null, 10, 25, 2, 1, 3, 100, null, null);
 
 		// We get a reference to the interface controls
 		playerId = (TextView) findViewById(R.id.player_id_view);
@@ -37,8 +36,9 @@ public class PlayerDataViewActivity extends Activity {
 		playerViewAnimatures = (TextView) findViewById(R.id.player_viewedAnimatures_view);
 		playerCapturedAnimatures = (TextView) findViewById(R.id.player_capturedAnimatures_view);
 
-		playerId.setText("ID: " + player.getId_Player());
-		playerPlayedTime.setText("Tiempo jugado:" + player.getPlayedTime());
+		playerId.setText("ID: " + Player.getInstance().getId_Player());
+		playerPlayedTime.setText("Tiempo jugado:"
+		+ Player.getInstance().getPlayedTime());
 		playerViewAnimatures.setText("Animax: 13");
 		playerCapturedAnimatures.setText("Animatures caputarados: 3");
 	}

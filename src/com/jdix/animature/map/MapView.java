@@ -23,40 +23,29 @@ import com.jdix.animature.entities.Player;
  */
 public class MapView extends View implements OnTouchListener {
 
-	private Map			map;
-	private int			mWidth;
-	private int			mHeight;
-	private Context		context;
-	private int			control;
-	private int			map0x, map0y;
-	private MoveThread	move;
+	private Map				map;
+	private int				mWidth;
+	private int				mHeight;
+	private final Context	context;
+	private int				control;
+	private int				map0x, map0y;
+	private MoveThread		move;
 
-	private static int	NONE	= 0;
-	private static int	UP		= 1;
-	private static int	DOWN	= 2;
-	private static int	LEFT	= 4;
-	private static int	RIGHT	= 8;
-	private static int	A		= 16;
-	private static int	B		= 32;
+	private static int		NONE	= 0;
+	private static int		UP		= 1;
+	private static int		DOWN	= 2;
+	private static int		LEFT	= 4;
+	private static int		RIGHT	= 8;
+	private static int		A		= 16;
+	private static int		B		= 32;
 
-	private int[]		posCross;
-	private int[]		posA;
-	private int[]		posB;
-	private int[]		posUP;
-	private int[]		posDOWN;
-	private int[]		posLEFT;
-	private int[]		posRIGHT;
-
-	private Player		player;
-
-	/**
-	 * @param context Context of the application
-	 */
-	public MapView(final Context context)
-	{
-		super(context);
-		this.context = context;
-	}
+	private int[]			posCross;
+	private int[]			posA;
+	private int[]			posB;
+	private int[]			posUP;
+	private int[]			posDOWN;
+	private int[]			posLEFT;
+	private int[]			posRIGHT;
 
 	/**
 	 * @param context - Context of the application
@@ -67,7 +56,7 @@ public class MapView extends View implements OnTouchListener {
 	public MapView(final Context context, final int map, final int sprite,
 	final int sprbmp)
 	{
-		this(context);
+		super(context);
 		this.context = context;
 		this.control = NONE;
 
@@ -82,9 +71,25 @@ public class MapView extends View implements OnTouchListener {
 			System.err.println(e.getMessage());
 		}
 
-		this.player = new Player(1, "TestName", Player.BOY, "TestEnemy", 0, 0,
-		0, 0, null, 3, 3, Player.SOUTH, 0, 0, 0, BitmapFactory.decodeResource(
-		context.getResources(), R.drawable.player), null);
+		Player
+		.setPlayer(
+		1,
+		"TestName",
+		Player.BOY,
+		"TestEnemy",
+		0,
+		0,
+		0,
+		0,
+		null,
+		3,
+		3,
+		Player.SOUTH,
+		0,
+		0,
+		0,
+		BitmapFactory.decodeResource(context.getResources(), R.drawable.player),
+		null);
 
 		this.move = new MoveThread();
 
@@ -106,22 +111,22 @@ public class MapView extends View implements OnTouchListener {
 		posUP[0] = cx + cross.getWidth() / 3;
 		posUP[1] = cy;
 		posUP[2] = cx + 2 * cross.getWidth() / 3;
-		posUP[3] = cy + cross.getHeight() / 3;
+		posUP[3] = cy + cross.getHeight() / 3 - 1;
 
 		posDOWN = new int[4];
 		posDOWN[0] = cx + cross.getWidth() / 3;
-		posDOWN[1] = cy + 2 * cross.getHeight() / 3;
+		posDOWN[1] = cy + 2 * cross.getHeight() / 3 + 1;
 		posDOWN[2] = cx + 2 * cross.getWidth() / 3;
 		posDOWN[3] = cy + cross.getHeight();
 
 		posLEFT = new int[4];
 		posLEFT[0] = cx;
 		posLEFT[1] = cy + cross.getHeight() / 3;
-		posLEFT[2] = cx + cross.getWidth() / 3;
+		posLEFT[2] = cx + cross.getWidth() / 3 - 1;
 		posLEFT[3] = cy + 2 * cross.getHeight() / 3;
 
 		posRIGHT = new int[4];
-		posRIGHT[0] = cx + 2 * cross.getWidth() / 3;
+		posRIGHT[0] = cx + 2 * cross.getWidth() / 3 + 1;
 		posRIGHT[1] = cy + cross.getHeight() / 3;
 		posRIGHT[2] = cx + cross.getWidth();
 		posRIGHT[3] = cy + 2 * cross.getHeight() / 3;
@@ -137,7 +142,7 @@ public class MapView extends View implements OnTouchListener {
 		posA[3] = ay + ctrlA.getHeight();
 
 		// B
-		final int bx = 15 * canvas.getWidth() / 20;
+		final int bx = ax - 1 - ctrlB.getWidth();
 		final int by = canvas.getHeight() / 2;
 
 		posB = new int[4];
@@ -373,7 +378,8 @@ public class MapView extends View implements OnTouchListener {
 			super();
 			stopped = finished = true;
 			x = y = 0;
-			bitmap = player.getBitmap(player.getOrientation());
+			bitmap = Player.getInstance().getBitmap(
+			Player.getInstance().getOrientation());
 		}
 
 		@Override
@@ -415,10 +421,10 @@ public class MapView extends View implements OnTouchListener {
 		final int x, final int y, final boolean trainers)
 		{
 
-			if (player.getOrientation() != direction)
+			if (Player.getInstance().getOrientation() != direction)
 			{
-				bitmap = player.getBitmap(direction);
-				player.setOrientation(direction);
+				bitmap = Player.getInstance().getBitmap(direction);
+				Player.getInstance().setOrientation(direction);
 				((Activity) context).runOnUiThread(new Runnable()
 				{
 
@@ -445,11 +451,11 @@ public class MapView extends View implements OnTouchListener {
 					{
 						if (i < Square.getSprite().getSize() / 2)
 						{
-							bitmap = player.getBitmap(left);
+							bitmap = Player.getInstance().getBitmap(left);
 						}
 						else
 						{
-							bitmap = player.getBitmap(right);
+							bitmap = Player.getInstance().getBitmap(right);
 						}
 					}
 					else
@@ -458,11 +464,11 @@ public class MapView extends View implements OnTouchListener {
 						|| (i > Square.getSprite().getSize() / 2 && i < 3 * Square
 						.getSprite().getSize() / 4))
 						{
-							bitmap = player.getBitmap(left);
+							bitmap = Player.getInstance().getBitmap(left);
 						}
 						else
 						{
-							bitmap = player.getBitmap(right);
+							bitmap = Player.getInstance().getBitmap(right);
 						}
 					}
 					this.x += x;
@@ -488,21 +494,24 @@ public class MapView extends View implements OnTouchListener {
 					}
 				}
 			}
-			bitmap = player.getBitmap(direction);
-			player.setOrientation(direction);
+			bitmap = Player.getInstance().getBitmap(direction);
+			Player.getInstance().setOrientation(direction);
 		}
 
 		private void finish()
 		{
-			player.setCoord_X(player.getCoord_X()
+			Player.getInstance().setCoord_X(
+			Player.getInstance().getCoord_X()
 			+ Math.round((float) x / Square.getSprite().getSize()));
-			player.setCoord_Y(player.getCoord_Y()
+			Player.getInstance().setCoord_Y(
+			Player.getInstance().getCoord_Y()
 			+ Math.round((float) y / Square.getSprite().getSize()));
 			x = 0;
 			y = 0;
 			finished = true;
 
-			if (player.getCoord_X() == 8 && player.getCoord_Y() == 4)
+			if (Player.getInstance().getCoord_X() == 8
+			&& Player.getInstance().getCoord_Y() == 4)
 			{
 				context.startActivity(new Intent(context,
 				BattleSceneActivity.class));
@@ -526,12 +535,14 @@ public class MapView extends View implements OnTouchListener {
 
 		public int getX()
 		{
-			return player.getCoord_X() * Square.getSprite().getSize() + x;
+			return Player.getInstance().getCoord_X()
+			* Square.getSprite().getSize() + x;
 		}
 
 		public int getY()
 		{
-			return player.getCoord_Y() * Square.getSprite().getSize() + y;
+			return Player.getInstance().getCoord_Y()
+			* Square.getSprite().getSize() + y;
 		}
 
 		public void setOnFinishedListener(final Runnable r)

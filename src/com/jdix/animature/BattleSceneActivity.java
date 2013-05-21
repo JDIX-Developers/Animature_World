@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Attack;
 import com.jdix.animature.entities.Capturable;
 import com.jdix.animature.utils.DataSource;
@@ -324,20 +323,23 @@ public class BattleSceneActivity extends Activity {
 		animSel[0] = new Capturable(0, 2, 0, "BLASTOISE", 0, 0, 0, 0, 5, 0, 10,
 		0, 10, 0, 10, 40, 100, 200, 100, 0);
 
-		final Attack a = new Attack(0, "Placaje", 0, 20, 1, - 1, 35, 90);
-		final Attack a1 = new Attack(1, "Latigo", 0, 25, 0, Animature.STRENGHT,
-		0, 100);
-		final Attack a2 = new Attack(2, "Pistola agua", 2, 15, 1, 50, 1, 100);
-		final Attack a3 = new Attack(3, "Gruñido", 0, 20, 0, Animature.DEFENSE,
-		0, 100);
+		// final Attack a = new Attack(0, "Placaje", 0, 20, 1, - 1, 35, 90);
+		// final Attack a1 = new Attack(1, "Latigo", 0, 25, 0,
+		// Animature.STRENGHT,
+		// 0, 100);
+		// final Attack a2 = new Attack(2, "Pistola agua", 2, 15, 1, 50, 1,
+		// 100);
+		// final Attack a3 = new Attack(3, "Gruñido", 0, 20, 0,
+		// Animature.DEFENSE,
+		// 0, 100);
 
-		final Attack[] aAttacks = new Attack[4];
-		aAttacks[0] = a;
-		aAttacks[1] = a1;
-		aAttacks[2] = a2;
-		aAttacks[3] = a3;
-
-		animSel[0].setAttacks(aAttacks);
+		// final Attack[] aAttacks = new Attack[4];
+		// aAttacks[0] = a;
+		// aAttacks[1] = a1;
+		// aAttacks[2] = a2;
+		// aAttacks[3] = a3;
+		//
+		// animSel[0].setAttacks(aAttacks);
 
 		enemy = new Capturable(0, 1, 0, "CHARIZARD", 0, 0, 0, 0, 10, 0, 10, 0,
 		10, 0, 10, 40, 100, 200, 100, 0);

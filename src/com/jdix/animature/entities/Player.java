@@ -33,6 +33,8 @@ public class Player {
 	public static final int	BOY			= 0;
 	public static final int	GIRL		= 1;
 
+	public static Player	player;
+
 	private int				id_Player;
 	private String			name;
 	private int				sex;
@@ -51,7 +53,7 @@ public class Player {
 	private final Bitmap	bitmap;
 	private Vector<Item>	playerItems;
 
-	public Player(final int idPlayer, final String name, final int sex,
+	private Player(final int idPlayer, final String name, final int sex,
 	final String neighborName, final int stage, final long started,
 	final long last_Played, final int steps,
 	final Animature[] activeAnimatures, final int coord_X, final int coord_Y,
@@ -75,6 +77,23 @@ public class Player {
 		this.money = money;
 		this.playerItems = playerItems;
 		this.bitmap = bitmap;
+	}
+
+	public static Player getInstance()
+	{
+		return player;
+	}
+
+	public static void setPlayer(final int idPlayer, final String name,
+	final int sex, final String neighborName, final int stage,
+	final long started, final long last_Played, final int steps,
+	final Animature[] activeAnimatures, final int coord_X, final int coord_Y,
+	final int orientation, final int last_Healing, final int medals,
+	final int money, final Bitmap bitmap, final Vector<Item> playerItems)
+	{
+		player = new Player(idPlayer, name, sex, neighborName, stage, started,
+		last_Played, steps, activeAnimatures, coord_X, coord_Y, orientation,
+		last_Healing, medals, money, bitmap, playerItems);
 	}
 
 	public int getId_Player()
