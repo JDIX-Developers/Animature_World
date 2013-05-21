@@ -1,98 +1,91 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
     tools:context=".NewGameActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        
-        android:orientation="vertical" >
+        android:layout_height="0dip"
+        android:layout_weight="10"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="20dp" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="10"
-            android:gravity="center_vertical|center_horizontal"
-            android:padding="20dp" >
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="80dp"
+            android:gravity="center"
+            android:minWidth="60dp"
+            android:orientation="vertical" >
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginRight="80dp"
-                android:gravity="center"
-                android:minWidth="60dp"
-                android:orientation="vertical" >
-
-                <Button
-                    android:id="@+id/btn1NewGame"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:text=""
-                    android:textSize="30sp"
-                    android:visibility="invisible" />
-
-                <Button
-                    android:id="@+id/btn2NewGame"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="30sp"
-                    android:visibility="invisible" />
-
-                <EditText
-                    android:id="@+id/editTextNewGame"
-                    android:hint="@string/name"
-                    android:singleLine="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible" >
-
-                    <requestFocus />
-                </EditText>
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imageViewNewGame"
+            <Button
+                android:id="@+id/btn1NewGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/oak_image" />
+                android:layout_marginBottom="30dp"
+                android:text=""
+                android:textSize="30sp"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/btn2NewGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="30sp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/editTextNewGame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:width="2000dp"
+                android:singleLine="true"
+                android:visibility="invisible" >
+
+                <requestFocus />
+            </EditText>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/imageViewNewGame"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:dividerPadding="10dp" >
-
-            <TextView
-                android:id="@+id/textViewNewGame"
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:background="#FFFFFF"
-                android:clickable="true"
-                android:drawableRight="@drawable/flecha"
-                android:gravity="center_horizontal|center_vertical"
-                android:height="65dp"
-                android:maxHeight="20dp"
-                android:maxLines="2"
-                android:minHeight="20dp"
-                android:text="@string/newGame1"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-        </LinearLayout>
+            android:background="@drawable/oak_image" 
+            android:contentDescription="@string/profesor_oak_image_description"/>
 
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="10dp" >
+
+        <TextView
+            android:id="@+id/textViewNewGame"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:background="#FFFFFF"
+            android:clickable="true"
+            android:drawableRight="@drawable/flecha"
+            android:gravity="center_horizontal|center_vertical"
+            android:height="65dp"
+            android:maxHeight="20dp"
+            android:maxLines="2"
+            android:minHeight="20dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>

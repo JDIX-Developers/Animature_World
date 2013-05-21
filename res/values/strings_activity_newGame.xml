@@ -2,21 +2,32 @@
 	<string name="title_activity_new_game">Sign in</string>
 
     <!-- Strings related to new game -->
+    <string name="profesor_oak_image_description">Imagen de Oak</string>
 
-	<string name="boy">Chico</string>
-	<string name="girl">Chica</string>
 	<string name="name">Nombre</string>
+	<string name="yes_option">Si</string>
+	<string name="no_option">No</string>
 	
-	<string name="newGame1">¡Hola! ¡Este es el mundo Animature!</string>
-	<string name="newGame2">¡Me llamo OAK!</string>
-	<string name="newGame3">¡Pero la gente me llama profesor Animature!</string>	
-	<string name="newGame4">¡Este mundo está habitado por criaturas llamadas Animature!</string>	
-	<string name="newGame5">Para algunos, los Animatures son mascotas. Pero otros los usan para pelear.</string>	
-	<string name="newGame6">En cuanto a mi…</string>
-	<string name="newGame7">Estudio a los Animatures como profesión.</string>	
-	<string name="newGame8">Bueno, cuéntame algo de ti.</string>	
-	<string name="newGame9">¿Eres chico o chica?</string>
-	<string name="newGame10">Pero primero dime como te llamas.</string>
-	<string name="newGame11">¡Bien! ¡Asi que te llamas *nombreJugador*!</string>
-		
+	<string-array name="new_game_strings">
+	    <item>¡Hola! ¡Este es el mundo Animature!</item>											// 0
+	    <item>¡Me llamo OAK!</item>																	// 1
+	    <item>¡Pero la gente me llama profesor Animature!</item>									// 2
+	    <item>¡Este mundo está habitado por criaturas llamadas Animature!</item>					// 3
+	    <item>Para algunos, los Animatures son mascotas. Pero otros los usan para pelear.</item>	// 4
+	    <item>En cuanto a mi…</item>																// 5
+	    <item>Estudio a los Animatures como profesión.</item>										// 6
+	    <item>Bueno, cuéntame algo de ti.</item>													// 7
+	    <item>¿Como te llamas?</item>																// 8
+	    <item>¡Bien! ¿Asi que te llamas %s?</item>													// 9
+	    <item>He oido que tienes un vecino de tu misma edad.</item>									// 10
+	    <item>¿Podrías decirme como se llama?</item>												// 11
+	    <item >A ya recuerdo ¿se llamaba %s?</item>													// 12
+	    <item>¡%s! Tu aventura está a punto de comenzar.</item>										// 13
+	    <item>Pero antes…</item>																	// 14
+	    <item>Tienes que elegir uno de estos tres Animatures.</item>								// 15
+	    <item>¿Cuál quieres?</item>																	// 16
+	    <item>Asi que anim, ¿quieres a anim el animature de tipo type?</item>								// 17
+	    <item>¡%s! Tu aventura comienza ahora…</item>												// 18
+	    <item>captura todos los Animatures que puedas y vence a los entrenadores.</item>			// 19
+	</string-array>		
 </resources>

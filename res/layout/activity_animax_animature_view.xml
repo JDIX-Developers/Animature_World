@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/Margin5"
-                    android:text="Altura: 1.50cm"
+                    android:text=""
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
@@ -102,7 +102,7 @@
                     android:id="@+id/weight_Animature_Animax_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Peso: 10.40kg"
+                    android:text=""
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"/>
             </LinearLayout>
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/Margin5"
-                    android:text="Ataque: 100"
+                    android:text=""
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
@@ -126,7 +126,7 @@
                     android:id="@+id/defense_Animature_Animax_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Defensa: 80"
+                    android:text=""
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
@@ -143,14 +143,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/Margin5"
-                    android:text="Velocidad: 75" 
+                    android:text="" 
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
                 <TextView
                     android:id="@+id/health_Animature_Animax_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vida: 65" 
+                    android:text="" 
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
             </LinearLayout>
