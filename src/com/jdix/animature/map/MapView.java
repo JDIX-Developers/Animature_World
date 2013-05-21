@@ -71,25 +71,11 @@ public class MapView extends View implements OnTouchListener {
 			System.err.println(e.getMessage());
 		}
 
-		Player
-		.setPlayer(
-		1,
-		"TestName",
-		Player.BOY,
-		"TestEnemy",
-		0,
-		0,
-		0,
-		0,
-		null,
-		3,
-		3,
-		Player.SOUTH,
-		0,
-		0,
-		0,
-		BitmapFactory.decodeResource(context.getResources(), R.drawable.player),
-		null);
+		final Bitmap playerBmp = BitmapFactory.decodeResource(
+		context.getResources(), R.drawable.player);
+
+		Player.setPlayer(1, "TestName", Player.BOY, "TestEnemy", 0, 0, 0, 0,
+		null, 3, 3, Player.SOUTH, 0, 0, 0, playerBmp, null);
 
 		this.move = new MoveThread();
 
@@ -388,7 +374,7 @@ public class MapView extends View implements OnTouchListener {
 			stopped = finished = false;
 			final int control = MapView.this.control;
 
-			while ( ! stopped)
+			while ( ! stopped && next().isOfType(Square.WALKABLE))
 			{
 				if ((control & UP) != NONE)
 				{
@@ -415,6 +401,31 @@ public class MapView extends View implements OnTouchListener {
 			{
 				finish();
 			}
+		}
+
+		private Square next()
+		{
+			final Player p = Player.getInstance();
+			Square sq = null;
+			switch (p.getOrientation())
+			{
+				case Player.NORTH:
+					sq = map.getSquareAt((byte) p.getCoord_X(),
+					(byte) (p.getCoord_Y() - 1));
+				break;
+				case Player.WEST:
+					sq = map.getSquareAt((byte) (p.getCoord_X() + 1),
+					(byte) p.getCoord_Y());
+				break;
+				case Player.SOUTH:
+					sq = map.getSquareAt((byte) p.getCoord_X(),
+					(byte) (p.getCoord_Y() + 1));
+				break;
+				case Player.EAST:
+					sq = map.getSquareAt((byte) (p.getCoord_X() - 1),
+					(byte) p.getCoord_Y());
+			}
+			return sq;
 		}
 
 		private void move(final int direction, final int left, final int right,

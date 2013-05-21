@@ -186,4 +186,9 @@ public class Map {
 	{
 		context = c;
 	}
+
+	public Square getSquareAt(final byte x, final byte y)
+	{
+		return squares[y][x];
+	}
 }

@@ -13,13 +13,13 @@ import com.jdix.animature.utils.MathUtils;
  */
 public class Square {
 
-	public static final byte	NOANDABLE		= 0;
-	public static final byte	ANDABLE			= 1;
-	public static final byte	CAMBIABLE		= 2;
-	public static final byte	SALTABLE		= 4;
+	public static final byte	NONWALKABLE		= 0;
+	public static final byte	WALKABLE		= 1;
+	public static final byte	CHANGEABLE		= 2;
+	public static final byte	JUMPABLE		= 4;
 	public static final byte	TRANSPORTABLE	= 8;
-	public static final byte	LEIBLE			= 16;
-	public static final byte	HIERBANIM		= 32;
+	public static final byte	READABLE		= 16;
+	public static final byte	GRASSANIM		= 32;
 
 	private static Sprite		sprite;
 	private static Square[][]	squares;
