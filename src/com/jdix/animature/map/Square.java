@@ -13,6 +13,14 @@ import com.jdix.animature.utils.MathUtils;
  */
 public class Square {
 
+	public static final byte	NOANDABLE		= 0;
+	public static final byte	ANDABLE			= 1;
+	public static final byte	CAMBIABLE		= 2;
+	public static final byte	SALTABLE		= 4;
+	public static final byte	TRANSPORTABLE	= 8;
+	public static final byte	LEIBLE			= 16;
+	public static final byte	HIERBANIM		= 32;
+
 	private static Sprite		sprite;
 	private static Square[][]	squares;
 	private final Bitmap		bitmap;
@@ -85,6 +93,15 @@ public class Square {
 	public Bitmap getBitmap()
 	{
 		return this.bitmap;
+	}
+
+	/**
+	 * @param type - The type to check
+	 * @return if the square is of the given type
+	 */
+	public boolean isOfType(final byte type)
+	{
+		return (this.type & type) == type;
 	}
 
 	/**

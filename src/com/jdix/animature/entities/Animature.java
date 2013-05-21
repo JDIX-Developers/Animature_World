@@ -184,88 +184,12 @@ public class Animature implements Serializable {
 		this.captureRange = captureRange;
 	}
 
-	public boolean isNormal()
+	/**
+	 * @param type - The type to check
+	 * @return if the animature is of the given type
+	 */
+	public boolean isOfType(final int type)
 	{
-		return (type & NORMAL) == NORMAL;
-	}
-
-	public boolean isFire()
-	{
-		return (type & FIRE) == FIRE;
-	}
-
-	public boolean isWater()
-	{
-		return (type & WATER) == WATER;
-	}
-
-	public boolean isGrass()
-	{
-		return (type & GRASS) == GRASS;
-	}
-
-	public boolean isElectric()
-	{
-		return (type & ELECTRIC) == ELECTRIC;
-	}
-
-	public boolean isIce()
-	{
-		return (type & ICE) == ICE;
-	}
-
-	public boolean isFighting()
-	{
-		return (type & FIGHTING) == FIGHTING;
-	}
-
-	public boolean isPoison()
-	{
-		return (type & POISON) == POISON;
-	}
-
-	public boolean isGround()
-	{
-		return (type & GROUND) == GROUND;
-	}
-
-	public boolean isFlying()
-	{
-		return (type & FLYING) == FLYING;
-	}
-
-	public boolean isPsychic()
-	{
-		return (type & PSYCHIC) == PSYCHIC;
-	}
-
-	public boolean isBug()
-	{
-		return (type & BUG) == BUG;
-	}
-
-	public boolean isRock()
-	{
-		return (type & ROCK) == ROCK;
-	}
-
-	public boolean isGhost()
-	{
-		return (type & GHOST) == GHOST;
-	}
-
-	public boolean isDragon()
-	{
-		return (type & DRAGON) == DRAGON;
-	}
-
-	public boolean isDark()
-	{
-		return (type & DARK) == DARK;
-	}
-
-	public boolean isSteel()
-	{
-		return (type & STEEL) == STEEL;
+		return (this.type & type) == type;
 	}
 }
