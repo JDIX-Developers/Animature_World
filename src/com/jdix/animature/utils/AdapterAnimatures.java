@@ -51,7 +51,7 @@ public class AdapterAnimatures extends BaseAdapter {
 	@Override
 	public long getItemId(final int position)
 	{
-		return items.get(position).getId_Animature();
+		return items.get(position).getId();
 	}
 
 	@Override
@@ -76,8 +76,7 @@ public class AdapterAnimatures extends BaseAdapter {
 		// ID
 		final TextView idAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_id);
-		idAnimature
-		.setText(getFormatedIdAnimature(animature.getId_Animature()));
+		idAnimature.setText(getFormatedIdAnimature(animature.getId()));
 		// NAME
 		final TextView nameAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_name);

@@ -47,7 +47,7 @@ public class AdapterCapturedAnimatures extends BaseAdapter {
 	@Override
 	public long getItemId(final int position)
 	{
-		return items.get(position).getId_Animature();
+		return items.get(position).getId();
 	}
 
 	@Override

@@ -49,10 +49,10 @@ public class AnimaxAnimatureActivity extends Activity {
 
 		// ADD ANIMATURE DATA
 		animatureId.setText("N.º "
-		+ getFormatedIdAnimature(this.animature.getId_Animature()));
+		+ getFormatedIdAnimature(this.animature.getId()));
 		animatureName.setText(this.animature.getName());
 		final int id = getResources().getIdentifier(
-		"f" + this.animature.getId_Animature(), "drawable", getPackageName());
+		"f" + this.animature.getId(), "drawable", getPackageName());
 		animatureImage.setImageDrawable(this.getResources().getDrawable(id));
 		animatureDescription.setText(this.animature.getDescription());
 		animatureHeight.setText("Altura: " + this.animature.getHeight() + " m");
