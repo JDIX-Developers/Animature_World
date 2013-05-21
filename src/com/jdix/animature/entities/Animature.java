@@ -2,59 +2,53 @@ package com.jdix.animature.entities;
 
 import java.io.Serializable;
 
+/**
+ * @author Jordan Aranda Tejada
+ */
 public class Animature implements Serializable {
 
-	/*
-	 * La clase animature contiene todos los datos de los animatures. Contiene
-	 * los datos necesarios para realizar combates entre ellos mediante
-	 * algoritmos que utilicen las cualidades del animature.
-	 */
+	private static final long	serialVersionUID	= - 7697636197467488947L;
 
-	public static final int	SPEED		= 0;
-	public static final int	DEFENSE		= 1;
-	public static final int	AGILITY		= 2;
-	public static final int	STRENGHT	= 3;
-	public static final int	PRECISSION	= 4;
+	public static final int		SPEED				= 0;
+	public static final int		DEFENSE				= 1;
+	public static final int		AGILITY				= 2;
+	public static final int		STRENGHT			= 3;
+	public static final int		PRECISSION			= 4;
 
-	public static final int	NORMAL		= 1;
-	public static final int	FIRE		= 2;
-	public static final int	WATER		= 4;
-	public static final int	GRASS		= 8;
-	public static final int	ELECTRIC	= 16;
-	public static final int	ICE			= 32;
-	public static final int	FIGHTING	= 64;
-	public static final int	POISON		= 128;
-	public static final int	GROUND		= 256;
-	public static final int	FLYING		= 512;
-	public static final int	PSYCHIC		= 1024;
-	public static final int	BUG			= 2048;
-	public static final int	ROCK		= 4096;
-	public static final int	GHOST		= 8192;
-	public static final int	DRAGON		= 16384;
-	public static final int	DARK		= 32768;
-	public static final int	STEEL		= 65536;
+	public static final int		NORMAL				= 1;
+	public static final int		FIRE				= 2;
+	public static final int		WATER				= 4;
+	public static final int		GRASS				= 8;
+	public static final int		ELECTRIC			= 16;
+	public static final int		ICE					= 32;
+	public static final int		FIGHTING			= 64;
+	public static final int		POISON				= 128;
+	public static final int		GROUND				= 256;
+	public static final int		FLYING				= 512;
+	public static final int		PSYCHIC				= 1024;
+	public static final int		BUG					= 2048;
+	public static final int		ROCK				= 4096;
+	public static final int		GHOST				= 8192;
+	public static final int		DRAGON				= 16384;
+	public static final int		DARK				= 32768;
+	public static final int		STEEL				= 65536;
 
-	protected int			id;
-	protected String		name;
-	protected String		description;
-	protected double		height;
-	protected double		weight;
-	protected int			type;
-	protected int[]			cualities	= new int[5];
-	protected int			health;
-	protected int			level_evo;
-	protected int			baseExp;
-	protected int			captureRange;
-
-	public Animature()
-	{
-		// TODO
-	}
+	private int					id;
+	private String				name;
+	private String				description;
+	private double				height;
+	private double				weight;
+	private int					type;
+	private int[]				cualities			= new int[5];
+	private int					health;
+	private int					levelEvo;
+	private int					baseExp;
+	private int					captureRange;
 
 	public Animature(final int id, final String name, final String description,
 	final double height, final double weight, final int type, final int speed,
 	final int defense, final int agility, final int strenght,
-	final int precission, final int health, final int level_evo,
+	final int precission, final int health, final int levelEvo,
 	final int baseExp, final int captureRange)
 	{
 		this.id = id;
@@ -69,7 +63,7 @@ public class Animature implements Serializable {
 		this.cualities[STRENGHT] = strenght;
 		this.cualities[PRECISSION] = precission;
 		this.health = health;
-		this.level_evo = level_evo;
+		this.levelEvo = levelEvo;
 		this.baseExp = baseExp;
 		this.captureRange = captureRange;
 	}
@@ -79,9 +73,9 @@ public class Animature implements Serializable {
 		return id;
 	}
 
-	public void setId(final int id_Animature)
+	public void setId(final int id)
 	{
-		this.id = id_Animature;
+		this.id = id;
 	}
 
 	public String getName()
@@ -154,14 +148,14 @@ public class Animature implements Serializable {
 		this.health = health;
 	}
 
-	public int getLevel_evo()
+	public int getLevelEvo()
 	{
-		return level_evo;
+		return levelEvo;
 	}
 
-	public void setLevel_evo(final int level_evo)
+	public void setLevelEvo(final int levelEvo)
 	{
-		this.level_evo = level_evo;
+		this.levelEvo = levelEvo;
 	}
 
 	public int getBaseExp()
