@@ -13,12 +13,8 @@ import android.widget.TextView;
 
 import com.jdix.animature.entities.Attack;
 import com.jdix.animature.entities.Capturable;
-import com.jdix.animature.utils.DataSource;
 
 public class BattleSceneActivity extends Activity {
-
-	// Database source
-	private DataSource			dataSource;
 
 	// Enemy's Animature Components
 	private Capturable			enemy;
@@ -56,8 +52,6 @@ public class BattleSceneActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_battle_scene);
-
-		dataSource = new DataSource(this);
 
 		loadBattleAnimatures();
 

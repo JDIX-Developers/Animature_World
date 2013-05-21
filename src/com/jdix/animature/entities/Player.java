@@ -1,6 +1,7 @@
 package com.jdix.animature.entities;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
@@ -8,7 +9,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import com.jdix.animature.R;
 import com.jdix.animature.map.Square;
 import com.jdix.animature.utils.Database;
 
@@ -39,76 +42,125 @@ public class Player {
 
 	public static Player	player;
 
-	private int				id_Player;
+	private int				id;
 	private String			name;
 	private int				sex;
 	private String			neighborName;
 	private int				stage;
-	private long			started;
-	private long			last_Played;
+	private Date			startDate;
+	private Date			lastPlayed;
 	private int				steps;
 	private Animature[]		activeAnimatures;
-	private int				coord_X;
-	private int				coord_Y;
+	private int				posX;
+	private int				posY;
 	private int				orientation;
-	private int				last_Healing;
+	private int				lastHealingMap;
+	private int				lastHealingX;
+	private int				lastHealingY;
 	private int				medals;
 	private int				money;
 	private final Bitmap	bitmap;
-	private Vector<Item>	playerItems;
-	private SQLiteDatabase	db;
+	private Vector<Item>	items;
 
-	private Player(final int idPlayer, final String name, final int sex,
-	final String neighborName, final int stage, final long started,
-	final long last_Played, final int steps,
-	final Animature[] activeAnimatures, final int coord_X, final int coord_Y,
-	final int orientation, final int last_Healing, final int medals,
-	final int money, final Bitmap bitmap, final Vector<Item> playerItems)
+	// private SQLiteDatabase db; // TODO check
+
+	private Player(final int id, final String name, final int sex,
+	final String neighborName, final int stage, final Date startDate,
+	final Date lastPlayed, final int steps, final Animature[] activeAnimatures,
+	final int posX, final int posY, final int orientation,
+	final int lastHealingMap, final int lastHealingX, final int lastHealingY,
+	final int medals, final int money, final Vector<Item> items,
+	final Context context)
 	{
-		this.id_Player = idPlayer;
+		this.id = id;
 		this.name = name;
 		this.sex = sex;
 		this.neighborName = neighborName;
 		this.stage = stage;
-		this.started = started;
-		this.last_Played = last_Played;
+		this.startDate = startDate;
+		this.lastPlayed = lastPlayed;
 		this.steps = steps;
 		this.activeAnimatures = activeAnimatures;
-		this.coord_X = coord_X;
-		this.coord_Y = coord_Y;
+		this.posX = posX;
+		this.posY = posY;
 		this.orientation = orientation;
-		this.last_Healing = last_Healing;
+		this.lastHealingMap = lastHealingMap;
 		this.medals = medals;
 		this.money = money;
-		this.playerItems = playerItems;
-		this.bitmap = bitmap;
+		this.items = items;
+		this.bitmap = BitmapFactory.decodeResource(context.getResources(),
+		R.drawable.player); // TODO support girl/boy bitmaps
 	}
 
+	/**
+	 * Gets the current player
+	 * 
+	 * @return The current player
+	 */
 	public static Player getInstance()
 	{
 		return player;
 	}
 
-	public static void setPlayer(final int idPlayer, final String name,
-	final int sex, final String neighborName, final int stage,
-	final long started, final long last_Played, final int steps,
-	final Animature[] activeAnimatures, final int coord_X, final int coord_Y,
-	final int orientation, final int last_Healing, final int medals,
-	final int money, final Bitmap bitmap, final Vector<Item> playerItems)
+	/**
+	 * Sets a new player, for starting the game
+	 * 
+	 * @param name - The name of the player
+	 * @param sex - The sex of the player
+	 * @param neighborName - The name of the neighbor
+	 * @param activeAnimatures - The Animatures in it's bag
+	 * @param posX - The current X coordinate position
+	 * @param posY - The current Y coordinate position
+	 * @param orientation - The current orientation
+	 * @param context - The context of the application
+	 */
+	public static void set(final String name, final int sex,
+	final String neighborName, final Animature[] activeAnimatures,
+	final int posX, final int posY, final int orientation, final Context context)
 	{
-		player = new Player(idPlayer, name, sex, neighborName, stage, started,
-		last_Played, steps, activeAnimatures, coord_X, coord_Y, orientation,
-		last_Healing, medals, money, bitmap, playerItems);
+		final Date now = new Date();
+		player = new Player(0, name, sex, neighborName, 0, now, now, 0,
+		activeAnimatures, posX, posY, orientation, 0, 0, 0, 0, 0,
+		new Vector<Item>(), context);
 	}
 
-	public int getId_Player()
+	/**
+	 * Saves the current player to the database
+	 * 
+	 * @param context - The context of the application
+	 */
+	public void save(final Context context)
 	{
-		return id_Player;
+		if (this.id == 0)
+		{
+			// TODO insert new record and update ID
+		}
+		else
+		{
+			// TODO update the save
+		}
 	}
 
-	public void setId_Player(final int id_Player)
+	/**
+	 * Loads a player from the database. It works as setPlayer(), but in this
+	 * case the player is loaded from the database
+	 * 
+	 * @param id - The ID for the player to load
+	 * @param context - The context of the application
+	 */
+	public static void load(final int id, final Context context)
 	{
-		this.id_Player = id_Player;
+		// TODO
+	}
+
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(final int id)
+	{
+		this.id = id;
 	}
 
 	public String getName()
@@ -151,24 +203,24 @@ public class Player {
 		this.stage = stage;
 	}
 
-	public long getStarted()
+	public Date getStartDate()
 	{
-		return started;
+		return startDate;
 	}
 
-	public void setStarted(final long started)
+	public void setStartDate(final Date startDate)
 	{
-		this.started = started;
+		this.startDate = startDate;
 	}
 
-	public long getLast_Played()
+	public Date getLastPlayed()
 	{
-		return last_Played;
+		return lastPlayed;
 	}
 
-	public void setLast_Played(final long last_Played)
+	public void setLastPlayed(final Date lastPlayed)
 	{
-		this.last_Played = last_Played;
+		this.lastPlayed = lastPlayed;
 	}
 
 	public int getSteps()
@@ -191,24 +243,24 @@ public class Player {
 		this.activeAnimatures = activeAnimatures;
 	}
 
-	public int getCoord_X()
+	public int getX()
 	{
-		return coord_X;
+		return posX;
 	}
 
-	public void setCoord_X(final int coord_X)
+	public void setX(final int posX)
 	{
-		this.coord_X = coord_X;
+		this.posX = posX;
 	}
 
-	public int getCoord_Y()
+	public int getY()
 	{
-		return coord_Y;
+		return posY;
 	}
 
-	public void setCoord_Y(final int coord_Y)
+	public void setY(final int posY)
 	{
-		this.coord_Y = coord_Y;
+		this.posY = posY;
 	}
 
 	public int getOrientation()
@@ -221,14 +273,41 @@ public class Player {
 		this.orientation = orientation;
 	}
 
-	public int getLast_Healing()
+	/**
+	 * @return The last map there healed
+	 */
+	public int getLastHealingMap()
 	{
-		return last_Healing;
+		return lastHealingMap;
 	}
 
-	public void setLast_Healing(final int last_Healing)
+	/**
+	 * @return The X coordinate of the last healing
+	 */
+	public int getLastHealingX()
 	{
-		this.last_Healing = last_Healing;
+		return lastHealingX;
+	}
+
+	/**
+	 * @return The X coordinate of the last healing
+	 */
+	public int getLastHealingY()
+	{
+		return lastHealingY;
+	}
+
+	/**
+	 * Sets the healing position to current. In the future is expected to heal
+	 * the animatures
+	 * 
+	 * @param map - The current map index
+	 */
+	public void heal(final int map)
+	{
+		this.lastHealingMap = map;
+		this.lastHealingX = posX;
+		this.lastHealingY = posY;
 	}
 
 	public int getMedals()
@@ -260,9 +339,10 @@ public class Player {
 		calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
 		calendar.get(Calendar.SECOND));
 
-		this.last_Played = calendar.getTimeInMillis();
+		this.lastPlayed = new Date(calendar.getTimeInMillis());
 
-		final long playedTime = this.last_Played - this.started;
+		final long playedTime = this.lastPlayed.getTime()
+		- this.startDate.getTime();
 		final long hour = playedTime / 3600000;
 		final long rHour = playedTime % 3600000;
 		final long minute = rHour / 60000;
@@ -288,29 +368,32 @@ public class Player {
 	/**
 	 * Changes the player items vector.
 	 * 
-	 * @param playerItems
+	 * @param items - The items of the player
 	 */
-	public void setPlayerItems(final Vector<Item> playerItems)
+	public void setItems(final Vector<Item> items)
 	{
-		this.playerItems = playerItems;
+		this.items = items;
 	}
+
+	// TODO add and remove individual items
 
 	/**
 	 * Method to get the player captured animatures.
 	 * 
-	 * @param context The game context
+	 * @param context - The game context
 	 * @return The number of captured animatures of player
 	 */
-	public int getPlayerCaptured(final Context context)
+	public int getCaptured(final Context context)
 	{
 		int total = 0;
-		db = (new Database(context)).getReadableDatabase();
+		final SQLiteDatabase db = (new Database(context)).getReadableDatabase();
+
 		final Cursor c = db.rawQuery(
 		"SELECT COUNT(*) FROM CAPTURABLE WHERE save="
-		+ Player.getInstance().getId_Player(), null);
-		if (c.getCount() > 0)
+		+ Player.getInstance().getId(), null);
+
+		if (c.moveToFirst())
 		{
-			c.moveToFirst();
 			while ( ! c.isAfterLast())
 			{
 				total = c.getInt(0);
@@ -324,18 +407,19 @@ public class Player {
 	/**
 	 * Method to get the player viewed animatures.
 	 * 
-	 * @param context The game context
+	 * @param context - The game context
 	 * @return The number of viewed animatures of player
 	 */
-	public int getPlayerViewed(final Context context)
+	public int getViewed(final Context context)
 	{
 		int total = 0;
-		db = (new Database(context)).getReadableDatabase();
+		final SQLiteDatabase db = (new Database(context)).getReadableDatabase();
+
 		final Cursor c = db.rawQuery("SELECT COUNT(*) FROM VIEWED WHERE save="
-		+ Player.getInstance().getId_Player(), null);
-		if (c.getCount() > 0)
+		+ getId(), null);
+
+		if (c.moveToFirst())
 		{
-			c.moveToFirst();
 			while ( ! c.isAfterLast())
 			{
 				total = c.getInt(0);

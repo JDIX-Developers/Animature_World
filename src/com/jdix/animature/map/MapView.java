@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 
 import com.jdix.animature.R;
+import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Player;
 
 /**
@@ -69,11 +70,8 @@ public class MapView extends View implements OnTouchListener {
 			System.err.println(e.getMessage());
 		}
 
-		final Bitmap playerBmp = BitmapFactory.decodeResource(
-		context.getResources(), R.drawable.player);
-
-		Player.setPlayer(1, "TestName", Player.BOY, "TestEnemy", 0, 0, 0, 0,
-		null, 3, 3, Player.SOUTH, 0, 0, 0, playerBmp, null);
+		Player.set("TestName", Player.BOY, "TestEnemy", new Animature[6], 5, 5,
+		Player.SOUTH, context);
 
 		this.move = new MoveThread();
 
@@ -408,20 +406,20 @@ public class MapView extends View implements OnTouchListener {
 			switch (p.getOrientation())
 			{
 				case Player.NORTH:
-					sq = map.getSquareAt((byte) p.getCoord_X(),
-					(byte) (p.getCoord_Y() - 1));
+					sq = map
+					.getSquareAt((byte) p.getX(), (byte) (p.getY() - 1));
 				break;
 				case Player.WEST:
-					sq = map.getSquareAt((byte) (p.getCoord_X() + 1),
-					(byte) p.getCoord_Y());
+					sq = map
+					.getSquareAt((byte) (p.getX() + 1), (byte) p.getY());
 				break;
 				case Player.SOUTH:
-					sq = map.getSquareAt((byte) p.getCoord_X(),
-					(byte) (p.getCoord_Y() + 1));
+					sq = map
+					.getSquareAt((byte) p.getX(), (byte) (p.getY() + 1));
 				break;
 				case Player.EAST:
-					sq = map.getSquareAt((byte) (p.getCoord_X() - 1),
-					(byte) p.getCoord_Y());
+					sq = map
+					.getSquareAt((byte) (p.getX() - 1), (byte) p.getY());
 			}
 
 			return sq;
@@ -512,11 +510,11 @@ public class MapView extends View implements OnTouchListener {
 
 		private void finish()
 		{
-			Player.getInstance().setCoord_X(
-			Player.getInstance().getCoord_X()
+			Player.getInstance().setX(
+			Player.getInstance().getX()
 			+ Math.round((float) x / Square.getSprite().getSize()));
-			Player.getInstance().setCoord_Y(
-			Player.getInstance().getCoord_Y()
+			Player.getInstance().setY(
+			Player.getInstance().getY()
 			+ Math.round((float) y / Square.getSprite().getSize()));
 			x = 0;
 			y = 0;
@@ -547,14 +545,14 @@ public class MapView extends View implements OnTouchListener {
 
 		public int getX()
 		{
-			return Player.getInstance().getCoord_X()
-			* Square.getSprite().getSize() + x;
+			return Player.getInstance().getX() * Square.getSprite().getSize()
+			+ x;
 		}
 
 		public int getY()
 		{
-			return Player.getInstance().getCoord_Y()
-			* Square.getSprite().getSize() + y;
+			return Player.getInstance().getY() * Square.getSprite().getSize()
+			+ y;
 		}
 
 		public void setOnFinishedListener(final Runnable r)
