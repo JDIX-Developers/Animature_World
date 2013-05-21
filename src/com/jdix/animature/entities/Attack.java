@@ -6,10 +6,8 @@ public class Attack {
 	private String	name_Attack;
 	private int		type_Attack;
 	private int		max_pp;
-	private int		active;		// 0 if it is a passive attack,
-									// 1 if it is an active attack
-	private int		ifPass;		// If active==0, has the number
-									// of the cuality to change
+	private boolean	active;
+	private int		attribute;
 	private int		power;
 	private int		probability;	// 0 - 100 (Example: 60% - 60)
 	private boolean	isFirst;
@@ -20,8 +18,8 @@ public class Attack {
 	}
 
 	public Attack(final int id_Attack, final String name_Attack,
-	final int type_Attack, final int max_pp, final int active,
-	final int ifPass, final int power, final int probability,
+	final int type_Attack, final int max_pp, final boolean active,
+	final int attribute, final int power, final int probability,
 	final boolean isFirst)
 	{
 		this.id_Attack = id_Attack;
@@ -29,7 +27,7 @@ public class Attack {
 		this.type_Attack = type_Attack;
 		this.max_pp = max_pp;
 		this.active = active;
-		this.ifPass = ifPass;
+		this.attribute = attribute;
 		this.power = power;
 		this.probability = probability;
 		this.isFirst = isFirst;
@@ -75,24 +73,24 @@ public class Attack {
 		this.max_pp = max_pp;
 	}
 
-	public int getActive()
+	public boolean getActive()
 	{
 		return active;
 	}
 
-	public void setActive(final int active)
+	public void setActive(final boolean active)
 	{
 		this.active = active;
 	}
 
-	public int getIfPass()
+	public int getAttribute()
 	{
-		return ifPass;
+		return attribute;
 	}
 
-	public void setIfPass(final int ifPass)
+	public void setAttribute(final int attribute)
 	{
-		this.ifPass = ifPass;
+		this.attribute = attribute;
 	}
 
 	public int getPower()

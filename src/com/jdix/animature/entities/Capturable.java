@@ -311,13 +311,13 @@ public class Capturable extends Animature {
 		if (rand <= (attack.getProbability() + (captDo
 		.getCualitiesC(PRECISSION) - this.getCualitiesC(AGILITY))))
 		{
-			if (attack.getActive() == 0)
+			if ( ! attack.getActive())
 			{
-				if (this.getCualitiesC(attack.getIfPass()) > 2)
+				if (this.getCualitiesC(attack.getAttribute()) > 2)
 				{
 					this.setCualitiesC(
-					this.getCualitiesC(attack.getIfPass()) - 2,
-					attack.getIfPass());
+					this.getCualitiesC(attack.getAttribute()) - 2,
+					attack.getAttribute());
 				}
 			}
 			else

@@ -221,10 +221,11 @@ public class DataSource {
 		final int probability = cursor.getInt(7);
 		final boolean isFirst = cursor.getInt(7) == 1;
 
-		attack = new Attack(id, name, type, max_pp, active, ifPass, power,
-		probability, isFirst);
+		// attack = new Attack(id, name, type, max_pp, active, ifPass, power,
+		// probability, isFirst);
 
-		return attack;
+		// return attack;
+		return null;
 	}
 
 	public Capturable readCaptured(final int id)
