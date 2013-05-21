@@ -18,7 +18,7 @@ import com.jdix.animature.entities.Animature;
 /**
  * @author Jordan Aranda Tejada
  */
-public class AdapterAnimatures extends BaseAdapter {
+public class AnimatureAdapter extends BaseAdapter {
 
 	protected Activity				activity;
 	protected ArrayList<Animature>	items;
@@ -29,7 +29,7 @@ public class AdapterAnimatures extends BaseAdapter {
 	 * @param activity The activity of the list.
 	 * @param items Items to show in list.
 	 */
-	public AdapterAnimatures(final Activity activity,
+	public AnimatureAdapter(final Activity activity,
 	final ArrayList<Animature> items)
 	{
 		this.activity = activity;

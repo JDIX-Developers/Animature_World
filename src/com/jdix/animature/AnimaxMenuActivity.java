@@ -16,7 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.jdix.animature.entities.Animature;
-import com.jdix.animature.utils.AdapterAnimatures;
+import com.jdix.animature.utils.AnimatureAdapter;
 import com.jdix.animature.utils.Database;
 
 /**
@@ -64,7 +64,7 @@ public class AnimaxMenuActivity extends Activity {
 		c.close();
 		db.close();
 
-		final AdapterAnimatures adapter = new AdapterAnimatures(this,
+		final AnimatureAdapter adapter = new AnimatureAdapter(this,
 		animatures);
 
 		list.setAdapter(adapter);

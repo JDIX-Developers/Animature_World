@@ -16,7 +16,7 @@ import com.jdix.animature.entities.Capturable;
 /**
  * @author Jordan Aranda Tejada
  */
-public class AdapterCapturedAnimatures extends BaseAdapter {
+public class CapturableAdapter extends BaseAdapter {
 
 	protected Activity				activity;
 	protected ArrayList<Capturable>	items;
@@ -25,7 +25,7 @@ public class AdapterCapturedAnimatures extends BaseAdapter {
 	 * @param activity The activity of the list.
 	 * @param items Items to show in list.
 	 */
-	public AdapterCapturedAnimatures(final Activity activity,
+	public CapturableAdapter(final Activity activity,
 	final ArrayList<Capturable> items)
 	{
 		this.activity = activity;

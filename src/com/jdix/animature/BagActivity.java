@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jdix.animature.entities.Item;
-import com.jdix.animature.utils.AdapterObjects;
+import com.jdix.animature.utils.ItemAdapter;
 
 /**
  * @author Jordan Aranda Tejada
@@ -48,7 +48,7 @@ public class BagActivity extends Activity {
 		items.add(i2);
 		items.add(i3);
 
-		final AdapterObjects adapter = new AdapterObjects(this, items);
+		final ItemAdapter adapter = new ItemAdapter(this, items);
 
 		list.setAdapter(adapter);
 

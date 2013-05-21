@@ -16,7 +16,7 @@ import com.jdix.animature.entities.Item;
 /**
  * @author Jordan Aranda Tejada
  */
-public class AdapterObjects extends BaseAdapter {
+public class ItemAdapter extends BaseAdapter {
 
 	protected Activity			activity;
 	protected ArrayList<Item>	items;
@@ -25,7 +25,7 @@ public class AdapterObjects extends BaseAdapter {
 	 * @param activity The activity of the list.
 	 * @param items Items to show in list.
 	 */
-	public AdapterObjects(final Activity activity, final ArrayList<Item> items)
+	public ItemAdapter(final Activity activity, final ArrayList<Item> items)
 	{
 		this.activity = activity;
 		this.items = items;
