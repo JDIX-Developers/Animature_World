@@ -107,8 +107,8 @@ public class Map {
 					this.squares[i][h] = Square.load(
 					array[pointer],
 					array[pointer + 1],
-					Square.getSprite().getType(array[pointer],
-					array[pointer + 1]));
+					Square.getSprite().getType((byte) pointer,
+					(byte) (pointer + 1)));
 					pointer += 2;
 				}
 				else if (array[pointer] == (byte) 0xFF)

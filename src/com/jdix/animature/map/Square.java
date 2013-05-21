@@ -25,14 +25,14 @@ public class Square {
 	private static Square[][]	squares;
 	private final Bitmap		bitmap;
 	private final byte			x, y;
-	private final byte			type;
+	private final Byte			type;
 
 	/**
 	 * @param x X Coordinate
 	 * @param y Y Coordinate
 	 * @throws CompressionException Si ocurre un error de compresión
 	 */
-	private Square(final byte x, final byte y, final byte type)
+	private Square(final byte x, final byte y, final Byte type)
 	throws CompressionException
 	{
 		if (x == 0xFF || y == 0xFF)
@@ -101,7 +101,7 @@ public class Square {
 	 */
 	public boolean isOfType(final byte type)
 	{
-		return (this.type & type) == type;
+		return (this.type != null) && (this.type & type) == type;
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class Square {
 	 * @throws SpriteException - If the sprite has not been initialized
 	 * @throws CompressionException - If there is a compression error
 	 */
-	public static Square load(final byte x, final byte y, final byte type)
+	public static Square load(final byte x, final byte y, final Byte type)
 	throws SpriteException, CompressionException
 	{
 		final int xi = MathUtils.uByteToInt(x), yi = MathUtils.uByteToInt(y);
