@@ -60,7 +60,6 @@ public class AdapterAnimatures extends BaseAdapter {
 	{
 		View v = convertView;
 
-		// Asociamos el layout de la lista que hemos creado
 		if (convertView == null)
 		{
 			final LayoutInflater inf = (LayoutInflater) activity

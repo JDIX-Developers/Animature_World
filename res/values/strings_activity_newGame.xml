@@ -20,14 +20,23 @@
 	    <item>¿Como te llamas?</item>																// 8
 	    <item>¡Bien! ¿Asi que te llamas %s?</item>													// 9
 	    <item>He oido que tienes un vecino de tu misma edad.</item>									// 10
-	    <item>¿Podrías decirme como se llama?</item>												// 11
+	    <item>¿Podrías decirme como se llamaba?</item>												// 11
 	    <item >A ya recuerdo ¿se llamaba %s?</item>													// 12
 	    <item>¡%s! Tu aventura está a punto de comenzar.</item>										// 13
 	    <item>Pero antes…</item>																	// 14
-	    <item>Tienes que elegir uno de estos tres Animatures.</item>								// 15
+	    <item>Tienes que elegir uno de los siguientes Animatures…</item>								// 15
 	    <item>¿Cuál quieres?</item>																	// 16
-	    <item>Asi que anim, ¿quieres a anim el animature de tipo type?</item>								// 17
+	    <item>Asi que ANIM, ¿quieres a ANIM el animature de tipo type?</item>						// 17
 	    <item>¡%s! Tu aventura comienza ahora…</item>												// 18
 	    <item>captura todos los Animatures que puedas y vence a los entrenadores.</item>			// 19
 	</string-array>		
+	
+	<string name="animatureOption1">Bulbasur</string>
+	<string name="animatureOption2">Charmander</string>
+	<string name="animatureOption3">Squirtle</string>
+	
+	<string name="animatureOption1Description">First animature option.</string>
+	<string name="animatureOption2Description">Second animature option.</string>
+	<string name="animatureOption3Description">Third animature option.</string>
+	
 </resources>

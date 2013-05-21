@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jdix.animature.entities.Capturable;
@@ -24,16 +26,20 @@ import com.jdix.animature.utils.Database;
  */
 public class NewGameActivity extends Activity {
 
-	private TextView	textViewNewGame;
-	private EditText	editTextNewGame;
-	private Button		btn1NewGame;
-	private Button		btn2NewGame;
+	private TextView		textViewNewGame;
+	private EditText		editTextNewGame;
+	private Button			btn1NewGame;
+	private Button			btn2NewGame;
+	private ImageButton		animOption1;
+	private ImageButton		animOption2;
+	private ImageButton		animOption3;
+	private LinearLayout	layoutOak;
+	private LinearLayout	layoutAnimOptions;
 
-	private int			index;
-	private String[]	strings;
-	private Player		player;
-	private String		playerName;
-	private String		enemyName;
+	private int				index;
+	private String[]		strings;
+	private String			playerName;
+	private String			enemyName;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -41,13 +47,15 @@ public class NewGameActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_game);
 
-		player.setPlayer(getLastPlayerId() + 1, "", 0, "", 0, 0, 0, 0,
+		Player.setPlayer(getLastPlayerId() + 1, "", 0, "", 0, 0, 0, 0,
 		new Capturable[6], 0, 0, 2, 0, 0, 0, null, new Vector<Item>());
 
 		index = 0;
 
 		// We get a reference to the interface controls
 		editTextNewGame = (EditText) findViewById(R.id.editTextNewGame);
+		layoutOak = (LinearLayout) findViewById(R.id.newGameOakLayout);
+		layoutAnimOptions = (LinearLayout) findViewById(R.id.newGameAnimatureOptLayout);
 
 		textViewNewGame = (TextView) findViewById(R.id.textViewNewGame);
 		textViewNewGame.setOnClickListener(new View.OnClickListener()
@@ -87,9 +95,44 @@ public class NewGameActivity extends Activity {
 			}
 		});
 
+		animOption1 = (ImageButton) findViewById(R.id.btnAnimatureOpt1);
+		animOption1.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				animatureChosen(1);
+			}
+		});
+
+		animOption2 = (ImageButton) findViewById(R.id.btnAnimatureOpt2);
+		animOption2.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				animatureChosen(4);
+			}
+		});
+
+		animOption3 = (ImageButton) findViewById(R.id.btnAnimatureOpt3);
+		animOption3.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				animatureChosen(7);
+			}
+		});
+
 		strings = getResources().getStringArray(R.array.new_game_strings);
 
 		textViewNewGame.setText(strings[index]);
+		btn1NewGame.setText(getString(R.string.yes_option));
+		btn2NewGame.setText(getString(R.string.no_option));
 	}
 
 	@Override
@@ -110,54 +153,45 @@ public class NewGameActivity extends Activity {
 			case 5:
 			case 6:
 			case 7:
-				textViewNewGame.setText(strings[index]);
+				makeDialog(strings[index]);
 			break;
 			case 8:
-				textViewNewGame.setText(strings[index]);
-				editTextNewGame.setVisibility(View.VISIBLE);
+				makeNameQuestion(strings[index]);
 			break;
 			case 9:
 				this.playerName = editTextNewGame.getText().toString().trim()
 				.toUpperCase(Locale.getDefault());
-				textViewNewGame.setText(strings[index].replace("%s",
-				this.playerName));
-				editTextNewGame.setVisibility(View.INVISIBLE);
-				textViewNewGame.setCompoundDrawables(null, null, null, null);
-				textViewNewGame.setClickable(false);
-				btn1NewGame.setVisibility(View.VISIBLE);
-				btn2NewGame.setVisibility(View.VISIBLE);
-				btn1NewGame.setText(getString(R.string.yes_option));
-				btn2NewGame.setText(getString(R.string.no_option));
+				makeYesNoQuestion(strings[index].replace("%s", this.playerName));
 			break;
 			case 10:
-				textViewNewGame.setText(strings[index]);
+				makeDialog(strings[index]);
 			break;
 			case 11:
-				textViewNewGame.setText(strings[index]);
-				editTextNewGame.setText("");
-				editTextNewGame.setVisibility(View.VISIBLE);
+				makeNameQuestion(strings[index]);
 			break;
 			case 12:
 				this.enemyName = editTextNewGame.getText().toString().trim()
 				.toUpperCase(Locale.getDefault());
-				textViewNewGame.setText(strings[index].replace("%s",
-				this.enemyName));
-				editTextNewGame.setVisibility(View.INVISIBLE);
-				textViewNewGame.setCompoundDrawables(null, null, null, null);
-				textViewNewGame.setClickable(false);
-				btn1NewGame.setVisibility(View.VISIBLE);
-				btn2NewGame.setVisibility(View.VISIBLE);
-				btn1NewGame.setText(getString(R.string.yes_option));
-				btn2NewGame.setText(getString(R.string.no_option));
+				makeYesNoQuestion(strings[index].replace("%s", this.enemyName));
 			break;
 			case 13:
-				textViewNewGame.setText(strings[index].replace("%s",
-				this.playerName));
+				makeDialog(strings[index].replace("%s", this.playerName));
 			break;
 			case 14:
-				textViewNewGame.setText(strings[index]);
+				makeDialog(strings[index]);
 			break;
 			case 15:
+				makeDialog(strings[index]);
+			break;
+			case 16:
+				makeAnimatureSelector(strings[index]);
+			break;
+			case 17:
+				layoutAnimOptions.setVisibility(View.GONE);
+				layoutOak.setVisibility(View.VISIBLE);
+				makeYesNoQuestion(strings[index]);
+			break;
+			case 18:
 				startActivity(new Intent(NewGameActivity.this,
 				MapActivity.class));
 				finish();
@@ -165,22 +199,63 @@ public class NewGameActivity extends Activity {
 
 	}
 
+	private void makeDialog(final String text)
+	{
+		textViewNewGame.setText(text);
+		btn1NewGame.setVisibility(View.GONE);
+		btn2NewGame.setVisibility(View.GONE);
+		editTextNewGame.setVisibility(View.GONE);
+		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
+		getResources().getDrawable(R.drawable.flecha), null);
+		textViewNewGame.setClickable(true);
+	}
+
+	private void makeNameQuestion(final String text)
+	{
+		textViewNewGame.setText(text);
+		editTextNewGame.setText("");
+		btn1NewGame.setVisibility(View.GONE);
+		btn2NewGame.setVisibility(View.GONE);
+		editTextNewGame.setVisibility(View.VISIBLE);
+		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
+		getResources().getDrawable(R.drawable.flecha), null);
+		textViewNewGame.setClickable(true);
+	}
+
+	private void makeYesNoQuestion(final String text)
+	{
+		textViewNewGame.setText(text);
+		btn1NewGame.setVisibility(View.VISIBLE);
+		btn2NewGame.setVisibility(View.VISIBLE);
+		editTextNewGame.setVisibility(View.GONE);
+		textViewNewGame.setCompoundDrawables(null, null, null, null);
+		textViewNewGame.setClickable(false);
+	}
+
+	private void makeAnimatureSelector(final String text)
+	{
+		textViewNewGame.setText(text);
+		editTextNewGame.setText("");
+		btn1NewGame.setVisibility(View.GONE);
+		btn2NewGame.setVisibility(View.GONE);
+		editTextNewGame.setVisibility(View.GONE);
+		textViewNewGame.setCompoundDrawables(null, null, null, null);
+		textViewNewGame.setClickable(false);
+		layoutOak.setVisibility(View.GONE);
+		layoutAnimOptions.setVisibility(View.VISIBLE);
+	}
+
 	private void btnYes()
 	{
 		if (index == 9)
 		{
-			player.getInstance().setName(playerName);
+			Player.getInstance().setName(playerName);
 		}
 		else if (index == 12)
 		{
-			player.getInstance().setNeighborName(enemyName);
+			Player.getInstance().setNeighborName(enemyName);
 		}
-		btn1NewGame.setVisibility(View.INVISIBLE);
-		btn2NewGame.setVisibility(View.INVISIBLE);
 		changeDialog();
-		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
-		getResources().getDrawable(R.drawable.flecha), null);
-		textViewNewGame.setClickable(true);
 	}
 
 	private void btnNo()
@@ -193,12 +268,12 @@ public class NewGameActivity extends Activity {
 		{
 			this.index = 10;
 		}
-		btn1NewGame.setVisibility(View.INVISIBLE);
-		btn2NewGame.setVisibility(View.INVISIBLE);
 		changeDialog();
-		textViewNewGame.setCompoundDrawablesWithIntrinsicBounds(null, null,
-		getResources().getDrawable(R.drawable.flecha), null);
-		textViewNewGame.setClickable(true);
+	}
+
+	private void animatureChosen(final int id)
+	{
+
 	}
 
 	private int getLastPlayerId()

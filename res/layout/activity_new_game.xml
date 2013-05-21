@@ -1,19 +1,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginBottom="10dp"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".NewGameActivity" >
 
     <LinearLayout
+        android:id="@+id/newGameOakLayout"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="10"
+        android:layout_weight="1"
         android:gravity="center_vertical|center_horizontal"
-        android:padding="20dp" >
+        android:padding="20dp"
+        android:visibility="visible" >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -28,27 +31,33 @@
                 android:id="@+id/btn1NewGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:maxLines="1"
                 android:text=""
                 android:textSize="30sp"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:width="80dp" />
 
             <Button
                 android:id="@+id/btn2NewGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:maxLines="1"
                 android:text=""
                 android:textSize="30sp"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:width="80dp" />
 
             <EditText
                 android:id="@+id/editTextNewGame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
-                android:width="2000dp"
                 android:singleLine="true"
-                android:visibility="invisible" >
+                android:visibility="invisible"
+                android:width="200dp" >
 
                 <requestFocus />
             </EditText>
@@ -61,6 +70,93 @@
             android:layout_height="wrap_content"
             android:background="@drawable/oak_image" 
             android:contentDescription="@string/profesor_oak_image_description"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/newGameAnimatureOptLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/Margin40"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/btnAnimatureOpt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/animatureOption1Description"
+                android:src="@drawable/f1" />
+
+            <TextView
+                android:id="@+id/animatureOption1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textColor="#FFFFFF"
+                android:text="@string/animatureOption1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/Margin40"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/btnAnimatureOpt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/animatureOption2Description"
+                android:src="@drawable/f4" />
+
+            <TextView
+                android:id="@+id/animatureOption2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:textSize="25sp"
+                android:textColor="#FFFFFF"
+                android:text="@string/animatureOption2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/Margin15"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/btnAnimatureOpt3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/animatureOption3Description"
+                android:src="@drawable/f7" />
+
+            <TextView
+                android:id="@+id/animatureOption3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textColor="#FFFFFF"
+                android:text="@string/animatureOption3" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

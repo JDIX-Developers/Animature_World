@@ -43,6 +43,7 @@ public class Player {
 	private String			name;
 	private int				sex;
 	private String			neighborName;
+	private int				idFirstAnimature;
 	private int				stage;
 	private long			started;
 	private long			last_Played;
