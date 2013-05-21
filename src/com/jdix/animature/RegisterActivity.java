@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
+import com.jdix.animature.entities.User;
 import com.jdix.animature.utils.Connection;
 import com.jdix.animature.utils.Database;
 import com.jdix.animature.utils.StringUtils;
@@ -278,8 +279,10 @@ public class RegisterActivity extends Activity {
 				// + "password='"
 				// + StringUtils.sha1(mPassword1 + "--Animature") + "'");
 
-				Connection.setLogin(mEmail,
-				StringUtils.sha1(mPassword1 + "--Animature"));
+				Connection
+				.getInstance()
+				.setUser(
+				User.login(mEmail, StringUtils.sha1(mPassword1 + "--Animature")));
 
 				// We create the intent
 				final Intent intent = new Intent(RegisterActivity.this,

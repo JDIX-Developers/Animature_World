@@ -8,6 +8,8 @@ public class User {
 	private static User	user;
 	private int			id;
 	private String		username;
+	private String		email;
+	private String		password;
 
 	private User()
 	{
@@ -30,9 +32,31 @@ public class User {
 		return username;
 	}
 
-	public static void loadUser()
+	/**
+	 * @return The email for the user
+	 */
+	public String getEmail()
 	{
-		// TODO
+		return email;
+	}
+
+	/**
+	 * @return The password for the user, a 40 character sha1 encoded string
+	 */
+	public String getPassword()
+	{
+		return password;
+	}
+
+	/**
+	 * @param email - The email for the new user
+	 * @param password - The password of the new user
+	 * @return The user created
+	 */
+	public static User login(final String email, final String password)
+	{
+		load(email, password);
+		return user;
 	}
 
 	/**

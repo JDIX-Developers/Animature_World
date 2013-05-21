@@ -20,14 +20,15 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.jdix.animature.entities.User;
+
 /**
  * @author Razican (Iban Eguia)
  */
 public class Connection {
 
+	private User				user;
 	private static Connection	instance;
-	private static String		loginEmail;
-	private static String		loginPassword;
 	private List<NameValuePair>	data;
 	private HttpPost			query;
 	private final HttpClient	connection;
@@ -134,7 +135,7 @@ public class Connection {
 
 			if (regenerate)
 			{
-				if (loginEmail != null && loginPassword != null)
+				if (user != null)
 				{
 					final List<NameValuePair> d = data;
 					final String a = action;
@@ -144,8 +145,8 @@ public class Connection {
 
 					setAction("login");
 					addData("method", "auto");
-					addData("email", loginEmail);
-					addData("pass", loginPassword);
+					addData("email", user.getEmail());
+					addData("pass", user.getPassword());
 
 					final JSONObject login = execute();
 					try
@@ -205,13 +206,11 @@ public class Connection {
 	}
 
 	/**
-	 * @param email User's email
-	 * @param pass User's encrypted password
+	 * @param user - The user logged in
 	 */
-	public static void setLogin(final String email, final String pass)
+	public void setUser(final User user)
 	{
-		loginEmail = email;
-		loginPassword = pass;
+		this.user = user;
 	}
 
 	/**
