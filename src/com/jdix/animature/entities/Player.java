@@ -51,7 +51,7 @@ public class Player {
 	private Date			startDate;
 	private Date			lastPlayed;
 	private int				steps;
-	private Animature[]		activeAnimatures;
+	private Capturable[]	activeAnimatures;
 	private int				posX;
 	private int				posY;
 	private int				orientation;
@@ -61,17 +61,18 @@ public class Player {
 	private int				medals;
 	private int				money;
 	private final Bitmap	bitmap;
+	private final Animature	firstAnim;
 	private Vector<Item>	items;
 
 	// private SQLiteDatabase db; // TODO check
 
 	private Player(final int id, final String name, final int sex,
 	final String neighborName, final int stage, final Date startDate,
-	final Date lastPlayed, final int steps, final Animature[] activeAnimatures,
-	final int posX, final int posY, final int orientation,
-	final int lastHealingMap, final int lastHealingX, final int lastHealingY,
-	final int medals, final int money, final Vector<Item> items,
-	final Context context)
+	final Date lastPlayed, final int steps,
+	final Capturable[] activeAnimatures, final int posX, final int posY,
+	final int orientation, final int lastHealingMap, final int lastHealingX,
+	final int lastHealingY, final int medals, final int money,
+	final Vector<Item> items, final Animature firstAnim, final Context context)
 	{
 		this.id = id;
 		this.name = name;
@@ -89,6 +90,7 @@ public class Player {
 		this.medals = medals;
 		this.money = money;
 		this.items = items;
+		this.firstAnim = firstAnim;
 		this.bitmap = BitmapFactory.decodeResource(context.getResources(),
 		R.drawable.player); // TODO support girl/boy bitmaps
 	}
@@ -113,16 +115,18 @@ public class Player {
 	 * @param posX - The current X coordinate position
 	 * @param posY - The current Y coordinate position
 	 * @param orientation - The current orientation
+	 * @param firstAnim - The first animature of the player
 	 * @param context - The context of the application
 	 */
 	public static void set(final String name, final int sex,
-	final String neighborName, final Animature[] activeAnimatures,
-	final int posX, final int posY, final int orientation, final Context context)
+	final String neighborName, final Capturable[] activeAnimatures,
+	final int posX, final int posY, final int orientation,
+	final Animature firstAnim, final Context context)
 	{
 		final Date now = new Date();
 		player = new Player(0, name, sex, neighborName, 0, now, now, 0,
 		activeAnimatures, posX, posY, orientation, 0, 0, 0, 0, 0,
-		new Vector<Item>(), context);
+		new Vector<Item>(), firstAnim, context);
 	}
 
 	/**
@@ -239,9 +243,19 @@ public class Player {
 		return activeAnimatures;
 	}
 
-	public void setActiveAnimatures(final Animature[] activeAnimatures)
+	public void setActiveAnimatures(final Capturable[] activeAnimatures)
 	{
 		this.activeAnimatures = activeAnimatures;
+	}
+
+	// TODO get, add and remove individual animatures
+
+	/**
+	 * @return The first animature of the player
+	 */
+	public Animature getFirstAnimature()
+	{
+		return firstAnim;
 	}
 
 	public int getX()

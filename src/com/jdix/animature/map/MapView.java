@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 
 import com.jdix.animature.R;
-import com.jdix.animature.entities.Animature;
+import com.jdix.animature.entities.Capturable;
 import com.jdix.animature.entities.Player;
 
 /**
@@ -46,6 +46,12 @@ public class MapView extends View implements OnTouchListener {
 	private int[]			posLEFT;
 	private int[]			posRIGHT;
 
+	private MapView(final Context context)
+	{
+		super(context);
+		this.context = context;
+	}
+
 	/**
 	 * @param context - Context of the application
 	 * @param map - Map to show
@@ -55,8 +61,7 @@ public class MapView extends View implements OnTouchListener {
 	public MapView(final Context context, final int map, final int sprite,
 	final int sprbmp)
 	{
-		super(context);
-		this.context = context;
+		this(context);
 		this.control = NONE;
 
 		Square.setSprite(new Sprite(context, sprite, sprbmp));
@@ -70,8 +75,8 @@ public class MapView extends View implements OnTouchListener {
 			System.err.println(e.getMessage());
 		}
 
-		Player.set("TestName", Player.BOY, "TestEnemy", new Animature[6], 5, 5,
-		Player.SOUTH, context);
+		Player.set("TestName", Player.BOY, "TestEnemy", new Capturable[6], 5,
+		5, Player.SOUTH, null, context);
 
 		this.move = new MoveThread();
 
