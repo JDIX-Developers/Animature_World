@@ -104,8 +104,11 @@ public class Map {
 				&& array[pointer + 1] != (byte) 0xFF)
 				{
 					// We write the current square
-					this.squares[i][h] = Square.load(array[pointer],
-					array[pointer + 1]);
+					this.squares[i][h] = Square.load(
+					array[pointer],
+					array[pointer + 1],
+					Square.getSprite().getType(array[pointer],
+					array[pointer + 1]));
 					pointer += 2;
 				}
 				else if (array[pointer] == (byte) 0xFF)

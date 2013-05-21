@@ -2,22 +2,26 @@ package com.jdix.animature.map;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.jdix.animature.utils.MathUtils;
+import com.jdix.animature.utils.PosEntry;
 
 /**
  * @author Razican (Iban Eguia)
  */
 public class Sprite {
 
-	private final short		size;
-	private final byte		width;
-	private final byte		height;
-	private final Bitmap	bitmap;
+	private final short							size;
+	private final byte							width;
+	private final byte							height;
+	private final Bitmap						bitmap;
+	private HashMap<Entry<Byte, Byte>, Byte>	types;
 
 	/**
 	 * @param context - The context of the application
@@ -46,6 +50,13 @@ public class Sprite {
 
 		width = (byte) (this.bitmap.getWidth() / size);
 		height = (byte) (this.bitmap.getHeight() / size);
+
+		// TODO set types
+		for (int i = 2; i < array.length; i += 3)
+		{
+			types.put(new PosEntry<Byte, Byte>(array[i], array[i + 1]),
+			array[i + 2]);
+		}
 	}
 
 	/**
@@ -78,5 +89,15 @@ public class Sprite {
 	public Bitmap getBitmap()
 	{
 		return this.bitmap;
+	}
+
+	/**
+	 * @param x - The X coordinate of the square
+	 * @param y - The Y coordinate of the square
+	 * @return the type of the square
+	 */
+	public byte getType(final byte x, final byte y)
+	{
+		return types.get(new PosEntry<Byte, Byte>(x, y));
 	}
 }

@@ -17,13 +17,15 @@ public class Square {
 	private static Square[][]	squares;
 	private final Bitmap		bitmap;
 	private final byte			x, y;
+	private final byte			type;
 
 	/**
 	 * @param x X Coordinate
 	 * @param y Y Coordinate
 	 * @throws CompressionException Si ocurre un error de compresión
 	 */
-	private Square(final byte x, final byte y) throws CompressionException
+	private Square(final byte x, final byte y, final byte type)
+	throws CompressionException
 	{
 		if (x == 0xFF || y == 0xFF)
 		{
@@ -32,6 +34,7 @@ public class Square {
 
 		this.x = x;
 		this.y = y;
+		this.type = type;
 
 		this.bitmap = Bitmap.createBitmap(sprite.getBitmap(),
 		x * sprite.getSize(), y * sprite.getSize(), sprite.getSize(),
@@ -85,13 +88,14 @@ public class Square {
 	}
 
 	/**
-	 * @param x Coordenada X
-	 * @param y Coordenada Y
-	 * @return Cuadrado en esa posición
-	 * @throws SpriteException Si el sprite no ha sido inicializado
-	 * @throws CompressionException Si ocurre un erro de compresión
+	 * @param x - Coordinate X
+	 * @param y - Coordinate Y
+	 * @param type - The type of the square
+	 * @return The square in this position
+	 * @throws SpriteException - If the sprite has not been initialized
+	 * @throws CompressionException - If there is a compression error
 	 */
-	public static Square load(final byte x, final byte y)
+	public static Square load(final byte x, final byte y, final byte type)
 	throws SpriteException, CompressionException
 	{
 		final int xi = MathUtils.uByteToInt(x), yi = MathUtils.uByteToInt(y);
@@ -111,7 +115,7 @@ public class Square {
 		}
 		if (squares[xi][yi] == null)
 		{
-			squares[xi][yi] = new Square(x, y);
+			squares[xi][yi] = new Square(x, y, type);
 		}
 
 		return squares[xi][yi];
