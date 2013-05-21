@@ -104,11 +104,8 @@ public class Map {
 				&& array[pointer + 1] != (byte) 0xFF)
 				{
 					// We write the current square
-					this.squares[i][h] = Square.load(
-					array[pointer],
-					array[pointer + 1],
-					Square.getSprite().getType((byte) pointer,
-					(byte) (pointer + 1)));
+					this.squares[i][h] = Square.load(array[pointer],
+					array[pointer + 1]);
 					pointer += 2;
 				}
 				else if (array[pointer] == (byte) 0xFF)
@@ -187,8 +184,20 @@ public class Map {
 		context = c;
 	}
 
+	/**
+	 * @param x - The X coordinate of the square
+	 * @param y - The Y coordinate of the square
+	 * @return The square in the given position
+	 */
 	public Square getSquareAt(final byte x, final byte y)
 	{
-		return squares[y][x];
+		if (y < squares.length && x < squares[y].length)
+		{
+			return squares[y][x];
+		}
+		else
+		{
+			return null;
+		}
 	}
 }

@@ -39,4 +39,37 @@ public class PosEntry<K, V> implements Entry<K, V> {
 	{
 		return this.value = value;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "(" + key + "," + value + ")";
+	}
+
+	@Override
+	public int hashCode()
+	{
+		if (key instanceof Byte && value instanceof Byte)
+		{
+			return (int) (Byte) key * (int) (Byte) value;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	@Override
+	public boolean equals(final Object o)
+	{
+		boolean result = false;
+		if (o instanceof PosEntry<?, ?>)
+		{
+			final PosEntry<?, ?> p = (PosEntry<?, ?>) o;
+
+			result = p.getKey().equals(key) && p.getValue().equals(value);
+		}
+
+		return result;
+	}
 }

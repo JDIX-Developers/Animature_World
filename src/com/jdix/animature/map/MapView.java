@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,7 +13,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-import com.jdix.animature.BattleSceneActivity;
 import com.jdix.animature.R;
 import com.jdix.animature.entities.Player;
 
@@ -374,7 +372,7 @@ public class MapView extends View implements OnTouchListener {
 			stopped = finished = false;
 			final int control = MapView.this.control;
 
-			while ( ! stopped && next().isOfType(Square.WALKABLE))
+			while ( ! stopped)
 			{
 				if ((control & UP) != NONE)
 				{
@@ -425,13 +423,13 @@ public class MapView extends View implements OnTouchListener {
 					sq = map.getSquareAt((byte) (p.getCoord_X() - 1),
 					(byte) p.getCoord_Y());
 			}
+
 			return sq;
 		}
 
 		private void move(final int direction, final int left, final int right,
 		final int x, final int y, final boolean trainers)
 		{
-
 			if (Player.getInstance().getOrientation() != direction)
 			{
 				bitmap = Player.getInstance().getBitmap(direction);
@@ -482,8 +480,11 @@ public class MapView extends View implements OnTouchListener {
 							bitmap = Player.getInstance().getBitmap(right);
 						}
 					}
-					this.x += x;
-					this.y += y;
+					if (next() != null && next().isOfType(Square.WALKABLE))
+					{
+						this.x += x;
+						this.y += y;
+					}
 
 					((Activity) context).runOnUiThread(new Runnable()
 					{
@@ -521,17 +522,17 @@ public class MapView extends View implements OnTouchListener {
 			y = 0;
 			finished = true;
 
-			if (Player.getInstance().getCoord_X() == 8
-			&& Player.getInstance().getCoord_Y() == 4)
-			{
-				context.startActivity(new Intent(context,
-				BattleSceneActivity.class));
-			}
+			startEvents();
 
 			if (this.onFinishedListener != null)
 			{
 				this.onFinishedListener.run();
 			}
+		}
+
+		private void startEvents()
+		{
+			// TODO Start events for the current square
 		}
 
 		public void stay()
