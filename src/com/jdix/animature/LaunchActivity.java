@@ -8,8 +8,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,15 +21,18 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import com.jdix.animature.entities.User;
 import com.jdix.animature.utils.Connection;
-import com.jdix.animature.utils.Database;
 import com.jdix.animature.utils.StringUtils;
 
+/**
+ * TODO authors
+ * 
+ * @author Razican (Iban Eguia)
+ */
 public class LaunchActivity extends Activity {
 
 	private UserLoginTask	mAuthTask	= null;
-	public SQLiteDatabase	db;
-	private String			dbEmail, dbPassword;
 
 	private EditText		mEditTextUserLogin;
 	private EditText		mEditTextPasswordLogin;
@@ -53,8 +54,6 @@ public class LaunchActivity extends Activity {
 
 		startActivity(new Intent(LaunchActivity.this, NewGameActivity.class));
 		this.finish();
-
-		db = (new Database(this)).getWritableDatabase();
 
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
@@ -97,16 +96,7 @@ public class LaunchActivity extends Activity {
 			}
 		});
 
-		final Cursor u = db.rawQuery("SELECT * FROM USER", null);
-
-		dbEmail = dbPassword = null;
-		if (u.moveToFirst())
-		{
-			dbEmail = u.getString(1);
-			dbPassword = u.getString(2);
-		}
-		u.close();
-		db.close();
+		// TODO check user, if it's being remembered, login
 		// if ( ! TextUtils.isEmpty(dbEmail) && ! TextUtils.isEmpty(dbPassword))
 		// {
 		// showProgress(true);
@@ -308,6 +298,7 @@ public class LaunchActivity extends Activity {
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
 		private boolean	email, password, error;
+		private String	username;
 
 		@Override
 		protected Boolean doInBackground(final Void ... params)
@@ -327,6 +318,7 @@ public class LaunchActivity extends Activity {
 				{
 					email = jsonObject.getBoolean("email");
 					password = jsonObject.getBoolean("pass");
+					username = jsonObject.getString("user");
 				}
 				catch (final JSONException e)
 				{
@@ -347,15 +339,10 @@ public class LaunchActivity extends Activity {
 
 			if (success)
 			{
-				if (remember)
-				{
-					// TODO guardar usuario en la base de datos.
-					// db.execSQL("UPDATE User SET email='" + userEmail + "',"
-					// + "password='"
-					// + StringUtils.sha1(password + "--Animature") + "'");
-					// Connection.setLogin(userEmail,
-					// StringUtils.sha1(password + "--Animature"));
-				}
+				Connection.getInstance().setUser(
+				User.login(userEmail,
+				StringUtils.sha1(password + "--Animature"), username, remember,
+				LaunchActivity.this));
 
 				// We create the intent
 				final Intent intent = new Intent(LaunchActivity.this,

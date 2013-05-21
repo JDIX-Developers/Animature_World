@@ -8,7 +8,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +20,6 @@ import android.widget.EditText;
 
 import com.jdix.animature.entities.User;
 import com.jdix.animature.utils.Connection;
-import com.jdix.animature.utils.Database;
 import com.jdix.animature.utils.StringUtils;
 
 /**
@@ -49,8 +47,6 @@ public class RegisterActivity extends Activity {
 	private View			mRegisterFormView;
 	private View			mRegisterStatusView;
 
-	private SQLiteDatabase	db;
-
 	private ResultReceiver	login;
 
 	@Override
@@ -59,8 +55,6 @@ public class RegisterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_register);
-
-		db = (new Database(this)).getWritableDatabase();
 
 		login = (ResultReceiver) getIntent().getExtras().get("login");
 
@@ -117,8 +111,6 @@ public class RegisterActivity extends Activity {
 
 		boolean cancel = false;
 		View focusView = null;
-
-		// TODO Database
 
 		// Check for a valid email address.
 		if (TextUtils.isEmpty(mEmail))
@@ -275,14 +267,10 @@ public class RegisterActivity extends Activity {
 
 			if (success)
 			{
-				// db.execSQL("UPDATE user SET email='" + mEmail + "',"
-				// + "password='"
-				// + StringUtils.sha1(mPassword1 + "--Animature") + "'");
-
-				Connection
-				.getInstance()
-				.setUser(
-				User.login(mEmail, StringUtils.sha1(mPassword1 + "--Animature")));
+				Connection.getInstance().setUser(
+				User.login(mEmail,
+				StringUtils.sha1(mPassword1 + "--Animature"), mUsername,
+				RegisterActivity.this));
 
 				// We create the intent
 				final Intent intent = new Intent(RegisterActivity.this,

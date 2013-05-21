@@ -75,8 +75,8 @@ public class MapView extends View implements OnTouchListener {
 			System.err.println(e.getMessage());
 		}
 
-		Player.set(User.getCurrent(), this.map, Player.BOY, "TestEnemy",
-		new Capturable[6], 5, 5, Player.SOUTH, null, context);
+		Player.set(User.getCurrent(), this.map, "TestUser", Player.BOY,
+		"TestEnemy", new Capturable[6], 5, 5, Player.SOUTH, null, context);
 
 		this.move = new MoveThread();
 

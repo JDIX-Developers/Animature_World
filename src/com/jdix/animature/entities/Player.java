@@ -45,7 +45,7 @@ public class Player {
 	private final User		user;
 	private Map				map;
 	private int				id;
-	private String			name;
+	private final String	name;
 	private int				sex;
 	private String			neighborName;
 	private int				stage;
@@ -65,18 +65,19 @@ public class Player {
 	private final Animature	firstAnim;
 	private Vector<Item>	items;
 
-	private Player(final User user, final Map map, final int id, final int sex,
-	final String neighborName, final int stage, final Date startDate,
-	final Date lastSaved, final int steps, final Capturable[] activeAnimatures,
-	final int posX, final int posY, final int orientation,
-	final Map lastHealingMap, final int lastHealingX, final int lastHealingY,
-	final int medals, final int money, final Vector<Item> items,
-	final Animature firstAnim, final Context context)
+	private Player(final User user, final Map map, final int id,
+	final String name, final int sex, final String neighborName,
+	final int stage, final Date startDate, final Date lastSaved,
+	final int steps, final Capturable[] activeAnimatures, final int posX,
+	final int posY, final int orientation, final Map lastHealingMap,
+	final int lastHealingX, final int lastHealingY, final int medals,
+	final int money, final Vector<Item> items, final Animature firstAnim,
+	final Context context)
 	{
 		this.user = user;
 		this.map = map;
 		this.id = id;
-		this.name = user.getUsername();
+		this.name = name;
 		this.sex = sex;
 		this.neighborName = neighborName;
 		this.stage = stage;
@@ -111,6 +112,7 @@ public class Player {
 	 * 
 	 * @param user - The user starting the game
 	 * @param map - The map for the user
+	 * @param name - The name for the player
 	 * @param sex - The sex of the player
 	 * @param neighborName - The name of the neighbor
 	 * @param activeAnimatures - The Animatures in it's bag
@@ -120,14 +122,14 @@ public class Player {
 	 * @param firstAnim - The first animature of the player
 	 * @param context - The context of the application
 	 */
-	public static void set(final User user, final Map map, final int sex,
-	final String neighborName, final Capturable[] activeAnimatures,
-	final int posX, final int posY, final int orientation,
-	final Animature firstAnim, final Context context)
+	public static void set(final User user, final Map map, final String name,
+	final int sex, final String neighborName,
+	final Capturable[] activeAnimatures, final int posX, final int posY,
+	final int orientation, final Animature firstAnim, final Context context)
 	{
-		player = new Player(user, map, 0, sex, neighborName, 0, new Date(),
-		new Date(0), 0, activeAnimatures, posX, posY, orientation, null, 0, 0,
-		0, 0, new Vector<Item>(), firstAnim, context);
+		player = new Player(user, map, 0, name, sex, neighborName, 0,
+		new Date(), new Date(0), 0, activeAnimatures, posX, posY, orientation,
+		null, 0, 0, 0, 0, new Vector<Item>(), firstAnim, context);
 	}
 
 	/**
@@ -139,8 +141,9 @@ public class Player {
 	{
 		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
 
-		final ContentValues values = new ContentValues(22);
+		final ContentValues values = new ContentValues(23);
 		values.put("user", user.getId());
+		values.put("name", name);
 		values.put("sex", sex);
 		values.put("stage", stage);
 		values.put("last_played", (new Date()).getTime());
@@ -224,11 +227,6 @@ public class Player {
 	public String getName()
 	{
 		return name;
-	}
-
-	public void setName(final String name)
-	{
-		this.name = name;
 	}
 
 	public int getSex()
