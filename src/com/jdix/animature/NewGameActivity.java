@@ -186,8 +186,7 @@ public class NewGameActivity extends Activity {
 			case 18:
 				layoutAnimOptions.setVisibility(View.GONE);
 				layoutOak.setVisibility(View.VISIBLE);
-				final String text = makeSelectorQuestionString(strings[index]);
-				makeBinaryQuestion(text, "Si", "No");
+				makeBinaryQuestion(strings[index], "Si", "No");
 			break;
 			case 19:
 				startActivity(new Intent(NewGameActivity.this,
@@ -269,6 +268,10 @@ public class NewGameActivity extends Activity {
 		{
 			this.index = 11;
 		}
+		else if (index == 18)
+		{
+			this.index = 16;
+		}
 		changeDialog();
 	}
 
@@ -276,33 +279,5 @@ public class NewGameActivity extends Activity {
 	{
 		idAnimatureSelected = id;
 		changeDialog();
-	}
-
-	private String makeSelectorQuestionString(final String text)
-	{
-		String name = "";
-		if (idAnimatureSelected == 1)
-		{
-			name = getResources().getString(
-			getResources().getIdentifier("animatureOption1", "string",
-			getPackageName()));
-			text.replace("type", "Planta");
-		}
-		else if (idAnimatureSelected == 4)
-		{
-			name = getResources().getString(
-			getResources().getIdentifier("animatureOption2", "string",
-			getPackageName()));
-			text.replace("type", "Fuego");
-		}
-		else if (idAnimatureSelected == 7)
-		{
-			name = getResources().getString(
-			getResources().getIdentifier("animatureOption3", "string",
-			getPackageName()));
-			text.replace("type", "Agua");
-		}
-		text.replace("ANIM", name);
-		return text;
 	}
 }
