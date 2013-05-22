@@ -12,8 +12,8 @@ public class Animature implements Serializable {
 	public static final int		SPEED				= 0;
 	public static final int		DEFENSE				= 1;
 	public static final int		AGILITY				= 2;
-	public static final int		STRENGHT			= 3;
-	public static final int		PRECISSION			= 4;
+	public static final int		STRENGTH			= 3;
+	public static final int		PRECISION			= 4;
 
 	public static final int		NORMAL				= 1;
 	public static final int		FIRE				= 2;
@@ -39,12 +39,39 @@ public class Animature implements Serializable {
 	private double				height;
 	private double				weight;
 	private int					type;
-	private int[]				cualities			= new int[5];
+	private final int[]			cualities			= new int[5];
 	private int					health;
 	private int					levelEvo;
 	private int					baseExp;
 	private int					captureRange;
 
+	/**
+	 * Constructor
+	 */
+	public Animature()
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param id Animature's id
+	 * @param name Animature's name
+	 * @param description Animature's description
+	 * @param height Animature's height
+	 * @param weight Animature's weight
+	 * @param type Animature's type
+	 * @param speed Animature's speed
+	 * @param defense Animature's defense
+	 * @param agility Animature's agility
+	 * @param strenght Animature's strength
+	 * @param precission Animature's precision
+	 * @param health Animature's health
+	 * @param levelEvo Animature's level to evolve
+	 * @param baseExp Animature's experience
+	 * @param captureRange Animature's capture range
+	 */
 	public Animature(final int id, final String name, final String description,
 	final double height, final double weight, final int type, final int speed,
 	final int defense, final int agility, final int strenght,
@@ -60,8 +87,8 @@ public class Animature implements Serializable {
 		this.cualities[SPEED] = speed;
 		this.cualities[DEFENSE] = defense;
 		this.cualities[AGILITY] = agility;
-		this.cualities[STRENGHT] = strenght;
-		this.cualities[PRECISSION] = precission;
+		this.cualities[STRENGTH] = strenght;
+		this.cualities[PRECISION] = precission;
 		this.health = health;
 		this.levelEvo = levelEvo;
 		this.baseExp = baseExp;
@@ -128,14 +155,54 @@ public class Animature implements Serializable {
 		this.type = type;
 	}
 
-	public int[] getCualities()
+	public int getVelocity()
 	{
-		return cualities;
+		return this.cualities[Animature.SPEED];
 	}
 
-	public void setCualities(final int[] cualities)
+	public void setVelocity(final int velocity)
 	{
-		this.cualities = cualities;
+		this.cualities[Animature.SPEED] = velocity;
+	}
+
+	public int getDefense()
+	{
+		return this.cualities[Animature.DEFENSE];
+	}
+
+	public void setDefense(final int defense)
+	{
+		this.cualities[Animature.DEFENSE] = defense;
+	}
+
+	public int getAgility()
+	{
+		return this.cualities[Animature.AGILITY];
+	}
+
+	public void setAgility(final int agility)
+	{
+		this.cualities[Animature.AGILITY] = agility;
+	}
+
+	public int getStrenght()
+	{
+		return this.cualities[Animature.STRENGTH];
+	}
+
+	public void setStrenght(final int strenght)
+	{
+		this.cualities[Animature.STRENGTH] = strenght;
+	}
+
+	public int getPrecission()
+	{
+		return this.cualities[Animature.PRECISION];
+	}
+
+	public void setPrecission(final int precission)
+	{
+		this.cualities[Animature.PRECISION] = precission;
 	}
 
 	public int getHealth()

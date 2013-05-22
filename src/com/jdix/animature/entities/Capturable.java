@@ -308,8 +308,8 @@ public class Capturable extends Animature {
 		final int rand = (new Random()).nextInt(100);
 		final Attack attack = captDo.getAttack(atk);
 
-		if (rand <= (attack.getProbability() + (captDo
-		.getCualitiesC(PRECISSION) - this.getCualitiesC(AGILITY))))
+		if (rand <= (attack.getProbability() + (captDo.getCualitiesC(PRECISION) - this
+		.getCualitiesC(AGILITY))))
 		{
 			if ( ! attack.getActive())
 			{
@@ -336,20 +336,20 @@ public class Capturable extends Animature {
 		if (this.isWeak(attack.getType_Attack()))
 		{
 			damage = (attack.getPower() / 100)
-			* (cD.getCualitiesC(STRENGHT) / this.getCualitiesC(DEFENSE))
-			* cD.getCualitiesC(STRENGHT) * 2;
+			* (cD.getCualitiesC(STRENGTH) / this.getCualitiesC(DEFENSE))
+			* cD.getCualitiesC(STRENGTH) * 2;
 		}
 		else if (this.isStrong(attack.getType_Attack()))
 		{
 			damage = (attack.getPower() / 100)
-			* (cD.getCualitiesC(STRENGHT) / this.getCualitiesC(DEFENSE))
-			* cD.getCualitiesC(STRENGHT) / 2;
+			* (cD.getCualitiesC(STRENGTH) / this.getCualitiesC(DEFENSE))
+			* cD.getCualitiesC(STRENGTH) / 2;
 		}
 		else
 		{
 			damage = (attack.getPower() / 100)
-			* (cD.getCualitiesC(STRENGHT) / this.getCualitiesC(DEFENSE))
-			* cD.getCualitiesC(STRENGHT);
+			* (cD.getCualitiesC(STRENGTH) / this.getCualitiesC(DEFENSE))
+			* cD.getCualitiesC(STRENGTH);
 		}
 
 		return damage;

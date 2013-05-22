@@ -57,12 +57,9 @@ public class AnimaxAnimatureActivity extends Activity {
 		animatureDescription.setText(this.animature.getDescription());
 		animatureHeight.setText("Altura: " + this.animature.getHeight() + " m");
 		animatureWeight.setText("Peso: " + this.animature.getWeight() + " kg");
-		animatureStrenght
-		.setText("Ataque: " + this.animature.getCualities()[3]);
-		animatureDefense
-		.setText("Defensa: " + this.animature.getCualities()[1]);
-		animatureVelocity.setText("Velocidad: "
-		+ this.animature.getCualities()[0]);
+		animatureStrenght.setText("Fuerza: " + this.animature.getStrenght());
+		animatureDefense.setText("Defensa: " + this.animature.getDefense());
+		animatureVelocity.setText("Velocidad: " + this.animature.getVelocity());
 		animatureHealth.setText("Vida: " + this.animature.getHealth());
 	}
 

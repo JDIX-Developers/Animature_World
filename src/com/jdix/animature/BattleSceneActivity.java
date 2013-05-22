@@ -14,6 +14,9 @@ import android.widget.TextView;
 import com.jdix.animature.entities.Attack;
 import com.jdix.animature.entities.Capturable;
 
+/**
+ * @author Jordan Aranda Tejada
+ */
 public class BattleSceneActivity extends Activity {
 
 	// Enemy's Animature Components
