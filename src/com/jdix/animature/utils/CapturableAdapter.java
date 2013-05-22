@@ -18,8 +18,8 @@ import com.jdix.animature.entities.Capturable;
  */
 public class CapturableAdapter extends BaseAdapter {
 
-	protected Activity				activity;
-	protected ArrayList<Capturable>	items;
+	private final Activity				activity;
+	private final ArrayList<Capturable>	items;
 
 	/**
 	 * @param activity The activity of the list.

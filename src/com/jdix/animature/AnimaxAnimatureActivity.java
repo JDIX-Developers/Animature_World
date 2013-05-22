@@ -54,13 +54,18 @@ public class AnimaxAnimatureActivity extends Activity {
 		final int id = getResources().getIdentifier(
 		"f" + this.animature.getId(), "drawable", getPackageName());
 		animatureImage.setImageDrawable(this.getResources().getDrawable(id));
-		animatureDescription.setText(this.animature.getDescription());
+		animatureDescription.setText(getResources().getStringArray(
+		R.array.animature_names)[this.animature.getId() - 1]);
 		animatureHeight.setText("Altura: " + this.animature.getHeight() + " m");
 		animatureWeight.setText("Peso: " + this.animature.getWeight() + " kg");
-		animatureStrenght.setText("Fuerza: " + this.animature.getStrenght());
-		animatureDefense.setText("Defensa: " + this.animature.getDefense());
-		animatureVelocity.setText("Velocidad: " + this.animature.getVelocity());
-		animatureHealth.setText("Vida: " + this.animature.getHealth());
+		animatureStrenght.setText("Fuerza: "
+		+ this.animature.getCualities()[Animature.STRENGTH]);
+		animatureDefense.setText("Defensa: "
+		+ this.animature.getCualities()[Animature.DEFENSE]);
+		animatureVelocity.setText("Velocidad: "
+		+ this.animature.getCualities()[Animature.SPEED]);
+		animatureHealth.setText("Agilidad: "
+		+ this.animature.getCualities()[Animature.AGILITY]);
 	}
 
 	@Override

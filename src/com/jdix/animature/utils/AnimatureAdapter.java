@@ -20,10 +20,10 @@ import com.jdix.animature.entities.Animature;
  */
 public class AnimatureAdapter extends BaseAdapter {
 
-	protected Activity				activity;
-	protected ArrayList<Animature>	items;
-	protected String[]				typesNames;
-	protected String[]				typesColors;
+	private final Activity				activity;
+	private final ArrayList<Animature>	items;
+	private String[]					typesNames;
+	private String[]					typesColors;
 
 	/**
 	 * @param activity The activity of the list.

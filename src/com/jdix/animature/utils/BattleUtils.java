@@ -29,7 +29,7 @@ public class BattleUtils {
 		return (playerAnimatureAttack.isFirst() && ! enemyAnimatureAttack
 		.isFirst())
 		|| (playerAnimatureAttack.isFirst() && enemyAnimatureAttack.isFirst() && playerAnimature
-		.getVelocity() > enemyAnimature.getVelocity());
+		.getCualities()[Animature.SPEED] > enemyAnimature.getCualities()[Animature.SPEED]);
 	}
 
 	/**
@@ -44,7 +44,8 @@ public class BattleUtils {
 	final Animature underAttackAnimature)
 	{
 		return (new Random()).nextInt(100) <= (attack.getProbability() + (attacker
-		.getPrecission() - underAttackAnimature.getAgility()));
+		.getCualities()[Animature.PRECISION] - underAttackAnimature
+		.getCualities()[Animature.AGILITY]));
 	}
 
 	/**
@@ -78,19 +79,22 @@ public class BattleUtils {
 		if (attack.getEffectivenes(defensor) == Attack.VERY_EFFECTIVE)
 		{
 			damage = (attack.getPower() / 100)
-			* (attacker.getStrenght() / defensor.getDefense())
-			* attacker.getStrenght() * 2;
+			* (attacker.getCualities()[Animature.STRENGTH] / defensor
+			.getCualities()[Animature.DEFENSE])
+			* attacker.getCualities()[Animature.STRENGTH] * 2;
 		}
 		else if (attack.getEffectivenes(defensor) == Attack.FEW_EFFECTIVE)
 		{
 			damage = (attack.getPower() / 100)
-			* (attacker.getStrenght() / defensor.getDefense())
-			* attacker.getStrenght() / 2;
+			* (attacker.getCualities()[Animature.STRENGTH] / defensor
+			.getCualities()[Animature.DEFENSE])
+			* attacker.getCualities()[Animature.STRENGTH] / 2;
 		}
 		else
 		{
 			damage = (attack.getPower() / 100)
-			* (attacker.getStrenght() / defensor.getDefense());
+			* (attacker.getCualities()[Animature.STRENGTH] / defensor
+			.getCualities()[Animature.DEFENSE]);
 		}
 		return damage;
 	}
