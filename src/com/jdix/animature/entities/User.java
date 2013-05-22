@@ -30,6 +30,9 @@ public class User {
 		return username;
 	}
 
+	/**
+	 * Method to load user data.
+	 */
 	public static void loadUser()
 	{
 		// TODO

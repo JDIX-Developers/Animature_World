@@ -15,6 +15,9 @@ import com.jdix.animature.map.Map;
 import com.jdix.animature.map.Square;
 import com.jdix.animature.utils.Database;
 
+/**
+ * @author Jordan Aranda Tejada
+ */
 public class Player {
 
 	public static final int	NORTH		= 0;

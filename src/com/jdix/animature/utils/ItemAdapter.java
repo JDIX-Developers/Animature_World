@@ -18,8 +18,8 @@ import com.jdix.animature.entities.Item;
  */
 public class ItemAdapter extends BaseAdapter {
 
-	protected Activity			activity;
-	protected ArrayList<Item>	items;
+	private final Activity			activity;
+	private final ArrayList<Item>	items;
 
 	/**
 	 * @param activity The activity of the list.

@@ -1,74 +1,106 @@
 package com.jdix.animature.entities;
 
+import android.content.res.Resources;
+
+import com.jdix.animature.R;
+
+/**
+ * @author Jordan Aranda Tejada
+ */
 public class Item {
 
-	private int		id;
-	private String	name;
-	private int		type;
-	private String	description;
-	private int		quantity;
+	/**
+	 * Item type object for Potion, Superpotion, Hiperpotion, Antidote...
+	 */
+	public static final int	OBJECTS		= 0;
+	/**
+	 * Item type pokeballs for all pokeballs.
+	 */
+	public static final int	POKEBALLS	= 1;
 
+	private int				id;
+	private int				type;
+	private int				quantity;
+
+	/**
+	 * Constructor
+	 */
 	public Item()
 	{
 
 	}
 
-	public Item(final int id, final String name, final int type,
-	final String description, final int quantity)
+	/**
+	 * Constructor
+	 * 
+	 * @param id Item's id.
+	 * @param type Item's type.
+	 * @param quantity Item's quantity.
+	 */
+	public Item(final int id, final int type, final int quantity)
 	{
 		super();
 		this.id = id;
-		this.name = name;
 		this.type = type;
-		this.description = description;
 		this.quantity = quantity;
 	}
 
+	/**
+	 * Method to get Item's id.
+	 * 
+	 * @return Item's id.
+	 */
 	public int getId()
 	{
 		return id;
 	}
 
-	public void setId(final int id)
-	{
-		this.id = id;
-	}
-
+	/**
+	 * Method to get Item's name.
+	 * 
+	 * @return Item's name.
+	 */
 	public String getName()
 	{
-		return name;
+		return Resources.getSystem().getStringArray(R.array.objects_names)[id - 1];
 	}
 
-	public void setName(final String name)
-	{
-		this.name = name;
-	}
-
+	/**
+	 * Method to get Item's type.
+	 * 
+	 * @return Item's type.
+	 */
 	public int getType()
 	{
 		return type;
 	}
 
-	public void setType(final int type)
-	{
-		this.type = type;
-	}
-
+	/**
+	 * Method to get Item's description.
+	 * 
+	 * @return Item's description.
+	 */
 	public String getDescription()
 	{
-		return description;
+		return Resources.getSystem().getStringArray(
+		R.array.objects_descriptions)[id - 1];
 	}
 
-	public void setDescription(final String description)
-	{
-		this.description = description;
-	}
-
+	/**
+	 * Method to get Item's quantity.
+	 * 
+	 * @return Item's quantity.
+	 */
 	public int getQuantity()
 	{
 		return quantity;
 	}
 
+	/**
+	 * Method to set Item's quantity.
+	 * 
+	 * @param quantity Item's new quantity.
+	 */
 	public void setQuantity(final int quantity)
 	{
 		this.quantity = quantity;
