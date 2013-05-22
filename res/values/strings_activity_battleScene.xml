@@ -4,4 +4,28 @@
 	<string name="exit_Battle">Escapar</string>
 	<string name="image_of_enemy_Animature">Imagen del animature enemigo</string>
 	<string name="image_of_your_Animature">Imagen de tu animature</string>
+	
+	<string name="battle_string_1">¡Un *anim* salvaje!</string>							<!-- ¡Un Pidgey salvaje! -->
+	<string name="battle_string_2">¡Adelante *anim*!</string>							<!-- ¡Adelante Charmander! -->
+	<string name="battle_string_3">¿Qué debería hacer *anim*?</string>					<!-- ¿Qué debería hacer Charmander? -->
+	<string name="battle_string_4">¡*anim* usó *atack*!</string>						<!-- ¡Charmander usó Placaje! -->
+	<string name="battle_string_5">¡El ataque de *anim* falló!</string>					<!-- ¡El ataque de Charmander falló! -->
+	<string name="battle_string_6">¡*cuality* de *anim* bajó!</string>					<!-- ¡Defensa de Charmander bajó! -->
+	<string name="battle_string_7">¡Es muy eficaz!</string>				 				<!-- ¡Es muy eficaz! -->		
+	<string name="battle_string_8">No es muy eficaz…</string>							<!-- No es muy eficaz -->
+	<string name="battle_string_9">¡Mo afecta a *anim*!</string>						<!-- ¡No afecta a Charmander! -->
+	<string name="battle_string_10">¡*anim* salvaje se debilitó!</string>				<!-- ¡Pidgey salvaje se debilitó! -->
+	<string name="battle_string_11">¡*anim* debilitó!</string>							<!-- ¡Charmander se debilitó! -->
+	<string name="battle_string_12">¡*anim* gano *score* puntos de EXP!</string>		<!-- ¡Charmander ganó 50 puntos de EXP! -->
+	<string name="battle_string_13">¡A *player* no le quedan más Animatures!</string>	<!-- ¡A Jordan no le quedan más Animatures! -->
+	
+	<string name="battle_combat_gameOver">*player* fue corriendo al centro Animature a curar a sus Animatures debilitados.</string>
+
+								
+	<string name="battle_scene_option1">Lucha</string>
+	<string name="battle_scene_option2">Animature</string>
+	<string name="battle_scene_option3">Mochila</string>
+	<string name="battle_scene_option4">Huir</string>
+				
+	
 </resources>
