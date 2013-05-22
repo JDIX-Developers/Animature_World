@@ -70,6 +70,7 @@
     	<item>Dragón</item>
     	<item>Siniestro</item>
     	<item>Acero</item>
+    	<item>Elemental</item>
 	</string-array>
 	
      <string-array name="animature_types_colors">
@@ -90,5 +91,6 @@
 		<item>#BA3343</item>
 		<item>#6E6E6E</item>
 		<item>#C2C2C2</item>
+		<item>#C2FFC2</item>
 	</string-array>
 </resources>

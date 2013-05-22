@@ -32,6 +32,7 @@ public class Animature implements Serializable {
 	public static final int		DRAGON				= 16384;
 	public static final int		DARK				= 32768;
 	public static final int		STEEL				= 65536;
+	public static final int		ELEMENTAL			= 131072;
 
 	private int					id;
 	private String				name;

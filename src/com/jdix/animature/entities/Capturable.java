@@ -4,36 +4,40 @@ import java.util.Random;
 
 import android.content.Context;
 
+/**
+ * @author Jordan Aranda Tejada
+ */
 public class Capturable extends Animature {
 
-	public static final int	NORMAL		= 0;
-	public static final int	PARALYZED	= 1;
-	public static final int	BURNED		= 2;
-	public static final int	POISONED	= 3;
-	public static final int	SLEEPED		= 4;
-	public static final int	FROZEN		= 5;
+	private static final long	serialVersionUID	= - 2197066367542502490L;
+	public static final int		NORMAL				= 0;
+	public static final int		PARALYZED			= 1;
+	public static final int		BURNED				= 2;
+	public static final int		POISONED			= 3;
+	public static final int		SLEEPED				= 4;
+	public static final int		FROZEN				= 5;
 
-	private int				idAnimatureCapt;
-	private int				idAnimature;
-	private int				save;
-	private String			nickname;
-	private int				sex;
-	private int				status;
-	private int				capturedTime;
-	private Attack[]		attacks		= new Attack[4];
-	private final int[]		attackN		= new int[4];
-	private int[]			attacksPP	= new int[4];
-	private int				level;
-	private int				current_exp;
-	private int				experience;
-	private int				healthMax	= 0;
-	private int				healthAct;
-	private int				box;
-	private final int[]		cualitiesC	= new int[5];
-	private Context			context;
+	private int					idAnimatureCapt;
+	private int					idAnimature;
+	private int					save;
+	private String				nickname;
+	private int					sex;
+	private int					status;
+	private int					capturedTime;
+	private Attack[]			attacks				= new Attack[4];
+	private final int[]			attackN				= new int[4];
+	private int[]				attacksPP			= new int[4];
+	private int					level;
+	private int					current_exp;
+	private int					experience;
+	private int					healthMax			= 0;
+	private int					healthAct;
+	private int					box;
+	private final int[]			cualitiesC			= new int[5];
+	private Context				context;
 
-	private final boolean	isWeak[]	= new boolean[17];
-	private final boolean	isStrong[]	= new boolean[17];
+	private final boolean		isWeak[]			= new boolean[17];
+	private final boolean		isStrong[]			= new boolean[17];
 
 	public Capturable()
 	{
@@ -322,36 +326,12 @@ public class Capturable extends Animature {
 			}
 			else
 			{
-				this.setHealthAct(this.getHealthAct()
-				- getDamage(captDo, attack));
+				/*
+				 * this.setHealthAct(this.getHealthAct() - getDamage(captDo,
+				 * attack));
+				 */
 			}
 		}
 		return this;
-	}
-
-	public int getDamage(final Capturable cD, final Attack attack)
-	{
-		int damage = 0;
-
-		if (this.isWeak(attack.getType_Attack()))
-		{
-			damage = (attack.getPower() / 100)
-			* (cD.getCualitiesC(STRENGTH) / this.getCualitiesC(DEFENSE))
-			* cD.getCualitiesC(STRENGTH) * 2;
-		}
-		else if (this.isStrong(attack.getType_Attack()))
-		{
-			damage = (attack.getPower() / 100)
-			* (cD.getCualitiesC(STRENGTH) / this.getCualitiesC(DEFENSE))
-			* cD.getCualitiesC(STRENGTH) / 2;
-		}
-		else
-		{
-			damage = (attack.getPower() / 100)
-			* (cD.getCualitiesC(STRENGTH) / this.getCualitiesC(DEFENSE))
-			* cD.getCualitiesC(STRENGTH);
-		}
-
-		return damage;
 	}
 }

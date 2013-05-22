@@ -350,8 +350,8 @@ public class BattleSceneActivity extends Activity {
 			final Attack a = this.animSel[animatureIndex].getAttack(i);
 
 			// Añadimos el nombre del ataque
-			this.attacksBtns[i].setText(a.getName_Attack() + " ("
-			+ this.animSel[animatureIndex].getAttackPP(i) + "/" + a.getMax_pp()
+			this.attacksBtns[i].setText(a.getName() + " ("
+			+ this.animSel[animatureIndex].getAttackPP(i) + "/" + a.getMaxpp()
 			+ ")");
 
 			/*
