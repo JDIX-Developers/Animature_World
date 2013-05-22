@@ -17,7 +17,7 @@ public class Capturable extends Animature {
 	public static final int		SLEEPED				= 4;
 	public static final int		FROZEN				= 5;
 
-	private int					idAnimatureCapt;
+	private int					id;
 	private int					idAnimature;
 	private int					save;
 	private String				nickname;
@@ -28,7 +28,7 @@ public class Capturable extends Animature {
 	private final int[]			attackN				= new int[4];
 	private int[]				attacksPP			= new int[4];
 	private int					level;
-	private int					current_exp;
+	private int					currentExp;
 	private int					experience;
 	private int					healthMax			= 0;
 	private int					healthAct;
@@ -36,25 +36,22 @@ public class Capturable extends Animature {
 	private final int[]			cualitiesC			= new int[5];
 	private Context				context;
 
-	private final boolean		isWeak[]			= new boolean[17];
-	private final boolean		isStrong[]			= new boolean[17];
-
 	public Capturable()
 	{
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Capturable(final int idAnimatureCapt, final int idAnimature,
+	public Capturable(final int id, final int idAnimature,
 	final int save, final String nickname, final int sex, final int status,
 	final int capturedTime, final int a1, final int a1pp, final int a2,
 	final int a2pp, final int a3, final int a3pp, final int a4, final int a4pp,
-	final int level, final int current_exp, final int experience,
+	final int level, final int currentExp, final int experience,
 	final int healthAct, final int box)
 	{
 		super();
 
-		this.idAnimatureCapt = idAnimatureCapt;
+		this.id = id;
 		this.idAnimature = idAnimature;
 		this.save = save;
 		this.nickname = nickname;
@@ -70,26 +67,20 @@ public class Capturable extends Animature {
 		this.attacksPP[2] = a3pp;
 		this.attacksPP[3] = a4pp;
 		this.level = level;
-		this.current_exp = current_exp;
+		this.currentExp = currentExp;
 		this.experience = experience;
 		this.healthAct = healthAct;
 		this.box = box;
-
-		for (int i = 0; i < isWeak.length; i++)
-		{
-			isWeak[i] = false;
-			isStrong[i] = false;
-		}
 	}
 
 	public int getIdAnimatureCapt()
 	{
-		return idAnimatureCapt;
+		return id;
 	}
 
 	public void setIdAnimatureCapt(final int idAnimatureCapt)
 	{
-		this.idAnimatureCapt = idAnimatureCapt;
+		this.id = idAnimatureCapt;
 	}
 
 	public int getIdAnimature()
@@ -207,14 +198,14 @@ public class Capturable extends Animature {
 		this.level = level;
 	}
 
-	public int getCurrent_exp()
+	public int getCurrentExp()
 	{
-		return current_exp;
+		return currentExp;
 	}
 
-	public void setCurrent_exp(final int current_exp)
+	public void setCurrentExp(final int currentExp)
 	{
-		this.current_exp = current_exp;
+		this.currentExp = currentExp;
 	}
 
 	public int getExperience()
@@ -255,16 +246,6 @@ public class Capturable extends Animature {
 	public void setCualitiesC(final int quantity, final int pos)
 	{
 		this.cualitiesC[pos] = quantity;
-	}
-
-	public boolean isWeak(final int type)
-	{
-		return this.isWeak[type];
-	}
-
-	public boolean isStrong(final int type)
-	{
-		return this.isStrong[type];
 	}
 
 	/*

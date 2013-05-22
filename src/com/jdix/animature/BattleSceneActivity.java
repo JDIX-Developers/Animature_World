@@ -282,8 +282,7 @@ public class BattleSceneActivity extends Activity {
 		your_animature_life.setMax(100);// animSel[animatureIndex].getHealthMax());
 		your_animature_life.setProgress(animSel[animatureIndex].getHealthAct());
 		your_animature_exp.setMax(animSel[animatureIndex].getExperience());
-		your_animature_exp
-		.setProgress(animSel[animatureIndex].getCurrent_exp());
+		your_animature_exp.setProgress(animSel[animatureIndex].getCurrentExp());
 		final int id = getResources().getIdentifier(
 		"b" + animSel[animatureIndex].getIdAnimature(), "drawable",
 		getPackageName());

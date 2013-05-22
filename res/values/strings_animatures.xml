@@ -93,4 +93,13 @@
 		<item>#C2C2C2</item>
 		<item>#C2FFC2</item>
 	</string-array>
+	
+     <string-array name="animature_cualities">
+    	<item>Velocidad</item>
+      	<item>Defensa</item>
+    	<item>Agilidad</item>
+    	<item>Fuerza</item>
+  		<item>Precisión</item>
+	</string-array>
+     
 </resources>
