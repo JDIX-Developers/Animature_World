@@ -167,30 +167,58 @@ INSERT INTO ATTACK VALUES (9, 4, 25, -1, 40, 100, 0);		-- PISTOLA AGUA
 INSERT INTO ATTACK VALUES (10, 1, 35, -1, 35, 100, 0);		-- PICOTAZO
 
 -- ANIMATURE ATTACKS (id_Animature, id_Attack, level)
--- AQUI FERRE - Completa los que quedan y en los insert modifica las cualidades del animature
--- los números.
-
 -- Bulbasur-Ivysaur-Venusaur
 INSERT INTO ANIMATURE_ATTACKS VALUES (1, 1, 2);		-- Bulbasur -> Placaje, 		Nivel 2
 INSERT INTO ANIMATURE_ATTACKS VALUES (1, 2, 6);		-- Bulbasur -> Ataque rapido, 	Nivel 6
 INSERT INTO ANIMATURE_ATTACKS VALUES (1, 3, 10);	-- Bulbasur -> Gruñido,			Nivel 10
 INSERT INTO ANIMATURE_ATTACKS VALUES (1, 4, 14);	-- Bulbasur -> Malicioso,		Nivel 14
-INSERT INTO ANIMATURE_ATTACKS VALUES (1, 8, 16);	-- Bulbasur -> Latigo Cepa 		Nivel 16
-INSERT INTO ANIMATURE_ATTACKS VALUES (2, 8, 16);	-- Ivysaur  -> Latigo Cepa 		Nivel 16
+INSERT INTO ANIMATURE_ATTACKS VALUES (1, 8, 16);	-- Bulbasur -> Latigo Cepa,		Nivel 16
+INSERT INTO ANIMATURE_ATTACKS VALUES (2, 8, 16);	-- Ivysaur  -> Latigo Cepa,		Nivel 16
 
 -- Charmander-Charmeleon-Charizard
 INSERT INTO ANIMATURE_ATTACKS VALUES (4, 5, 2);		-- Charmander -> Arañazo, 		Nivel 2
 INSERT INTO ANIMATURE_ATTACKS VALUES (4, 3, 6);		-- Charmander -> Gruñido, 		Nivel 6
 INSERT INTO ANIMATURE_ATTACKS VALUES (4, 2, 10);	-- Charmander -> Ataque rapido,	Nivel 10
 INSERT INTO ANIMATURE_ATTACKS VALUES (4, 4, 14);	-- Charmander -> Malicioso,		Nivel 14
-INSERT INTO ANIMATURE_ATTACKS VALUES (5, 8, 16);	-- Charmander -> Ascuas 		Nivel 16
-INSERT INTO ANIMATURE_ATTACKS VALUES (5, 8, 16);	-- Charmeleon -> Ascuas 		Nivel 16
+INSERT INTO ANIMATURE_ATTACKS VALUES (4, 6, 16);	-- Charmander -> Ascuas, 		Nivel 16
+INSERT INTO ANIMATURE_ATTACKS VALUES (5, 6, 16);	-- Charmeleon -> Ascuas, 		Nivel 16
 
 -- Squirtle-Wartortle-Blastoise
+INSERT INTO ANIMATURE_ATTACKS VALUES (7, 7, 2);		-- Squirtle -> Burbuja, 		Nivel 2
+INSERT INTO ANIMATURE_ATTACKS VALUES (7, 3, 6);		-- Squirtle -> Gruñido, 		Nivel 6
+INSERT INTO ANIMATURE_ATTACKS VALUES (7, 2, 10);	-- Squirtle -> Ataque rapido,	Nivel 10
+INSERT INTO ANIMATURE_ATTACKS VALUES (7, 4, 14);	-- Squirtle -> Malicioso,		Nivel 14
+INSERT INTO ANIMATURE_ATTACKS VALUES (7, 9, 16);	-- Squirtle -> Pistola agua,	Nivel 16
+INSERT INTO ANIMATURE_ATTACKS VALUES (8, 9, 16);	-- Squirtle -> Pistola agua,	Nivel 16
 
+-- Caterpie-Metapod-Butterfree
+INSERT INTO ANIMATURE_ATTACKS VALUES (10, 1, 2);	-- Caterpie -> Placaje, 		Nivel 2
+INSERT INTO ANIMATURE_ATTACKS VALUES (10, 3, 6);	-- Caterpie -> Gruñido, 		Nivel 6
+INSERT INTO ANIMATURE_ATTACKS VALUES (10, 10, 10);	-- Caterpie -> Picotazo,		Nivel 10
+INSERT INTO ANIMATURE_ATTACKS VALUES (10, 4, 14);	-- Caterpie -> Malicioso,		Nivel 14
+INSERT INTO ANIMATURE_ATTACKS VALUES (10, 8, 16);	-- Caterpie -> Latigo Cepa,		Nivel 16
+INSERT INTO ANIMATURE_ATTACKS VALUES (11, 8, 16);	-- Metapod  -> Latigo Cepa,		Nivel 16
 
+-- Weedle-Kakuna-Beedrill
+INSERT INTO ANIMATURE_ATTACKS VALUES (13, 1, 2);	-- Weedle -> Placaje, 			Nivel 2
+INSERT INTO ANIMATURE_ATTACKS VALUES (13, 3, 6);	-- Weedle -> Gruñido, 			Nivel 6
+INSERT INTO ANIMATURE_ATTACKS VALUES (13, 10, 10);	-- Weedle -> Picotazo,			Nivel 10
+INSERT INTO ANIMATURE_ATTACKS VALUES (13, 4, 14);	-- Weedle -> Malicioso,			Nivel 14
+INSERT INTO ANIMATURE_ATTACKS VALUES (13, 8, 16);	-- Weedle -> Latigo Cepa,		Nivel 16
+INSERT INTO ANIMATURE_ATTACKS VALUES (14, 8, 16);	-- Kakuna  -> Latigo Cepa,		Nivel 16
 
+-- Pidgey-Pidgeotto-Pidgeot
+INSERT INTO ANIMATURE_ATTACKS VALUES (16, 1, 2);	-- Pidgey 	 -> Placaje, 		Nivel 2
+INSERT INTO ANIMATURE_ATTACKS VALUES (16, 3, 6);	-- Pidgey 	 -> Gruñido, 		Nivel 6
+INSERT INTO ANIMATURE_ATTACKS VALUES (16, 2, 10);	-- Pidgey 	 -> Ataque rapido,	Nivel 10
+INSERT INTO ANIMATURE_ATTACKS VALUES (16, 4, 14);	-- Pidgey 	 -> Malicioso,		Nivel 14
+INSERT INTO ANIMATURE_ATTACKS VALUES (16, 5, 16);	-- Pidgey 	 -> Arañazo,		Nivel 16
+INSERT INTO ANIMATURE_ATTACKS VALUES (17, 5, 16);	-- Pidgeotto -> Arañazo,		Nivel 16
 
-
-
-
+-- Rattata-Raticate
+INSERT INTO ANIMATURE_ATTACKS VALUES (19, 1, 2);	-- Caterpie -> Placaje, 		Nivel 2
+INSERT INTO ANIMATURE_ATTACKS VALUES (19, 3, 6);	-- Caterpie -> Gruñido, 		Nivel 6
+INSERT INTO ANIMATURE_ATTACKS VALUES (19, 2, 10);	-- Caterpie -> Ataque rapido,	Nivel 10
+INSERT INTO ANIMATURE_ATTACKS VALUES (19, 6, 14);	-- Caterpie -> Ascuas,			Nivel 14
+INSERT INTO ANIMATURE_ATTACKS VALUES (19, 7, 16);	-- Caterpie -> Burbuja,			Nivel 16
+INSERT INTO ANIMATURE_ATTACKS VALUES (20, 7, 16);	-- Metapod  -> Burbuja,			Nivel 16
