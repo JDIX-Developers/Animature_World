@@ -75,13 +75,13 @@ public class BattleUtils {
 	{
 		int damage = 0;
 
-		if (attack.getEffectivenes(defensor) == Attack.VERY_EFFECTIVENES)
+		if (attack.getEffectivenes(defensor) == Attack.VERY_EFFECTIVE)
 		{
 			damage = (attack.getPower() / 100)
 			* (attacker.getStrenght() / defensor.getDefense())
 			* attacker.getStrenght() * 2;
 		}
-		else if (attack.getEffectivenes(defensor) == Attack.FEW_EFFECTIVENES)
+		else if (attack.getEffectivenes(defensor) == Attack.FEW_EFFECTIVE)
 		{
 			damage = (attack.getPower() / 100)
 			* (attacker.getStrenght() / defensor.getDefense())

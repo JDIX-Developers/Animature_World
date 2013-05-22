@@ -16,10 +16,10 @@ public class Attack {
 														// - 60)
 	private boolean			isFirst;
 
-	public static final int	NORMAL_EFFECIVENES	= 0;
-	public static final int	VERY_EFFECTIVENES	= 1;
-	public static final int	FEW_EFFECTIVENES	= 2;
-	public static final int	NOT_EFFECTIVENES	= 3;
+	public static final int	NORMAL_EFFECTIVE	= 0;
+	public static final int	VERY_EFFECTIVE		= 1;
+	public static final int	FEW_EFFECTIVE		= 2;
+	public static final int	NOT_EFFECTIVE		= 3;
 
 	public Attack()
 	{
@@ -138,19 +138,19 @@ public class Attack {
 	 */
 	public int getEffectivenes(final Animature animature)
 	{
-		int effective = NORMAL_EFFECIVENES;
+		int effective = NORMAL_EFFECTIVE;
 		switch (this.type)
 		{
 			case Animature.NORMAL:
 				if (animature.isOfType(Animature.ROCK)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.GHOST)
 				|| animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.FIRE:
@@ -159,18 +159,18 @@ public class Attack {
 				|| animature.isOfType(Animature.BUG)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.FIRE)
 				|| animature.isOfType(Animature.WATER)
 				|| animature.isOfType(Animature.ROCK)
 				|| animature.isOfType(Animature.DRAGON))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.WATER:
@@ -178,35 +178,35 @@ public class Attack {
 				|| animature.isOfType(Animature.GROUND)
 				|| animature.isOfType(Animature.ROCK))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.WATER)
 				|| animature.isOfType(Animature.GRASS)
 				|| animature.isOfType(Animature.DRAGON))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.ELECTRIC:
 				if (animature.isOfType(Animature.WATER)
 				|| animature.isOfType(Animature.FLYING))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELECTRIC)
 				|| animature.isOfType(Animature.GRASS)
 				|| animature.isOfType(Animature.DRAGON))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.GROUND)
 				|| animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.GRASS:
@@ -214,7 +214,7 @@ public class Attack {
 				|| animature.isOfType(Animature.GROUND)
 				|| animature.isOfType(Animature.ROCK))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.FIRE)
 				|| animature.isOfType(Animature.GRASS)
@@ -224,11 +224,11 @@ public class Attack {
 				|| animature.isOfType(Animature.DRAGON)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.ICE:
@@ -237,18 +237,18 @@ public class Attack {
 				|| animature.isOfType(Animature.FLYING)
 				|| animature.isOfType(Animature.DRAGON))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.FIRE)
 				|| animature.isOfType(Animature.WATER)
 				|| animature.isOfType(Animature.ICE)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.FIGHTING:
@@ -258,37 +258,37 @@ public class Attack {
 				|| animature.isOfType(Animature.DARK)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.POISON)
 				|| animature.isOfType(Animature.FLYING)
 				|| animature.isOfType(Animature.PSYCHIC)
 				|| animature.isOfType(Animature.BUG))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.GHOST)
 				|| animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.POISON:
 				if (animature.isOfType(Animature.GRASS))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.POISON)
 				|| animature.isOfType(Animature.GROUND)
 				|| animature.isOfType(Animature.ROCK)
 				|| animature.isOfType(Animature.GHOST))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.STEEL)
 				|| animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.GROUND:
@@ -298,17 +298,17 @@ public class Attack {
 				|| animature.isOfType(Animature.ROCK)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.GRASS)
 				|| animature.isOfType(Animature.BUG))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.FLYING)
 				|| animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.FLYING:
@@ -316,34 +316,34 @@ public class Attack {
 				|| animature.isOfType(Animature.FIGHTING)
 				|| animature.isOfType(Animature.BUG))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELECTRIC)
 				|| animature.isOfType(Animature.ROCK)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.PSYCHIC:
 				if (animature.isOfType(Animature.FIGHTING)
 				|| animature.isOfType(Animature.POISON))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.PSYCHIC)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.DARK)
 				|| animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.BUG:
@@ -351,7 +351,7 @@ public class Attack {
 				|| animature.isOfType(Animature.PSYCHIC)
 				|| animature.isOfType(Animature.DARK))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.FIRE)
 				|| animature.isOfType(Animature.FIGHTING)
@@ -360,11 +360,11 @@ public class Attack {
 				|| animature.isOfType(Animature.GHOST)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.ROCK:
@@ -373,87 +373,87 @@ public class Attack {
 				|| animature.isOfType(Animature.FLYING)
 				|| animature.isOfType(Animature.BUG))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.FIGHTING)
 				|| animature.isOfType(Animature.GROUND)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.GHOST:
 				if (animature.isOfType(Animature.PSYCHIC)
 				|| animature.isOfType(Animature.GHOST))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.DARK)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.NORMAL)
 				|| animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.DRAGON:
 				if (animature.isOfType(Animature.DRAGON))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.DARK:
 				if (animature.isOfType(Animature.PSYCHIC)
 				|| animature.isOfType(Animature.GHOST))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.FIGHTING)
 				|| animature.isOfType(Animature.DARK)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.STEEL:
 				if (animature.isOfType(Animature.ICE)
 				|| animature.isOfType(Animature.ROCK))
 				{
-					effective = VERY_EFFECTIVENES;
+					effective = VERY_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.FIRE)
 				|| animature.isOfType(Animature.WATER)
 				|| animature.isOfType(Animature.ELECTRIC)
 				|| animature.isOfType(Animature.STEEL))
 				{
-					effective = FEW_EFFECTIVENES;
+					effective = FEW_EFFECTIVE;
 				}
 				else if (animature.isOfType(Animature.ELEMENTAL))
 				{
-					effective = NOT_EFFECTIVENES;
+					effective = NOT_EFFECTIVE;
 				}
 			break;
 			case Animature.ELEMENTAL:
-				effective = VERY_EFFECTIVENES;
+				effective = VERY_EFFECTIVE;
 			break;
 		}
 
