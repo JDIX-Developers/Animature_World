@@ -15,13 +15,10 @@ import com.jdix.animature.map.Map;
 import com.jdix.animature.map.Square;
 import com.jdix.animature.utils.Database;
 
+/**
+ * @author Jordan Aranda Tejada
+ */
 public class Player {
-
-	/*
-	 * La clase player contiene todos los datos del protagonista y de la
-	 * partida. Para poder continuar la partida se utilizan los stage para saber
-	 * en que momento del juego estamos.
-	 */
 
 	public static final int	NORTH		= 0;
 	public static final int	EAST		= 1;

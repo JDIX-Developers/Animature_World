@@ -17,9 +17,6 @@ public class Database extends SQLiteOpenHelper {
 
 	/**
 	 * @param context - Context of the application
-	 * @param name - Name of the database
-	 * @param factory - Current CursorFactory
-	 * @param version - Database version
 	 */
 	public Database(final Context context)
 	{

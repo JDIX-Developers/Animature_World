@@ -10,4 +10,6 @@
     <string name="title_activity_bag">BagActivity</string>
     <string name="title_activity_player_data_view">PlayerDataViewActivity</string>
     <string name="title_activity_animax_animature_view">AnimaxAnimatureViewActivity</string>
+    <string name="title_activity_load_game">LoadGameActivity</string>
+
 </resources>

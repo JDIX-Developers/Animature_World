@@ -14,6 +14,9 @@ import android.widget.TextView;
 import com.jdix.animature.entities.Attack;
 import com.jdix.animature.entities.Capturable;
 
+/**
+ * @author Jordan Aranda Tejada
+ */
 public class BattleSceneActivity extends Activity {
 
 	// Enemy's Animature Components
@@ -170,6 +173,7 @@ public class BattleSceneActivity extends Activity {
 			enemy.setHealthAct(enemy.getHealthAct() - 10);
 			animatureFainted = enemy.getHealthAct() <= 0;
 			enemy_animature_life.setProgress(enemy.getHealthAct());
+			// enemy_animature_life.setProgress((enemy.getHealthAct()*100)/enemy.getHealthMax());
 			animSel[animatureIndex].reduceAttackPP(index);
 			changeAttacksBackground();
 			yourTurn = false;
@@ -184,6 +188,8 @@ public class BattleSceneActivity extends Activity {
 				.getHealthAct() - 9);
 				your_animature_life.setProgress(animSel[animatureIndex]
 				.getHealthAct());
+				// your_animature_life.setProgress((animSel[animatureIndex]
+				// .getHealthAct()*100)/animSel[animatureIndex].getHealthMax());
 				animatureFainted = animSel[animatureIndex].getHealthAct() <= 0;
 				enemy.reduceAttackPP(attack);
 				yourTurn = true;
@@ -279,8 +285,7 @@ public class BattleSceneActivity extends Activity {
 		your_animature_life.setMax(100);// animSel[animatureIndex].getHealthMax());
 		your_animature_life.setProgress(animSel[animatureIndex].getHealthAct());
 		your_animature_exp.setMax(animSel[animatureIndex].getExperience());
-		your_animature_exp
-		.setProgress(animSel[animatureIndex].getCurrent_exp());
+		your_animature_exp.setProgress(animSel[animatureIndex].getCurrentExp());
 		final int id = getResources().getIdentifier(
 		"b" + animSel[animatureIndex].getIdAnimature(), "drawable",
 		getPackageName());
@@ -347,8 +352,8 @@ public class BattleSceneActivity extends Activity {
 			final Attack a = this.animSel[animatureIndex].getAttack(i);
 
 			// Añadimos el nombre del ataque
-			this.attacksBtns[i].setText(a.getName_Attack() + " ("
-			+ this.animSel[animatureIndex].getAttackPP(i) + "/" + a.getMax_pp()
+			this.attacksBtns[i].setText(a.getName() + " ("
+			+ this.animSel[animatureIndex].getAttackPP(i) + "/" + a.getMaxpp()
 			+ ")");
 
 			/*

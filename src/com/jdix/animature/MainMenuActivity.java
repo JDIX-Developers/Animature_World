@@ -1,11 +1,18 @@
 package com.jdix.animature;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+
+import com.jdix.animature.entities.User;
+import com.jdix.animature.utils.Database;
 
 /**
  * @author Jordan Aranda Tejada
@@ -89,11 +96,7 @@ public class MainMenuActivity extends Activity {
 	 */
 	public void newGame()
 	{
-		// We create the attempt
-		final Intent intent = new Intent(MainMenuActivity.this,
-		NewGameActivity.class);
-		// We start the new activity
-		startActivity(intent);
+		startActivity(new Intent(MainMenuActivity.this, NewGameActivity.class));
 	}
 
 	/**
@@ -101,7 +104,50 @@ public class MainMenuActivity extends Activity {
 	 */
 	public void loadGame()
 	{
+		final SQLiteDatabase db = (new Database(this)).getReadableDatabase();
+		final Cursor c = db.rawQuery("SELECT * FROM SAVE WHERE id_user="
+		+ User.getCurrent().getId(), null);
+		final int count = c.getCount();
+		c.close();
+		db.close();
 
+		if (count == 0)
+		{
+
+			final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+			dialog.setTitle("Sin partidas");
+			dialog
+			.setMessage("No existe ninguna partida creada.\n¿Deseas crear una nueva?");
+			dialog.setCancelable(false);
+			dialog.setPositiveButton("Si",
+			new DialogInterface.OnClickListener()
+			{
+
+				@Override
+				public void onClick(final DialogInterface dialogo1, final int id)
+				{
+					startActivity(new Intent(MainMenuActivity.this,
+					NewGameActivity.class));
+					finish();
+				}
+			});
+			dialog.setNegativeButton("No",
+			new DialogInterface.OnClickListener()
+			{
+
+				@Override
+				public void onClick(final DialogInterface dialogo1, final int id)
+				{
+					finish();
+				}
+			});
+			dialog.show();
+		}
+		else
+		{
+			// Player.load(id, context)
+			// Carga el juego
+		}
 	}
 
 	/**

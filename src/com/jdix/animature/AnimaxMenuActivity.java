@@ -28,7 +28,6 @@ public class AnimaxMenuActivity extends Activity {
 	private SQLiteDatabase			db;
 	private ArrayList<Animature>	animatures;
 	private String[]				animatureNames;
-	private String[]				animatureDescriptions;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -42,11 +41,6 @@ public class AnimaxMenuActivity extends Activity {
 		list = (ListView) findViewById(R.id.list_Animatures);
 		animatures = new ArrayList<Animature>();
 
-		animatureNames = getResources().getStringArray(R.array.animature_names);
-
-		animatureDescriptions = getResources().getStringArray(
-		R.array.animature_descriptions);
-
 		final Cursor c = db.rawQuery("SELECT * FROM ANIMATURE", null);
 		if (c.getCount() > 0)
 		{
@@ -54,18 +48,16 @@ public class AnimaxMenuActivity extends Activity {
 			while ( ! c.isAfterLast())
 			{
 				animatures.add(new Animature(c.getInt(0), animatureNames[c
-				.getInt(0) - 1], animatureDescriptions[c.getInt(0) - 1], c
-				.getDouble(1), c.getDouble(2), c.getInt(3), c.getInt(4), c
-				.getInt(5), c.getInt(6), c.getInt(7), c.getInt(8), c.getInt(9),
-				c.getInt(10), c.getInt(11), c.getInt(12)));
+				.getInt(0) - 1], c.getDouble(1), c.getDouble(2), c.getInt(3), c
+				.getInt(4), c.getInt(5), c.getInt(6), c.getInt(7), c.getInt(8),
+				c.getInt(9), c.getInt(10), c.getInt(11), c.getInt(12)));
 				c.moveToNext();
 			}
 		}
 		c.close();
 		db.close();
 
-		final AnimatureAdapter adapter = new AnimatureAdapter(this,
-		animatures);
+		final AnimatureAdapter adapter = new AnimatureAdapter(this, animatures);
 
 		list.setAdapter(adapter);
 
@@ -76,8 +68,6 @@ public class AnimaxMenuActivity extends Activity {
 			public void onItemClick(final AdapterView<?> arg0, final View view,
 			final int pos, final long arg3)
 			{
-				// Log.e("SELECCIONADO", "- " + animaturesNames[pos]);
-
 				final Intent intent = new Intent(AnimaxMenuActivity.this,
 				AnimaxAnimatureActivity.class);
 				final Bundle b = new Bundle();
