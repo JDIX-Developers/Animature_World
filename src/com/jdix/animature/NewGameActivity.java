@@ -5,6 +5,7 @@ import java.util.Locale;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,12 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jdix.animature.entities.Animature;
+import com.jdix.animature.entities.Capturable;
 import com.jdix.animature.entities.Player;
+import com.jdix.animature.map.Map;
+import com.jdix.animature.map.Sprite;
+import com.jdix.animature.map.Square;
 
 /**
  * @author Jordan Aranda Tejada
@@ -234,6 +240,37 @@ public class NewGameActivity extends Activity {
 				makeDialog(strings[index]);
 			break;
 			case 25:
+				final DisplayMetrics metrics = new DisplayMetrics();
+				getWindowManager().getDefaultDisplay().getMetrics(metrics);
+				switch (metrics.densityDpi)
+				{
+					case DisplayMetrics.DENSITY_LOW:
+						Square.setSprite(new Sprite(this, R.raw.sprite24,
+						R.drawable.sprite));
+					break;
+					case DisplayMetrics.DENSITY_MEDIUM:
+						Square.setSprite(new Sprite(this, R.raw.sprite32,
+						R.drawable.sprite));
+					break;
+					case DisplayMetrics.DENSITY_HIGH:
+						Square.setSprite(new Sprite(this, R.raw.sprite48,
+						R.drawable.sprite));
+					break;
+					case DisplayMetrics.DENSITY_XHIGH:
+						Square.setSprite(new Sprite(this, R.raw.sprite64,
+						R.drawable.sprite));
+					break;
+				}
+
+				final Capturable[] anims = new Capturable[6];
+				// TODO create animature
+				anims[0] = Capturable.load(idAnimatureSelected, this);
+				final Animature firstAnim = null; // TODO select animature
+
+				Player.set(new Map(R.raw.map_test, this), playerName,
+				playerSex, enemyName, anims, 5, 5, Player.SOUTH, firstAnim,
+				this);
+
 				startActivity(new Intent(NewGameActivity.this,
 				MapActivity.class));
 				finish();

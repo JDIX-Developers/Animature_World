@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 
 import com.jdix.animature.R;
-import com.jdix.animature.entities.Capturable;
 import com.jdix.animature.entities.Player;
 
 /**
@@ -20,7 +19,7 @@ import com.jdix.animature.entities.Player;
  */
 public class MapView extends View implements OnTouchListener {
 
-	private Map				map;
+	private final Map		map;
 	private int				mWidth;
 	private int				mHeight;
 	private final Context	context;
@@ -44,31 +43,18 @@ public class MapView extends View implements OnTouchListener {
 	private int[]			posLEFT;
 	private int[]			posRIGHT;
 
-	private MapView(final Context context)
-	{
-		super(context);
-		this.context = context;
-	}
-
 	/**
 	 * @param context - Context of the application
-	 * @param sprite - The sprite to use
-	 * @param sprbmp - The drawable of the sprite
 	 */
-	public MapView(final Context context, final int sprite, final int sprbmp)
+	public MapView(final Context context)
 	{
-		this(context);
+		super(context);
+
+		this.context = context;
 		this.control = NONE;
 
-		Player.set(new Map(R.raw.map_test, context), "TestUser", Player.BOY,
-		"TestEnemy", new Capturable[6], 5, 5, Player.SOUTH, null, context);
-
-		Square.setSprite(new Sprite(context, sprite, sprbmp));
-
 		this.map = Player.getInstance().getMap();
-
 		this.move = new MoveThread();
-
 		setOnTouchListener(this);
 	}
 
@@ -405,7 +391,7 @@ public class MapView extends View implements OnTouchListener {
 				break;
 				case Player.WEST:
 					sq = map
-					.getSquareAt((byte) (p.getX() + 1), (byte) p.getY());
+					.getSquareAt((byte) (p.getX() - 1), (byte) p.getY());
 				break;
 				case Player.SOUTH:
 					sq = map
@@ -413,8 +399,10 @@ public class MapView extends View implements OnTouchListener {
 				break;
 				case Player.EAST:
 					sq = map
-					.getSquareAt((byte) (p.getX() - 1), (byte) p.getY());
+					.getSquareAt((byte) (p.getX() + 1), (byte) p.getY());
 			}
+
+			System.out.println(p.getOrientation() + " - " + sq.toString());
 
 			return sq;
 		}
