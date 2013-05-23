@@ -37,6 +37,7 @@ public class NewGameActivity extends Activity {
 	private String			enemyName;
 	private int				playerSex;
 	private int				idAnimatureSelected;
+	private String			nameAnimatureSelected;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -61,6 +62,8 @@ public class NewGameActivity extends Activity {
 				if ( ! (index == 9 && editTextNewGame.getText().toString()
 				.trim().equals(""))
 				&& ! (index == 12 && editTextNewGame.getText().toString()
+				.trim().equals(""))
+				&& ! (index == 21 && editTextNewGame.getText().toString()
 				.trim().equals("")))
 				{
 					changeDialog();
@@ -157,7 +160,8 @@ public class NewGameActivity extends Activity {
 				this.playerName = editTextNewGame.getText().toString().trim()
 				.toUpperCase(Locale.getDefault());
 				makeBinaryQuestion(
-				strings[index].replace("%s", this.playerName), "Si", "No");
+				strings[index].replace("*namePlayer*", this.playerName), "Si",
+				"No");
 			break;
 			case 11:
 				makeDialog(strings[index]);
@@ -169,10 +173,12 @@ public class NewGameActivity extends Activity {
 				this.enemyName = editTextNewGame.getText().toString().trim()
 				.toUpperCase(Locale.getDefault());
 				makeBinaryQuestion(
-				strings[index].replace("%s", this.enemyName), "Si", "No");
+				strings[index].replace("*nameNeightboor*", this.enemyName),
+				"Si", "No");
 			break;
 			case 14:
-				makeDialog(strings[index].replace("%s", this.playerName));
+				makeDialog(strings[index].replace("*namePlayer*",
+				this.playerName));
 			break;
 			case 15:
 				makeDialog(strings[index]);
@@ -186,12 +192,52 @@ public class NewGameActivity extends Activity {
 			case 18:
 				layoutAnimOptions.setVisibility(View.GONE);
 				layoutOak.setVisibility(View.VISIBLE);
+				final String text = strings[index];
+				text.replace("*animature*", nameAnimatureSelected);
+				if (idAnimatureSelected == 1)
+				{
+					text.replace("*typeAnimature*", "Planta");
+				}
+				else if (idAnimatureSelected == 4)
+				{
+					text.replace("*typeAnimature*", "Fuego");
+				}
+				else
+				{
+					text.replace("*typeAnimature*", "Agua");
+				}
 				makeBinaryQuestion(strings[index], "Si", "No");
 			break;
 			case 19:
+				final String text2 = strings[index];
+				text2.replace("*namePlayer*", this.playerName);
+				text2.replace("*animature*", nameAnimatureSelected);
+				makeDialog(text2);
+			break;
+			case 20:
+				makeBinaryQuestion(strings[index], "Si", "No");
+			break;
+			case 21:
+				makeNameQuestion(strings[index]);
+			break;
+			case 22:
+				this.nameAnimatureSelected = editTextNewGame.getText()
+				.toString().trim();
+				makeBinaryQuestion(
+				strings[index].replace("*nickName*", nameAnimatureSelected),
+				"Si", "No");
+			break;
+			case 23:
+				makeDialog(strings[index].replace("*namePlayer*", playerName));
+			break;
+			case 24:
+				makeDialog(strings[index]);
+			break;
+			case 25:
 				startActivity(new Intent(NewGameActivity.this,
 				MapActivity.class));
 				finish();
+			break;
 		}
 
 	}
@@ -272,12 +318,23 @@ public class NewGameActivity extends Activity {
 		{
 			this.index = 16;
 		}
+		else if (index == 20)
+		{
+			this.index = 22;
+		}
+		else if (index == 22)
+		{
+			this.index = 20;
+		}
 		changeDialog();
 	}
 
 	private void animatureChosen(final int id)
 	{
 		idAnimatureSelected = id;
+		final int idAnimatureName = getResources().getIdentifier(
+		"animatureOption" + idAnimatureSelected, "string", getPackageName());
+		nameAnimatureSelected = getResources().getString(idAnimatureName);
 		changeDialog();
 	}
 }
