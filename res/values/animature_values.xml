@@ -25,160 +25,160 @@
     <!-- 000 -->    <item>0.7</item>
     <!-- 001 -->    <item>1</item>
     <!-- 002 -->    <item>2</item>
-    <!-- 003 -->    <item></item>
-    <!-- 004 -->    <item></item>
-    <!-- 005 -->    <item></item>
-    <!-- 006 -->    <item></item>
-    <!-- 007 -->    <item></item>
-    <!-- 008 -->    <item></item>
-    <!-- 009 -->    <item></item>
-    <!-- 010 -->    <item></item>
-    <!-- 011 -->    <item></item>
-    <!-- 012 -->    <item></item>
-    <!-- 013 -->    <item></item>
-    <!-- 014 -->    <item></item>
-    <!-- 015 -->    <item></item>
-    <!-- 016 -->    <item></item>
-    <!-- 017 -->    <item></item>
-    <!-- 018 -->    <item></item>
-    <!-- 019 -->    <item></item>
+    <!-- 003 -->    <item>0.6</item>
+    <!-- 004 -->    <item>1.1</item>
+    <!-- 005 -->    <item>1.7</item>
+    <!-- 006 -->    <item>0.5</item>
+    <!-- 007 -->    <item>1</item>
+    <!-- 008 -->    <item>1.6</item>
+    <!-- 009 -->    <item>0.3</item>
+    <!-- 010 -->    <item>0.7</item>
+    <!-- 011 -->    <item>1.1</item>
+    <!-- 012 -->    <item>0.3</item>
+    <!-- 013 -->    <item>0.6</item>
+    <!-- 014 -->    <item>1</item>
+    <!-- 015 -->    <item>0.3</item>
+    <!-- 016 -->    <item>0.6</item>
+    <!-- 017 -->    <item>1</item>
+    <!-- 018 -->    <item>0.3</item>
+    <!-- 019 -->    <item>0.7</item>
     </array>
     
     <array name="animature_weight">
     <!-- 000 -->    <item>6.9</item>
     <!-- 001 -->    <item>13</item>
     <!-- 002 -->    <item>100</item>
-    <!-- 003 -->    <item></item>
-    <!-- 004 -->    <item></item>
-    <!-- 005 -->    <item></item>
-    <!-- 006 -->    <item></item>
-    <!-- 007 -->    <item></item>
-    <!-- 008 -->    <item></item>
-    <!-- 009 -->    <item></item>
-    <!-- 010 -->    <item></item>
-    <!-- 011 -->    <item></item>
-    <!-- 012 -->    <item></item>
-    <!-- 013 -->    <item></item>
-    <!-- 014 -->    <item></item>
-    <!-- 015 -->    <item></item>
-    <!-- 016 -->    <item></item>
-    <!-- 017 -->    <item></item>
-    <!-- 018 -->    <item></item>
-    <!-- 019 -->    <item></item>
+    <!-- 003 -->    <item>8.5</item>
+    <!-- 004 -->    <item>19</item>
+    <!-- 005 -->    <item>90.5</item>
+    <!-- 006 -->    <item>9</item>
+    <!-- 007 -->    <item>22.5</item>
+    <!-- 008 -->    <item>85.5</item>
+    <!-- 009 -->    <item>2.9</item>
+    <!-- 010 -->    <item>9.9</item>
+    <!-- 011 -->    <item>32</item>
+    <!-- 012 -->    <item>3.2</item>
+    <!-- 013 -->    <item>10</item>
+    <!-- 014 -->    <item>29.5</item>
+    <!-- 015 -->    <item>3.2</item>
+    <!-- 016 -->    <item>10</item>
+    <!-- 017 -->    <item>29.5</item>
+    <!-- 018 -->    <item>3.5</item>
+    <!-- 019 -->    <item>18.5</item>
     </array>
     
     <array name="animature_velocity">
     <!-- 000 -->    <item>50</item>
-    <!-- 001 -->    <item>50</item>
-    <!-- 002 -->    <item>50</item>
-    <!-- 003 -->    <item></item>
-    <!-- 004 -->    <item></item>
-    <!-- 005 -->    <item></item>
-    <!-- 006 -->    <item></item>
-    <!-- 007 -->    <item></item>
-    <!-- 008 -->    <item></item>
-    <!-- 009 -->    <item></item>
-    <!-- 010 -->    <item></item>
-    <!-- 011 -->    <item></item>
-    <!-- 012 -->    <item></item>
-    <!-- 013 -->    <item></item>
-    <!-- 014 -->    <item></item>
-    <!-- 015 -->    <item></item>
-    <!-- 016 -->    <item></item>
-    <!-- 017 -->    <item></item>
-    <!-- 018 -->    <item></item>
-    <!-- 019 -->    <item></item>
+    <!-- 001 -->    <item>67</item>
+    <!-- 002 -->    <item>83</item>
+    <!-- 003 -->    <item>65</item>
+    <!-- 004 -->    <item>86</item>
+    <!-- 005 -->    <item>108</item>
+    <!-- 006 -->    <item>40</item>
+    <!-- 007 -->    <item>53</item>
+    <!-- 008 -->    <item>67</item>
+    <!-- 009 -->    <item>40</item>
+    <!-- 010 -->    <item>53</item>
+    <!-- 011 -->    <item>67</item>
+    <!-- 012 -->    <item>40</item>
+    <!-- 013 -->    <item>53</item>
+    <!-- 014 -->    <item>67</item>
+    <!-- 015 -->    <item>60</item>
+    <!-- 016 -->    <item>80</item>
+    <!-- 017 -->    <item>100</item>
+    <!-- 018 -->    <item>60</item>
+    <!-- 019 -->    <item>90</item>
     </array>
     
     <array name="animature_defense">
     <!-- 000 -->    <item>60</item>
-    <!-- 001 -->    <item>60</item>
-    <!-- 002 -->    <item>60</item>
-    <!-- 003 -->    <item></item>
-    <!-- 004 -->    <item></item>
-    <!-- 005 -->    <item></item>
-    <!-- 006 -->    <item></item>
-    <!-- 007 -->    <item></item>
-    <!-- 008 -->    <item></item>
-    <!-- 009 -->    <item></item>
-    <!-- 010 -->    <item></item>
-    <!-- 011 -->    <item></item>
-    <!-- 012 -->    <item></item>
-    <!-- 013 -->    <item></item>
-    <!-- 014 -->    <item></item>
-    <!-- 015 -->    <item></item>
-    <!-- 016 -->    <item></item>
-    <!-- 017 -->    <item></item>
-    <!-- 018 -->    <item></item>
-    <!-- 019 -->    <item></item>
+    <!-- 001 -->    <item>80</item>
+    <!-- 002 -->    <item>100</item>
+    <!-- 003 -->    <item>40</item>
+    <!-- 004 -->    <item>53</item>
+    <!-- 005 -->    <item>67</item>
+    <!-- 006 -->    <item>65</item>
+    <!-- 007 -->    <item>86</item>
+    <!-- 008 -->    <item>108</item>
+    <!-- 009 -->    <item>60</item>
+    <!-- 010 -->    <item>80</item>
+    <!-- 011 -->    <item>100</item>
+    <!-- 012 -->    <item>60</item>
+    <!-- 013 -->    <item>80</item>
+    <!-- 014 -->    <item>100</item>
+    <!-- 015 -->    <item>40</item>
+    <!-- 016 -->    <item>53</item>
+    <!-- 017 -->    <item>67</item>
+    <!-- 018 -->    <item>40</item>
+    <!-- 019 -->    <item>60</item>
     </array>
     
     <array name="animature_agility">
     <!-- 000 -->    <item>40</item>
-    <!-- 001 -->    <item>40</item>
-    <!-- 002 -->    <item>40</item>
-    <!-- 003 -->    <item></item>
-    <!-- 004 -->    <item></item>
-    <!-- 005 -->    <item></item>
-    <!-- 006 -->    <item></item>
-    <!-- 007 -->    <item></item>
-    <!-- 008 -->    <item></item>
-    <!-- 009 -->    <item></item>
-    <!-- 010 -->    <item></item>
-    <!-- 011 -->    <item></item>
-    <!-- 012 -->    <item></item>
-    <!-- 013 -->    <item></item>
-    <!-- 014 -->    <item></item>
-    <!-- 015 -->    <item></item>
-    <!-- 016 -->    <item></item>
-    <!-- 017 -->    <item></item>
-    <!-- 018 -->    <item></item>
-    <!-- 019 -->    <item></item>
+    <!-- 001 -->    <item>53</item>
+    <!-- 002 -->    <item>67</item>
+    <!-- 003 -->    <item>65</item>
+    <!-- 004 -->    <item>86</item>
+    <!-- 005 -->    <item>108</item>
+    <!-- 006 -->    <item>50</item>
+    <!-- 007 -->    <item>67</item>
+    <!-- 008 -->    <item>83</item>
+    <!-- 009 -->    <item>60</item>
+    <!-- 010 -->    <item>80</item>
+    <!-- 011 -->    <item>100</item>
+    <!-- 012 -->    <item>60</item>
+    <!-- 013 -->    <item>80</item>
+    <!-- 014 -->    <item>100</item>
+    <!-- 015 -->    <item>75</item>
+    <!-- 016 -->    <item>100</item>
+    <!-- 017 -->    <item>125</item>
+    <!-- 018 -->    <item>60</item>
+    <!-- 019 -->    <item>90</item>
     </array>
     
     <array name="animature_strength">
     <!-- 000 -->    <item>65</item>
-    <!-- 001 -->    <item>65</item>
-    <!-- 002 -->    <item>65</item>
-    <!-- 003 -->    <item></item>
-    <!-- 004 -->    <item></item>
-    <!-- 005 -->    <item></item>
-    <!-- 006 -->    <item></item>
-    <!-- 007 -->    <item></item>
-    <!-- 008 -->    <item></item>
-    <!-- 009 -->    <item></item>
-    <!-- 010 -->    <item></item>
-    <!-- 011 -->    <item></item>
-    <!-- 012 -->    <item></item>
-    <!-- 013 -->    <item></item>
-    <!-- 014 -->    <item></item>
-    <!-- 015 -->    <item></item>
-    <!-- 016 -->    <item></item>
-    <!-- 017 -->    <item></item>
-    <!-- 018 -->    <item></item>
-    <!-- 019 -->    <item></item>
+    <!-- 001 -->    <item>86</item>
+    <!-- 002 -->    <item>108</item>
+    <!-- 003 -->    <item>50</item>
+    <!-- 004 -->    <item>67</item>
+    <!-- 005 -->    <item>83</item>
+    <!-- 006 -->    <item>65</item>
+    <!-- 007 -->    <item>86</item>
+    <!-- 008 -->    <item>108</item>
+    <!-- 009 -->    <item>40</item>
+    <!-- 010 -->    <item>53</item>
+    <!-- 011 -->    <item>67</item>
+    <!-- 012 -->    <item>40</item>
+    <!-- 013 -->    <item>53</item>
+    <!-- 014 -->    <item>67</item>
+    <!-- 015 -->    <item>40</item>
+    <!-- 016 -->    <item>53</item>
+    <!-- 017 -->    <item>67</item>
+    <!-- 018 -->    <item>60</item>
+    <!-- 019 -->    <item>90</item>
     </array>
     
     <array name="animature_precision">
     <!-- 000 -->    <item>65</item>
-    <!-- 001 -->    <item>65</item>
-    <!-- 002 -->    <item>65</item>
-    <!-- 003 -->    <item></item>
-    <!-- 004 -->    <item></item>
-    <!-- 005 -->    <item></item>
-    <!-- 006 -->    <item></item>
-    <!-- 007 -->    <item></item>
-    <!-- 008 -->    <item></item>
-    <!-- 009 -->    <item></item>
-    <!-- 010 -->    <item></item>
-    <!-- 011 -->    <item></item>
-    <!-- 012 -->    <item></item>
-    <!-- 013 -->    <item></item>
-    <!-- 014 -->    <item></item>
-    <!-- 015 -->    <item></item>
-    <!-- 016 -->    <item></item>
-    <!-- 017 -->    <item></item>
-    <!-- 018 -->    <item></item>
-    <!-- 019 -->    <item></item>
+    <!-- 001 -->    <item>86</item>
+    <!-- 002 -->    <item>108</item>
+    <!-- 003 -->    <item>60</item>
+    <!-- 004 -->    <item>80</item>
+    <!-- 005 -->    <item>100</item>
+    <!-- 006 -->    <item>60</item>
+    <!-- 007 -->    <item>80</item>
+    <!-- 008 -->    <item>100</item>
+    <!-- 009 -->    <item>75</item>
+    <!-- 010 -->    <item>100</item>
+    <!-- 011 -->    <item>125</item>
+    <!-- 012 -->    <item>75</item>
+    <!-- 013 -->    <item>100</item>
+    <!-- 014 -->    <item>125</item>
+    <!-- 015 -->    <item>60</item>
+    <!-- 016 -->    <item>80</item>
+    <!-- 017 -->    <item>100</item>
+    <!-- 018 -->    <item>60</item>
+    <!-- 019 -->    <item>90</item>
     </array>
 </resources>
