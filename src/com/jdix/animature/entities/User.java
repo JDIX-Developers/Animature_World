@@ -2,6 +2,7 @@ package com.jdix.animature.entities;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.jdix.animature.utils.Database;
@@ -11,15 +12,19 @@ import com.jdix.animature.utils.Database;
  */
 public class User {
 
-	private static User	user;
-	private int			id;
-	private String		username;
-	private String		email;
-	private String		password;
+	private static User		user;
+	private final int		id;
+	private final String	email;
+	private final String	password;
+	private final String	username;
 
-	private User()
+	private User(final int id, final String email, final String password,
+	final String username)
 	{
-		// TODO Auto-generated constructor stub
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.username = username;
 	}
 
 	/**
@@ -52,6 +57,24 @@ public class User {
 	public String getPassword()
 	{
 		return password;
+	}
+
+	/**
+	 * Exists the user
+	 * 
+	 * @param context - The context of the application
+	 */
+	public static void exit(final Context context)
+	{
+		user = null;
+
+		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
+
+		final ContentValues exit = new ContentValues(2);
+		exit.put("is_current", 0);
+		exit.put("remember", 0);
+
+		db.update("USER", exit, null, null);
 	}
 
 	/**
@@ -102,22 +125,42 @@ public class User {
 	final Context context)
 	{
 		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
-		// TODO Auto-generated method stub
+
+		final ContentValues update = new ContentValues(2);
+		update.put("is_current", 1);
+		if (remember)
+		{
+			update.put("remember", 1);
+		}
+		db.update("USER", update, "email = '" + email + "'", null);
+
+		final Cursor c = db
+		.rawQuery("SELECT id, password, username FROM USER WHERE email = '"
+		+ email + "'", null);
+
+		c.moveToFirst();
+
+		final int id = c.getInt(0);
+		final String password = c.getString(1);
+		final String username = c.getString(2);
+
+		user = new User(id, email, password, username);
+
 	}
 
 	private static boolean existsUser(final String email, final Context context)
 	{
 		final SQLiteDatabase db = (new Database(context)).getReadableDatabase();
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	/**
-	 * @return The last user used if remembered
-	 */
-	public static User remember()
-	{
-		return null;
+		final Cursor c = db.rawQuery(
+		"SELECT COUNT(*) FROM USER WHERE email = '" + email + "'", null);
+
+		boolean exists = false;
+		if (c.moveToFirst())
+		{
+			exists = (c.getInt(0) == 1);
+		}
+		return exists;
 	}
 
 	/**
