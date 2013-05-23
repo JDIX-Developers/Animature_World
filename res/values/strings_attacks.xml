@@ -13,7 +13,7 @@
         <item>Picotazo</item>
     </string-array>
     
-         <string-array name="status_names">
+    <string-array name="status_names">
         <item>Normal</item>
         <item>Paralizado</item>
         <item>Quemado</item>

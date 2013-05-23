@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="animature_types_colors">
+    <!-- 000 -->	<item>#DACDB3</item>
+	<!-- 001 -->	<item>#FF5930</item>
+	<!-- 002 -->	<item>#308AFF</item> 
+	<!-- 003 -->	<item>#1E7F19</item> 
+	<!-- 004 -->	<item>#FFF930</item> 
+	<!-- 005 -->	<item>#77FFF9</item>
+	<!-- 006 -->	<item>#DF8A60</item>
+	<!-- 007 -->	<item>#EF58C4</item>
+	<!-- 008 -->	<item>#D59751</item>
+	<!-- 009 -->	<item>#B2A9FA</item>
+	<!-- 010 -->	<item>#AB6292</item>
+	<!-- 011 -->	<item>#6ABF6C</item>
+	<!-- 012 -->	<item>#A19989</item>
+	<!-- 013 -->	<item>#9F9F9F</item>
+	<!-- 014 -->	<item>#BA3343</item>
+	<!-- 015 -->	<item>#6E6E6E</item>
+	<!-- 016 -->	<item>#C2C2C2</item>
+	<!-- 017 -->	<item>#C2FFC2</item>
+	</array>
+	
+    <array name="animature_height">
+    <!-- 000 -->    <item>0.7</item>
+    <!-- 001 -->    <item>1</item>
+    <!-- 002 -->    <item>2</item>
+    <!-- 003 -->    <item></item>
+    <!-- 004 -->    <item></item>
+    <!-- 005 -->    <item></item>
+    <!-- 006 -->    <item></item>
+    <!-- 007 -->    <item></item>
+    <!-- 008 -->    <item></item>
+    <!-- 009 -->    <item></item>
+    <!-- 010 -->    <item></item>
+    <!-- 011 -->    <item></item>
+    <!-- 012 -->    <item></item>
+    <!-- 013 -->    <item></item>
+    <!-- 014 -->    <item></item>
+    <!-- 015 -->    <item></item>
+    <!-- 016 -->    <item></item>
+    <!-- 017 -->    <item></item>
+    <!-- 018 -->    <item></item>
+    <!-- 019 -->    <item></item>
+    </array>
+    
+    <array name="animature_weight">
+    <!-- 000 -->    <item>6.9</item>
+    <!-- 001 -->    <item>13</item>
+    <!-- 002 -->    <item>100</item>
+    <!-- 003 -->    <item></item>
+    <!-- 004 -->    <item></item>
+    <!-- 005 -->    <item></item>
+    <!-- 006 -->    <item></item>
+    <!-- 007 -->    <item></item>
+    <!-- 008 -->    <item></item>
+    <!-- 009 -->    <item></item>
+    <!-- 010 -->    <item></item>
+    <!-- 011 -->    <item></item>
+    <!-- 012 -->    <item></item>
+    <!-- 013 -->    <item></item>
+    <!-- 014 -->    <item></item>
+    <!-- 015 -->    <item></item>
+    <!-- 016 -->    <item></item>
+    <!-- 017 -->    <item></item>
+    <!-- 018 -->    <item></item>
+    <!-- 019 -->    <item></item>
+    </array>
+    
+    <array name="animature_velocity">
+    <!-- 000 -->    <item>50</item>
+    <!-- 001 -->    <item>50</item>
+    <!-- 002 -->    <item>50</item>
+    <!-- 003 -->    <item></item>
+    <!-- 004 -->    <item></item>
+    <!-- 005 -->    <item></item>
+    <!-- 006 -->    <item></item>
+    <!-- 007 -->    <item></item>
+    <!-- 008 -->    <item></item>
+    <!-- 009 -->    <item></item>
+    <!-- 010 -->    <item></item>
+    <!-- 011 -->    <item></item>
+    <!-- 012 -->    <item></item>
+    <!-- 013 -->    <item></item>
+    <!-- 014 -->    <item></item>
+    <!-- 015 -->    <item></item>
+    <!-- 016 -->    <item></item>
+    <!-- 017 -->    <item></item>
+    <!-- 018 -->    <item></item>
+    <!-- 019 -->    <item></item>
+    </array>
+    
+    <array name="animature_defense">
+    <!-- 000 -->    <item>60</item>
+    <!-- 001 -->    <item>60</item>
+    <!-- 002 -->    <item>60</item>
+    <!-- 003 -->    <item></item>
+    <!-- 004 -->    <item></item>
+    <!-- 005 -->    <item></item>
+    <!-- 006 -->    <item></item>
+    <!-- 007 -->    <item></item>
+    <!-- 008 -->    <item></item>
+    <!-- 009 -->    <item></item>
+    <!-- 010 -->    <item></item>
+    <!-- 011 -->    <item></item>
+    <!-- 012 -->    <item></item>
+    <!-- 013 -->    <item></item>
+    <!-- 014 -->    <item></item>
+    <!-- 015 -->    <item></item>
+    <!-- 016 -->    <item></item>
+    <!-- 017 -->    <item></item>
+    <!-- 018 -->    <item></item>
+    <!-- 019 -->    <item></item>
+    </array>
+    
+    <array name="animature_agility">
+    <!-- 000 -->    <item>40</item>
+    <!-- 001 -->    <item>40</item>
+    <!-- 002 -->    <item>40</item>
+    <!-- 003 -->    <item></item>
+    <!-- 004 -->    <item></item>
+    <!-- 005 -->    <item></item>
+    <!-- 006 -->    <item></item>
+    <!-- 007 -->    <item></item>
+    <!-- 008 -->    <item></item>
+    <!-- 009 -->    <item></item>
+    <!-- 010 -->    <item></item>
+    <!-- 011 -->    <item></item>
+    <!-- 012 -->    <item></item>
+    <!-- 013 -->    <item></item>
+    <!-- 014 -->    <item></item>
+    <!-- 015 -->    <item></item>
+    <!-- 016 -->    <item></item>
+    <!-- 017 -->    <item></item>
+    <!-- 018 -->    <item></item>
+    <!-- 019 -->    <item></item>
+    </array>
+    
+    <array name="animature_strength">
+    <!-- 000 -->    <item>65</item>
+    <!-- 001 -->    <item>65</item>
+    <!-- 002 -->    <item>65</item>
+    <!-- 003 -->    <item></item>
+    <!-- 004 -->    <item></item>
+    <!-- 005 -->    <item></item>
+    <!-- 006 -->    <item></item>
+    <!-- 007 -->    <item></item>
+    <!-- 008 -->    <item></item>
+    <!-- 009 -->    <item></item>
+    <!-- 010 -->    <item></item>
+    <!-- 011 -->    <item></item>
+    <!-- 012 -->    <item></item>
+    <!-- 013 -->    <item></item>
+    <!-- 014 -->    <item></item>
+    <!-- 015 -->    <item></item>
+    <!-- 016 -->    <item></item>
+    <!-- 017 -->    <item></item>
+    <!-- 018 -->    <item></item>
+    <!-- 019 -->    <item></item>
+    </array>
+    
+    <array name="animature_precision">
+    <!-- 000 -->    <item>65</item>
+    <!-- 001 -->    <item>65</item>
+    <!-- 002 -->    <item>65</item>
+    <!-- 003 -->    <item></item>
+    <!-- 004 -->    <item></item>
+    <!-- 005 -->    <item></item>
+    <!-- 006 -->    <item></item>
+    <!-- 007 -->    <item></item>
+    <!-- 008 -->    <item></item>
+    <!-- 009 -->    <item></item>
+    <!-- 010 -->    <item></item>
+    <!-- 011 -->    <item></item>
+    <!-- 012 -->    <item></item>
+    <!-- 013 -->    <item></item>
+    <!-- 014 -->    <item></item>
+    <!-- 015 -->    <item></item>
+    <!-- 016 -->    <item></item>
+    <!-- 017 -->    <item></item>
+    <!-- 018 -->    <item></item>
+    <!-- 019 -->    <item></item>
+    </array>
+</resources>

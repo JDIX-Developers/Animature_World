@@ -8,5 +8,10 @@
 	<string name="btnMultiplayer">Multijugador</string>
 	<string name="btnAnimatureShop">Tienda Animature</string>
 	<string name="btnOptions">Opciones</string>
+	
+	<string name="no_save_game">No hay partidas</string>
+	<string name="no_save_game_want_to_create">No existe ninguna partida creada. ¿Deseas crear una nueva?</string>
 
+	<string name="yes_option">si</string>
+	<string name="no_option">si</string>
 </resources>
