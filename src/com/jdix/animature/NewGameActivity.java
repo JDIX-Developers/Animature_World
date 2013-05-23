@@ -3,9 +3,11 @@ package com.jdix.animature;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
+import android.os.Vibrator;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -131,9 +133,18 @@ public class NewGameActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onKeyDown(final int keyCode, final KeyEvent event)
 	{
-		return super.onCreateOptionsMenu(menu);
+		if (keyCode == KeyEvent.KEYCODE_MENU
+		|| keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
+			startActivity(new Intent(NewGameActivity.this,
+			MainMenuActivity.class));
+			finish();
+		}
+
+		return super.onKeyDown(keyCode, event);
 	}
 
 	private void changeDialog()
