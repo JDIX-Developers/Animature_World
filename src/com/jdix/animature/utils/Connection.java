@@ -119,8 +119,6 @@ public class Connection {
 				break;
 			}
 
-			System.out.println(responseCode + responseBody);
-
 			boolean regenerate = false;
 			JSONObject jsonObject = null;
 			try

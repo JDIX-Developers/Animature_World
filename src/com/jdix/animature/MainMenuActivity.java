@@ -105,7 +105,7 @@ public class MainMenuActivity extends Activity {
 	public void loadGame()
 	{
 		final SQLiteDatabase db = (new Database(this)).getReadableDatabase();
-		final Cursor c = db.rawQuery("SELECT * FROM SAVE WHERE id_user="
+		final Cursor c = db.rawQuery("SELECT * FROM SAVE WHERE user = "
 		+ User.getCurrent().getId(), null);
 		final int count = c.getCount();
 		c.close();
@@ -113,13 +113,14 @@ public class MainMenuActivity extends Activity {
 
 		if (count == 0)
 		{
-
 			final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-			dialog.setTitle("Sin partidas");
+			dialog.setTitle("Sin partidas"); // TODO from strings
 			dialog
-			.setMessage("No existe ninguna partida creada.\n¿Deseas crear una nueva?");
+			.setMessage("No existe ninguna partida creada.\n¿Deseas crear una nueva?"); // TODO
+																						// from
+																						// strings
 			dialog.setCancelable(false);
-			dialog.setPositiveButton("Si",
+			dialog.setPositiveButton("Si", // TODO from strings
 			new DialogInterface.OnClickListener()
 			{
 
@@ -131,7 +132,7 @@ public class MainMenuActivity extends Activity {
 					finish();
 				}
 			});
-			dialog.setNegativeButton("No",
+			dialog.setNegativeButton("No", // TODO from strings
 			new DialogInterface.OnClickListener()
 			{
 

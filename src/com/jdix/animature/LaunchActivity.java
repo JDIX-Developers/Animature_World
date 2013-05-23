@@ -26,8 +26,6 @@ import com.jdix.animature.utils.Connection;
 import com.jdix.animature.utils.StringUtils;
 
 /**
- * TODO authors
- * 
  * @author Razican (Iban Eguia)
  */
 public class LaunchActivity extends Activity {
@@ -51,9 +49,6 @@ public class LaunchActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
-
-		startActivity(new Intent(LaunchActivity.this, MainMenuActivity.class));
-		this.finish();
 
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
@@ -344,12 +339,10 @@ public class LaunchActivity extends Activity {
 				StringUtils.sha1(password + "--Animature"), username, remember,
 				LaunchActivity.this));
 
-				// We create the intent
-				final Intent intent = new Intent(LaunchActivity.this,
-				MainMenuActivity.class);
-
 				// We start the activity
-				startActivity(intent);
+				startActivity(new Intent(LaunchActivity.this,
+				MainMenuActivity.class));
+
 				// We do not want a logged user to go back to login
 				finish();
 			}

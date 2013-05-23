@@ -337,7 +337,7 @@ public class Capturable extends Animature {
 	}
 
 	/**
-	 * Loads a capturabli by ID
+	 * Loads a capturable by ID
 	 * 
 	 * @param id - The ID of the capturable
 	 * @param context - The context of the application
