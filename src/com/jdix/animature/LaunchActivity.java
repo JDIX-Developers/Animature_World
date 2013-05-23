@@ -91,63 +91,67 @@ public class LaunchActivity extends Activity {
 			}
 		});
 
-		// TODO check user, if it's being remembered, login
-		// if ( ! TextUtils.isEmpty(dbEmail) && ! TextUtils.isEmpty(dbPassword))
-		// {
-		// showProgress(true);
-		//
-		// Thread t;
-		// (t = new Thread() {
-		// @Override
-		// public void run()
-		// {
-		// Connection c = Connection.getInstance();
-		//
-		// c.setAction("login");
-		// c.addData("method", "auto");
-		// c.addData("email", dbEmail);
-		// c.addData("pass", dbPassword);
-		//
-		// String token = null;
-		// try
-		// {
-		// JSONObject jsonObject = c.execute();
-		// token = jsonObject.getString("token");
-		// }
-		// catch (JSONException e)
-		// {
-		// }
-		//
-		// if (token == null)
-		// {
-		// mEditTextUserLogin
-		// .setError(getString(R.string.conection_error));
-		// mEditTextUserLogin.requestFocus();
-		// }
-		//
-		// if (token != null)
-		// {
-		// Connection.setLogin(dbEmail, dbPassword);
-		// }
-		// }
-		// }).start();
-		//
-		// try
-		// {
-		// t.join();
-		// }
-		// catch (InterruptedException e)
-		// {
-		// }
-		//
-		// // We create the intent
-		// Intent intent = new Intent(LaunchActivity.this,
-		// MainMenuActivity.class);
-		// // We start the activity
-		// startActivity(intent);
-		// // We do not want a logged user to go back to login
-		// finish();
-		// }
+		if (User.loadRemembered() != null)
+		{
+			// TODO check user, if it's being remembered, login
+			// if ( ! TextUtils.isEmpty(dbEmail) && !
+			// TextUtils.isEmpty(dbPassword))
+			// {
+			// showProgress(true);
+			//
+			// Thread t;
+			// (t = new Thread() {
+			// @Override
+			// public void run()
+			// {
+			// Connection c = Connection.getInstance();
+			//
+			// c.setAction("login");
+			// c.addData("method", "auto");
+			// c.addData("email", dbEmail);
+			// c.addData("pass", dbPassword);
+			//
+			// String token = null;
+			// try
+			// {
+			// JSONObject jsonObject = c.execute();
+			// token = jsonObject.getString("token");
+			// }
+			// catch (JSONException e)
+			// {
+			// }
+			//
+			// if (token == null)
+			// {
+			// mEditTextUserLogin
+			// .setError(getString(R.string.conection_error));
+			// mEditTextUserLogin.requestFocus();
+			// }
+			//
+			// if (token != null)
+			// {
+			// Connection.setLogin(dbEmail, dbPassword);
+			// }
+			// }
+			// }).start();
+			//
+			// try
+			// {
+			// t.join();
+			// }
+			// catch (InterruptedException e)
+			// {
+			// }
+			//
+			// // We create the intent
+			// Intent intent = new Intent(LaunchActivity.this,
+			// MainMenuActivity.class);
+			// // We start the activity
+			// startActivity(intent);
+			// // We do not want a logged user to go back to login
+			// finish();
+			// }
+		}
 	}
 
 	@Override

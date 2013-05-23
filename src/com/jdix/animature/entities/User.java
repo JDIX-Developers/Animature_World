@@ -170,4 +170,16 @@ public class User {
 	{
 		return user;
 	}
+
+	/**
+	 * Loads the remembered user, if exists, and returns it. It will return null
+	 * if none was remembered
+	 * 
+	 * @return The remembered user
+	 */
+	public static User loadRemembered()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
