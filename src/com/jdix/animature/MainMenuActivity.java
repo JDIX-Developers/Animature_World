@@ -114,13 +114,13 @@ public class MainMenuActivity extends Activity {
 		if (count == 0)
 		{
 			final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-			dialog.setTitle("Sin partidas"); // TODO from strings
-			dialog
-			.setMessage("No existe ninguna partida creada.\n¿Deseas crear una nueva?"); // TODO
-																						// from
-																						// strings
+			dialog.setTitle(getResources().getString(R.string.no_save_game));
+			dialog.setMessage(getResources().getString(
+			R.string.no_save_game_want_to_create));
+
 			dialog.setCancelable(false);
-			dialog.setPositiveButton("Si", // TODO from strings
+			dialog.setPositiveButton(
+			getResources().getString(R.string.yes_option),
 			new DialogInterface.OnClickListener()
 			{
 
@@ -132,7 +132,8 @@ public class MainMenuActivity extends Activity {
 					finish();
 				}
 			});
-			dialog.setNegativeButton("No", // TODO from strings
+			dialog.setNegativeButton(
+			getResources().getString(R.string.no_option),
 			new DialogInterface.OnClickListener()
 			{
 
