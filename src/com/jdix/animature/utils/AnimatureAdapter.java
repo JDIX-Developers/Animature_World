@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
+import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,6 @@ public class AnimatureAdapter extends BaseAdapter {
 	private final Activity				activity;
 	private final ArrayList<Animature>	items;
 	private String[]					typesNames;
-	private String[]					typesColors;
 
 	/**
 	 * @param activity The activity of the list.
@@ -68,8 +67,6 @@ public class AnimatureAdapter extends BaseAdapter {
 		}
 
 		typesNames = getResources().getStringArray(R.array.animature_types);
-		typesColors = getResources().getStringArray(
-		R.array.animature_types_colors);
 
 		// Creamos un objeto Animature
 		final Animature animature = items.get(position);
@@ -126,8 +123,15 @@ public class AnimatureAdapter extends BaseAdapter {
 			{
 				textViews[cont].setText(typesNames[(int) (Math.log(i) / Math
 				.log(2))]);
-				textViews[cont].setBackgroundColor(Color
-				.parseColor(typesColors[(int) (Math.log(i) / Math.log(2))]));
+
+				final TypedArray colors = getResources().obtainTypedArray(
+				R.array.animature_types_colors);
+				final int color = colors.getColor(
+				(int) (Math.log(i) / Math.log(2)), 0);
+
+				textViews[cont].setBackgroundColor(color);
+
+				colors.recycle();
 				cont++;
 			}
 		}
