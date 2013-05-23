@@ -27,7 +27,6 @@ public class AnimaxMenuActivity extends Activity {
 	private ListView				list;
 	private SQLiteDatabase			db;
 	private ArrayList<Animature>	animatures;
-	private String[]				animatureNames;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -47,10 +46,8 @@ public class AnimaxMenuActivity extends Activity {
 			c.moveToFirst();
 			while ( ! c.isAfterLast())
 			{
-				animatures.add(new Animature(c.getInt(0), animatureNames[c
-				.getInt(0) - 1], c.getDouble(1), c.getDouble(2), c.getInt(3), c
-				.getInt(4), c.getInt(5), c.getInt(6), c.getInt(7), c.getInt(8),
-				c.getInt(9), c.getInt(10), c.getInt(11), c.getInt(12)));
+				animatures.add(new Animature(c.getInt(0), c.getInt(3), c
+				.getInt(9), c.getInt(10), c.getInt(11), c.getInt(12)));
 				c.moveToNext();
 			}
 		}
@@ -71,7 +68,7 @@ public class AnimaxMenuActivity extends Activity {
 				final Intent intent = new Intent(AnimaxMenuActivity.this,
 				AnimaxAnimatureActivity.class);
 				final Bundle b = new Bundle();
-				b.putSerializable("Animature", animatures.get(pos));
+				b.putSerializable("id_animature", animatures.get(pos).getId());
 				intent.putExtras(b);
 
 				startActivity(intent);

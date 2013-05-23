@@ -44,8 +44,8 @@ public class AnimaxAnimatureActivity extends Activity {
 		animatureHealth = (TextView) findViewById(R.id.health_Animature_Animax_view);
 
 		// We recover the information passed in the intent
-		this.animature = (Animature) this.getIntent().getExtras()
-		.getSerializable("Animature");
+		final int idAnimature = this.getIntent().getIntExtra("id_animature", 1);
+		this.animature = new Animature(idAnimature, 43, 43, 43, 43, 43);
 
 		// ADD ANIMATURE DATA
 		animatureId.setText("N.º "

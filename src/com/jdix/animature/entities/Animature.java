@@ -1,118 +1,118 @@
 package com.jdix.animature.entities;
 
-import java.io.Serializable;
+import android.content.res.Resources;
+
+import com.jdix.animature.R;
 
 /**
  * @author Jordan Aranda Tejada
  */
-public class Animature implements Serializable {
-
-	private static final long	serialVersionUID	= - 7697636197467488947L;
+public class Animature {
 
 	/**
 	 * Animature's speed.
 	 */
-	public static final int		SPEED				= 0;
+	public static final int	SPEED		= 0;
 	/**
 	 * Animature's defense.
 	 */
-	public static final int		DEFENSE				= 1;
+	public static final int	DEFENSE		= 1;
 	/**
 	 * Animature's agility.
 	 */
-	public static final int		AGILITY				= 2;
+	public static final int	AGILITY		= 2;
 	/**
 	 * Animature's strength.
 	 */
-	public static final int		STRENGTH			= 3;
+	public static final int	STRENGTH	= 3;
 	/**
 	 * Animature's precision.
 	 */
-	public static final int		PRECISION			= 4;
+	public static final int	PRECISION	= 4;
 
 	/**
 	 * Animature type normal.
 	 */
-	public static final int		NORMAL				= 1;
+	public static final int	NORMAL		= 1;
 	/**
 	 * Animature type fire.
 	 */
-	public static final int		FIRE				= 2;
+	public static final int	FIRE		= 2;
 	/**
 	 * Animature type water.
 	 */
-	public static final int		WATER				= 4;
+	public static final int	WATER		= 4;
 	/**
 	 * Animature type grass.
 	 */
-	public static final int		GRASS				= 8;
+	public static final int	GRASS		= 8;
 	/**
 	 * Animature type electric.
 	 */
-	public static final int		ELECTRIC			= 16;
+	public static final int	ELECTRIC	= 16;
 	/**
 	 * Animature type ice.
 	 */
-	public static final int		ICE					= 32;
+	public static final int	ICE			= 32;
 	/**
 	 * Animature type fighting.
 	 */
-	public static final int		FIGHTING			= 64;
+	public static final int	FIGHTING	= 64;
 	/**
 	 * Animature type poison.
 	 */
-	public static final int		POISON				= 128;
+	public static final int	POISON		= 128;
 	/**
 	 * Animature type ground.
 	 */
-	public static final int		GROUND				= 256;
+	public static final int	GROUND		= 256;
 	/**
 	 * Animature type flying.
 	 */
-	public static final int		FLYING				= 512;
+	public static final int	FLYING		= 512;
 	/**
 	 * Animature type psychic.
 	 */
-	public static final int		PSYCHIC				= 1024;
+	public static final int	PSYCHIC		= 1024;
 	/**
 	 * Animature type bug.
 	 */
-	public static final int		BUG					= 2048;
+	public static final int	BUG			= 2048;
 	/**
 	 * Animature type rock.
 	 */
-	public static final int		ROCK				= 4096;
+	public static final int	ROCK		= 4096;
 	/**
 	 * Animature type ghost.
 	 */
-	public static final int		GHOST				= 8192;
+	public static final int	GHOST		= 8192;
 	/**
 	 * Animature type dragon.
 	 */
-	public static final int		DRAGON				= 16384;
+	public static final int	DRAGON		= 16384;
 	/**
 	 * Animature tyoe dark.
 	 */
-	public static final int		DARK				= 32768;
+	public static final int	DARK		= 32768;
 	/**
 	 * Animature type steel.
 	 */
-	public static final int		STEEL				= 65536;
+	public static final int	STEEL		= 65536;
 	/**
 	 * Animature type elemental (trick).
 	 */
-	public static final int		ELEMENTAL			= 131072;
+	public static final int	ELEMENTAL	= 131072;
 
-	private int					id;
-	private String				name;
-	private double				height;
-	private double				weight;
-	private int					type;
-	private final int[]			cualities			= new int[5];
-	private int					health;
-	private int					levelEvo;
-	private int					baseExp;
-	private int					captureRange;
+	private int				id;
+	private String			name;
+	private double			height;
+	private double			weight;
+	private int				type;
+	private final int[]		cualities	= new int[5];
+	private int				health;
+	private int				levelEvo;
+	private int				baseExp;
+	private int				captureRange;
 
 	/**
 	 * Constructor
@@ -126,36 +126,32 @@ public class Animature implements Serializable {
 	 * Constructor
 	 * 
 	 * @param id Animature's id
-	 * @param name Animature's name
-	 * @param height Animature's height
-	 * @param weight Animature's weight
 	 * @param type Animature's type
-	 * @param speed Animature's speed
-	 * @param defense Animature's defense
-	 * @param agility Animature's agility
-	 * @param strenght Animature's strength
-	 * @param precission Animature's precision
 	 * @param health Animature's health
 	 * @param levelEvo Animature's level to evolve
 	 * @param baseExp Animature's experience
 	 * @param captureRange Animature's capture range
 	 */
-	public Animature(final int id, final String name, final double height,
-	final double weight, final int type, final int speed, final int defense,
-	final int agility, final int strenght, final int precission,
-	final int health, final int levelEvo, final int baseExp,
-	final int captureRange)
+	public Animature(final int id, final int type, final int health,
+	final int levelEvo, final int baseExp, final int captureRange)
 	{
 		this.id = id;
-		this.name = name;
-		this.height = height;
-		this.weight = weight;
-		this.type = type;
-		this.cualities[SPEED] = speed;
-		this.cualities[DEFENSE] = defense;
-		this.cualities[AGILITY] = agility;
-		this.cualities[STRENGTH] = strenght;
-		this.cualities[PRECISION] = precission;
+		this.name = Resources.getSystem().getStringArray(
+		R.array.animature_names)[id - 1];
+		this.height = Double.parseDouble(Resources.getSystem().getStringArray(
+		R.array.animature_height)[id - 1]);
+		this.weight = Double.parseDouble(Resources.getSystem().getStringArray(
+		R.array.animature_weight)[id - 1]);
+		this.cualities[SPEED] = Integer.parseInt(Resources.getSystem()
+		.getStringArray(R.array.animature_velocity)[id - 1]);
+		this.cualities[DEFENSE] = Integer.parseInt(Resources.getSystem()
+		.getStringArray(R.array.animature_defense)[id - 1]);
+		this.cualities[AGILITY] = Integer.parseInt(Resources.getSystem()
+		.getStringArray(R.array.animature_agility)[id - 1]);
+		this.cualities[STRENGTH] = Integer.parseInt(Resources.getSystem()
+		.getStringArray(R.array.animature_strength)[id - 1]);
+		this.cualities[PRECISION] = Integer.parseInt(Resources.getSystem()
+		.getStringArray(R.array.animature_precision)[id - 1]);
 		this.health = health;
 		this.levelEvo = levelEvo;
 		this.baseExp = baseExp;
