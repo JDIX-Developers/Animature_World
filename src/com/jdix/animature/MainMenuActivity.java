@@ -128,6 +128,7 @@ public class MainMenuActivity extends Activity {
 				{
 					startActivity(new Intent(MainMenuActivity.this,
 					NewGameActivity.class));
+					finish();
 				}
 			});
 			dialog.setNegativeButton("No",
@@ -141,6 +142,11 @@ public class MainMenuActivity extends Activity {
 				}
 			});
 			dialog.show();
+		}
+		else
+		{
+			// Player.load(id, context)
+			// Carga el juego
 		}
 	}
 
