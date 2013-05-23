@@ -32,7 +32,8 @@
         </activity>
         <activity
             android:name="com.jdix.animature.MainMenuActivity"
-            android:label="@string/title_activity_main_menu" >
+            android:label="@string/title_activity_main_menu" 
+            android:windowSoftInputMode="adjustResize|stateVisible">
         </activity>
         <activity
             android:name="com.jdix.animature.NewGameActivity"
@@ -55,7 +56,7 @@
         <activity
             android:name="com.jdix.animature.GameMenuActivity"
             android:label="@string/title_activity_game_menu"
-			android:screenOrientation="landscape"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
@@ -66,9 +67,9 @@
         </activity>
         <activity
             android:name="com.jdix.animature.PlayerDataViewActivity"
-            android:label="@string/title_activity_player_data_view" 
+            android:label="@string/title_activity_player_data_view"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.jdix.animature.AnimaxMenuActivity"
@@ -78,9 +79,14 @@
         </activity>
         <activity
             android:name="com.jdix.animature.AnimaxAnimatureActivity"
-            android:label="@string/title_activity_animax_animature_view" 
+            android:label="@string/title_activity_animax_animature_view"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.jdix.animature.LoadGameActivity"
+            android:label="@string/title_activity_load_game" 
+            android:windowSoftInputMode="adjustResize|stateVisible">
         </activity>
     </application>
 

@@ -20,18 +20,13 @@ public class PlayerDataViewActivity extends Activity {
 	private TextView	playerViewAnimatures;
 	private TextView	playerCapturedAnimatures;
 	private TextView	playerMoney;
+	private TextView	playerMedals;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_player_data_view);
-
-		/*
-		 * Player.set("JORDAN", 0, "PEPE",new Date( 1371726970906L), 350, new
-		 * Animature[6], 10, 25, 2, 1, 3, 100, 3, 200, new Vector<Item>(),
-		 * null);
-		 */
 
 		// We get a reference to the interface controls
 		playerId = (TextView) findViewById(R.id.player_id_view);
@@ -40,8 +35,10 @@ public class PlayerDataViewActivity extends Activity {
 		playerViewAnimatures = (TextView) findViewById(R.id.player_viewedAnimatures_view);
 		playerCapturedAnimatures = (TextView) findViewById(R.id.player_capturedAnimatures_view);
 		playerMoney = (TextView) findViewById(R.id.player_money_view);
+		playerMedals = (TextView) findViewById(R.id.player_medals_view);
 
-		playerId.setText("ID: " + Player.getInstance().getId());
+		playerId.setText("ID: "
+		+ getFormatedIdPlayer(Player.getInstance().getId()));
 		playerName.setText("Nombre: " + Player.getInstance().getName());
 		playerPlayedTime.setText("Tiempo jugado:"
 		+ Player.getInstance().getPlayedTime());
@@ -50,6 +47,7 @@ public class PlayerDataViewActivity extends Activity {
 		playerCapturedAnimatures.setText("Animatures caputarados: "
 		+ Player.getInstance().getCaptured(this));
 		playerMoney.setText("Monedas: " + Player.getInstance().getMoney());
+		playerMedals.setText("Medallas: " + Player.getInstance().getMedals());
 	}
 
 	@Override
@@ -61,5 +59,25 @@ public class PlayerDataViewActivity extends Activity {
 			finish();
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	private String getFormatedIdPlayer(final int id)
+	{
+		if (id < 10)
+		{
+			return "000" + id;
+		}
+		else if (id < 1000)
+		{
+			return "00" + id;
+		}
+		else if (id < 10)
+		{
+			return "0" + id;
+		}
+		else
+		{
+			return "" + id;
+		}
 	}
 }

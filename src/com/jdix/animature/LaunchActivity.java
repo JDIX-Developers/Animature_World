@@ -51,7 +51,7 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
-		startActivity(new Intent(LaunchActivity.this, NewGameActivity.class));
+		startActivity(new Intent(LaunchActivity.this, MainMenuActivity.class));
 		this.finish();
 
 		db = (new Database(this)).getWritableDatabase();
