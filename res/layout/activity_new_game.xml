@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
 				android:textSize="25sp"
                 android:textColor="#FFFFFF"
-                android:text="@string/animatureOption2" />
+                android:text="@string/animatureOption4" />
 
         </LinearLayout>
 
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:textColor="#FFFFFF"
-                android:text="@string/animatureOption3" />
+                android:text="@string/animatureOption7" />
 
         </LinearLayout>
 
