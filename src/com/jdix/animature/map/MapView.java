@@ -1,7 +1,5 @@
 package com.jdix.animature.map;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,7 +14,6 @@ import android.view.View.OnTouchListener;
 import com.jdix.animature.R;
 import com.jdix.animature.entities.Capturable;
 import com.jdix.animature.entities.Player;
-import com.jdix.animature.entities.User;
 
 /**
  * @author Razican (Iban Eguia)
@@ -55,28 +52,20 @@ public class MapView extends View implements OnTouchListener {
 
 	/**
 	 * @param context - Context of the application
-	 * @param map - Map to show
 	 * @param sprite - The sprite to use
 	 * @param sprbmp - The drawable of the sprite
 	 */
-	public MapView(final Context context, final int map, final int sprite,
-	final int sprbmp)
+	public MapView(final Context context, final int sprite, final int sprbmp)
 	{
 		this(context);
 		this.control = NONE;
 
-		Square.setSprite(new Sprite(context, sprite, sprbmp));
-		try
-		{
-			this.map = new Map(context, map);
-		}
-		catch (final IOException e)
-		{
-			System.err.println(e.getMessage());
-		}
-
-		Player.set(User.getCurrent(), this.map, "TestUser", Player.BOY,
+		Player.set(new Map(R.raw.map_test, context), "TestUser", Player.BOY,
 		"TestEnemy", new Capturable[6], 5, 5, Player.SOUTH, null, context);
+
+		Square.setSprite(new Sprite(context, sprite, sprbmp));
+
+		this.map = Player.getInstance().getMap();
 
 		this.move = new MoveThread();
 

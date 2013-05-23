@@ -335,4 +335,17 @@ public class Capturable extends Animature {
 		}
 		return this;
 	}
+
+	/**
+	 * Loads a capturabli by ID
+	 * 
+	 * @param id - The ID of the capturable
+	 * @param context - The context of the application
+	 * @return The Capturable loaded
+	 */
+	public static Capturable load(final int id, final Context context)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -26,13 +26,19 @@ public class Map {
 	/**
 	 * @param context - The context of the application
 	 * @param map - The map resource to load
-	 * @throws IOException if there is an IO exception when loading the map
 	 */
-	public Map(final Context context, final int map) throws IOException
+	public Map(final int map, final Context context)
 	{
 		this.id = map;
 		final InputStream s = context.getResources().openRawResource(map);
-		load(s);
+		try
+		{
+			load(s);
+		}
+		catch (final IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**

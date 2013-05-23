@@ -106,7 +106,6 @@ public class Square {
 	/**
 	 * @param x - Coordinate X
 	 * @param y - Coordinate Y
-	 * @param type - The type of the square
 	 * @return The square in this position
 	 * @throws SpriteException - If the sprite has not been initialized
 	 * @throws CompressionException - If there is a compression error
