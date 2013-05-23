@@ -13,7 +13,7 @@
 	<string name="battle_string_6">¡*cuality* de *anim* bajó!</string>					<!-- ¡Defensa de Charmander bajó! -->
 	<string name="battle_string_7">¡Es muy eficaz!</string>				 				<!-- ¡Es muy eficaz! -->		
 	<string name="battle_string_8">No es muy eficaz…</string>							<!-- No es muy eficaz -->
-	<string name="battle_string_9">¡Mo afecta a *anim*!</string>						<!-- ¡No afecta a Charmander! -->
+	<string name="battle_string_9">¡No afecta a *anim*!</string>						<!-- ¡No afecta a Charmander! -->
 	<string name="battle_string_10">¡*anim* salvaje se debilitó!</string>				<!-- ¡Pidgey salvaje se debilitó! -->
 	<string name="battle_string_11">¡*anim* debilitó!</string>							<!-- ¡Charmander se debilitó! -->
 	<string name="battle_string_12">¡*anim* gano *score* puntos de EXP!</string>		<!-- ¡Charmander ganó 50 puntos de EXP! -->

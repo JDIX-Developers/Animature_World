@@ -16,7 +16,7 @@ public class Item {
 	/**
 	 * Item type pokeballs for all pokeballs.
 	 */
-	public static final int	POKEBALLS	= 1;
+	public static final int	ANIMBALLS	= 1;
 
 	private int				id;
 	private int				type;

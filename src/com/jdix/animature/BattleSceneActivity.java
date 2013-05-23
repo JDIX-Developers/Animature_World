@@ -173,6 +173,7 @@ public class BattleSceneActivity extends Activity {
 			enemy.setHealthAct(enemy.getHealthAct() - 10);
 			animatureFainted = enemy.getHealthAct() <= 0;
 			enemy_animature_life.setProgress(enemy.getHealthAct());
+			// enemy_animature_life.setProgress((enemy.getHealthAct()*100)/enemy.getHealthMax());
 			animSel[animatureIndex].reduceAttackPP(index);
 			changeAttacksBackground();
 			yourTurn = false;
@@ -187,6 +188,8 @@ public class BattleSceneActivity extends Activity {
 				.getHealthAct() - 9);
 				your_animature_life.setProgress(animSel[animatureIndex]
 				.getHealthAct());
+				// your_animature_life.setProgress((animSel[animatureIndex]
+				// .getHealthAct()*100)/animSel[animatureIndex].getHealthMax());
 				animatureFainted = animSel[animatureIndex].getHealthAct() <= 0;
 				enemy.reduceAttackPP(attack);
 				yourTurn = true;

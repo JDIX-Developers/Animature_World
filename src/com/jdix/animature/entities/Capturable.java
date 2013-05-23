@@ -42,8 +42,8 @@ public class Capturable extends Animature {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Capturable(final int id, final int idAnimature,
-	final int save, final String nickname, final int sex, final int status,
+	public Capturable(final int id, final int idAnimature, final int save,
+	final String nickname, final int sex, final int status,
 	final int capturedTime, final int a1, final int a1pp, final int a2,
 	final int a2pp, final int a3, final int a3pp, final int a4, final int a4pp,
 	final int level, final int currentExp, final int experience,
@@ -248,45 +248,65 @@ public class Capturable extends Animature {
 		this.cualitiesC[pos] = quantity;
 	}
 
-	/*
-	 * public boolean levelUp() { boolean levelUp = false; ands.open(); while
-	 * (this.current_exp >= this.experience) { this.level += 1;
-	 * this.cualitiesC[SPEED] += (this.cualities[SPEED] / 3);
-	 * this.cualitiesC[DEFENSE] += (this.cualities[DEFENSE] / 3);
-	 * this.cualitiesC[AGILITY] += (this.cualities[AGILITY] / 3);
-	 * this.cualitiesC[STRENGHT] += (this.cualities[STRENGHT] / 3);
-	 * this.cualitiesC[PRECISSION] += (this.cualities[PRECISSION] / 3);
-	 * this.healthAct += (this.healthAct / 3); this.current_exp -=
-	 * this.experience; this.experience = (int) Math.pow(this.level, 3); levelUp
-	 * = true; } ands.close(); return levelUp; }
-	 */
-
-	/*
-	 * public boolean evolution() { boolean evolution = false; if (this.level ==
-	 * ands.readAnimatureColInt(this.idAnimature, 12)) { evolution = true;
-	 * this.id_Animature += 1; } return evolution; }
-	 */
-
-	public boolean heal()
+	public boolean levelUp()
 	{
-		boolean healed = false;
-
-		if ((this.healthAct < this.healthMax) || (this.status != NORMAL))
+		boolean levelUp = false;
+		while (this.currentExp >= this.experience)
 		{
-			this.healthAct = this.healthMax;
-			this.status = NORMAL;
-			healed = true;
+			this.level += 1;
+			this.cualitiesC[SPEED] += (this.cualitiesC[SPEED] / 3);
+			this.cualitiesC[DEFENSE] += (this.cualitiesC[DEFENSE] / 3);
+			this.cualitiesC[AGILITY] += (this.cualitiesC[AGILITY] / 3);
+			this.cualitiesC[STRENGTH] += (this.cualitiesC[STRENGTH] / 3);
+			this.cualitiesC[PRECISION] += (this.cualitiesC[PRECISION] / 3);
+			this.healthAct += (this.healthAct / 3);
+			this.currentExp -= this.experience;
+			this.experience = (int) Math.pow(this.level, 3);
+			levelUp = true;
 		}
-		return healed;
+		return levelUp;
 	}
 
-	/*
-	 * public int giveExp(final int battleType, final int idC) { int gExp = 0;
-	 * int baseExp; ands.open(); baseExp = ands.readAnimatureColInt(idC, 13); if
-	 * (battleType == 0) { gExp = (baseExp * (this.level)) / 7; } else { gExp =
-	 * (int) ((baseExp * (this.level) * 1.5) / 7); } ands.close(); return gExp;
-	 * }
-	 */
+	public boolean evolution()
+	{
+		boolean evolution = false;
+		if (this.level == this.getLevelEvo())
+		{
+			this.idAnimature += 1;
+			evolution = true;
+		}
+		return evolution;
+	}
+
+	public void healAnimature()
+	{
+		for (int i = 1; i <= this.getLevel(); i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				this.setCualitiesC(
+				this.getCualitiesC(j) + (this.getCualitiesC(j) / 3), j);
+			}
+		}
+		this.healthAct = this.healthMax;
+		this.status = NORMAL;
+	}
+
+	public int giveExp(final int battleType, final Capturable enemy)
+	{
+		int gExp = 0;
+		int baseExp;
+		baseExp = enemy.getBaseExp();
+		if (battleType == 0)
+		{
+			gExp = (baseExp * (this.level)) / 7;
+		}
+		else
+		{
+			gExp = (int) ((baseExp * (this.level) * 1.5) / 7);
+		}
+		return gExp;
+	}
 
 	public Capturable getCapturedDamage(final Capturable captDo, final int atk)
 	{
