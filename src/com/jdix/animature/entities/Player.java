@@ -485,9 +485,7 @@ public class Player {
 	public Bitmap getBitmap(final int position)
 	{
 		return Bitmap.createBitmap(bitmap, position
-		* Square.getSprite().getSize(),
-		(int) Math.round(sex * 1.5 * position * Square.getSprite().getSize()),
-		Square.getSprite().getSize(),
+		* Square.getSprite().getSize(), 0, Square.getSprite().getSize(),
 		(int) Math.round(1.5 * Square.getSprite().getSize()));
 	}
 
