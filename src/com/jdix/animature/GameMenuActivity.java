@@ -9,6 +9,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
+import com.jdix.animature.entities.Player;
+
 /**
  * @author Jordan Aranda Tejada
  */
@@ -90,8 +92,7 @@ public class GameMenuActivity extends Activity {
 			}
 		});
 
-		changePlayerButtonText("JORDAN"); // Hay que cambiar por el nombre del
-											// jugador
+		changePlayerButtonText(Player.getInstance().getName());
 
 	}
 
