@@ -41,54 +41,9 @@ public class Attack {
 		this.isFirst = isFirst;
 	}
 
-	public int getId()
-	{
-		return id;
-	}
-
-	public void setId(final int id)
-	{
-		this.id = id;
-	}
-
-	public String getName()
-	{
-		return name;
-	}
-
-	public void setName(final String name)
-	{
-		this.name = name;
-	}
-
-	public int getType()
-	{
-		return type;
-	}
-
-	public void setType(final int type)
-	{
-		this.type = type;
-	}
-
-	public int getMaxpp()
-	{
-		return maxpp;
-	}
-
-	public void setMaxpp(final int maxpp)
-	{
-		this.maxpp = maxpp;
-	}
-
 	public boolean getActive()
 	{
 		return active;
-	}
-
-	public void setActive(final boolean active)
-	{
-		this.active = active;
 	}
 
 	public int getAttribute()
@@ -96,39 +51,9 @@ public class Attack {
 		return attribute;
 	}
 
-	public void setAttribute(final int attribute)
-	{
-		this.attribute = attribute;
-	}
-
-	public int getPower()
-	{
-		return power;
-	}
-
-	public void setPower(final int power)
-	{
-		this.power = power;
-	}
-
 	public double getProbability()
 	{
 		return probability;
-	}
-
-	public void setProbability(final int probability)
-	{
-		this.probability = probability;
-	}
-
-	public boolean isFirst()
-	{
-		return isFirst;
-	}
-
-	public void setFirst(final boolean isFirst)
-	{
-		this.isFirst = isFirst;
 	}
 
 	/**

@@ -36,30 +36,6 @@ public class User {
 	}
 
 	/**
-	 * @return The username of the user
-	 */
-	public String getUsername()
-	{
-		return username;
-	}
-
-	/**
-	 * @return The email for the user
-	 */
-	public String getEmail()
-	{
-		return email;
-	}
-
-	/**
-	 * @return The password for the user, a 40 character sha1 encoded string
-	 */
-	public String getPassword()
-	{
-		return password;
-	}
-
-	/**
 	 * Exists the user
 	 * 
 	 * @param context - The context of the application
