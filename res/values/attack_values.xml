@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="attack_type">
+    <!-- 000 -->    <item>1</item>
+    <!-- 001 -->    <item>1</item>
+    <!-- 002 -->    <item>1</item>
+    </array>
+    
+    <array name="attack_max_pp">
+    <!-- 000 -->    <item>35</item>
+    <!-- 001 -->    <item>30</item>
+    <!-- 002 -->    <item>40</item>
+    </array>
+    
+    <array name="attack_attributte">
+    <!-- 000 -->    <item>-1</item>
+    <!-- 001 -->    <item>-1</item>
+    <!-- 002 -->    <item>3</item>
+    </array>
+    
+    <array name="attack_power">
+    <!-- 000 -->    <item>35</item>
+    <!-- 001 -->    <item>40</item>
+    <!-- 002 -->    <item>0</item>
+    </array>
+    
+    <array name="attack_probability">
+    <!-- 000 -->    <item>95</item>
+    <!-- 001 -->    <item>100</item>
+    <!-- 002 -->    <item>100</item>
+    </array>
+    
+    <array name="attack_is_first">
+    <!-- 000 -->    <item>0</item>
+    <!-- 001 -->    <item>1</item>
+    <!-- 002 -->    <item>0</item>
+    </array>
+</resources>
