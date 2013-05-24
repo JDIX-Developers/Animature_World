@@ -125,7 +125,7 @@ public class MainMenuActivity extends Activity {
 			{
 
 				@Override
-				public void onClick(final DialogInterface dialogo1, final int id)
+				public void onClick(final DialogInterface dialog, final int id)
 				{
 					startActivity(new Intent(MainMenuActivity.this,
 					NewGameActivity.class));
@@ -138,9 +138,9 @@ public class MainMenuActivity extends Activity {
 			{
 
 				@Override
-				public void onClick(final DialogInterface dialogo1, final int id)
+				public void onClick(final DialogInterface dialog, final int id)
 				{
-					finish();
+					dialog.cancel();
 				}
 			});
 			dialog.show();
