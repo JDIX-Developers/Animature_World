@@ -49,7 +49,7 @@ public class Player {
 	private Date			lastSaved;
 	private final long		totalPlayed;
 	private int				steps;
-	private Capturable[]	activeAnimatures;
+	private Animature[]		activeAnimatures;
 	private int				posX;
 	private int				posY;
 	private int				orientation;
@@ -59,16 +59,16 @@ public class Player {
 	private int				medals;
 	private int				money;
 	private final Bitmap	bitmap;
-	private final Animature	firstAnim;
+	private final int		firstAnim;
 	private Vector<Item>	items;
 
 	private Player(final Map map, final int id, final String name,
 	final int sex, final String neighborName, final int stage,
 	final Date startDate, final Date lastSaved, final long totalPlayed,
-	final int steps, final Capturable[] activeAnimatures, final int posX,
+	final int steps, final Animature[] activeAnimatures, final int posX,
 	final int posY, final int orientation, final int lastHealingMap,
 	final int lastHealingX, final int lastHealingY, final int medals,
-	final int money, final Vector<Item> items, final Animature firstAnim,
+	final int money, final Vector<Item> items, final int firstAnim,
 	final Context context)
 	{
 		this.map = map;
@@ -119,9 +119,9 @@ public class Player {
 	 * @param context - The context of the application
 	 */
 	public static void set(final Map map, final String name, final int sex,
-	final String neighborName, final Capturable[] activeAnimatures,
-	final int posX, final int posY, final int orientation,
-	final Animature firstAnim, final Context context)
+	final String neighborName, final Animature[] activeAnimatures,
+	final int posX, final int posY, final int orientation, final int firstAnim,
+	final Context context)
 	{
 		player = new Player(map, 0, name, sex, neighborName, 0, new Date(),
 		new Date(0), 0, 0, activeAnimatures, posX, posY, orientation, 0, 0, 0,
@@ -156,7 +156,7 @@ public class Player {
 		values.put("coord_x", posX);
 		values.put("coord_y", posY);
 		values.put("neighbor", neighborName);
-		values.put("first_an", firstAnim.getId());
+		values.put("first_an", firstAnim);
 		values.put("orientation", orientation);
 		values.put("last_healing_map", lastHealingMap);
 		values.put("medals", medals);
@@ -206,19 +206,19 @@ public class Player {
 		final long totalPlayed = c.getLong(7);
 		final int steps = c.getInt(8);
 
-		final Capturable[] animatures = new Capturable[6];
-		animatures[0] = Capturable.load(c.getInt(9), context);
-		animatures[1] = Capturable.load(c.getInt(10), context);
-		animatures[2] = Capturable.load(c.getInt(11), context);
-		animatures[3] = Capturable.load(c.getInt(12), context);
-		animatures[4] = Capturable.load(c.getInt(13), context);
-		animatures[5] = Capturable.load(c.getInt(14), context);
+		final Animature[] animatures = new Animature[6];
+		animatures[0] = new Animature(c.getInt(9), context);
+		animatures[1] = new Animature(c.getInt(10), context);
+		animatures[2] = new Animature(c.getInt(11), context);
+		animatures[3] = new Animature(c.getInt(12), context);
+		animatures[4] = new Animature(c.getInt(13), context);
+		animatures[5] = new Animature(c.getInt(14), context);
 
 		final Map map = new Map(c.getInt(15), context);
 		final int posX = c.getInt(16);
 		final int posY = c.getInt(17);
 		final String neighbor = c.getString(18);
-		final Animature firstAnim = new Animature(); // c.getInt(19);
+		final int firstAnim = c.getInt(19);
 		final int orientation = c.getInt(20);
 		final int lastHealingMap = c.getInt(21);
 		final int lastHealingX = c.getInt(22);
@@ -349,7 +349,7 @@ public class Player {
 		return activeAnimatures;
 	}
 
-	public void setActiveAnimatures(final Capturable[] activeAnimatures)
+	public void setActiveAnimatures(final Animature[] activeAnimatures)
 	{
 		this.activeAnimatures = activeAnimatures;
 	}
@@ -359,7 +359,7 @@ public class Player {
 	/**
 	 * @return The first animature of the player
 	 */
-	public Animature getFirstAnimature()
+	public int getFirstAnimature()
 	{
 		return firstAnim;
 	}

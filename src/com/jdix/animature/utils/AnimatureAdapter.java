@@ -54,7 +54,7 @@ public class AnimatureAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(final int position, final View convertView,
+	public View getView(final int animature, final View convertView,
 	final ViewGroup parent)
 	{
 		View v = convertView;
@@ -69,16 +69,14 @@ public class AnimatureAdapter extends BaseAdapter {
 		typesNames = getResources().getStringArray(
 		R.array.animature_types_names);
 
-		// Creamos un objeto Animature
-		final Animature animature = items.get(position);
 		// ID
 		final TextView idAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_id);
-		idAnimature.setText(getFormatedIdAnimature(animature.getId()));
+		idAnimature.setText(getFormatedIdAnimature(animature));
 		// NAME
 		final TextView nameAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_name);
-		nameAnimature.setText(animature.getName());
+		nameAnimature.setText(Animature.getName(animature));
 		// TYPE 1
 		final TextView type1Animature = (TextView) v
 		.findViewById(R.id.animax_row_type1);
@@ -115,12 +113,12 @@ public class AnimatureAdapter extends BaseAdapter {
 	}
 
 	private void modifyTypeTextView(final TextView[] textViews,
-	final Animature animature)
+	final int animature)
 	{
 		int cont = 0;
 		for (int i = Animature.NORMAL; i < Animature.STEEL; i *= 2)
 		{
-			if (animature.isOfType(i))
+			if (Animature.isOfType(i, animature))
 			{
 				textViews[cont].setText(typesNames[(int) (Math.log(i) / Math
 				.log(2))]);

@@ -11,7 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jdix.animature.R;
-import com.jdix.animature.entities.Capturable;
+import com.jdix.animature.entities.Animature;
 
 /**
  * @author Jordan Aranda Tejada
@@ -19,14 +19,14 @@ import com.jdix.animature.entities.Capturable;
 public class CapturableAdapter extends BaseAdapter {
 
 	private final Activity				activity;
-	private final ArrayList<Capturable>	items;
+	private final ArrayList<Animature>	items;
 
 	/**
 	 * @param activity The activity of the list.
 	 * @param items Items to show in list.
 	 */
 	public CapturableAdapter(final Activity activity,
-	final ArrayList<Capturable> items)
+	final ArrayList<Animature> items)
 	{
 		this.activity = activity;
 		this.items = items;
@@ -65,7 +65,7 @@ public class CapturableAdapter extends BaseAdapter {
 		}
 
 		// Creamos un objeto Animature
-		final Capturable captured = items.get(position);
+		final Animature captured = items.get(position);
 		// NAME
 
 		// STATUS

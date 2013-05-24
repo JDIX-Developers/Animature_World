@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Attack;
-import com.jdix.animature.entities.Capturable;
 
 /**
  * BattleUtils
@@ -29,7 +28,7 @@ public class BattleUtils {
 		return (playerAnimatureAttack.isFirst() && ! enemyAnimatureAttack
 		.isFirst())
 		|| (playerAnimatureAttack.isFirst() && enemyAnimatureAttack.isFirst() && playerAnimature
-		.getCualities()[Animature.SPEED] > enemyAnimature.getCualities()[Animature.SPEED]);
+		.getQualities()[Animature.SPEED] > enemyAnimature.getQualities()[Animature.SPEED]);
 	}
 
 	/**
@@ -44,8 +43,8 @@ public class BattleUtils {
 	final Animature underAttackAnimature)
 	{
 		return (new Random()).nextInt(100) <= (attack.getProbability() + (attacker
-		.getCualities()[Animature.PRECISION] - underAttackAnimature
-		.getCualities()[Animature.AGILITY]));
+		.getQualities()[Animature.PRECISION] - underAttackAnimature
+		.getQualities()[Animature.AGILITY]));
 	}
 
 	/**
@@ -55,8 +54,8 @@ public class BattleUtils {
 	 * @param enemyAnimature Wild Animature.
 	 * @return true if player can escape from the battle.
 	 */
-	public static boolean canEscape(final Capturable playerAnimature,
-	final Capturable enemyAnimature)
+	public static boolean canEscape(final Animature playerAnimature,
+	final Animature enemyAnimature)
 	{
 		return (playerAnimature.getLevel() > enemyAnimature.getLevel())
 		|| (playerAnimature.getLevel() == enemyAnimature.getLevel() && enemyAnimature
@@ -71,8 +70,8 @@ public class BattleUtils {
 	 * @param attack The atack of attacker Animature.
 	 * @return The infringed damage.
 	 */
-	public static int getDamage(final Capturable attacker,
-	final Capturable defensor, final Attack attack)
+	public static int getDamage(final Animature attacker,
+	final Animature defensor, final Attack attack)
 	{
 		int damage = 0;
 
@@ -108,7 +107,7 @@ public class BattleUtils {
 	 * @param defensor The Animature under attack.
 	 * @return The infringed damage.
 	 */
-	public int combat(final Capturable attacker, final Capturable defensor)
+	public int combat(final Animature attacker, final Animature defensor)
 	{
 		int damage = 0;
 		damage = (int) 0.1
@@ -123,7 +122,7 @@ public class BattleUtils {
 	 * 
 	 * @param captured The Animature whose cualities are going to be loaded
 	 */
-	public void loadCualities(final Capturable captured)
+	public void loadCualities(final Animature captured)
 	{
 		for (int i = 1; i <= captured.getLevel(); i++)
 		{
@@ -138,17 +137,17 @@ public class BattleUtils {
 	/**
 	 * Method to load the max health of the Animature
 	 * 
-	 * @param captured The Animature whose max health is going to be loaded
+	 * @param animature The Animature whose max health is going to be loaded
 	 */
-	public void loadHealthMax(final Capturable captured)
+	public void loadHealthMax(final Animature animature)
 	{
-		captured.setHealthMax(captured.getHealth());
-		if (captured.getLevel() > 1)
+		animature.setHealthMax(animature.getHealthAct());
+		if (animature.getLevel() > 1)
 		{
-			for (int i = 2; i <= captured.getLevel(); i++)
+			for (int i = 2; i <= animature.getLevel(); i++)
 			{
-				captured.setHealthMax(captured.getHealthMax()
-				+ captured.getHealthMax() / 3);
+				animature.setHealthMax(animature.getHealthMax()
+				+ animature.getHealthMax() / 3);
 			}
 		}
 	}
@@ -160,7 +159,7 @@ public class BattleUtils {
 	 * @param captured The Animature whose level could grow up
 	 * @return True if the Animature has grow up one level
 	 */
-	public boolean levelUp(final Capturable captured)
+	public boolean levelUp(final Animature captured)
 	{
 		boolean levelUp = false;
 		while (captured.getCurrentExp() >= captured.getExperience())
@@ -199,12 +198,12 @@ public class BattleUtils {
 	 * @param captured if The Animature who could evolution
 	 * @return True if the Animature has evolutioned
 	 */
-	public boolean evolution(final Capturable captured)
+	public boolean evolution(final Animature captured)
 	{
 		boolean evolution = false;
 		if (captured.getLevel() == captured.getLevelEvo())
 		{
-			captured.setIdAnimature(captured.getIdAnimature() + 1);
+			captured.setAnimature(captured.getAnimature() + 1);
 			evolution = true;
 		}
 		return evolution;
@@ -215,7 +214,7 @@ public class BattleUtils {
 	 * 
 	 * @param captured The Animature who is going to be healed
 	 */
-	public void healAnimature(final Capturable captured)
+	public void healAnimature(final Animature captured)
 	{
 		captured.setHealthAct(captured.getHealthMax());
 		captured.setStatus(Animature.NORMAL);
@@ -228,8 +227,8 @@ public class BattleUtils {
 	 * @param yourCaptured Your Animature who is going to receive experience
 	 * @param enemy The enemy Animature which has been fainted
 	 */
-	public void giveExp(final int battleType, final Capturable yourCaptured,
-	final Capturable enemy)
+	public void giveExp(final int battleType, final Animature yourCaptured,
+	final Animature enemy)
 	{
 		int gExp = 0;
 		int baseExp;
