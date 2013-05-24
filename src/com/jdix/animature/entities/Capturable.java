@@ -249,66 +249,6 @@ public class Capturable extends Animature implements Serializable {
 		this.cualitiesC[pos] = quantity;
 	}
 
-	public boolean levelUp()
-	{
-		boolean levelUp = false;
-		while (this.currentExp >= this.experience)
-		{
-			this.level += 1;
-			this.cualitiesC[SPEED] += (this.cualitiesC[SPEED] / 3);
-			this.cualitiesC[DEFENSE] += (this.cualitiesC[DEFENSE] / 3);
-			this.cualitiesC[AGILITY] += (this.cualitiesC[AGILITY] / 3);
-			this.cualitiesC[STRENGTH] += (this.cualitiesC[STRENGTH] / 3);
-			this.cualitiesC[PRECISION] += (this.cualitiesC[PRECISION] / 3);
-			this.healthAct += (this.healthAct / 3);
-			this.currentExp -= this.experience;
-			this.experience = (int) Math.pow(this.level, 3);
-			levelUp = true;
-		}
-		return levelUp;
-	}
-
-	public boolean evolution()
-	{
-		boolean evolution = false;
-		if (this.level == this.getLevelEvo())
-		{
-			this.idAnimature += 1;
-			evolution = true;
-		}
-		return evolution;
-	}
-
-	public void healAnimature()
-	{
-		for (int i = 1; i <= this.getLevel(); i++)
-		{
-			for (int j = 0; j < 5; j++)
-			{
-				this.setCualitiesC(
-				this.getCualitiesC(j) + (this.getCualitiesC(j) / 3), j);
-			}
-		}
-		this.healthAct = this.healthMax;
-		this.status = NORMAL;
-	}
-
-	public int giveExp(final int battleType, final Capturable enemy)
-	{
-		int gExp = 0;
-		int baseExp;
-		baseExp = enemy.getBaseExp();
-		if (battleType == 0)
-		{
-			gExp = (baseExp * (this.level)) / 7;
-		}
-		else
-		{
-			gExp = (int) ((baseExp * (this.level) * 1.5) / 7);
-		}
-		return gExp;
-	}
-
 	public Capturable getCapturedDamage(final Capturable captDo, final int atk)
 	{
 		final int rand = (new Random()).nextInt(100);

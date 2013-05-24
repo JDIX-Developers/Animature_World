@@ -150,34 +150,6 @@ public class BattleSceneActivity extends Activity {
 
 	private void loadEnemyAnimature()
 	{
-		/*
-		 * dataSource.open(); enemy.setCualitiesC(
-		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 6),
-		 * Animature.SPEED); enemy.setCualitiesC(
-		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 7),
-		 * Animature.DEFENSE); enemy.setCualitiesC(
-		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 8),
-		 * Animature.AGILITY); enemy.setCualitiesC(
-		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 9),
-		 * Animature.STRENGHT); enemy.setCualitiesC(
-		 * dataSource.readAnimatureColInt(enemy.getIdAnimature(), 10),
-		 * Animature.PRECISSION);
-		 */
-
-		/*
-		 * for (int i = 1; i <= enemy.getLevel(); i++) { for (int j = 0; j < 5;
-		 * j++) { enemy.setCualitiesC( enemy.getCualitiesC(j) +
-		 * (enemy.getCualitiesC(j) / 3), j); } }
-		 */
-
-		/*
-		 * enemy.setHealthMax(dataSource.readAnimatureColInt(
-		 * enemy.getIdAnimature(), 11)); if (enemy.getLevel() > 1) { for (int i
-		 * = 2; i <= enemy.getLevel(); i++) {
-		 * enemy.setHealthMax(enemy.getHealthMax() + enemy.getHealthMax() / 3);
-		 * } } dataSource.close();
-		 */
-
 		enemy_animature_name.setText(enemy.getNickname());
 		enemy_animature_level.setText("Nvl " + enemy.getLevel());
 		enemy_animature_life.setMax(100);// enemy.getHealthMax());
@@ -190,37 +162,6 @@ public class BattleSceneActivity extends Activity {
 
 	private void loadYourAnimature()
 	{
-		/*
-		 * dataSource.open();
-		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
-		 * animSel[animatureIndex].getIdAnimature(), 6), Animature.SPEED);
-		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
-		 * animSel[animatureIndex].getIdAnimature(), 7), Animature.DEFENSE);
-		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
-		 * animSel[animatureIndex].getIdAnimature(), 8), Animature.AGILITY);
-		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
-		 * animSel[animatureIndex].getIdAnimature(), 9), Animature.STRENGHT);
-		 * animSel[animatureIndex].setCualitiesC(dataSource.readAnimatureColInt(
-		 * animSel[animatureIndex].getIdAnimature(), 10), Animature.PRECISSION);
-		 */
-
-		/*
-		 * for (int i = 1; i <= animSel[animatureIndex].getLevel(); i++) { for
-		 * (int j = 0; j < 5; j++) { animSel[animatureIndex].setCualitiesC(
-		 * animSel[animatureIndex].getCualitiesC(j) +
-		 * (animSel[animatureIndex].getCualitiesC(j) / 3), j); } }
-		 */
-
-		/*
-		 * animSel[animatureIndex].setHealthMax(dataSource.readAnimatureColInt(
-		 * animSel[animatureIndex].getIdAnimature(), 11)); if
-		 * (animSel[animatureIndex].getLevel() > 1) { for (int i = 2; i <=
-		 * animSel[animatureIndex].getLevel(); i++) {
-		 * animSel[animatureIndex].setHealthMax(animSel[animatureIndex]
-		 * .getHealthMax() + animSel[animatureIndex].getHealthMax() / 3); } }
-		 * dataSource.close();
-		 */
-
 		your_animature_name.setText(animSel[animatureIndex].getNickname());
 		your_animature_level.setText("Nvl "
 		+ animSel[animatureIndex].getLevel());
@@ -242,45 +183,8 @@ public class BattleSceneActivity extends Activity {
 
 	private void loadBattleAnimatures()
 	{
-		/*
-		 * dataSource.open(); dataSource.createCaptured(0, 2, 0, "BLASTOISE", 0,
-		 * 0, 0, 0, 5, 0, 10, 0, 10, 0, 10, 40, 100, 200, 100, 0);
-		 * dataSource.createCaptured(0, 1, 0, "CHARIZARD", 0, 0, 0, 0, 10, 0,
-		 * 10, 0, 10, 0, 10, 40, 100, 200, 100, 0); animatureIndex = 0;
-		 */
-
-		/*
-		 * animSel[animatureIndex] = dataSource.readCaptured(1); enemy =
-		 * dataSource.readCaptured(2);
-		 */
-
-		/*
-		 * for (int i = 0; i < 4; i++) { animSel[animatureIndex].setAttack(i,
-		 * dataSource.readAttack(animSel[animatureIndex].getAttackN(i)));
-		 * enemy.setAttack(i, dataSource.readAttack(enemy.getAttackN(i))); }
-		 * dataSource.close();
-		 */
-
 		animSel[0] = new Capturable(0, 2, 0, "BLASTOISE", 0, 0, 0, 0, 5, 0, 10,
 		0, 10, 0, 10, 40, 100, 200, 100, 0);
-
-		// final Attack a = new Attack(0, "Placaje", 0, 20, 1, - 1, 35, 90);
-		// final Attack a1 = new Attack(1, "Latigo", 0, 25, 0,
-		// Animature.STRENGHT,
-		// 0, 100);
-		// final Attack a2 = new Attack(2, "Pistola agua", 2, 15, 1, 50, 1,
-		// 100);
-		// final Attack a3 = new Attack(3, "Gruñido", 0, 20, 0,
-		// Animature.DEFENSE,
-		// 0, 100);
-
-		// final Attack[] aAttacks = new Attack[4];
-		// aAttacks[0] = a;
-		// aAttacks[1] = a1;
-		// aAttacks[2] = a2;
-		// aAttacks[3] = a3;
-		//
-		// animSel[0].setAttacks(aAttacks);
 
 		enemy = new Capturable(0, 1, 0, "CHARIZARD", 0, 0, 0, 0, 10, 0, 10, 0,
 		10, 0, 10, 40, 100, 200, 100, 0);
