@@ -10,5 +10,6 @@
     <dimen name="Margin50">50dp</dimen>
     <dimen name="Margin40">40dp</dimen>
     <dimen name="Margin_80">80dp</dimen>
+    <dimen name="Margin1">1dp</dimen>
 
 </resources>

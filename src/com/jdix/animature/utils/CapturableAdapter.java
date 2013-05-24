@@ -39,9 +39,9 @@ public class CapturableAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Object getItem(final int arg0)
+	public Object getItem(final int idCapturable)
 	{
-		return items.get(arg0);
+		return items.get(idCapturable);
 	}
 
 	@Override
