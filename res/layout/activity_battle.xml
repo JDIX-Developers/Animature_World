@@ -25,16 +25,21 @@
                 android:id="@+id/enemy_animature_data_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/Margin20"
-                android:layout_marginRight="@dimen/Margin20"
+                android:layout_marginLeft="@dimen/Margin10"
+                android:layout_marginRight="@dimen/Margin10"
+                android:background="#000000"
                 android:gravity="left"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:padding="@dimen/Margin1" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/Margin5"
-                    android:layout_weight="1" >
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="@dimen/Margin5"
+                    android:paddingRight="@dimen/Margin5"
+                    android:paddingTop="@dimen/Margin1" >
 
                     <TextView
                         android:id="@+id/enemy_name_textView"
@@ -58,7 +63,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" >
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:paddingBottom="@dimen/Margin1"
+                    android:paddingLeft="@dimen/Margin5"
+                    android:paddingRight="@dimen/Margin5" >
 
                     <ImageView
                         android:id="@+id/enemy_captured_image"
@@ -133,22 +142,28 @@
                 android:id="@+id/player_animature_data_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="@dimen/Margin20"
                 android:layout_marginRight="@dimen/Margin20"
-                android:layout_weight="1"
+                android:layout_weight="0"
+                android:background="#000000"
                 android:gravity="right|bottom"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:padding="@dimen/Margin1" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0" >
+                    android:layout_weight="0"
+                    android:background="#FFFFFF"
+                    android:paddingTop="@dimen/Margin1" >
 
                     <TextView
                         android:id="@+id/player_animature_name_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:paddingLeft="@dimen/Margin5"
                         android:text="Charmander"
                         android:textColor="#000000" />
 
@@ -158,14 +173,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:gravity="right"
+                        android:paddingRight="@dimen/Margin5"
                         android:text="Nv 15"
                         android:textColor="#000000" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:background="#FFFFFF"
                     android:gravity="center" >
 
                     <TextView
@@ -174,6 +192,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/Margin10"
                         android:layout_weight="0"
+                        android:paddingLeft="@dimen/Margin5"
                         android:text="PS"
                         android:textColor="#000000" />
 
@@ -182,7 +201,9 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:paddingRight="@dimen/Margin5" />
+
                 </LinearLayout>
 
                 <TextView
@@ -190,7 +211,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:background="#FFFFFF"
                     android:gravity="right|center_vertical"
+                    android:paddingRight="@dimen/Margin5"
                     android:text="64 / 64"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -198,9 +221,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:layout_weight="0"
-                    android:gravity="center_horizontal|center_vertical" >
+                    android:background="#FFFFFF"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:paddingRight="@dimen/Margin5" >
 
                     <TextView
                         android:id="@+id/exp_textView"
@@ -208,6 +232,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/Margin10"
                         android:layout_weight="0"
+                        android:paddingLeft="@dimen/Margin5"
                         android:text="EXP"
                         android:textColor="#000000"
                         android:textSize="10sp" />
@@ -236,7 +261,7 @@
         android:padding="@dimen/Margin5" >
 
         <TextView
-            android:id="@+id/textViewNewGame"
+            android:id="@+id/textViewBattleActivity"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -250,7 +275,66 @@
             android:minHeight="20dp"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/player_battle_options"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/battle_options_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/Margin5"
+                android:paddingLeft="@dimen/Margin5"
+                android:paddingRight="@dimen/Margin5"
+                android:paddingTop="@dimen/Margin5"
+                android:text="¿Qué debería hacer Charmander?"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/btnFightBattleActivity"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/Margin15"
+                    android:text="@string/battle_scene_option1" />
+
+                <Button
+                    android:id="@+id/btnAnimatureBattleActivity"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/Margin15"
+                    android:text="@string/battle_scene_option2" />
+
+                <Button
+                    android:id="@+id/btnBagBattleActivity"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/Margin15"
+                    android:text="@string/battle_scene_option3" />
+
+                <Button
+                    android:id="@+id/btnEscapeBattleActivity"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/battle_scene_option4" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
