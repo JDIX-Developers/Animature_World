@@ -392,8 +392,8 @@ public class BattleSceneActivity extends Activity {
 	 * int ballEffect = 100; final int rand = (new Random()).nextInt(100); if
 	 * (status > 0 && status < 4) { s = 5; } if (status > 3) { s = 10; } switch
 	 * (ball) { case 1: ballEffect = 150; break; case 2: ballEffect = 200;
-	 * break; case 3: captured = true; break; } capture = (((m * 4) - (h * 2) *
-	 * r) / m) + s + 1; effectiveness = (int) capture * (ballEffect / 100); if
+	 * break; case 3: captured = true; break; } capture = ((((m * 4) - (h * 2) *
+	 * r) / m) + s + 1)/256; effectiveness = (int) capture * ballEffect; if
 	 * (rand <= effectiveness) { captured = true; } return captured; }
 	 */
 }

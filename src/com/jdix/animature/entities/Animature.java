@@ -126,14 +126,8 @@ public class Animature {
 	 * Constructor
 	 * 
 	 * @param id Animature's id
-	 * @param type Animature's type
-	 * @param health Animature's health
-	 * @param levelEvo Animature's level to evolve
-	 * @param baseExp Animature's experience
-	 * @param captureRange Animature's capture range
 	 */
-	public Animature(final int id, final int type, final int health,
-	final int levelEvo, final int baseExp, final int captureRange)
+	public Animature(final int id)
 	{
 		this.id = id;
 		this.name = Resources.getSystem().getStringArray(
@@ -142,8 +136,10 @@ public class Animature {
 		R.array.animature_height)[id - 1]);
 		this.weight = Double.parseDouble(Resources.getSystem().getStringArray(
 		R.array.animature_weight)[id - 1]);
+		this.type = Integer.parseInt(Resources.getSystem().getStringArray(
+		R.array.animature_type)[id - 1]);
 		this.cualities[SPEED] = Integer.parseInt(Resources.getSystem()
-		.getStringArray(R.array.animature_velocity)[id - 1]);
+		.getStringArray(R.array.animature_speed)[id - 1]);
 		this.cualities[DEFENSE] = Integer.parseInt(Resources.getSystem()
 		.getStringArray(R.array.animature_defense)[id - 1]);
 		this.cualities[AGILITY] = Integer.parseInt(Resources.getSystem()
@@ -152,10 +148,14 @@ public class Animature {
 		.getStringArray(R.array.animature_strength)[id - 1]);
 		this.cualities[PRECISION] = Integer.parseInt(Resources.getSystem()
 		.getStringArray(R.array.animature_precision)[id - 1]);
-		this.health = health;
-		this.levelEvo = levelEvo;
-		this.baseExp = baseExp;
-		this.captureRange = captureRange;
+		this.health = Integer.parseInt(Resources.getSystem().getStringArray(
+		R.array.animature_health)[id - 1]);
+		this.levelEvo = Integer.parseInt(Resources.getSystem().getStringArray(
+		R.array.animature_level_evo)[id - 1]);
+		this.baseExp = Integer.parseInt(Resources.getSystem().getStringArray(
+		R.array.animature_base_exp)[id - 1]);
+		this.captureRange = Integer.parseInt(Resources.getSystem()
+		.getStringArray(R.array.animature_capture_range)[id - 1]);
 	}
 
 	/**

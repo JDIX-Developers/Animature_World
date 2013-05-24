@@ -67,7 +67,30 @@
     <!-- 019 -->    <item>18.5</item>
     </array>
     
-    <array name="animature_velocity">
+    <array name="animature_type">
+    <!-- 000 -->    <item>136</item>
+    <!-- 001 -->    <item>136</item>
+    <!-- 002 -->    <item>136</item>
+    <!-- 003 -->    <item>2</item>
+    <!-- 004 -->    <item>2</item>
+    <!-- 005 -->    <item>514</item>
+    <!-- 006 -->    <item>4</item>
+    <!-- 007 -->    <item>4</item>
+    <!-- 008 -->    <item>4</item>
+    <!-- 009 -->    <item>2048</item>
+    <!-- 010 -->    <item>2048</item>
+    <!-- 011 -->    <item>2560</item>
+    <!-- 012 -->    <item>2048</item>
+    <!-- 013 -->    <item>2048</item>
+    <!-- 014 -->    <item>2560</item>
+    <!-- 015 -->    <item>513</item>
+    <!-- 016 -->    <item>513</item>
+    <!-- 017 -->    <item>513</item>
+    <!-- 018 -->    <item>1</item>
+    <!-- 019 -->    <item>1</item>
+    </array>
+    
+    <array name="animature_speed">
     <!-- 000 -->    <item>50</item>
     <!-- 001 -->    <item>67</item>
     <!-- 002 -->    <item>83</item>
@@ -180,5 +203,97 @@
     <!-- 017 -->    <item>100</item>
     <!-- 018 -->    <item>60</item>
     <!-- 019 -->    <item>90</item>
+    </array>
+    
+    <array name="animature_health">
+    <!-- 000 -->    <item>20</item>
+    <!-- 001 -->    <item>28</item>
+    <!-- 002 -->    <item>34</item>
+    <!-- 003 -->    <item>20</item>
+    <!-- 004 -->    <item>28</item>
+    <!-- 005 -->    <item>34</item>
+    <!-- 006 -->    <item>20</item>
+    <!-- 007 -->    <item>28</item>
+    <!-- 008 -->    <item>34</item>
+    <!-- 009 -->    <item>25</item>
+    <!-- 010 -->    <item>34</item>
+    <!-- 011 -->    <item>41</item>
+    <!-- 012 -->    <item>25</item>
+    <!-- 013 -->    <item>34</item>
+    <!-- 014 -->    <item>41</item>
+    <!-- 015 -->    <item>25</item>
+    <!-- 016 -->    <item>34</item>
+    <!-- 017 -->    <item>41</item>
+    <!-- 018 -->    <item>20</item>
+    <!-- 019 -->    <item>30</item>
+    </array>
+    
+    <array name="animature_level_evo">
+    <!-- 000 -->    <item>16</item>
+    <!-- 001 -->    <item>36</item>
+    <!-- 002 -->    <item>-1</item>
+    <!-- 003 -->    <item>16</item>
+    <!-- 004 -->    <item>36</item>
+    <!-- 005 -->    <item>-1</item>
+    <!-- 006 -->    <item>16</item>
+    <!-- 007 -->    <item>36</item>
+    <!-- 008 -->    <item>-1</item>
+    <!-- 009 -->    <item>8</item>
+    <!-- 010 -->    <item>18</item>
+    <!-- 011 -->    <item>-1</item>
+    <!-- 012 -->    <item>8</item>
+    <!-- 013 -->    <item>18</item>
+    <!-- 014 -->    <item>-1</item>
+    <!-- 015 -->    <item>16</item>
+    <!-- 016 -->    <item>36</item>
+    <!-- 017 -->    <item>-1</item>
+    <!-- 018 -->    <item>14</item>
+    <!-- 019 -->    <item>-1</item>
+    </array>
+    
+    <array name="animature_base_exp">
+    <!-- 000 -->    <item>64</item>
+    <!-- 001 -->    <item>141</item>
+    <!-- 002 -->    <item>208</item>
+    <!-- 003 -->    <item>65</item>
+    <!-- 004 -->    <item>142</item>
+    <!-- 005 -->    <item>209</item>
+    <!-- 006 -->    <item>66</item>
+    <!-- 007 -->    <item>143</item>
+    <!-- 008 -->    <item>210</item>
+    <!-- 009 -->    <item>53</item>
+    <!-- 010 -->    <item>72</item>
+    <!-- 011 -->    <item>160</item>
+    <!-- 012 -->    <item>52</item>
+    <!-- 013 -->    <item>71</item>
+    <!-- 014 -->    <item>159</item>
+    <!-- 015 -->    <item>55</item>
+    <!-- 016 -->    <item>113</item>
+    <!-- 017 -->    <item>172</item>
+    <!-- 018 -->    <item>57</item>
+    <!-- 019 -->    <item>116</item>
+    </array>
+    
+    <array name="animature_capture_range">
+    <!-- 000 -->    <item>45</item>
+    <!-- 001 -->    <item>45</item>
+    <!-- 002 -->    <item>45</item>
+    <!-- 003 -->    <item>45</item>
+    <!-- 004 -->    <item>45</item>
+    <!-- 005 -->    <item>45</item>
+    <!-- 006 -->    <item>45</item>
+    <!-- 007 -->    <item>45</item>
+    <!-- 008 -->    <item>45</item>
+    <!-- 009 -->    <item>255</item>
+    <!-- 010 -->    <item>120</item>
+    <!-- 011 -->    <item>45</item>
+    <!-- 012 -->    <item>255</item>
+    <!-- 013 -->    <item>120</item>
+    <!-- 014 -->    <item>45</item>
+    <!-- 015 -->    <item>255</item>
+    <!-- 016 -->    <item>120</item>
+    <!-- 017 -->    <item>45</item>
+    <!-- 018 -->    <item>255</item>
+    <!-- 019 -->    <item>127</item>
     </array>
 </resources>

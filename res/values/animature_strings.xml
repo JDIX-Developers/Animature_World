@@ -46,7 +46,7 @@
     <!-- 019 -->    <item>Lima sus colmillos royendo objetos duros. Con ellos puede destruir incluso paredes de hormigón.</item>
     </string-array>
     
-    <string-array name="animature_types">
+    <string-array name="animature_types_names">
     <!-- 000 -->	<item>Normal</item>
     <!-- 001 -->  	<item>Fuego</item>
     <!-- 002 -->	<item>Agua</item>
@@ -67,7 +67,7 @@
     <!-- 017 -->	<item>Elemental</item>
 	</string-array>
 	
-    <string-array name="animature_cualities">
+    <string-array name="animature_cualities_names">
     <!-- 000 -->	<item>Velocidad</item>
     <!-- 001 -->  	<item>Defensa</item>
     <!-- 002 -->	<item>Agilidad</item>
