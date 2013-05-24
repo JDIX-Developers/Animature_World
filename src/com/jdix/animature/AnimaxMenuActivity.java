@@ -46,8 +46,7 @@ public class AnimaxMenuActivity extends Activity {
 			c.moveToFirst();
 			while ( ! c.isAfterLast())
 			{
-				animatures.add(new Animature(c.getInt(0), c.getInt(3), c
-				.getInt(9), c.getInt(10), c.getInt(11), c.getInt(12)));
+				animatures.add(new Animature(c.getInt(0)));
 				c.moveToNext();
 			}
 		}

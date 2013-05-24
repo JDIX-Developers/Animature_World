@@ -66,7 +66,8 @@ public class AnimatureAdapter extends BaseAdapter {
 			v = inf.inflate(R.layout.animax_row, null);
 		}
 
-		typesNames = getResources().getStringArray(R.array.animature_types);
+		typesNames = getResources().getStringArray(
+		R.array.animature_types_names);
 
 		// Creamos un objeto Animature
 		final Animature animature = items.get(position);

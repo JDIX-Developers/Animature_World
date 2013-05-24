@@ -45,7 +45,7 @@ public class AnimaxAnimatureActivity extends Activity {
 
 		// We recover the information passed in the intent
 		final int idAnimature = this.getIntent().getIntExtra("id_animature", 1);
-		this.animature = new Animature(idAnimature, 43, 43, 43, 43, 43);
+		this.animature = new Animature(idAnimature);
 
 		// ADD ANIMATURE DATA
 		animatureId.setText("N.º "
