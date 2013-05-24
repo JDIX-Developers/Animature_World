@@ -2,7 +2,6 @@ package com.jdix.animature.utils;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -20,19 +19,21 @@ import com.jdix.animature.entities.Animature;
  */
 public class AnimatureAdapter extends BaseAdapter {
 
-	private final Activity				activity;
-	private final ArrayList<Animature>	items;
+	private final Context				context;
+	private final ArrayList<Integer>	items;
 	private String[]					typesNames;
 
 	/**
-	 * @param activity The activity of the list.
-	 * @param items Items to show in list.
+	 * @param context The context of list.
 	 */
-	public AnimatureAdapter(final Activity activity,
-	final ArrayList<Animature> items)
+	public AnimatureAdapter(final Context context)
 	{
-		this.activity = activity;
-		this.items = items;
+		this.context = context;
+		this.items = new ArrayList<Integer>();
+		for (int i = 1; i < 21; i++)
+		{
+			items.add(Integer.valueOf(i));
+		}
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class AnimatureAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(final int position)
 	{
-		return items.get(position).getId();
+		return items.get(position);
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class AnimatureAdapter extends BaseAdapter {
 
 		if (convertView == null)
 		{
-			final LayoutInflater inf = (LayoutInflater) activity
+			final LayoutInflater inf = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = inf.inflate(R.layout.animax_row, null);
 		}

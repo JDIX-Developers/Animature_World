@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.KeyEvent;
@@ -17,7 +15,6 @@ import android.widget.ListView;
 
 import com.jdix.animature.entities.Animature;
 import com.jdix.animature.utils.AnimatureAdapter;
-import com.jdix.animature.utils.Database;
 
 /**
  * @author Jordan Aranda Tejada
@@ -25,7 +22,6 @@ import com.jdix.animature.utils.Database;
 public class AnimaxMenuActivity extends Activity {
 
 	private ListView				list;
-	private SQLiteDatabase			db;
 	private ArrayList<Animature>	animatures;
 
 	@Override
@@ -34,26 +30,11 @@ public class AnimaxMenuActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_animax_game_menu);
 
-		db = (new Database(this)).getReadableDatabase();
-
 		// We get a reference to the interface controls
 		list = (ListView) findViewById(R.id.list_Animatures);
 		animatures = new ArrayList<Animature>();
 
-		final Cursor c = db.rawQuery("SELECT * FROM ANIMATURE", null);
-		if (c.getCount() > 0)
-		{
-			c.moveToFirst();
-			while ( ! c.isAfterLast())
-			{
-				animatures.add(new Animature(c.getInt(0)));
-				c.moveToNext();
-			}
-		}
-		c.close();
-		db.close();
-
-		final AnimatureAdapter adapter = new AnimatureAdapter(this, animatures);
+		final AnimatureAdapter adapter = new AnimatureAdapter(this);
 
 		list.setAdapter(adapter);
 

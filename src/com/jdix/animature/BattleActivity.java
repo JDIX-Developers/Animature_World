@@ -2,7 +2,6 @@ package com.jdix.animature;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -56,14 +55,9 @@ public class BattleActivity extends Activity {
 		playerAnimatureExperienceProgressBar = (ProgressBar) findViewById(R.id.player_animature_experience_progressBar);
 		playerAnimatureImageView = (ImageView) findViewById(R.id.player_animature_imageView);
 
-		textViewNewGame.setOnClickListener(new View.OnClickListener()
-		{
-
-			@Override
-			public void onClick(final View view)
-			{
-
-			}
-		});
+		/*
+		 * textViewNewGame.setOnClickListener(new View.OnClickListener() {
+		 * @Override public void onClick(final View view) { } });
+		 */
 	}
 }
