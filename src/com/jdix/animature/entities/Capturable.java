@@ -1,5 +1,6 @@
 package com.jdix.animature.entities;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import android.content.Context;
@@ -7,7 +8,7 @@ import android.content.Context;
 /**
  * @author Jordan Aranda Tejada
  */
-public class Capturable extends Animature {
+public class Capturable extends Animature implements Serializable {
 
 	private static final long	serialVersionUID	= - 2197066367542502490L;
 	public static final int		NORMAL				= 0;

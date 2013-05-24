@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    android:orientation="vertical" 
+    tools:context=".BattleActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/Margin15"
+        android:layout_marginRight="@dimen/Margin15"
+        android:layout_marginTop="@dimen/Margin15"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.50"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/enemy_animature_data_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Margin20"
+                android:layout_marginRight="@dimen/Margin20"
+                android:gravity="left"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/Margin5"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/enemy_name_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Bulbasur"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/enemy_level_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:gravity="right"
+                        android:text="Nv 15"
+                        android:textColor="#000000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:id="@+id/enemy_captured_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/Margin10"
+                        android:src="@drawable/pokeball" />
+
+                    <TextView
+                        android:id="@+id/ps_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/Margin10"
+                        android:gravity="center"
+                        android:text="PS"
+                        android:textColor="#000000" />
+
+                    <ProgressBar
+                        android:id="@+id/enemy_live_progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Margin20"
+                android:layout_marginRight="@dimen/Margin_80"
+                android:layout_marginTop="@dimen/Margin20"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/player_animature_imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/b4" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/Margin20"
+                android:layout_weight="1"
+                android:gravity="top|center_horizontal"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/enemy_imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/f1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/player_animature_data_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Margin20"
+                android:layout_marginRight="@dimen/Margin20"
+                android:layout_weight="1"
+                android:gravity="right|bottom"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" >
+
+                    <TextView
+                        android:id="@+id/player_animature_name_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Charmander"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/player_animatura_level_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:gravity="right"
+                        android:text="Nv 15"
+                        android:textColor="#000000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/ps_textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/Margin10"
+                        android:layout_weight="0"
+                        android:text="PS"
+                        android:textColor="#000000" />
+
+                    <ProgressBar
+                        android:id="@+id/player_animature_live_progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/player_animature_ps_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="right|center_vertical"
+                    android:text="64 / 64"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="0"
+                    android:gravity="center_horizontal|center_vertical" >
+
+                    <TextView
+                        android:id="@+id/exp_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/Margin10"
+                        android:layout_weight="0"
+                        android:text="EXP"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                    <ProgressBar
+                        android:id="@+id/player_animature_experience_progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="5dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#000000"
+        android:dividerPadding="10dp"
+        android:padding="@dimen/Margin5" >
+
+        <TextView
+            android:id="@+id/textViewNewGame"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:clickable="true"
+            android:drawableRight="@drawable/flecha"
+            android:gravity="center_horizontal|center_vertical"
+            android:height="100dp"
+            android:maxHeight="20dp"
+            android:maxLines="2"
+            android:minHeight="20dp"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>

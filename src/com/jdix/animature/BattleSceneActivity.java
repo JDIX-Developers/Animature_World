@@ -5,7 +5,6 @@ import java.util.Random;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -53,105 +52,48 @@ public class BattleSceneActivity extends Activity {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_battle_scene);
-
-		loadBattleAnimatures();
-
-		animatureIndex = 0;
-
-		yourTurn = true;
-
-		// We get a reference to the interface controls
-		// Enemy's Animature Components
-		enemy_animature_name = (TextView) findViewById(R.id.enemyAnimatureName);
-		enemy_animature_level = (TextView) findViewById(R.id.enemyAnimatureLevel);
-		enemy_animature_life = (ProgressBar) findViewById(R.id.enemyAnimatureLife);
-		enemy_animature_image = (ImageView) findViewById(R.id.enemyAnimatureImage);
-
-		// Your Animature Components
-		your_animature_name = (TextView) findViewById(R.id.your_animature_name);
-		your_animature_level = (TextView) findViewById(R.id.your_animature_level);
-		your_animature_life = (ProgressBar) findViewById(R.id.your_animature_life);
-		your_animature_exp = (ProgressBar) findViewById(R.id.your_animature_exp);
-		your_animature_image = (ImageView) findViewById(R.id.your_animature_image);
-
-		// Load attack buttons
-		attacksBtns = new Button[4];
-		attack1 = (Button) findViewById(R.id.btnAtack1);
-		attacksBtns[0] = attack1;
-		attack1.setOnClickListener(new View.OnClickListener()
-		{
-
-			@Override
-			public void onClick(final View view)
-			{
-				if (yourTurn)
-				{
-					attack(0);
-				}
-			}
-		});
-		attack2 = (Button) findViewById(R.id.btnAtack2);
-		attacksBtns[1] = attack2;
-		attack2.setOnClickListener(new View.OnClickListener()
-		{
-
-			@Override
-			public void onClick(final View view)
-			{
-				if (yourTurn)
-				{
-					attack(1);
-				}
-			}
-		});
-		attack3 = (Button) findViewById(R.id.btnAtack3);
-		attacksBtns[2] = attack3;
-		attack3.setOnClickListener(new View.OnClickListener()
-		{
-
-			@Override
-			public void onClick(final View view)
-			{
-				if (yourTurn)
-				{
-					attack(2);
-				}
-			}
-		});
-		attack4 = (Button) findViewById(R.id.btnAtack4);
-		attacksBtns[3] = attack4;
-		attack4.setOnClickListener(new View.OnClickListener()
-		{
-
-			@Override
-			public void onClick(final View view)
-			{
-				if (yourTurn)
-				{
-					attack(3);
-				}
-			}
-		});
-
-		exitBtn = (Button) findViewById(R.id.btnExitBattle);
-		exitBtn.setOnClickListener(new View.OnClickListener()
-		{
-
-			@Override
-			public void onClick(final View view)
-			{
-				if (yourTurn)
-				{
-					finish();
-				}
-			}
-		});
-
-		loadEnemyAnimature();
-		loadYourAnimature();
-		changeAttacksBackground();
+		/*
+		 * super.onCreate(savedInstanceState);
+		 * setContentView(R.layout.activity_battle); loadBattleAnimatures();
+		 * animatureIndex = 0; yourTurn = true; // We get a reference to the
+		 * interface controls // Enemy's Animature Components
+		 * enemy_animature_name = (TextView)
+		 * findViewById(R.id.enemyAnimatureName); enemy_animature_level =
+		 * (TextView) findViewById(R.id.enemyAnimatureLevel);
+		 * enemy_animature_life = (ProgressBar)
+		 * findViewById(R.id.enemyAnimatureLife); enemy_animature_image =
+		 * (ImageView) findViewById(R.id.enemyAnimatureImage); // Your Animature
+		 * Components your_animature_name = (TextView)
+		 * findViewById(R.id.your_animature_name); your_animature_level =
+		 * (TextView) findViewById(R.id.your_animature_level);
+		 * your_animature_life = (ProgressBar)
+		 * findViewById(R.id.your_animature_life); your_animature_exp =
+		 * (ProgressBar) findViewById(R.id.your_animature_exp);
+		 * your_animature_image = (ImageView)
+		 * findViewById(R.id.your_animature_image); // Load attack buttons
+		 * attacksBtns = new Button[4]; attack1 = (Button)
+		 * findViewById(R.id.btnAtack1); attacksBtns[0] = attack1;
+		 * attack1.setOnClickListener(new View.OnClickListener() {
+		 * @Override public void onClick(final View view) { if (yourTurn) {
+		 * attack(0); } } }); attack2 = (Button) findViewById(R.id.btnAtack2);
+		 * attacksBtns[1] = attack2; attack2.setOnClickListener(new
+		 * View.OnClickListener() {
+		 * @Override public void onClick(final View view) { if (yourTurn) {
+		 * attack(1); } } }); attack3 = (Button) findViewById(R.id.btnAtack3);
+		 * attacksBtns[2] = attack3; attack3.setOnClickListener(new
+		 * View.OnClickListener() {
+		 * @Override public void onClick(final View view) { if (yourTurn) {
+		 * attack(2); } } }); attack4 = (Button) findViewById(R.id.btnAtack4);
+		 * attacksBtns[3] = attack4; attack4.setOnClickListener(new
+		 * View.OnClickListener() {
+		 * @Override public void onClick(final View view) { if (yourTurn) {
+		 * attack(3); } } }); exitBtn = (Button)
+		 * findViewById(R.id.btnExitBattle); exitBtn.setOnClickListener(new
+		 * View.OnClickListener() {
+		 * @Override public void onClick(final View view) { if (yourTurn) {
+		 * finish(); } } }); loadEnemyAnimature(); loadYourAnimature();
+		 * changeAttacksBackground();
+		 */
 	}
 
 	@Override

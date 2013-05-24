@@ -40,8 +40,8 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.jdix.animature.BattleSceneActivity"
-            android:label="@string/title_activity_battle_scene"
+            android:name="com.jdix.animature.BattleActivity"
+            android:label="@string/title_activity_battle"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
@@ -86,6 +86,7 @@
             android:label="@string/title_activity_load_game" 
             android:windowSoftInputMode="adjustResize|stateVisible">
         </activity>
+  
     </application>
 
 </manifest>
