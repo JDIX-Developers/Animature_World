@@ -7,14 +7,14 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jdix.animature.entities.Capturable;
+import com.jdix.animature.entities.Animature;
 
 /**
  * @author Jordan Aranda Tejada
  */
 public class BattleActivity extends Activity {
 
-	private Capturable		wildAnimature;
+	private Animature		wildAnimature;
 
 	private LinearLayout	enemyDataLayout;
 	private TextView		enemyNameTextView;
@@ -37,7 +37,7 @@ public class BattleActivity extends Activity {
 		setContentView(R.layout.activity_battle);
 
 		// We recover the information passed in the intent
-		wildAnimature = (Capturable) this.getIntent().getSerializableExtra(
+		wildAnimature = (Animature) this.getIntent().getSerializableExtra(
 		"wild_capturable");
 
 		// We get a reference to the interface controls

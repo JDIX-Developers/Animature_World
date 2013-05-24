@@ -1,7 +1,6 @@
 package com.jdix.animature.entities;
 
 import java.io.Serializable;
-import java.util.Random;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -293,64 +292,17 @@ public class Animature implements Serializable {
 		this.cualitiesC[pos] = quantity;
 	}
 
-	public Animature getCapturedDamage(final Animature captDo, final int atk)
+	public int getNumAttacks()
 	{
-		final int rand = (new Random()).nextInt(100);
-		final Attack attack = captDo.getAttack(atk);
-
-		if (rand <= (attack.getProbability() + (captDo.getCualitiesC(PRECISION) - this
-		.getCualitiesC(AGILITY))))
+		int attacks = 0;
+		for (final Attack attack: this.attacks)
 		{
-			if ( ! attack.getActive())
+			if (attack != null)
 			{
-				if (this.getCualitiesC(attack.getAttribute()) > 2)
-				{
-					this.setCualitiesC(
-					this.getCualitiesC(attack.getAttribute()) - 2,
-					attack.getAttribute());
-				}
-			}
-			else
-			{
-				/*
-				 * this.setHealthAct(this.getHealthAct() - getDamage(captDo,
-				 * attack));
-				 */
+				attacks++;
 			}
 		}
-		return this;
-	}
-
-	/**
-	 * Loads a capturable by ID
-	 * 
-	 * @param id - The ID of the capturable
-	 * @param context - The context of the application
-	 * @return The Capturable loaded
-	 */
-	public static Animature load(final int id, final Context context)
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @param type - The type to check
-	 * @param animature - The animature to check
-	 * @return If the animature is of the given type
-	 */
-	public static boolean isOfType(final int type, final int animature)
-	{
-		return getType(animature) == type;
-	}
-
-	/**
-	 * @param animature - The animature to check
-	 * @return - The name of the animature
-	 */
-	public static String getName(final int animature)
-	{
-		return Resources.getSystem().getStringArray(R.array.animature_names)[animature - 1];
+		return attacks;
 	}
 
 	/**
@@ -359,6 +311,72 @@ public class Animature implements Serializable {
 	public int[] getQualities()
 	{
 		return getQualities(animature);
+	}
+
+	/**
+	 * Gets the evolution level for the animature
+	 * 
+	 * @return The Animature's evolution level.
+	 */
+	public int getLevelEvo()
+	{
+		return getLevelEvo(animature);
+	}
+
+	/**
+	 * @return The base experience for the animature
+	 */
+	public int getBaseExp()
+	{
+		return getBaseExp(animature);
+	}
+
+	/**
+	 * Gets the evolution level for the given animature
+	 * 
+	 * @param animature - The animature to check
+	 * @return The evolution level for the animature
+	 */
+	public static int getLevelEvo(final int animature)
+	{
+		return Integer.parseInt(Resources.getSystem().getStringArray(
+		R.array.animature_level_evo)[animature - 1]);
+	}
+
+	/**
+	 * Gets the base experience for the given animature
+	 * 
+	 * @param animature - The animature to check
+	 * @return The base experience
+	 */
+	public static int getBaseExp(final int animature)
+	{
+		return Integer.parseInt(Resources.getSystem().getStringArray(
+		R.array.animature_base_exp)[animature - 1]);
+	}
+
+	/**
+	 * Gets the height of the animature
+	 * 
+	 * @param animature - The animature to check
+	 * @return The height of the animature
+	 */
+	public static double getHeight(final int animature)
+	{
+		return Double.parseDouble(Resources.getSystem().getStringArray(
+		R.array.animature_height)[animature - 1]);
+	}
+
+	/**
+	 * Gets the weight of the animature
+	 * 
+	 * @param animature - The animature to check
+	 * @return The weight of the animature
+	 */
+	public static double getWeight(final int animature)
+	{
+		return Double.parseDouble(Resources.getSystem().getStringArray(
+		R.array.animature_weight)[animature - 1]);
 	}
 
 	/**
@@ -384,44 +402,34 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Gets the evolution level for the animature
-	 * 
-	 * @return The Animature's evolution level.
-	 */
-	public int getLevelEvo()
-	{
-		return getLevelEvo(animature);
-	}
-
-	/**
-	 * Gets the evolution level for the given animature
-	 * 
+	 * @param type - The type to check
 	 * @param animature - The animature to check
-	 * @return The evolution level for the animature
+	 * @return If the animature is of the given type
 	 */
-	public static int getLevelEvo(final int animature)
+	public static boolean isOfType(final int type, final int animature)
 	{
-		return Integer.parseInt(Resources.getSystem().getStringArray(
-		R.array.animature_level_evo)[animature - 1]);
+		return getType(animature) == type;
 	}
 
 	/**
-	 * @return The base experience for the animature
-	 */
-	public int getBaseExp()
-	{
-		return getBaseExp(animature);
-	}
-
-	/**
-	 * Gets the base experience for the given animature
-	 * 
 	 * @param animature - The animature to check
-	 * @return The base experience
+	 * @return - The name of the animature
 	 */
-	public static int getBaseExp(final int animature)
+	public static String getName(final int animature)
 	{
-		return Integer.parseInt(Resources.getSystem().getStringArray(
-		R.array.animature_base_exp)[animature - 1]);
+		return Resources.getSystem().getStringArray(R.array.animature_names)[animature - 1];
+	}
+
+	/**
+	 * Loads a capturable by ID
+	 * 
+	 * @param id - The ID of the capturable
+	 * @param context - The context of the application
+	 * @return The Capturable loaded
+	 */
+	public static Animature load(final int id, final Context context)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

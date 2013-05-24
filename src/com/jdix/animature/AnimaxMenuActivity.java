@@ -67,7 +67,7 @@ public class AnimaxMenuActivity extends Activity {
 				final Intent intent = new Intent(AnimaxMenuActivity.this,
 				AnimaxAnimatureActivity.class);
 				final Bundle b = new Bundle();
-				b.putSerializable("id_animature", animatures.get(pos).getId());
+				b.putSerializable("animature_id", animatures.get(pos).getId());
 				intent.putExtras(b);
 
 				startActivity(intent);

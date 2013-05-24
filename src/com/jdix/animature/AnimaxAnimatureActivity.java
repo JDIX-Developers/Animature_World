@@ -13,7 +13,7 @@ import com.jdix.animature.entities.Animature;
  */
 public class AnimaxAnimatureActivity extends Activity {
 
-	private Animature	animature;
+	private int			animature;
 	private TextView	animatureId;
 	private TextView	animatureName;
 	private ImageView	animatureImage;
@@ -44,28 +44,28 @@ public class AnimaxAnimatureActivity extends Activity {
 		animatureHealth = (TextView) findViewById(R.id.health_Animature_Animax_view);
 
 		// We recover the information passed in the intent
-		final int idAnimature = this.getIntent().getIntExtra("id_animature", 1);
-		this.animature = new Animature(idAnimature);
+		this.animature = this.getIntent().getIntExtra("animature_id", 1);
 
 		// ADD ANIMATURE DATA
-		animatureId.setText("N.º "
-		+ getFormatedIdAnimature(this.animature.getId()));
-		animatureName.setText(this.animature.getName());
-		final int id = getResources().getIdentifier(
-		"f" + this.animature.getId(), "drawable", getPackageName());
+		animatureId.setText("N.º " + getFormatedIdAnimature(this.animature));
+		animatureName.setText(Animature.getName(this.animature));
+		final int id = getResources().getIdentifier("f" + this.animature,
+		"drawable", getPackageName());
 		animatureImage.setImageDrawable(this.getResources().getDrawable(id));
 		animatureDescription.setText(getResources().getStringArray(
-		R.array.animature_names)[this.animature.getId() - 1]);
-		animatureHeight.setText("Altura: " + this.animature.getHeight() + " m");
-		animatureWeight.setText("Peso: " + this.animature.getWeight() + " kg");
+		R.array.animature_names)[this.animature - 1]);
+		animatureHeight.setText("Altura: "
+		+ Animature.getHeight(this.animature) + " m");
+		animatureWeight.setText("Peso: " + Animature.getWeight(this.animature)
+		+ " kg");
 		animatureStrenght.setText("Fuerza: "
-		+ this.animature.getCualities()[Animature.STRENGTH]);
+		+ Animature.getQualities(this.animature)[Animature.STRENGTH]);
 		animatureDefense.setText("Defensa: "
-		+ this.animature.getCualities()[Animature.DEFENSE]);
+		+ Animature.getQualities(this.animature)[Animature.DEFENSE]);
 		animatureVelocity.setText("Velocidad: "
-		+ this.animature.getCualities()[Animature.SPEED]);
+		+ Animature.getQualities(this.animature)[Animature.SPEED]);
 		animatureHealth.setText("Agilidad: "
-		+ this.animature.getCualities()[Animature.AGILITY]);
+		+ Animature.getQualities(this.animature)[Animature.AGILITY]);
 	}
 
 	@Override

@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jdix.animature.entities.Animature;
-import com.jdix.animature.entities.Capturable;
 import com.jdix.animature.entities.Player;
 import com.jdix.animature.map.Map;
 import com.jdix.animature.map.Sprite;
@@ -273,14 +272,14 @@ public class NewGameActivity extends Activity {
 					break;
 				}
 
-				final Capturable[] anims = new Capturable[6];
+				final Animature[] anims = new Animature[6];
 				// TODO create animature
-				anims[0] = Capturable.load(idAnimatureSelected, this);
+				// anims[0] = Capturable.load(idAnimatureSelected, this); TODO
 				final Animature firstAnim = null; // TODO select animature
 
 				Player.set(new Map(R.raw.map_test, this), playerName,
-				playerSex, enemyName, anims, 5, 5, Player.SOUTH, firstAnim,
-				this);
+				playerSex, enemyName, anims, 5, 5, Player.SOUTH,
+				idAnimatureSelected, this);
 
 				startActivity(new Intent(NewGameActivity.this,
 				MapActivity.class));
