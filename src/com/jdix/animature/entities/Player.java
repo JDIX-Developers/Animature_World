@@ -562,4 +562,15 @@ public class Player {
 		db.close();
 		return total;
 	}
+
+	/**
+	 * Method to get if player has an animature.
+	 * 
+	 * @param idAnimature - Animature's id.
+	 * @return true if player has this Animature.
+	 */
+	public boolean hasAnimature(final int idAnimature)
+	{
+		return false;
+	}
 }

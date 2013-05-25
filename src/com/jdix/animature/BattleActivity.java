@@ -2,6 +2,7 @@ package com.jdix.animature;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +25,7 @@ public class BattleActivity extends Activity {
 	private ProgressBar		enemyLifeProgressBar;
 	private ImageView		enemyImageView;
 
+	private LinearLayout	playerAnimatureDataLayout;
 	private TextView		playerAnimatureNameTextView;
 	private TextView		playerAnimatureLevelTextView;
 	private ProgressBar		playerAnimatureLifeProgressBar;
@@ -39,6 +41,12 @@ public class BattleActivity extends Activity {
 	private Button			btnAnimatureBattleActivity;
 	private Button			btnBagBattleActivity;
 	private Button			btnEscapeBattleActivity;
+
+	private LinearLayout	playerAnimatureAttacksLayout;
+	private Button			btnAttack1;
+	private Button			btnAttack2;
+	private Button			btnAttack3;
+	private Button			btnAttack4;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -58,6 +66,7 @@ public class BattleActivity extends Activity {
 		enemyLifeProgressBar = (ProgressBar) findViewById(R.id.enemy_live_progressBar);
 		enemyImageView = (ImageView) findViewById(R.id.enemy_imageView);
 
+		playerAnimatureDataLayout = (LinearLayout) findViewById(R.id.player_animature_data_layout);
 		playerAnimatureNameTextView = (TextView) findViewById(R.id.player_animature_name_textView);
 		playerAnimatureLevelTextView = (TextView) findViewById(R.id.player_animatura_level_textView);
 		playerAnimatureLifeProgressBar = (ProgressBar) findViewById(R.id.player_animature_live_progressBar);
@@ -74,6 +83,35 @@ public class BattleActivity extends Activity {
 		btnBagBattleActivity = (Button) findViewById(R.id.btnBagBattleActivity);
 		btnEscapeBattleActivity = (Button) findViewById(R.id.btnEscapeBattleActivity);
 
-		// TODO References
+		playerAnimatureAttacksLayout = (LinearLayout) findViewById(R.id.player_animature_attacks_layout);
+		btnAttack1 = (Button) findViewById(R.id.btn_attack1);
+		btnAttack2 = (Button) findViewById(R.id.btn_attack2);
+		btnAttack3 = (Button) findViewById(R.id.btn_attack3);
+		btnAttack4 = (Button) findViewById(R.id.btn_attack4);
+
+		// playerAnimatureImageView.setImageDrawable(this.getResources()
+		// .getDrawable(R.drawable.player_battle_image));
+
+		enemyLifeProgressBar.setMax(wildAnimature.getHealthMax());
+		enemyLifeProgressBar.setProgress(wildAnimature.getHealthMax());
+
+		showPlayerTextView("¡Un Pidgey salvaje!", true);
+	}
+
+	private void showPlayerTextView(final String text, final boolean clickable)
+	{
+		playerTextView.setText(text);
+		playerTextView.setVisibility(View.VISIBLE);
+		if (clickable)
+		{
+			playerTextView.setCompoundDrawablesWithIntrinsicBounds(null, null,
+			getResources().getDrawable(R.drawable.flecha), null);
+			playerTextView.setClickable(true);
+		}
+		else
+		{
+			playerTextView.setCompoundDrawables(null, null, null, null);
+			playerTextView.setClickable(false);
+		}
 	}
 }
