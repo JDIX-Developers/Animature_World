@@ -1,20 +1,24 @@
-  <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-  	xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView1"
-	android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-  	android:paddingLeft="@dimen/activity_horizontal_margin"
-  	android:paddingRight="@dimen/activity_horizontal_margin"
-  	android:paddingTop="@dimen/activity_vertical_margin"
-	android:background="@drawable/background"
-  	tools:context=".MainMenuActivity" >
-
-      <LinearLayout
+ <LinearLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+  		  xmlns:tools="http://schemas.android.com/tools"
+          android:paddingBottom="@dimen/activity_vertical_margin"
+  		  android:paddingLeft="@dimen/activity_horizontal_margin"
+  	      android:paddingRight="@dimen/activity_horizontal_margin"
+  	      android:paddingTop="@dimen/activity_vertical_margin"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="100dp"
+          android:layout_height="match_parent"
+          android:background="@drawable/background"
           android:orientation="vertical" >
+
+     <TextView
+         android:id="@+id/user_textView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="@dimen/Margin40"
+         android:layout_marginTop="@dimen/Margin5"
+         android:text=""
+         android:textColor="#FFFFFF"
+         android:textSize="30sp" />
 
           <Button
               android:id="@+id/btnNewGame"
@@ -55,4 +59,3 @@
               android:textSize="25sp"
               android:text="@string/btnOptions" />
       </LinearLayout>
-  </ScrollView>

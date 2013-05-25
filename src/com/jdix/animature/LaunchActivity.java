@@ -8,7 +8,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,8 +32,6 @@ public class LaunchActivity extends Activity {
 
 	private UserLoginTask	mAuthTask	= null;
 
-	private MediaPlayer		mp;
-
 	private EditText		mEditTextUserLogin;
 	private EditText		mEditTextPasswordLogin;
 	private CheckBox		mCheckBoxRecord;
@@ -52,9 +49,6 @@ public class LaunchActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
-
-		mp = MediaPlayer.create(this, R.raw.opening);
-		mp.start();
 
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
@@ -115,7 +109,7 @@ public class LaunchActivity extends Activity {
 	{
 		if (keyCode == KeyEvent.KEYCODE_BACK)
 		{
-			mp.stop();
+			// mp.stop();
 			finish();
 		}
 
@@ -304,8 +298,6 @@ public class LaunchActivity extends Activity {
 				User.login(userEmail,
 				StringUtils.sha1(password + "--Animature"), username, remember,
 				LaunchActivity.this));
-
-				mp.stop();
 
 				// We start the activity
 				startActivity(new Intent(LaunchActivity.this,

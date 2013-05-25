@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.jdix.animature.entities.User;
 import com.jdix.animature.utils.Database;
@@ -19,11 +20,12 @@ import com.jdix.animature.utils.Database;
  */
 public class MainMenuActivity extends Activity {
 
-	private Button	btnNewGame;
-	private Button	btnLoadGame;
-	private Button	btnMultiplayer;
-	private Button	btnAnimatureShop;
-	private Button	btnOptions;
+	private TextView	textViewUser;
+	private Button		btnNewGame;
+	private Button		btnLoadGame;
+	private Button		btnMultiplayer;
+	private Button		btnAnimatureShop;
+	private Button		btnOptions;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -32,6 +34,9 @@ public class MainMenuActivity extends Activity {
 		setContentView(R.layout.activity_main_menu);
 
 		// We get a reference to the interface controls
+		textViewUser = (TextView) findViewById(R.id.user_textView);
+		textViewUser.setText("User: " + User.getCurrent().getUsername());
+
 		btnNewGame = (Button) findViewById(R.id.btnNewGame);
 		btnNewGame.setOnClickListener(new View.OnClickListener()
 		{
@@ -157,7 +162,12 @@ public class MainMenuActivity extends Activity {
 	 */
 	public void multiplayer()
 	{
-
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("No disponible");
+		builder.setMessage("¡Espere nuevas actualizaciones!");
+		builder.setPositiveButton("Aceptar", null);
+		builder.create();
+		builder.show();
 	}
 
 	/**
@@ -165,7 +175,12 @@ public class MainMenuActivity extends Activity {
 	 */
 	public void animatureShop()
 	{
-
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("No disponible");
+		builder.setMessage("¡Espere nuevas actualizaciones!");
+		builder.setPositiveButton("Aceptar", null);
+		builder.create();
+		builder.show();
 	}
 
 	/**
@@ -173,6 +188,11 @@ public class MainMenuActivity extends Activity {
 	 */
 	public void options()
 	{
-
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("No disponible");
+		builder.setMessage("¡Espere nuevas actualizaciones!");
+		builder.setPositiveButton("Aceptar", null);
+		builder.create();
+		builder.show();
 	}
 }
