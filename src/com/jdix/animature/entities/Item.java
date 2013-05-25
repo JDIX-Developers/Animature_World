@@ -1,6 +1,6 @@
 package com.jdix.animature.entities;
 
-import android.content.res.Resources;
+import android.content.Context;
 
 import com.jdix.animature.R;
 
@@ -9,18 +9,9 @@ import com.jdix.animature.R;
  */
 public class Item {
 
-	/**
-	 * Item type object for Potion, Superpotion, Hiperpotion, Antidote...
-	 */
-	public static final int	OBJECTS		= 0;
-	/**
-	 * Item type pokeballs for all pokeballs.
-	 */
-	public static final int	ANIMBALLS	= 1;
-
-	private int				id;
-	private int				type;
-	private int				quantity;
+	private int	id;
+	private int	type;
+	private int	quantity;
 
 	/**
 	 * Constructor
@@ -60,9 +51,9 @@ public class Item {
 	 * 
 	 * @return Item's name.
 	 */
-	public String getName()
+	public String getName(final Context context)
 	{
-		return Resources.getSystem().getStringArray(R.array.objects_names)[id - 1];
+		return context.getResources().getStringArray(R.array.objects_names)[id - 1];
 	}
 
 	/**
@@ -80,9 +71,9 @@ public class Item {
 	 * 
 	 * @return Item's description.
 	 */
-	public String getDescription()
+	public String getDescription(final Context context)
 	{
-		return Resources.getSystem().getStringArray(
+		return context.getResources().getStringArray(
 		R.array.objects_descriptions)[id - 1];
 	}
 

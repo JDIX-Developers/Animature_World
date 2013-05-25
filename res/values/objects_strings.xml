@@ -25,4 +25,10 @@
         <item>Sirve para atrapar Animatures mas efectiva que la PokeBall.</item>
         <item>Sirve para atrapar Animatures mas efectiva que la SuperBall.</item>
     </string-array>
+    
+    <string-array name = "objects_types">
+        <item>Objetos</item>
+        <item>Obj. Clave</item>
+        <item>Anim. Balls.</item>
+    </string-array>
 </resources>

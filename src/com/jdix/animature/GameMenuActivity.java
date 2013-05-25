@@ -88,7 +88,7 @@ public class GameMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-
+				Player.getInstance().save(GameMenuActivity.this);
 			}
 		});
 

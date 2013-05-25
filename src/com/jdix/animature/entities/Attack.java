@@ -101,26 +101,26 @@ public class Attack {
 						effective = NOT_EFFECTIVE;
 				}
 			break;
-		// case Animature.FIRE:
-		// if (animature.isOfType(Animature.GRASS)
-		// || animature.isOfType(Animature.ICE)
-		// || animature.isOfType(Animature.BUG)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.FIRE)
-		// || animature.isOfType(Animature.WATER)
-		// || animature.isOfType(Animature.ROCK)
-		// || animature.isOfType(Animature.DRAGON))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
+			case Animature.FIRE:
+				switch (animature.getType())
+				{
+					case Animature.GRASS:
+					case Animature.ICE:
+					case Animature.BUG:
+					case Animature.STEEL:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.FIRE:
+					case Animature.WATER:
+					case Animature.ROCK:
+					case Animature.DRAGON:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
 		// case Animature.WATER:
 		// if (animature.isOfType(Animature.FIRE)
 		// || animature.isOfType(Animature.GROUND)
