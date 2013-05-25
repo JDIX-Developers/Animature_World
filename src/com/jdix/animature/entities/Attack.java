@@ -121,288 +121,288 @@ public class Attack {
 					break;
 				}
 			break;
-		// case Animature.WATER:
-		// if (animature.isOfType(Animature.FIRE)
-		// || animature.isOfType(Animature.GROUND)
-		// || animature.isOfType(Animature.ROCK))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.WATER)
-		// || animature.isOfType(Animature.GRASS)
-		// || animature.isOfType(Animature.DRAGON))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.ELECTRIC:
-		// if (animature.isOfType(Animature.WATER)
-		// || animature.isOfType(Animature.FLYING))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELECTRIC)
-		// || animature.isOfType(Animature.GRASS)
-		// || animature.isOfType(Animature.DRAGON))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.GROUND)
-		// || animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.GRASS:
-		// if (animature.isOfType(Animature.WATER)
-		// || animature.isOfType(Animature.GROUND)
-		// || animature.isOfType(Animature.ROCK))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.FIRE)
-		// || animature.isOfType(Animature.GRASS)
-		// || animature.isOfType(Animature.POISON)
-		// || animature.isOfType(Animature.FLYING)
-		// || animature.isOfType(Animature.BUG)
-		// || animature.isOfType(Animature.DRAGON)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.ICE:
-		// if (animature.isOfType(Animature.GRASS)
-		// || animature.isOfType(Animature.GROUND)
-		// || animature.isOfType(Animature.FLYING)
-		// || animature.isOfType(Animature.DRAGON))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.FIRE)
-		// || animature.isOfType(Animature.WATER)
-		// || animature.isOfType(Animature.ICE)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.FIGHTING:
-		// if (animature.isOfType(Animature.NORMAL)
-		// || animature.isOfType(Animature.ICE)
-		// || animature.isOfType(Animature.ROCK)
-		// || animature.isOfType(Animature.DARK)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.POISON)
-		// || animature.isOfType(Animature.FLYING)
-		// || animature.isOfType(Animature.PSYCHIC)
-		// || animature.isOfType(Animature.BUG))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.GHOST)
-		// || animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.POISON:
-		// if (animature.isOfType(Animature.GRASS))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.POISON)
-		// || animature.isOfType(Animature.GROUND)
-		// || animature.isOfType(Animature.ROCK)
-		// || animature.isOfType(Animature.GHOST))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.STEEL)
-		// || animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.GROUND:
-		// if (animature.isOfType(Animature.FIRE)
-		// || animature.isOfType(Animature.ELECTRIC)
-		// || animature.isOfType(Animature.POISON)
-		// || animature.isOfType(Animature.ROCK)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.GRASS)
-		// || animature.isOfType(Animature.BUG))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.FLYING)
-		// || animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.FLYING:
-		// if (animature.isOfType(Animature.GRASS)
-		// || animature.isOfType(Animature.FIGHTING)
-		// || animature.isOfType(Animature.BUG))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELECTRIC)
-		// || animature.isOfType(Animature.ROCK)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.PSYCHIC:
-		// if (animature.isOfType(Animature.FIGHTING)
-		// || animature.isOfType(Animature.POISON))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.PSYCHIC)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.DARK)
-		// || animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.BUG:
-		// if (animature.isOfType(Animature.GRASS)
-		// || animature.isOfType(Animature.PSYCHIC)
-		// || animature.isOfType(Animature.DARK))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.FIRE)
-		// || animature.isOfType(Animature.FIGHTING)
-		// || animature.isOfType(Animature.POISON)
-		// || animature.isOfType(Animature.FLYING)
-		// || animature.isOfType(Animature.GHOST)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.ROCK:
-		// if (animature.isOfType(Animature.FIRE)
-		// || animature.isOfType(Animature.ICE)
-		// || animature.isOfType(Animature.FLYING)
-		// || animature.isOfType(Animature.BUG))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.FIGHTING)
-		// || animature.isOfType(Animature.GROUND)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.GHOST:
-		// if (animature.isOfType(Animature.PSYCHIC)
-		// || animature.isOfType(Animature.GHOST))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.DARK)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.NORMAL)
-		// || animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.DRAGON:
-		// if (animature.isOfType(Animature.DRAGON))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.DARK:
-		// if (animature.isOfType(Animature.PSYCHIC)
-		// || animature.isOfType(Animature.GHOST))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.FIGHTING)
-		// || animature.isOfType(Animature.DARK)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.STEEL:
-		// if (animature.isOfType(Animature.ICE)
-		// || animature.isOfType(Animature.ROCK))
-		// {
-		// effective = VERY_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.FIRE)
-		// || animature.isOfType(Animature.WATER)
-		// || animature.isOfType(Animature.ELECTRIC)
-		// || animature.isOfType(Animature.STEEL))
-		// {
-		// effective = FEW_EFFECTIVE;
-		// }
-		// else if (animature.isOfType(Animature.ELEMENTAL))
-		// {
-		// effective = NOT_EFFECTIVE;
-		// }
-		// break;
-		// case Animature.ELEMENTAL:
-		// effective = VERY_EFFECTIVE;
-		// break;
+			case Animature.WATER:
+				switch (animature.getType(context))
+				{
+					case Animature.FIRE:
+					case Animature.GROUND:
+					case Animature.ROCK:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.WATER:
+					case Animature.GRASS:
+					case Animature.DRAGON:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.ELECTRIC:
+				switch (animature.getType(context))
+				{
+					case Animature.WATER:
+					case Animature.FLYING:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.ELECTRIC:
+					case Animature.GRASS:
+					case Animature.DRAGON:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.GROUND:
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.GRASS:
+				switch (animature.getType(context))
+				{
+					case Animature.WATER:
+					case Animature.GROUND:
+					case Animature.ROCK:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.FIRE:
+					case Animature.GRASS:
+					case Animature.POISON:
+					case Animature.FLYING:
+					case Animature.BUG:
+					case Animature.DRAGON:
+					case Animature.STEEL:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.ICE:
+				switch (animature.getType(context))
+				{
+					case Animature.GRASS:
+					case Animature.GROUND:
+					case Animature.FLYING:
+					case Animature.DRAGON:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.FIRE:
+					case Animature.WATER:
+					case Animature.ICE:
+					case Animature.STEEL:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.FIGHTING:
+				switch (animature.getType(context))
+				{
+					case Animature.NORMAL:
+					case Animature.ICE:
+					case Animature.ROCK:
+					case Animature.DARK:
+					case Animature.STEEL:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.POISON:
+					case Animature.FLYING:
+					case Animature.PSYCHIC:
+					case Animature.BUG:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.GHOST:
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.POISON:
+				switch (animature.getType(context))
+				{
+					case Animature.GRASS:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.POISON:
+					case Animature.GROUND:
+					case Animature.ROCK:
+					case Animature.GHOST:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.STEEL:
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.GROUND:
+				switch (animature.getType(context))
+				{
+					case Animature.FIRE:
+					case Animature.ELECTRIC:
+					case Animature.POISON:
+					case Animature.ROCK:
+					case Animature.STEEL:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.GRASS:
+					case Animature.BUG:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.FLYING:
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.FLYING:
+				switch (animature.getType(context))
+				{
+					case Animature.GRASS:
+					case Animature.FIGHTING:
+					case Animature.BUG:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.ELECTRIC:
+					case Animature.ROCK:
+					case Animature.STEEL:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.PSYCHIC:
+				switch (animature.getType(context))
+				{
+					case Animature.FIGHTING:
+					case Animature.POISON:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.PSYCHIC:
+					case Animature.STEEL:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.DARK:
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.BUG:
+				switch (animature.getType(context))
+				{
+					case Animature.GRASS:
+					case Animature.PSYCHIC:
+					case Animature.DARK:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.FIRE:
+					case Animature.FIGHTING:
+					case Animature.POISON:
+					case Animature.FLYING:
+					case Animature.GHOST:
+					case Animature.STEEL:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.ROCK:
+				switch (animature.getType(context))
+				{
+					case Animature.FIRE:
+					case Animature.ICE:
+					case Animature.FLYING:
+					case Animature.BUG:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.FIGHTING:
+					case Animature.GROUND:
+					case Animature.STEEL:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.GHOST:
+				switch (animature.getType(context))
+				{
+					case Animature.PSYCHIC:
+					case Animature.GHOST:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.DARK:
+					case Animature.STEEL:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.NORMAL:
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.DRAGON:
+				switch (animature.getType(context))
+				{
+					case Animature.DRAGON:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.STEEL:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.DARK:
+				switch (animature.getType(context))
+				{
+					case Animature.PSYCHIC:
+					case Animature.GHOST:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.FIGHTING:
+					case Animature.DARK:
+					case Animature.STEEL:
+						effective = FEW_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.STEEL:
+				switch (animature.getType(context))
+				{
+					case Animature.ICE:
+					case Animature.ROCK:
+						effective = VERY_EFFECTIVE;
+					break;
+					case Animature.FIRE:
+					case Animature.WATER:
+					case Animature.ELECTRIC:
+					case Animature.STEEL:
+						effective = NOT_EFFECTIVE;
+					break;
+					case Animature.ELEMENTAL:
+						effective = NOT_EFFECTIVE;
+					break;
+				}
+			break;
+			case Animature.ELEMENTAL:
+				effective = VERY_EFFECTIVE;
+			break;
 		}
 
 		return effective;
