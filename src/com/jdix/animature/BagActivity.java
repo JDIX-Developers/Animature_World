@@ -57,7 +57,7 @@ public class BagActivity extends Activity {
 			final int position, final long id)
 			{
 				objectInformationTextView.setText(items.get(position)
-				.getDescription());
+				.getDescription(BagActivity.this));
 			}
 		});
 	}

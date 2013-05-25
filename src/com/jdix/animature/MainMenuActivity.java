@@ -26,6 +26,7 @@ public class MainMenuActivity extends Activity {
 	private Button		btnMultiplayer;
 	private Button		btnAnimatureShop;
 	private Button		btnOptions;
+	private Button		btnExit;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -44,7 +45,8 @@ public class MainMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				newGame();
+				startActivity(new Intent(MainMenuActivity.this,
+				NewGameActivity.class));
 				finish();
 			}
 		});
@@ -55,7 +57,57 @@ public class MainMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				loadGame();
+				final SQLiteDatabase db = (new Database(MainMenuActivity.this))
+				.getReadableDatabase();
+				final Cursor c = db.rawQuery("SELECT * FROM SAVE WHERE user = "
+				+ User.getCurrent().getId(), null);
+				final int count = c.getCount();
+				c.close();
+				db.close();
+
+				if (count == 0)
+				{
+					final AlertDialog.Builder dialog = new AlertDialog.Builder(
+					MainMenuActivity.this);
+					dialog.setTitle(getResources().getString(
+					R.string.no_save_game));
+					dialog.setMessage(getResources().getString(
+					R.string.no_save_game_want_to_create));
+
+					dialog.setCancelable(false);
+					dialog.setPositiveButton(
+					getResources().getString(R.string.yes_option),
+					new DialogInterface.OnClickListener()
+					{
+
+						@Override
+						public void onClick(final DialogInterface dialog,
+						final int id)
+						{
+							startActivity(new Intent(MainMenuActivity.this,
+							NewGameActivity.class));
+							finish();
+						}
+					});
+					dialog.setNegativeButton(
+					getResources().getString(R.string.no_option),
+					new DialogInterface.OnClickListener()
+					{
+
+						@Override
+						public void onClick(final DialogInterface dialog,
+						final int id)
+						{
+							dialog.cancel();
+						}
+					});
+					dialog.show();
+				}
+				else
+				{
+					// Player.load(id, context)
+					// Carga el juego
+				}
 			}
 		});
 		btnMultiplayer = (Button) findViewById(R.id.btnMultiplayer);
@@ -65,7 +117,7 @@ public class MainMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				multiplayer();
+				showUpdateMessage();
 			}
 		});
 		btnAnimatureShop = (Button) findViewById(R.id.btnAnimatureShop);
@@ -75,7 +127,7 @@ public class MainMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				animatureShop();
+				showUpdateMessage();
 			}
 		});
 		btnOptions = (Button) findViewById(R.id.btnOptions);
@@ -85,7 +137,17 @@ public class MainMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				options();
+				showUpdateMessage();
+			}
+		});
+		btnExit = (Button) findViewById(R.id.btnExitMainMenu);
+		btnExit.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				// Player.getInstance().exit();
 			}
 		});
 	}
@@ -96,97 +158,7 @@ public class MainMenuActivity extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	/**
-	 * Method pressing the new game button
-	 */
-	public void newGame()
-	{
-		startActivity(new Intent(MainMenuActivity.this, NewGameActivity.class));
-	}
-
-	/**
-	 * Method pressing the load game button
-	 */
-	public void loadGame()
-	{
-		final SQLiteDatabase db = (new Database(this)).getReadableDatabase();
-		final Cursor c = db.rawQuery("SELECT * FROM SAVE WHERE user = "
-		+ User.getCurrent().getId(), null);
-		final int count = c.getCount();
-		c.close();
-		db.close();
-
-		if (count == 0)
-		{
-			final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-			dialog.setTitle(getResources().getString(R.string.no_save_game));
-			dialog.setMessage(getResources().getString(
-			R.string.no_save_game_want_to_create));
-
-			dialog.setCancelable(false);
-			dialog.setPositiveButton(
-			getResources().getString(R.string.yes_option),
-			new DialogInterface.OnClickListener()
-			{
-
-				@Override
-				public void onClick(final DialogInterface dialog, final int id)
-				{
-					startActivity(new Intent(MainMenuActivity.this,
-					NewGameActivity.class));
-					finish();
-				}
-			});
-			dialog.setNegativeButton(
-			getResources().getString(R.string.no_option),
-			new DialogInterface.OnClickListener()
-			{
-
-				@Override
-				public void onClick(final DialogInterface dialog, final int id)
-				{
-					dialog.cancel();
-				}
-			});
-			dialog.show();
-		}
-		else
-		{
-			// Player.load(id, context)
-			// Carga el juego
-		}
-	}
-
-	/**
-	 * Method pressing the multiplayer button
-	 */
-	public void multiplayer()
-	{
-		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("No disponible");
-		builder.setMessage("¡Espere nuevas actualizaciones!");
-		builder.setPositiveButton("Aceptar", null);
-		builder.create();
-		builder.show();
-	}
-
-	/**
-	 * Method pressing the animature shop button
-	 */
-	public void animatureShop()
-	{
-		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("No disponible");
-		builder.setMessage("¡Espere nuevas actualizaciones!");
-		builder.setPositiveButton("Aceptar", null);
-		builder.create();
-		builder.show();
-	}
-
-	/**
-	 * Method pressing the options button
-	 */
-	public void options()
+	private void showUpdateMessage()
 	{
 		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("No disponible");
