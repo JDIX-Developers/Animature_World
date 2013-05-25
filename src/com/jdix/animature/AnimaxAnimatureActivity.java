@@ -48,24 +48,24 @@ public class AnimaxAnimatureActivity extends Activity {
 
 		// ADD ANIMATURE DATA TODO Quality names from strings
 		animatureId.setText("N.º " + getFormatedIdAnimature(this.animature));
-		animatureName.setText(Animature.getName(this.animature));
+		animatureName.setText(Animature.getName(this.animature, this));
 		final int id = getResources().getIdentifier("f" + this.animature,
 		"drawable", getPackageName());
 		animatureImage.setImageDrawable(this.getResources().getDrawable(id));
 		animatureDescription.setText(getResources().getStringArray(
 		R.array.animature_names)[this.animature - 1]);
 		animatureHeight.setText("Altura: "
-		+ Animature.getHeight(this.animature) + " m");
-		animatureWeight.setText("Peso: " + Animature.getWeight(this.animature)
-		+ " kg");
+		+ Animature.getHeight(this.animature, this) + " m");
+		animatureWeight.setText("Peso: "
+		+ Animature.getWeight(this.animature, this) + " kg");
 		animatureStrenght.setText("Fuerza: "
-		+ Animature.getQualities(this.animature)[Animature.STRENGTH]);
+		+ Animature.getQualities(this.animature, this)[Animature.STRENGTH]);
 		animatureDefense.setText("Defensa: "
-		+ Animature.getQualities(this.animature)[Animature.DEFENSE]);
+		+ Animature.getQualities(this.animature, this)[Animature.DEFENSE]);
 		animatureVelocity.setText("Velocidad: "
-		+ Animature.getQualities(this.animature)[Animature.SPEED]);
+		+ Animature.getQualities(this.animature, this)[Animature.SPEED]);
 		animatureHealth.setText("Agilidad: "
-		+ Animature.getQualities(this.animature)[Animature.AGILITY]);
+		+ Animature.getQualities(this.animature, this)[Animature.AGILITY]);
 	}
 
 	@Override

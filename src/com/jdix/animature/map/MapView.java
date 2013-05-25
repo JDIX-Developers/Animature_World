@@ -190,7 +190,6 @@ public class MapView extends View implements OnTouchListener {
 		}
 		else if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_POINTER_DOWN)
 		{
-			System.out.println("DOWN!");
 			this.control |= getControl(event, event.getActionIndex());
 
 			if ((getArrowControl() | getABControls()) != NONE
@@ -213,6 +212,11 @@ public class MapView extends View implements OnTouchListener {
 
 	private int getControl(final MotionEvent event, final int actionIndex)
 	{
+		if (posUP == null)
+		{
+			return NONE;
+		}
+
 		int control = NONE;
 
 		final int x = (int) event.getX(actionIndex);

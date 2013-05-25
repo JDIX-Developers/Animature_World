@@ -3,7 +3,6 @@ package com.jdix.animature.entities;
 import java.io.Serializable;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -66,7 +65,6 @@ public class Animature implements Serializable {
 	private int					healthMax;
 	private int					healthAct;
 	private int					box;
-	private final int[]			cualitiesC			= new int[5];
 
 	// TODO create and save new animatures
 
@@ -111,9 +109,8 @@ public class Animature implements Serializable {
 
 	/**
 	 * @param id - The ID of the animature
-	 * @param context - The context of the application
 	 */
-	public Animature(final int id, final Context context)
+	public Animature(final int id)
 	{
 		// TODO Auto-generated constructor stub
 	}
@@ -126,26 +123,6 @@ public class Animature implements Serializable {
 	public void setId(final int id)
 	{
 		this.id = id;
-	}
-
-	/**
-	 * @return The type of the animature
-	 */
-	public int getType()
-	{
-		return getType(animature);
-	}
-
-	/**
-	 * Gets the type of the animature
-	 * 
-	 * @param animature - The animature to check
-	 * @return The type of the animature
-	 */
-	public static int getType(final int animature)
-	{
-		return Integer.parseInt(Resources.getSystem().getStringArray(
-		R.array.animature_type)[animature - 1]);
 	}
 
 	public int getAnimature()
@@ -298,16 +275,6 @@ public class Animature implements Serializable {
 		this.healthAct = healthAct;
 	}
 
-	public int getCualitiesC(final int pos)
-	{
-		return this.cualitiesC[pos];
-	}
-
-	public void setCualitiesC(final int quantity, final int pos)
-	{
-		this.cualitiesC[pos] = quantity;
-	}
-
 	public int getNumAttacks()
 	{
 		int attacks = 0;
@@ -322,40 +289,91 @@ public class Animature implements Serializable {
 	}
 
 	/**
+	 * @param context - The context of the application
+	 * @return The type of the animature
+	 */
+	public int getType(final Context context)
+	{
+		return getType(animature, context);
+	}
+
+	/**
+	 * Gets the qualities of the animature
+	 * 
+	 * @param context - The context of the application
 	 * @return The qualities of the animature
 	 */
-	public int[] getQualities()
+	public int[] getQualities(final Context context)
 	{
-		return getQualities(animature);
+		return getQualities(animature, context);
 	}
 
 	/**
 	 * Gets the evolution level for the animature
 	 * 
+	 * @param context - The context of the appplication
 	 * @return The Animature's evolution level.
 	 */
-	public int getLevelEvo()
+	public int getLevelEvo(final Context context)
 	{
-		return getLevelEvo(animature);
+		return getLevelEvo(animature, context);
 	}
 
 	/**
+	 * @param context - The context of the application
 	 * @return The base experience for the animature
 	 */
-	public int getBaseExp()
+	public int getBaseExp(final Context context)
 	{
-		return getBaseExp(animature);
+		return getBaseExp(animature, context);
+	}
+
+	/**
+	 * Gets the type of the animature
+	 * 
+	 * @param animature - The animature to check
+	 * @param context - The context of the application
+	 * @return The type of the animature
+	 */
+	public static int getType(final int animature, final Context context)
+	{
+		return Integer.parseInt(context.getResources().getStringArray(
+		R.array.animature_type)[animature - 1]);
+	}
+
+	/**
+	 * @param animature - The animature to check
+	 * @param context - The context of the application
+	 * @return The qualities of the animature
+	 */
+	public static int[] getQualities(final int animature, final Context context)
+	{
+		final int[] qualities = new int[5];
+
+		qualities[SPEED] = Integer.parseInt(context.getResources()
+		.getStringArray(R.array.animature_speed)[animature - 1]);
+		qualities[DEFENSE] = Integer.parseInt(context.getResources()
+		.getStringArray(R.array.animature_defense)[animature - 1]);
+		qualities[AGILITY] = Integer.parseInt(context.getResources()
+		.getStringArray(R.array.animature_agility)[animature - 1]);
+		qualities[STRENGTH] = Integer.parseInt(context.getResources()
+		.getStringArray(R.array.animature_strength)[animature - 1]);
+		qualities[PRECISION] = Integer.parseInt(context.getResources()
+		.getStringArray(R.array.animature_precision)[animature - 1]);
+
+		return qualities;
 	}
 
 	/**
 	 * Gets the evolution level for the given animature
 	 * 
 	 * @param animature - The animature to check
+	 * @param context - The context of the application
 	 * @return The evolution level for the animature
 	 */
-	public static int getLevelEvo(final int animature)
+	public static int getLevelEvo(final int animature, final Context context)
 	{
-		return Integer.parseInt(Resources.getSystem().getStringArray(
+		return Integer.parseInt(context.getResources().getStringArray(
 		R.array.animature_level_evo)[animature - 1]);
 	}
 
@@ -363,11 +381,12 @@ public class Animature implements Serializable {
 	 * Gets the base experience for the given animature
 	 * 
 	 * @param animature - The animature to check
+	 * @param context - The context of the application
 	 * @return The base experience
 	 */
-	public static int getBaseExp(final int animature)
+	public static int getBaseExp(final int animature, final Context context)
 	{
-		return Integer.parseInt(Resources.getSystem().getStringArray(
+		return Integer.parseInt(context.getResources().getStringArray(
 		R.array.animature_base_exp)[animature - 1]);
 	}
 
@@ -375,11 +394,12 @@ public class Animature implements Serializable {
 	 * Gets the height of the animature
 	 * 
 	 * @param animature - The animature to check
+	 * @param context - The context of the application
 	 * @return The height of the animature
 	 */
-	public static double getHeight(final int animature)
+	public static double getHeight(final int animature, final Context context)
 	{
-		return Double.parseDouble(Resources.getSystem().getStringArray(
+		return Double.parseDouble(context.getResources().getStringArray(
 		R.array.animature_height)[animature - 1]);
 	}
 
@@ -387,53 +407,35 @@ public class Animature implements Serializable {
 	 * Gets the weight of the animature
 	 * 
 	 * @param animature - The animature to check
+	 * @param context - The context of the application
 	 * @return The weight of the animature
 	 */
-	public static double getWeight(final int animature)
+	public static double getWeight(final int animature, final Context context)
 	{
-		return Double.parseDouble(Resources.getSystem().getStringArray(
+		return Double.parseDouble(context.getResources().getStringArray(
 		R.array.animature_weight)[animature - 1]);
-	}
-
-	/**
-	 * @param animature - The animature to check
-	 * @return The qualities of the animature
-	 */
-	public static int[] getQualities(final int animature)
-	{
-		final int[] qualities = new int[5];
-
-		qualities[SPEED] = Integer.parseInt(Resources.getSystem()
-		.getStringArray(R.array.animature_speed)[animature - 1]);
-		qualities[DEFENSE] = Integer.parseInt(Resources.getSystem()
-		.getStringArray(R.array.animature_defense)[animature - 1]);
-		qualities[AGILITY] = Integer.parseInt(Resources.getSystem()
-		.getStringArray(R.array.animature_agility)[animature - 1]);
-		qualities[STRENGTH] = Integer.parseInt(Resources.getSystem()
-		.getStringArray(R.array.animature_strength)[animature - 1]);
-		qualities[PRECISION] = Integer.parseInt(Resources.getSystem()
-		.getStringArray(R.array.animature_precision)[animature - 1]);
-
-		return qualities;
 	}
 
 	/**
 	 * @param type - The type to check
 	 * @param animature - The animature to check
+	 * @param context - The context of the application
 	 * @return If the animature is of the given type
 	 */
-	public static boolean isOfType(final int type, final int animature)
+	public static boolean isOfType(final int type, final int animature,
+	final Context context)
 	{
-		return getType(animature) == type;
+		return getType(animature, context) == type;
 	}
 
 	/**
 	 * @param animature - The animature to check
+	 * @param context - The context of the application
 	 * @return - The name of the animature
 	 */
-	public static String getName(final int animature)
+	public static String getName(final int animature, final Context context)
 	{
-		return Resources.getSystem().getStringArray(R.array.animature_names)[animature - 1];
+		return context.getResources().getStringArray(R.array.animature_names)[animature - 1];
 	}
 
 	/**

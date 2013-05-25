@@ -76,7 +76,7 @@ public class AnimatureAdapter extends BaseAdapter {
 		// NAME
 		final TextView nameAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_name);
-		nameAnimature.setText(Animature.getName(animature));
+		nameAnimature.setText(Animature.getName(animature, context));
 		// TYPE 1
 		final TextView type1Animature = (TextView) v
 		.findViewById(R.id.animax_row_type1);
@@ -112,7 +112,7 @@ public class AnimatureAdapter extends BaseAdapter {
 		int cont = 0;
 		for (int i = Animature.NORMAL; i < Animature.STEEL; i *= 2)
 		{
-			if (Animature.isOfType(i, animature))
+			if (Animature.isOfType(i, animature, context))
 			{
 				textViews[cont].setText(typesNames[(int) (Math.log(i) / Math
 				.log(2))]);

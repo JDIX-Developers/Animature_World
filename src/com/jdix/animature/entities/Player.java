@@ -210,12 +210,12 @@ public class Player {
 		final int steps = c.getInt(8);
 
 		final Animature[] animatures = new Animature[6];
-		animatures[0] = new Animature(c.getInt(9), context);
-		animatures[1] = new Animature(c.getInt(10), context);
-		animatures[2] = new Animature(c.getInt(11), context);
-		animatures[3] = new Animature(c.getInt(12), context);
-		animatures[4] = new Animature(c.getInt(13), context);
-		animatures[5] = new Animature(c.getInt(14), context);
+		animatures[0] = Animature.load(c.getInt(9), context);
+		animatures[1] = Animature.load(c.getInt(10), context);
+		animatures[2] = Animature.load(c.getInt(11), context);
+		animatures[3] = Animature.load(c.getInt(12), context);
+		animatures[4] = Animature.load(c.getInt(13), context);
+		animatures[5] = Animature.load(c.getInt(14), context);
 
 		final Map map = new Map(c.getInt(15), context);
 		final int posX = c.getInt(16);

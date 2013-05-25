@@ -79,17 +79,18 @@ public class Attack {
 	}
 
 	/**
-	 * @param animature The defensor Animature's type.
+	 * @param animature The defender Animature's type.
+	 * @param context - The context of the application
 	 * @return Return 0 if normal effective, 1 if very effective, 2 if
 	 *         ineffective and 3 if not effective
 	 */
-	public int getEffectivenes(final Animature animature)
+	public int getEffectivenes(final Animature animature, final Context context)
 	{
 		int effective = NORMAL_EFFECTIVE;
 		switch (this.type)
 		{
 			case Animature.NORMAL:
-				switch (animature.getType())
+				switch (animature.getType(context))
 				{
 					case Animature.ROCK:
 					case Animature.STEEL:
