@@ -97,9 +97,9 @@ public class AnimatureAdapter extends BaseAdapter {
 	final int animature)
 	{
 		int cont = 0;
+
 		for (int i = Animature.NORMAL; i < Animature.STEEL; i *= 2)
 		{
-			Log.e("ANIMATURE CHECK", "Animature: " + animature);
 			if (Animature.isOfType(i, animature, context))
 			{
 				final int j = Math.round((int) (Math.log(i) / Math.log(2)));

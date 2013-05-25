@@ -424,7 +424,7 @@ public class Animature implements Serializable {
 	public static boolean isOfType(final int type, final int animature,
 	final Context context)
 	{
-		return getType(animature, context) == type;
+		return (getType(animature, context) & type) == type;
 	}
 
 	/**
