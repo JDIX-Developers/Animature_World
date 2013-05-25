@@ -167,7 +167,6 @@ public class BattleUtils {
 	 * condition
 	 * 
 	 * @param captured if The Animature who could evolution
-	 * @return True if the Animature has evolutioned
 	 */
 	public static void evolution(final Animature captured)
 	{
