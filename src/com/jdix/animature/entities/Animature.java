@@ -290,6 +290,16 @@ public class Animature implements Serializable {
 
 	/**
 	 * @param context - The context of the application
+	 * @return The types of the animature, 0 in the second value of the array if
+	 *         it has only one type
+	 */
+	public int[] getTypes(final Context context)
+	{
+		return getTypes(animature, context);
+	}
+
+	/**
+	 * @param context - The context of the application
 	 * @return The type of the animature
 	 */
 	public int getType(final Context context)
@@ -335,9 +345,28 @@ public class Animature implements Serializable {
 	 * @param context - The context of the application
 	 * @return The type of the animature
 	 */
+	public static int[] getTypes(final int animature, final Context context)
+	{
+		final int[] types = new int[2];
+		int cont = 0;
+		for (int i = 1; i < ELEMENTAL && cont < 2; i *= 2)
+		{
+			if (isOfType(animature, i, context))
+			{
+				types[cont++] = i;
+			}
+		}
+		return types;
+	}
+
+	/**
+	 * @param animature - The animature to check
+	 * @param context - The context of the application
+	 * @return - The type of the animature
+	 */
 	public static int getType(final int animature, final Context context)
 	{
-		return context.getResources().getIntArray(R.array.animature_type)[animature - 1];
+		return context.getResources().getIntArray(R.array.animature_level_evo)[animature - 1];
 	}
 
 	/**
@@ -347,7 +376,7 @@ public class Animature implements Serializable {
 	 */
 	public static int[] getQualities(final int animature, final Context context)
 	{
-		final int[] qualities = new int[5];
+		final int[] qualities = new int[5]; // TODO
 
 		qualities[SPEED] = Integer.parseInt(context.getResources()
 		.getStringArray(R.array.animature_speed)[animature - 1]);
@@ -373,7 +402,7 @@ public class Animature implements Serializable {
 	public static int getLevelEvo(final int animature, final Context context)
 	{
 		return Integer.parseInt(context.getResources().getStringArray(
-		R.array.animature_level_evo)[animature - 1]);
+		R.array.animature_level_evo)[animature - 1]); // TODO
 	}
 
 	/**
@@ -399,7 +428,7 @@ public class Animature implements Serializable {
 	public static double getHeight(final int animature, final Context context)
 	{
 		return Double.parseDouble(context.getResources().getStringArray(
-		R.array.animature_height)[animature - 1]);
+		R.array.animature_height)[animature - 1]); // TODO
 	}
 
 	/**
@@ -412,7 +441,7 @@ public class Animature implements Serializable {
 	public static double getWeight(final int animature, final Context context)
 	{
 		return Double.parseDouble(context.getResources().getStringArray(
-		R.array.animature_weight)[animature - 1]);
+		R.array.animature_weight)[animature - 1]); // TODO
 	}
 
 	/**
