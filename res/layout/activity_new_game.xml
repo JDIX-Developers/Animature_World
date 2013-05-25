@@ -176,6 +176,7 @@
             android:drawableRight="@drawable/flecha"
             android:gravity="center_horizontal|center_vertical"
             android:height="65dp"
+            android:lines="2"
             android:maxHeight="20dp"
             android:maxLines="2"
             android:minHeight="20dp"
@@ -183,5 +184,6 @@
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="20sp" />
+
     </LinearLayout>
 </LinearLayout>
