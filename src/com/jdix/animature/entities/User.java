@@ -60,24 +60,6 @@ public class User {
 	}
 
 	/**
-	 * Exists the user
-	 * 
-	 * @param context - The context of the application
-	 */
-	public static void exit(final Context context)
-	{
-		user = null;
-
-		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
-
-		final ContentValues exit = new ContentValues(2);
-		exit.put("is_current", 0);
-		exit.put("remember", 0);
-
-		db.update("USER", exit, null, null);
-	}
-
-	/**
 	 * @param email - The email of the user
 	 * @param password - The password of the user
 	 * @param username - The username
@@ -126,6 +108,12 @@ public class User {
 	{
 		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
 
+		final ContentValues exit = new ContentValues(2);
+		exit.put("is_current", 0);
+		exit.put("remember", 0);
+
+		db.update("USER", exit, null, null);
+
 		final ContentValues update = new ContentValues(2);
 		update.put("is_current", 1);
 		if (remember)
@@ -146,6 +134,8 @@ public class User {
 
 		user = new User(id, email, password, username);
 
+		c.close();
+		db.close();
 	}
 
 	private static boolean existsUser(final String email, final Context context)
@@ -160,6 +150,10 @@ public class User {
 		{
 			exists = (c.getInt(0) == 1);
 		}
+
+		c.close();
+		db.close();
+
 		return exists;
 	}
 
@@ -175,11 +169,31 @@ public class User {
 	 * Loads the remembered user, if exists, and returns it. It will return null
 	 * if none was remembered
 	 * 
+	 * @param context - The context of the application
 	 * @return The remembered user
 	 */
-	public static User loadRemembered()
+	public static User loadRemembered(final Context context)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
+
+		final Cursor c = db.rawQuery(
+		"SELECT id, email, password, username FROM USER WHERE remember = 1",
+		null);
+
+		if (c.moveToFirst())
+		{
+
+			final int id = c.getInt(0);
+			final String email = c.getString(1);
+			final String password = c.getString(2);
+			final String username = c.getString(3);
+
+			user = new User(id, email, password, username);
+		}
+
+		c.close();
+		db.close();
+
+		return user;
 	}
 }

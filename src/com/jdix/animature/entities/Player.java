@@ -171,11 +171,14 @@ public class Player {
 			{
 				this.id = c.getInt(0);
 			}
+			c.close();
 		}
 		else
 		{
 			db.update("SAVE", values, "id = " + this.id, null);
 		}
+
+		db.close();
 
 		// TODO save to server
 
@@ -232,6 +235,9 @@ public class Player {
 		lastSaved, totalPlayed, steps, animatures, posX, posY, orientation,
 		lastHealingMap, lastHealingX, lastHealingY, medals, money, items,
 		firstAnim, context);
+
+		c.close();
+		db.close();
 	}
 
 	private static Vector<Item> loadItems(final int id, final Context context)
@@ -251,6 +257,9 @@ public class Player {
 			}
 			while (c.moveToNext());
 		}
+
+		c.close();
+		db.close();
 
 		return items;
 	}
