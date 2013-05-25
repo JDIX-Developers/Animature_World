@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,8 +84,6 @@ public class AnimatureAdapter extends BaseAdapter {
 		final TextView type2Animature = (TextView) v
 		.findViewById(R.id.animax_row_type2);
 
-		Log.e("INDICE POSITION", "Indice: " + position);
-
 		final TextView[] textViews = {type1Animature, type2Animature};
 		modifyTypeTextView(textViews, position + 1);
 
@@ -105,8 +102,14 @@ public class AnimatureAdapter extends BaseAdapter {
 		int color = colors.getColor(typeIndex1, 0);
 		textViews[0].setBackgroundColor(color);
 
+		textViews[1].setVisibility(View.INVISIBLE);
+
 		if (types[1] != 0)
 		{
+			if (animature == 4)
+			{
+				System.out.println("ERROR");
+			}
 			final int typeIndex2 = (int) Math.round(Math.log(types[1])
 			/ Math.log(2));
 
