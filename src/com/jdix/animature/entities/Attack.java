@@ -102,7 +102,7 @@ public class Attack {
 				}
 			break;
 			case Animature.FIRE:
-				switch (animature.getType())
+				switch (animature.getType(context))
 				{
 					case Animature.GRASS:
 					case Animature.ICE:
