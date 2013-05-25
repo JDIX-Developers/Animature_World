@@ -62,7 +62,8 @@ public class Animature implements Serializable {
 	private int					level;
 	private int					currentExp;
 	private int					experience;
-	private int					healthMax			= 0;
+	private int					baseHealth;
+	private int					healthMax;
 	private int					healthAct;
 	private int					box;
 	private final int[]			cualitiesC			= new int[5];
@@ -74,7 +75,8 @@ public class Animature implements Serializable {
 	final int capturedTime, final Attack a1, final int a1pp, final Attack a2,
 	final int a2pp, final Attack a3, final int a3pp, final Attack a4,
 	final int a4pp, final int level, final int currentExp,
-	final int experience, final int healthAct, final int box)
+	final int experience, final int baseHealth, final int healthAct,
+	final int box)
 	{
 		this.id = id;
 		this.animature = animature;
@@ -94,8 +96,17 @@ public class Animature implements Serializable {
 		this.level = level;
 		this.currentExp = currentExp;
 		this.experience = experience;
+		this.baseHealth = baseHealth;
 		this.healthAct = healthAct;
 		this.box = box;
+		this.healthMax = baseHealth;
+		if (this.level > 1)
+		{
+			for (int i = 2; i <= this.level; i++)
+			{
+				this.healthMax += this.healthMax / 3;
+			}
+		}
 	}
 
 	/**
@@ -438,8 +449,8 @@ public class Animature implements Serializable {
 
 		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
 
-		final Cursor c = db.rawQuery("SELECT * FROM CAPTURED WHERE id = " + id,
-		null);
+		final Cursor c = db.rawQuery("SELECT * FROM CAPTURABLE WHERE id = "
+		+ id, null);
 
 		c.moveToFirst();
 
@@ -462,16 +473,17 @@ public class Animature implements Serializable {
 		attackPPs[2] = c.getInt(13);
 		attackPPs[3] = c.getInt(15);
 
-		final int health = c.getInt(16);
-		final int level = c.getInt(17);
-		final int cur_exp = c.getInt(18);
-		final int exp = c.getInt(19);
-		final int box = c.getInt(20);
+		final int baseHealth = c.getInt(16);
+		final int healthAct = c.getInt(17);
+		final int level = c.getInt(18);
+		final int cur_exp = c.getInt(19);
+		final int exp = c.getInt(20);
+		final int box = c.getInt(21);
 
 		final Animature anim = new Animature(id, animature, save, nickname,
 		sex, status, capturedTime, attacks[0], attackPPs[0], attacks[1],
 		attackPPs[1], attacks[2], attackPPs[2], attacks[3], attackPPs[3],
-		level, cur_exp, exp, health, box);
+		level, cur_exp, exp, baseHealth, healthAct, box);
 
 		c.close();
 		db.close();

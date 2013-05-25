@@ -135,24 +135,6 @@ public class BattleUtils {
 	}
 
 	/**
-	 * Method to load the max health of the Animature
-	 * 
-	 * @param animature The Animature whose max health is going to be loaded
-	 */
-	public void loadHealthMax(final Animature animature)
-	{
-		animature.setHealthMax(animature.getHealthAct());
-		if (animature.getLevel() > 1)
-		{
-			for (int i = 2; i <= animature.getLevel(); i++)
-			{
-				animature.setHealthMax(animature.getHealthMax()
-				+ animature.getHealthMax() / 3);
-			}
-		}
-	}
-
-	/**
 	 * Method to upgrade Animature's cualities when level grow up
 	 * 
 	 * @param captured The Animature whose level grow up
@@ -163,14 +145,11 @@ public class BattleUtils {
 		captured.setCualitiesC(captured.getCualitiesC(Animature.SPEED)
 		+ (captured.getCualitiesC(Animature.SPEED) / 3), Animature.SPEED);
 		captured.setCualitiesC(captured.getCualitiesC(Animature.DEFENSE)
-		+ (captured.getCualitiesC(Animature.DEFENSE) / 3),
-		Animature.DEFENSE);
+		+ (captured.getCualitiesC(Animature.DEFENSE) / 3), Animature.DEFENSE);
 		captured.setCualitiesC(captured.getCualitiesC(Animature.AGILITY)
-		+ (captured.getCualitiesC(Animature.AGILITY) / 3),
-		Animature.AGILITY);
+		+ (captured.getCualitiesC(Animature.AGILITY) / 3), Animature.AGILITY);
 		captured.setCualitiesC(captured.getCualitiesC(Animature.STRENGTH)
-		+ (captured.getCualitiesC(Animature.STRENGTH) / 3),
-		Animature.STRENGTH);
+		+ (captured.getCualitiesC(Animature.STRENGTH) / 3), Animature.STRENGTH);
 		captured.setCualitiesC(captured.getCualitiesC(Animature.PRECISION)
 		+ (captured.getCualitiesC(Animature.PRECISION) / 3),
 		Animature.PRECISION);
@@ -181,7 +160,6 @@ public class BattleUtils {
 		captured.setCurrentExp(captured.getCurrentExp()
 		- captured.getCurrentExp());
 		captured.setExperience((int) Math.pow(captured.getLevel(), 3));
-		levelUp = true;
 	}
 
 	/**
@@ -193,13 +171,10 @@ public class BattleUtils {
 	 */
 	public static void evolution(final Animature captured)
 	{
-		boolean evolution = false;
 		if (captured.getLevel() == captured.getLevelEvo())
 		{
 			captured.setAnimature(captured.getAnimature() + 1);
-			evolution = true;
 		}
-		return evolution;
 	}
 
 	/**
