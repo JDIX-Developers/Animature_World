@@ -49,6 +49,7 @@ public class Item {
 	/**
 	 * Method to get Item's name.
 	 * 
+	 * @param context - The context of the application
 	 * @return Item's name.
 	 */
 	public String getName(final Context context)

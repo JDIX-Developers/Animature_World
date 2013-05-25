@@ -133,7 +133,7 @@ public class MapView extends View implements OnTouchListener {
 		canvas.drawColor(Color.BLACK);
 		final Bitmap mapb = map.getBitmap();
 
-		final int cx = (mWidth - mapb.getWidth()) / 2;
+		final int cx = (mWidth - mapb.getWidth()) / 2; // TODO add scrolling
 		final int cy = (mHeight - mapb.getHeight()) / 2;
 
 		map0x = cx;
