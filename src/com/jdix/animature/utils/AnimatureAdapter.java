@@ -22,6 +22,7 @@ public class AnimatureAdapter extends BaseAdapter {
 	private final Context				context;
 	private final ArrayList<Integer>	items;
 	private String[]					typesNames;
+	private final TypedArray			colors;
 
 	/**
 	 * @param context The context of list.
@@ -31,6 +32,8 @@ public class AnimatureAdapter extends BaseAdapter {
 	{
 		this.context = context;
 		this.items = items;
+		this.colors = context.getResources().obtainTypedArray(
+		R.array.animature_types_colors);
 	}
 
 	@Override
@@ -99,20 +102,19 @@ public class AnimatureAdapter extends BaseAdapter {
 			Log.e("ANIMATURE CHECK", "Animature: " + animature);
 			if (Animature.isOfType(i, animature, context))
 			{
-				textViews[cont].setText(typesNames[(int) (Math.log(i) / Math
-				.log(2))]);
+				final int j = Math.round((int) (Math.log(i) / Math.log(2)));
 
-				final TypedArray colors = context.getResources()
-				.obtainTypedArray(R.array.animature_types_colors);
-				final int color = colors.getColor(
-				(int) (Math.log(i) / Math.log(2)), 0);
+				textViews[cont].setText(typesNames[j]);
+
+				final int color = colors.getColor(j, 0);
 
 				textViews[cont].setBackgroundColor(color);
+				textViews[cont].setVisibility(View.VISIBLE);
 
-				colors.recycle();
 				cont++;
 			}
 		}
+		colors.recycle();
 	}
 
 	private String getFormatedIdAnimature(final int id)
