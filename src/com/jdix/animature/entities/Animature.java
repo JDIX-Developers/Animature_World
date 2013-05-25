@@ -337,8 +337,7 @@ public class Animature implements Serializable {
 	 */
 	public static int getType(final int animature, final Context context)
 	{
-		return Integer.parseInt(context.getResources().getStringArray(
-		R.array.animature_type)[animature - 1]);
+		return context.getResources().getIntArray(R.array.animature_type)[animature - 1];
 	}
 
 	/**

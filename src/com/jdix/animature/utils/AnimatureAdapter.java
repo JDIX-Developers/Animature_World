@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,14 +26,11 @@ public class AnimatureAdapter extends BaseAdapter {
 	/**
 	 * @param context The context of list.
 	 */
-	public AnimatureAdapter(final Context context)
+	public AnimatureAdapter(final Context context,
+	final ArrayList<Integer> items)
 	{
 		this.context = context;
-		this.items = new ArrayList<Integer>();
-		for (int i = 1; i <= 20; i++)
-		{
-			items.add(Integer.valueOf(i));
-		}
+		this.items = items;
 	}
 
 	@Override
@@ -54,7 +52,7 @@ public class AnimatureAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(final int animature, final View convertView,
+	public View getView(final int position, final View convertView,
 	final ViewGroup parent)
 	{
 		View v = convertView;
@@ -72,11 +70,11 @@ public class AnimatureAdapter extends BaseAdapter {
 		// ID
 		final TextView idAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_id);
-		idAnimature.setText(getFormatedIdAnimature(animature));
+		idAnimature.setText(getFormatedIdAnimature(position + 1));
 		// NAME
 		final TextView nameAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_name);
-		nameAnimature.setText(Animature.getName(animature, context));
+		nameAnimature.setText(Animature.getName(position + 1, context));
 		// TYPE 1
 		final TextView type1Animature = (TextView) v
 		.findViewById(R.id.animax_row_type1);
@@ -84,26 +82,12 @@ public class AnimatureAdapter extends BaseAdapter {
 		final TextView type2Animature = (TextView) v
 		.findViewById(R.id.animax_row_type2);
 
+		Log.e("INDICE POSITION", "Indice: " + position);
+
 		final TextView[] textViews = {type1Animature, type2Animature};
-		modifyTypeTextView(textViews, animature);
+		modifyTypeTextView(textViews, position + 1);
 
 		return v;
-	}
-
-	private String getFormatedIdAnimature(final int id)
-	{
-		if (id < 10)
-		{
-			return "00" + id;
-		}
-		else if (id < 100)
-		{
-			return "0" + id;
-		}
-		else
-		{
-			return "" + id;
-		}
 	}
 
 	private void modifyTypeTextView(final TextView[] textViews,
@@ -112,6 +96,7 @@ public class AnimatureAdapter extends BaseAdapter {
 		int cont = 0;
 		for (int i = Animature.NORMAL; i < Animature.STEEL; i *= 2)
 		{
+			Log.e("ANIMATURE CHECK", "Animature: " + animature);
 			if (Animature.isOfType(i, animature, context))
 			{
 				textViews[cont].setText(typesNames[(int) (Math.log(i) / Math
@@ -127,6 +112,22 @@ public class AnimatureAdapter extends BaseAdapter {
 				colors.recycle();
 				cont++;
 			}
+		}
+	}
+
+	private String getFormatedIdAnimature(final int id)
+	{
+		if (id < 10)
+		{
+			return "00" + id;
+		}
+		else if (id < 100)
+		{
+			return "0" + id;
+		}
+		else
+		{
+			return "" + id;
 		}
 	}
 }

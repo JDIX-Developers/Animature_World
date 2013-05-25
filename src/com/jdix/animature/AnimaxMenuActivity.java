@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.jdix.animature.entities.Animature;
 import com.jdix.animature.utils.AnimatureAdapter;
 
 /**
@@ -21,8 +20,8 @@ import com.jdix.animature.utils.AnimatureAdapter;
  */
 public class AnimaxMenuActivity extends Activity {
 
-	private ListView				list;
-	private ArrayList<Animature>	animatures;
+	private ListView			list;
+	private ArrayList<Integer>	animatureIndex;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -32,9 +31,15 @@ public class AnimaxMenuActivity extends Activity {
 
 		// We get a reference to the interface controls
 		list = (ListView) findViewById(R.id.list_Animatures);
-		animatures = new ArrayList<Animature>();
+		animatureIndex = new ArrayList<Integer>();
 
-		final AnimatureAdapter adapter = new AnimatureAdapter(this);
+		for (int i = 1; i <= 20; i++)
+		{
+			animatureIndex.add(Integer.valueOf(i));
+		}
+
+		final AnimatureAdapter adapter = new AnimatureAdapter(this,
+		animatureIndex);
 
 		list.setAdapter(adapter);
 
@@ -48,8 +53,7 @@ public class AnimaxMenuActivity extends Activity {
 				final Intent intent = new Intent(AnimaxMenuActivity.this,
 				AnimaxAnimatureActivity.class);
 				final Bundle b = new Bundle();
-				b.putSerializable("animature_id", animatures.get(pos).getId());
-				intent.putExtras(b);
+				b.putInt("animature_id", animatureIndex.get(pos));
 
 				startActivity(intent);
 			}

@@ -41,7 +41,7 @@ public class BattleUtils {
 	 * @param attacker The attacker Animature.
 	 * @param attack The attacker Animature used attack.
 	 * @param underAttackAnimature The Animature who is under attack.
-	 * @param context
+	 * @param context - The context of the application
 	 * @return true if attacker Animature get hit.
 	 */
 	public static boolean getHit(final Animature attacker, final Attack attack,

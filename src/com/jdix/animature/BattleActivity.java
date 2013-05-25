@@ -1,6 +1,7 @@
 package com.jdix.animature;
 
 import android.app.Activity;
+import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,8 @@ public class BattleActivity extends Activity {
 	private Button			btnAttack2;
 	private Button			btnAttack3;
 	private Button			btnAttack4;
+
+	private ActionListener	animatureRestLifeAction;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

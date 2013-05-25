@@ -67,7 +67,7 @@
     <!-- 019 -->    <item>18.5</item>
     </array>
     
-    <array name="animature_type">
+    <integer-array name="animature_type">
     <!-- 000 -->    <item>136</item>
     <!-- 001 -->    <item>136</item>
     <!-- 002 -->    <item>136</item>
@@ -88,9 +88,9 @@
     <!-- 017 -->    <item>513</item>
     <!-- 018 -->    <item>1</item>
     <!-- 019 -->    <item>1</item>
-    </array>
+    </integer-array>
     
-    <array name="animature_speed">
+    <integer-array name="animature_speed">
     <!-- 000 -->    <item>50</item>
     <!-- 001 -->    <item>67</item>
     <!-- 002 -->    <item>83</item>
@@ -111,9 +111,9 @@
     <!-- 017 -->    <item>100</item>
     <!-- 018 -->    <item>60</item>
     <!-- 019 -->    <item>90</item>
-    </array>
+    </integer-array>
     
-    <array name="animature_defense">
+    <integer-array name="animature_defense">
     <!-- 000 -->    <item>60</item>
     <!-- 001 -->    <item>80</item>
     <!-- 002 -->    <item>100</item>
@@ -134,9 +134,9 @@
     <!-- 017 -->    <item>67</item>
     <!-- 018 -->    <item>40</item>
     <!-- 019 -->    <item>60</item>
-    </array>
+    </integer-array>
     
-    <array name="animature_agility">
+    <integer-array name="animature_agility">
     <!-- 000 -->    <item>40</item>
     <!-- 001 -->    <item>53</item>
     <!-- 002 -->    <item>67</item>
@@ -157,9 +157,9 @@
     <!-- 017 -->    <item>125</item>
     <!-- 018 -->    <item>60</item>
     <!-- 019 -->    <item>90</item>
-    </array>
+    </integer-array>
     
-    <array name="animature_strength">
+    <integer-array name="animature_strength">
     <!-- 000 -->    <item>65</item>
     <!-- 001 -->    <item>86</item>
     <!-- 002 -->    <item>108</item>
@@ -180,9 +180,9 @@
     <!-- 017 -->    <item>67</item>
     <!-- 018 -->    <item>60</item>
     <!-- 019 -->    <item>90</item>
-    </array>
+    </integer-array>
     
-    <array name="animature_precision">
+    <integer-array name="animature_precision">
     <!-- 000 -->    <item>65</item>
     <!-- 001 -->    <item>86</item>
     <!-- 002 -->    <item>108</item>
@@ -203,9 +203,9 @@
     <!-- 017 -->    <item>100</item>
     <!-- 018 -->    <item>60</item>
     <!-- 019 -->    <item>90</item>
-    </array>
+    </integer-array>
     
-    <array name="animature_health">
+    <integer-array name="animature_health">
     <!-- 000 -->    <item>20</item>
     <!-- 001 -->    <item>28</item>
     <!-- 002 -->    <item>34</item>
@@ -226,9 +226,9 @@
     <!-- 017 -->    <item>41</item>
     <!-- 018 -->    <item>20</item>
     <!-- 019 -->    <item>30</item>
-    </array>
+    </integer-array>
     
-    <array name="animature_level_evo">
+    <integer-array name="animature_level_evo">
     <!-- 000 -->    <item>16</item>
     <!-- 001 -->    <item>36</item>
     <!-- 002 -->    <item>0</item>
@@ -249,9 +249,9 @@
     <!-- 017 -->    <item>0</item>
     <!-- 018 -->    <item>14</item>
     <!-- 019 -->    <item>0</item>
-    </array>
+    </integer-array>
     
-    <array name="animature_base_exp">
+    <integer-array name="animature_base_exp">
     <!-- 000 -->    <item>64</item>
     <!-- 001 -->    <item>141</item>
     <!-- 002 -->    <item>208</item>
@@ -272,9 +272,9 @@
     <!-- 017 -->    <item>172</item>
     <!-- 018 -->    <item>57</item>
     <!-- 019 -->    <item>116</item>
-    </array>
+    </integer-array>
     
-    <array name="animature_capture_range">
+    <integer-array name="animature_capture_range">
     <!-- 000 -->    <item>45</item>
     <!-- 001 -->    <item>45</item>
     <!-- 002 -->    <item>45</item>
@@ -295,5 +295,5 @@
     <!-- 017 -->    <item>45</item>
     <!-- 018 -->    <item>255</item>
     <!-- 019 -->    <item>127</item>
-    </array>
+    </integer-array>
 </resources>
