@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.jdix.animature.R;
+import com.jdix.animature.utils.Database;
 
 /**
  * @author Jordan Aranda Tejada
@@ -68,10 +71,10 @@ public class Animature implements Serializable {
 
 	public Animature(final int id, final int animature, final int save,
 	final String nickname, final int sex, final int status,
-	final int capturedTime, final int a1, final int a1pp, final int a2,
-	final int a2pp, final int a3, final int a3pp, final int a4, final int a4pp,
-	final int level, final int currentExp, final int experience,
-	final int healthAct, final int box)
+	final int capturedTime, final Attack a1, final int a1pp, final Attack a2,
+	final int a2pp, final Attack a3, final int a3pp, final Attack a4,
+	final int a4pp, final int level, final int currentExp,
+	final int experience, final int healthAct, final int box)
 	{
 		this.id = id;
 		this.animature = animature;
@@ -80,10 +83,10 @@ public class Animature implements Serializable {
 		this.sex = sex;
 		this.status = status;
 		this.capturedTime = capturedTime;
-		this.attackN[0] = a1;
-		this.attackN[1] = a2;
-		this.attackN[2] = a3;
-		this.attackN[3] = a4;
+		this.attacks[0] = a1;
+		this.attacks[1] = a2;
+		this.attacks[2] = a3;
+		this.attacks[3] = a4;
 		this.attacksPP[0] = a1pp;
 		this.attacksPP[1] = a2pp;
 		this.attacksPP[2] = a3pp;
@@ -432,6 +435,47 @@ public class Animature implements Serializable {
 	public static Animature load(final int id, final Context context)
 	{
 		// TODO Auto-generated method stub
-		return null;
+
+		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
+
+		final Cursor c = db.rawQuery("SELECT * FROM CAPTURED WHERE id = " + id,
+		null);
+
+		c.moveToFirst();
+
+		final int animature = c.getInt(2);
+		final int save = c.getInt(3);
+		final String nickname = c.getString(4);
+		final int sex = c.getInt(5);
+		final int status = c.getInt(6);
+		final int capturedTime = c.getInt(7);
+
+		final Attack[] attacks = new Attack[4];
+		attacks[0] = new Attack(c.getInt(8), context);
+		attacks[1] = new Attack(c.getInt(10), context);
+		attacks[2] = new Attack(c.getInt(12), context);
+		attacks[3] = new Attack(c.getInt(14), context);
+
+		final int[] attackPPs = new int[4];
+		attackPPs[0] = c.getInt(9);
+		attackPPs[1] = c.getInt(11);
+		attackPPs[2] = c.getInt(13);
+		attackPPs[3] = c.getInt(15);
+
+		final int health = c.getInt(16);
+		final int level = c.getInt(17);
+		final int cur_exp = c.getInt(18);
+		final int exp = c.getInt(19);
+		final int box = c.getInt(20);
+
+		final Animature anim = new Animature(id, animature, save, nickname,
+		sex, status, capturedTime, attacks[0], attackPPs[0], attacks[1],
+		attackPPs[1], attacks[2], attackPPs[2], attacks[3], attackPPs[3],
+		level, cur_exp, exp, health, box);
+
+		c.close();
+		db.close();
+
+		return anim;
 	}
 }
