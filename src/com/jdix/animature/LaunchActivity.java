@@ -355,6 +355,8 @@ public class LaunchActivity extends Activity {
 				StringUtils.sha1(password + "--Animature"), username, remember,
 				LaunchActivity.this));
 
+				mp.stop();
+
 				// We start the activity
 				startActivity(new Intent(LaunchActivity.this,
 				MainMenuActivity.class));

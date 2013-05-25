@@ -56,6 +56,26 @@ public class Attack {
 		return probability;
 	}
 
+	public int getPower()
+	{
+		return power;
+	}
+
+	public void setPower(final int power)
+	{
+		this.power = power;
+	}
+
+	public boolean isFirst()
+	{
+		return isFirst;
+	}
+
+	public void setFirst(final boolean isFirst)
+	{
+		this.isFirst = isFirst;
+	}
+
 	/**
 	 * @param animature The defensor Animature's type.
 	 * @return Return 0 if normal effective, 1 if very effective, 2 if
