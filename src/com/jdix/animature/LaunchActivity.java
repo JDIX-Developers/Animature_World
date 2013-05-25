@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,7 +22,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import com.jdix.animature.entities.Animature;
+import com.jdix.animature.entities.Player;
 import com.jdix.animature.entities.User;
+import com.jdix.animature.map.Map;
+import com.jdix.animature.map.Sprite;
+import com.jdix.animature.map.Square;
 import com.jdix.animature.utils.Connection;
 import com.jdix.animature.utils.StringUtils;
 
@@ -49,6 +55,34 @@ public class LaunchActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
+
+		final DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		switch (metrics.densityDpi)
+		{
+			case DisplayMetrics.DENSITY_LOW:
+				Square.setSprite(new Sprite(this, R.raw.sprite24,
+				R.drawable.sprite));
+			break;
+			case DisplayMetrics.DENSITY_MEDIUM:
+				Square.setSprite(new Sprite(this, R.raw.sprite32,
+				R.drawable.sprite));
+			break;
+			case DisplayMetrics.DENSITY_HIGH:
+				Square.setSprite(new Sprite(this, R.raw.sprite48,
+				R.drawable.sprite));
+			break;
+			case DisplayMetrics.DENSITY_XHIGH:
+				Square.setSprite(new Sprite(this, R.raw.sprite64,
+				R.drawable.sprite));
+			break;
+		}
+
+		Player.set(new Map(R.raw.map_test, this), "Test Player", Player.BOY,
+		"TEST Enemy", new Animature[6], 5, 5, Player.SOUTH, 0, this);
+
+		startActivity(new Intent(LaunchActivity.this, MapActivity.class));
+		finish();
 
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
@@ -91,7 +125,7 @@ public class LaunchActivity extends Activity {
 			}
 		});
 
-		if (User.loadRemembered(this) != null)
+		if (false && User.loadRemembered(this) != null)
 		{
 			Connection.getInstance().setUser(User.getCurrent());
 

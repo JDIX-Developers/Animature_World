@@ -19,29 +19,29 @@ import com.jdix.animature.entities.Player;
  */
 public class MapView extends View implements OnTouchListener {
 
-	private final Map		map;
-	private int				mWidth;
-	private int				mHeight;
-	private final Context	context;
-	private int				control;
-	private int				map0x, map0y;
-	private MoveThread		move;
+	private final Map			map;
+	private int					mWidth;
+	private int					mHeight;
+	private final Context		context;
+	private int					control;
+	private int					map0x, map0y;
+	private final MoveThread	move;
 
-	private static int		NONE	= 0;
-	private static int		UP		= 1;
-	private static int		DOWN	= 2;
-	private static int		LEFT	= 4;
-	private static int		RIGHT	= 8;
-	private static int		A		= 16;
-	private static int		B		= 32;
+	private static int			NONE	= 0;
+	private static int			UP		= 1;
+	private static int			DOWN	= 2;
+	private static int			LEFT	= 4;
+	private static int			RIGHT	= 8;
+	private static int			A		= 16;
+	private static int			B		= 32;
 
-	private int[]			posCross;
-	private int[]			posA;
-	private int[]			posB;
-	private int[]			posUP;
-	private int[]			posDOWN;
-	private int[]			posLEFT;
-	private int[]			posRIGHT;
+	private int[]				posCross;
+	private int[]				posA;
+	private int[]				posB;
+	private int[]				posUP;
+	private int[]				posDOWN;
+	private int[]				posLEFT;
+	private int[]				posRIGHT;
 
 	/**
 	 * @param context - Context of the application
@@ -56,6 +56,8 @@ public class MapView extends View implements OnTouchListener {
 		this.map = Player.getInstance().getMap();
 		this.move = new MoveThread();
 		setOnTouchListener(this);
+
+		this.move.start();
 	}
 
 	private void calculateControlPositions(final Bitmap cross,
@@ -173,111 +175,83 @@ public class MapView extends View implements OnTouchListener {
 		final Vibrator vibrator = (Vibrator) context
 		.getSystemService(Context.VIBRATOR_SERVICE);
 
-		final int control = getControl(event);
+		final int lastControl = this.control;
 
 		if (event.getAction() == MotionEvent.ACTION_DOWN
 		|| event.getAction() == MotionEvent.ACTION_MOVE)
 		{
-			if ((control & UP) == UP
-			&& (control & (DOWN | LEFT | RIGHT)) == NONE)
-			{
-				if ((this.control & UP) == NONE)
-				{
-					this.control = UP;
-					vibrator.vibrate(50);
-					move.setOnFinishedListener(new Runnable()
-					{
+			this.control = getControl(event);
 
-						@Override
-						public void run()
-						{
-							(move = new MoveThread()).start();
-						}
-					});
-				}
-			}
-			else if ((control & DOWN) == DOWN
-			&& (control & (UP | LEFT | RIGHT)) == NONE)
+			if ((getArrowControl() | getABControls()) != NONE
+			&& this.control != lastControl)
 			{
-				if ((this.control & DOWN) == NONE)
-				{
-					this.control = DOWN;
-					vibrator.vibrate(50);
-					move.setOnFinishedListener(new Runnable()
-					{
-
-						@Override
-						public void run()
-						{
-							(move = new MoveThread()).start();
-						}
-					});
-				}
-			}
-			else if ((control & LEFT) == LEFT
-			&& (control & (DOWN | UP | RIGHT)) == NONE)
-			{
-				if ((this.control & LEFT) == NONE)
-				{
-					this.control = LEFT;
-					vibrator.vibrate(50);
-					move.setOnFinishedListener(new Runnable()
-					{
-
-						@Override
-						public void run()
-						{
-							(move = new MoveThread()).start();
-						}
-					});
-				}
-			}
-			else if ((control & RIGHT) == RIGHT
-			&& (control & (DOWN | LEFT | UP)) == NONE)
-			{
-				if ((this.control & RIGHT) == NONE)
-				{
-					this.control = RIGHT;
-					vibrator.vibrate(50);
-					move.setOnFinishedListener(new Runnable()
-					{
-
-						@Override
-						public void run()
-						{
-							(move = new MoveThread()).start();
-						}
-					});
-				}
-			}
-
-			if ((control & A) == A)
-			{
-				if ((this.control & A) == NONE)
-				{
-					this.control = control;
-					vibrator.vibrate(50);
-				}
-			}
-
-			if ((control & B) == B)
-			{
-				if ((this.control & B) == NONE)
-				{
-					this.control = control;
-					vibrator.vibrate(50);
-				}
+				vibrator.vibrate(50);
 			}
 		}
+		else if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_POINTER_DOWN)
+		{
+			System.out.println("DOWN!");
+			this.control |= getControl(event, event.getActionIndex());
 
-		if (event.getAction() == MotionEvent.ACTION_UP || control == NONE
-		|| control != this.control)
+			if ((getArrowControl() | getABControls()) != NONE
+			&& this.control != lastControl)
+			{
+				vibrator.vibrate(50);
+			}
+		}
+		else if (event.getAction() == MotionEvent.ACTION_UP)
 		{
 			this.control = NONE;
-			move.stay();
-			move.setOnFinishedListener(null);
 		}
+		else if ((event.getActionMasked() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_POINTER_UP)
+		{
+			this.control &= ~ getControl(event, event.getActionIndex());
+		}
+
 		return true;
+	}
+
+	private int getControl(final MotionEvent event, final int actionIndex)
+	{
+		int control = NONE;
+
+		final int x = (int) event.getX(actionIndex);
+		final int y = (int) event.getY(actionIndex);
+
+		if (x >= posUP[0] && y >= posUP[1] && x <= posUP[2] && y <= posUP[3])
+		{
+			control = UP;
+		}
+
+		if (x >= posDOWN[0] && y >= posDOWN[1] && x <= posDOWN[2]
+		&& y <= posDOWN[3])
+		{
+			control = DOWN;
+		}
+
+		if (x >= posLEFT[0] && y >= posLEFT[1] && x <= posLEFT[2]
+		&& y <= posLEFT[3])
+		{
+			control = LEFT;
+		}
+
+		if (x >= posRIGHT[0] && y >= posRIGHT[1] && x <= posRIGHT[2]
+		&& y <= posRIGHT[3])
+		{
+			control = RIGHT;
+		}
+
+		if (x >= posA[0] && y >= posA[1] && x <= posA[2] && y <= posA[3])
+		{
+			control = A;
+		}
+
+		if (x >= posB[0] && y >= posB[1] && x <= posB[2] && y <= posB[3])
+		{
+			control = B;
+		}
+
+		return control;
 	}
 
 	private int getControl(final MotionEvent event)
@@ -286,54 +260,41 @@ public class MapView extends View implements OnTouchListener {
 
 		for (int i = 0; i < event.getPointerCount(); i++)
 		{
-			final int x = (int) event.getX(i);
-			final int y = (int) event.getY(i);
-
-			if (x >= posUP[0] && y >= posUP[1] && x <= posUP[2]
-			&& y <= posUP[3])
-			{
-				control |= UP;
-			}
-
-			if (x >= posDOWN[0] && y >= posDOWN[1] && x <= posDOWN[2]
-			&& y <= posDOWN[3])
-			{
-				control |= DOWN;
-			}
-
-			if (x >= posLEFT[0] && y >= posLEFT[1] && x <= posLEFT[2]
-			&& y <= posLEFT[3])
-			{
-				control |= LEFT;
-			}
-
-			if (x >= posRIGHT[0] && y >= posRIGHT[1] && x <= posRIGHT[2]
-			&& y <= posRIGHT[3])
-			{
-				control |= RIGHT;
-			}
-
-			if (x >= posA[0] && y >= posA[1] && x <= posA[2] && y <= posA[3])
-			{
-				control |= A;
-			}
-
-			if (x >= posB[0] && y >= posB[1] && x <= posB[2] && y <= posB[3])
-			{
-				control |= B;
-			}
+			control |= getControl(event, i);
 		}
 
 		return control;
 	}
 
+	/**
+	 * @return The current arrow control
+	 */
+	public int getArrowControl()
+	{
+		final int arrows = MapView.this.control & ~ B & ~ A;
+		if ((arrows & - arrows) == arrows)
+		{
+			return arrows;
+		}
+		return NONE;
+	}
+
+	/**
+	 * @return The current A and B controls
+	 */
+	public int getABControls()
+	{
+		return NONE | (MapView.this.control & A) | (MapView.this.control & B);
+	}
+
 	private class MoveThread extends Thread {
 
-		private boolean		stopped;
-		private boolean		finished;
-		private int			x, y;
-		private Bitmap		bitmap;
-		private Runnable	onFinishedListener;
+		private boolean	stopped;
+		private boolean	finished;
+		private int		x;
+		private int		y;
+		private Bitmap	bitmap;
+		private int		control;
 
 		public MoveThread()
 		{
@@ -347,35 +308,36 @@ public class MapView extends View implements OnTouchListener {
 		@Override
 		public void run()
 		{
-			stopped = finished = false;
-			final int control = MapView.this.control;
+			poll();
+		}
 
-			while ( ! stopped)
+		/**
+		 * Does the next move
+		 */
+		public void nextMove()
+		{
+			bitmap = Player.getInstance().getBitmap(
+			Player.getInstance().getOrientation());
+
+			if ((control & UP) != NONE)
 			{
-				if ((control & UP) != NONE)
-				{
-					move(Player.NORTH, Player.NORTHLEFT, Player.NORTHRIGHT, 0,
-					- 1, false);
-				}
-				else if ((control & DOWN) != NONE)
-				{
-					move(Player.SOUTH, Player.SOUTHLEFT, Player.SOUTHRIGHT, 0,
-					1, false);
-				}
-				else if ((control & LEFT) != NONE)
-				{
-					move(Player.WEST, Player.WESTLEFT, Player.WESTRIGHT, - 1,
-					0, false);
-				}
-				else if ((control & RIGHT) != NONE)
-				{
-					move(Player.EAST, Player.EASTLEFT, Player.EASTRIGHT, 1, 0,
-					false);
-				}
+				move(Player.NORTH, Player.NORTHLEFT, Player.NORTHRIGHT, 0, - 1,
+				(control & B) == B);
 			}
-			if ( ! finished)
+			else if ((control & DOWN) != NONE)
 			{
-				finish();
+				move(Player.SOUTH, Player.SOUTHLEFT, Player.SOUTHRIGHT, 0, 1,
+				(control & B) == B);
+			}
+			else if ((control & LEFT) != NONE)
+			{
+				move(Player.WEST, Player.WESTLEFT, Player.WESTRIGHT, - 1, 0,
+				(control & B) == B);
+			}
+			else if ((control & RIGHT) != NONE)
+			{
+				move(Player.EAST, Player.EASTLEFT, Player.EASTRIGHT, 1, 0,
+				(control & B) == B);
 			}
 		}
 
@@ -402,14 +364,14 @@ public class MapView extends View implements OnTouchListener {
 					.getSquareAt((byte) (p.getX() + 1), (byte) p.getY());
 			}
 
-			System.out.println(p.getOrientation() + " - " + sq.toString());
-
 			return sq;
 		}
 
 		private void move(final int direction, final int left, final int right,
 		final int x, final int y, final boolean trainers)
 		{
+			finished = false;
+
 			if (Player.getInstance().getOrientation() != direction)
 			{
 				bitmap = Player.getInstance().getBitmap(direction);
@@ -503,32 +465,35 @@ public class MapView extends View implements OnTouchListener {
 			y = 0;
 			finished = true;
 
-			((Activity) context).runOnUiThread(new Runnable()
-			{
-
-				@Override
-				public void run()
-				{
-					invalidate();
-				}
-			});
-
 			startEvents();
+		}
 
-			if (this.onFinishedListener != null)
+		private void poll()
+		{
+			do
 			{
-				this.onFinishedListener.run();
+				try
+				{
+					Thread.sleep(50);
+				}
+				catch (final InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+
+				stopped = getArrowControl() == NONE;
+				if ( ! stopped && finished)
+				{
+					this.control = getArrowControl() | getABControls();
+					nextMove();
+				}
 			}
+			while (true);
 		}
 
 		private void startEvents()
 		{
 			// TODO Start events for the current square
-		}
-
-		public void stay()
-		{
-			stopped = true;
 		}
 
 		public Bitmap getBitmap()
@@ -546,15 +511,6 @@ public class MapView extends View implements OnTouchListener {
 		{
 			return Player.getInstance().getY() * Square.getSprite().getSize()
 			+ y;
-		}
-
-		public void setOnFinishedListener(final Runnable r)
-		{
-			this.onFinishedListener = r;
-			if (finished && r != null)
-			{
-				r.run();
-			}
 		}
 	}
 }
