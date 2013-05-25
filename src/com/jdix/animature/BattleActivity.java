@@ -2,6 +2,7 @@ package com.jdix.animature;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -30,6 +31,15 @@ public class BattleActivity extends Activity {
 	private ProgressBar		playerAnimatureExperienceProgressBar;
 	private ImageView		playerAnimatureImageView;
 
+	private TextView		playerTextView;
+
+	private LinearLayout	playerBattleOptionsLayout;
+	private TextView		playerBattleOptionsHeader;
+	private Button			btnFightBattleActivity;
+	private Button			btnAnimatureBattleActivity;
+	private Button			btnBagBattleActivity;
+	private Button			btnEscapeBattleActivity;
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -55,9 +65,15 @@ public class BattleActivity extends Activity {
 		playerAnimatureExperienceProgressBar = (ProgressBar) findViewById(R.id.player_animature_experience_progressBar);
 		playerAnimatureImageView = (ImageView) findViewById(R.id.player_animature_imageView);
 
-		/*
-		 * textViewNewGame.setOnClickListener(new View.OnClickListener() {
-		 * @Override public void onClick(final View view) { } });
-		 */
+		playerTextView = (TextView) findViewById(R.id.textViewBattleActivity);
+
+		playerBattleOptionsLayout = (LinearLayout) findViewById(R.id.player_battle_options_layout);
+		playerBattleOptionsHeader = (TextView) findViewById(R.id.battle_options_header);
+		btnFightBattleActivity = (Button) findViewById(R.id.btnFightBattleActivity);
+		btnAnimatureBattleActivity = (Button) findViewById(R.id.btnAnimatureBattleActivity);
+		btnBagBattleActivity = (Button) findViewById(R.id.btnBagBattleActivity);
+		btnEscapeBattleActivity = (Button) findViewById(R.id.btnEscapeBattleActivity);
+
+		// TODO References
 	}
 }
