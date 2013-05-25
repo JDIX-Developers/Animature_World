@@ -107,7 +107,7 @@ public class BattleUtils {
 	 * @param defensor The Animature under attack.
 	 * @return The infringed damage.
 	 */
-	public int combat(final Animature attacker, final Animature defensor)
+	public static int combat(final Animature attacker, final Animature defensor)
 	{
 		int damage = 0;
 		damage = (int) 0.1
@@ -153,42 +153,35 @@ public class BattleUtils {
 	}
 
 	/**
-	 * Method to check if the Animature could grow up a level and it do if meets
-	 * the condition
+	 * Method to upgrade Animature's cualities when level grow up
 	 * 
-	 * @param captured The Animature whose level could grow up
-	 * @return True if the Animature has grow up one level
+	 * @param captured The Animature whose level grow up
 	 */
-	public boolean levelUp(final Animature captured)
+	public static void levelUp(final Animature captured)
 	{
-		boolean levelUp = false;
-		while (captured.getCurrentExp() >= captured.getExperience())
-		{
-			captured.setLevel(captured.getLevel() + 1);
-			captured.setCualitiesC(captured.getCualitiesC(Animature.SPEED)
-			+ (captured.getCualitiesC(Animature.SPEED) / 3), Animature.SPEED);
-			captured.setCualitiesC(captured.getCualitiesC(Animature.DEFENSE)
-			+ (captured.getCualitiesC(Animature.DEFENSE) / 3),
-			Animature.DEFENSE);
-			captured.setCualitiesC(captured.getCualitiesC(Animature.AGILITY)
-			+ (captured.getCualitiesC(Animature.AGILITY) / 3),
-			Animature.AGILITY);
-			captured.setCualitiesC(captured.getCualitiesC(Animature.STRENGTH)
-			+ (captured.getCualitiesC(Animature.STRENGTH) / 3),
-			Animature.STRENGTH);
-			captured.setCualitiesC(captured.getCualitiesC(Animature.PRECISION)
-			+ (captured.getCualitiesC(Animature.PRECISION) / 3),
-			Animature.PRECISION);
-			captured.setHealthAct(captured.getHealthAct()
-			+ (captured.getHealthAct() / 3));
-			captured.setHealthMax(captured.getHealthMax()
-			+ (captured.getHealthMax() / 3));
-			captured.setCurrentExp(captured.getCurrentExp()
-			- captured.getCurrentExp());
-			captured.setExperience((int) Math.pow(captured.getLevel(), 3));
-			levelUp = true;
-		}
-		return levelUp;
+		captured.setLevel(captured.getLevel() + 1);
+		captured.setCualitiesC(captured.getCualitiesC(Animature.SPEED)
+		+ (captured.getCualitiesC(Animature.SPEED) / 3), Animature.SPEED);
+		captured.setCualitiesC(captured.getCualitiesC(Animature.DEFENSE)
+		+ (captured.getCualitiesC(Animature.DEFENSE) / 3),
+		Animature.DEFENSE);
+		captured.setCualitiesC(captured.getCualitiesC(Animature.AGILITY)
+		+ (captured.getCualitiesC(Animature.AGILITY) / 3),
+		Animature.AGILITY);
+		captured.setCualitiesC(captured.getCualitiesC(Animature.STRENGTH)
+		+ (captured.getCualitiesC(Animature.STRENGTH) / 3),
+		Animature.STRENGTH);
+		captured.setCualitiesC(captured.getCualitiesC(Animature.PRECISION)
+		+ (captured.getCualitiesC(Animature.PRECISION) / 3),
+		Animature.PRECISION);
+		captured.setHealthAct(captured.getHealthAct()
+		+ (captured.getHealthAct() / 3));
+		captured.setHealthMax(captured.getHealthMax()
+		+ (captured.getHealthMax() / 3));
+		captured.setCurrentExp(captured.getCurrentExp()
+		- captured.getCurrentExp());
+		captured.setExperience((int) Math.pow(captured.getLevel(), 3));
+		levelUp = true;
 	}
 
 	/**
@@ -198,7 +191,7 @@ public class BattleUtils {
 	 * @param captured if The Animature who could evolution
 	 * @return True if the Animature has evolutioned
 	 */
-	public boolean evolution(final Animature captured)
+	public static void evolution(final Animature captured)
 	{
 		boolean evolution = false;
 		if (captured.getLevel() == captured.getLevelEvo())
@@ -221,26 +214,23 @@ public class BattleUtils {
 	}
 
 	/**
-	 * Method to give experience to your animature
+	 * Method to get experience to your animature
 	 * 
 	 * @param battleType 0 wild battle, 1 trainer battle
 	 * @param yourCaptured Your Animature who is going to receive experience
 	 * @param enemy The enemy Animature which has been fainted
+	 * @return the experience in the battle
 	 */
-	public void giveExp(final int battleType, final Animature yourCaptured,
+	public int giveExp(final int battleType, final Animature yourCaptured,
 	final Animature enemy)
 	{
-		int gExp = 0;
-		int baseExp;
-		baseExp = enemy.getBaseExp();
 		if (battleType == 0)
 		{
-			gExp = (baseExp * enemy.getLevel()) / 7;
+			return (enemy.getBaseExp() * enemy.getLevel()) / 7;
 		}
 		else
 		{
-			gExp = (int) ((baseExp * enemy.getLevel() * 1.5) / 7);
+			return (int) ((enemy.getBaseExp() * enemy.getLevel() * 1.5) / 7);
 		}
-		yourCaptured.setCurrentExp(yourCaptured.getCurrentExp() + gExp);
 	}
 }

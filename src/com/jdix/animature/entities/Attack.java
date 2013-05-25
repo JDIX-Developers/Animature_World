@@ -1,5 +1,7 @@
 package com.jdix.animature.entities;
 
+import android.content.Context;
+
 /**
  * @author Jordan Aranda Tejada
  */
@@ -405,4 +407,10 @@ public class Attack {
 		return effective;
 
 	}
+
+	public Attack(final int id, final Context context)
+	{
+		// TODO Auto-generated method stub
+	}
+
 }
