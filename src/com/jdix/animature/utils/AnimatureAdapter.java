@@ -29,7 +29,7 @@ public class AnimatureAdapter extends BaseAdapter {
 	{
 		this.context = context;
 		this.items = new ArrayList<Integer>();
-		for (int i = 0; i < 20; i++)
+		for (int i = 1; i <= 20; i++)
 		{
 			items.add(Integer.valueOf(i));
 		}
@@ -72,11 +72,11 @@ public class AnimatureAdapter extends BaseAdapter {
 		// ID
 		final TextView idAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_id);
-		idAnimature.setText(getFormatedIdAnimature(animature + 1));
+		idAnimature.setText(getFormatedIdAnimature(animature));
 		// NAME
 		final TextView nameAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_name);
-		nameAnimature.setText(Animature.getName(animature + 1));
+		nameAnimature.setText(Animature.getName(animature));
 		// TYPE 1
 		final TextView type1Animature = (TextView) v
 		.findViewById(R.id.animax_row_type1);
@@ -85,7 +85,7 @@ public class AnimatureAdapter extends BaseAdapter {
 		.findViewById(R.id.animax_row_type2);
 
 		final TextView[] textViews = {type1Animature, type2Animature};
-		modifyTypeTextView(textViews, animature + 1);
+		modifyTypeTextView(textViews, animature);
 
 		return v;
 	}

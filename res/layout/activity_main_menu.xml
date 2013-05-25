@@ -11,12 +11,13 @@
           android:orientation="vertical" >
 
      <TextView
-         android:id="@+id/user_textView"
-         android:layout_width="wrap_content"
+         android:id="@+id/tittle_textView"
+         android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:layout_marginBottom="@dimen/Margin40"
          android:layout_marginTop="@dimen/Margin5"
-         android:text=""
+         android:gravity="center"
+         android:text="Animature World"
          android:textColor="#FFFFFF"
          android:textSize="30sp" />
 
@@ -58,4 +59,33 @@
               android:layout_height="wrap_content"
               android:textSize="25sp"
               android:text="@string/btnOptions" />
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" >
+
+              <TextView
+                  android:id="@+id/textView1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:layout_alignParentLeft="true"
+                  android:gravity="right"
+                  android:text="JDIX - Developers"
+                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  android:textColor="#0F0F0F" />
+
+              <TextView
+                  android:id="@+id/user_textView"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:layout_alignParentLeft="true"
+                  android:text="User: Jordan"
+                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  android:textColor="#0F0F0F"
+                  android:textSize="15sp" />
+
+          </RelativeLayout>
+
       </LinearLayout>
