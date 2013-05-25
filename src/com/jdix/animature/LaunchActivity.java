@@ -8,13 +8,14 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.Menu;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -31,6 +32,8 @@ import com.jdix.animature.utils.StringUtils;
 public class LaunchActivity extends Activity {
 
 	private UserLoginTask	mAuthTask	= null;
+
+	private MediaPlayer		mp;
 
 	private EditText		mEditTextUserLogin;
 	private EditText		mEditTextPasswordLogin;
@@ -49,6 +52,9 @@ public class LaunchActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
+
+		mp = MediaPlayer.create(this, R.raw.opening);
+		mp.start();
 
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
@@ -105,9 +111,15 @@ public class LaunchActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onKeyDown(final int keyCode, final KeyEvent event)
 	{
-		return super.onCreateOptionsMenu(menu);
+		if (keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			mp.stop();
+			finish();
+		}
+
+		return super.onKeyDown(keyCode, event);
 	}
 
 	/**
@@ -292,6 +304,8 @@ public class LaunchActivity extends Activity {
 				User.login(userEmail,
 				StringUtils.sha1(password + "--Animature"), username, remember,
 				LaunchActivity.this));
+
+				mp.stop();
 
 				// We start the activity
 				startActivity(new Intent(LaunchActivity.this,

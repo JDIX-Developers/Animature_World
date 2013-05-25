@@ -3,7 +3,6 @@ package com.jdix.animature.utils;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +29,7 @@ public class AnimatureAdapter extends BaseAdapter {
 	{
 		this.context = context;
 		this.items = new ArrayList<Integer>();
-		for (int i = 1; i < 21; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			items.add(Integer.valueOf(i));
 		}
@@ -67,17 +66,17 @@ public class AnimatureAdapter extends BaseAdapter {
 			v = inf.inflate(R.layout.animax_row, null);
 		}
 
-		typesNames = getResources().getStringArray(
+		typesNames = context.getResources().getStringArray(
 		R.array.animature_types_names);
 
 		// ID
 		final TextView idAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_id);
-		idAnimature.setText(getFormatedIdAnimature(animature));
+		idAnimature.setText(getFormatedIdAnimature(animature + 1));
 		// NAME
 		final TextView nameAnimature = (TextView) v
 		.findViewById(R.id.animax_row_animature_name);
-		nameAnimature.setText(Animature.getName(animature));
+		nameAnimature.setText(Animature.getName(animature + 1));
 		// TYPE 1
 		final TextView type1Animature = (TextView) v
 		.findViewById(R.id.animax_row_type1);
@@ -86,15 +85,9 @@ public class AnimatureAdapter extends BaseAdapter {
 		.findViewById(R.id.animax_row_type2);
 
 		final TextView[] textViews = {type1Animature, type2Animature};
-		modifyTypeTextView(textViews, animature);
+		modifyTypeTextView(textViews, animature + 1);
 
 		return v;
-	}
-
-	private Resources getResources()
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	private String getFormatedIdAnimature(final int id)
@@ -124,8 +117,8 @@ public class AnimatureAdapter extends BaseAdapter {
 				textViews[cont].setText(typesNames[(int) (Math.log(i) / Math
 				.log(2))]);
 
-				final TypedArray colors = getResources().obtainTypedArray(
-				R.array.animature_types_colors);
+				final TypedArray colors = context.getResources()
+				.obtainTypedArray(R.array.animature_types_colors);
 				final int color = colors.getColor(
 				(int) (Math.log(i) / Math.log(2)), 0);
 

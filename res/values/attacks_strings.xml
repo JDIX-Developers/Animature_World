@@ -12,13 +12,4 @@
         <item>Pistola agua</item>
         <item>Picotazo</item>
     </string-array>
-    
-    <string-array name="status_names">
-        <item>Normal</item>
-        <item>Paralizado</item>
-        <item>Quemado</item>
-        <item>Envenenado</item>
-        <item>Dormido</item>
-        <item>Congelado</item>
-    </string-array>
 </resources>
