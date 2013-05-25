@@ -17,83 +17,92 @@
          android:layout_marginBottom="@dimen/Margin40"
          android:layout_marginTop="@dimen/Margin5"
          android:gravity="center"
-         android:text="Animature World"
+         android:text="@string/tittleMainMenu"
          android:textColor="#FFFFFF"
          android:textSize="30sp" />
 
-          <Button
-              android:id="@+id/btnNewGame"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="@string/btnNewGame"
-              android:textSize="25sp" />
-          
-          <Button
-              android:id="@+id/btnLoadGame"
-              android:layout_marginTop="10dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textSize="25sp"
-              android:text="@string/btnLoadGame" />
-          
-          <Button
-              android:id="@+id/btnMultiplayer"
-              android:layout_marginTop="10dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textSize="25sp"
-              android:text="@string/btnMultiplayer" />
-          
-          <Button
-              android:id="@+id/btnAnimatureShop"
-              android:layout_marginTop="10dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textSize="25sp"
-              android:text="@string/btnAnimatureShop" />
-          
-          <Button
-              android:id="@+id/btnOptions"
-              android:layout_marginTop="10dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textSize="25sp"
-              android:text="@string/btnOptions" />
+     <ScrollView
+         android:id="@+id/scrollView1"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" >
 
-          <Button
-              android:id="@+id/btnExitMainMenu"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="10dp"
-              android:text="@string/btnExit"
-              android:textSize="25sp" />
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical" >
 
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" >
+             <Button
+                 android:id="@+id/btnNewGame"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="@string/btnNewGame"
+                 android:textSize="25sp" />
 
-              <TextView
-                  android:id="@+id/textView1"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_alignParentBottom="true"
-                  android:layout_alignParentLeft="true"
-                  android:gravity="right"
-                  android:text="JDIX - Developers"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:textColor="#0F0F0F" />
+             <Button
+                 android:id="@+id/btnLoadGame"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                 android:text="@string/btnLoadGame"
+                 android:textSize="25sp" />
 
-              <TextView
-                  android:id="@+id/user_textView"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_alignParentBottom="true"
-                  android:layout_alignParentLeft="true"
-                  android:text="User: Jordan"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:textColor="#0F0F0F"
-                  android:textSize="15sp" />
+             <Button
+                 android:id="@+id/btnMultiplayer"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                 android:text="@string/btnMultiplayer"
+                 android:textSize="25sp" />
 
-          </RelativeLayout>
+             <Button
+                 android:id="@+id/btnAnimatureShop"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                 android:text="@string/btnAnimatureShop"
+                 android:textSize="25sp" />
 
+             <Button
+                 android:id="@+id/btnOptions"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                 android:text="@string/btnOptions"
+                 android:textSize="25sp" />
+
+             <Button
+                 android:id="@+id/btnExitMainMenu"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="@dimen/Margin20"
+                 android:layout_marginTop="10dp"
+                 android:text="@string/btnExit"
+                 android:textSize="25sp" />
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content" >
+
+                 <TextView
+                     android:id="@+id/user_textView"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/user_main_menu"
+                     android:textAppearance="?android:attr/textAppearanceSmall"
+                     android:textColor="#0F0F0F"
+                     android:textSize="15sp" />
+
+                 <TextView
+                     android:id="@+id/textView1"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:gravity="right"
+                     android:text="@string/signature_main_menu"
+                     android:textAppearance="?android:attr/textAppearanceSmall"
+                     android:textColor="#0F0F0F" />
+
+             </LinearLayout>
+
+         </LinearLayout>
+     </ScrollView>
       </LinearLayout>

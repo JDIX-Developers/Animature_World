@@ -176,8 +176,7 @@ public class NewGameActivity extends Activity {
 				this.playerName = editTextNewGame.getText().toString().trim()
 				.toUpperCase(Locale.getDefault());
 				makeBinaryQuestion(
-				strings[index].replace("*namePlayer*", this.playerName), "Si",
-				"No");
+				strings[index].replace("%s", this.playerName), "Si", "No");
 			break;
 			case 11:
 				makeDialog(strings[index]);
@@ -189,16 +188,12 @@ public class NewGameActivity extends Activity {
 				this.enemyName = editTextNewGame.getText().toString().trim()
 				.toUpperCase(Locale.getDefault());
 				makeBinaryQuestion(
-				strings[index].replace("*nameNeightboor*", this.enemyName),
-				"Si", "No");
+				strings[index].replace("%s", this.enemyName), "Si", "No");
 			break;
 			case 14:
-				makeDialog(strings[index].replace("*namePlayer*",
-				this.playerName));
+				makeDialog(strings[index].replace("%s", this.playerName));
 			break;
 			case 15:
-				makeDialog(strings[index]);
-			break;
 			case 16:
 				makeDialog(strings[index]);
 			break;
@@ -208,30 +203,31 @@ public class NewGameActivity extends Activity {
 			case 18:
 				layoutAnimOptions.setVisibility(View.GONE);
 				layoutOak.setVisibility(View.VISIBLE);
-				final String text = strings[index];
-				text.replace("*animature*", nameAnimatureSelected);
+				String text = strings[index].replace("$a",
+				nameAnimatureSelected);
+
 				if (idAnimatureSelected == 1)
 				{
-					text.replace("*typeAnimature*", "Planta");
+					text = text.replace("$s", "Planta");
 				}
 				else if (idAnimatureSelected == 4)
 				{
-					text.replace("*typeAnimature*", "Fuego");
+					text = text.replace("$s", "Fuego");
 				}
 				else
 				{
-					text.replace("*typeAnimature*", "Agua");
+					text = text.replace("$s", "Agua");
 				}
-				makeBinaryQuestion(strings[index], "Si", "No");
+				makeBinaryQuestion(text, "Si", "No");
 			break;
 			case 19:
-				final String text2 = strings[index];
-				text2.replace("*namePlayer*", this.playerName);
-				text2.replace("*animature*", nameAnimatureSelected);
+				String text2 = strings[index].replace("$s", this.playerName);
+				text2 = text2.replace("$a", nameAnimatureSelected);
 				makeDialog(text2);
 			break;
 			case 20:
-				makeBinaryQuestion(strings[index], "Si", "No");
+				makeBinaryQuestion(
+				strings[index].replace("$a", nameAnimatureSelected), "Si", "No");
 			break;
 			case 21:
 				makeNameQuestion(strings[index]);
@@ -240,16 +236,16 @@ public class NewGameActivity extends Activity {
 				this.nameAnimatureSelected = editTextNewGame.getText()
 				.toString().trim();
 				makeBinaryQuestion(
-				strings[index].replace("*nickName*", nameAnimatureSelected),
-				"Si", "No");
+				strings[index].replace("$a", nameAnimatureSelected), "Si", "No");
 			break;
 			case 23:
-				makeDialog(strings[index].replace("*namePlayer*", playerName));
+				makeDialog(strings[index].replace("%s", playerName));
 			break;
 			case 24:
+			case 25:
 				makeDialog(strings[index]);
 			break;
-			case 25:
+			case 26:
 				final DisplayMetrics metrics = new DisplayMetrics();
 				getWindowManager().getDefaultDisplay().getMetrics(metrics);
 				switch (metrics.densityDpi)

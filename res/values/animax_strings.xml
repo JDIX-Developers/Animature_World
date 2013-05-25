@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="animax_height">Altura: %f m</string>							
+	<string name="animax_weight">Peso: %f kg</string>
+	<string name="animax_strength">Fuerza: %d</string>
+	<string name="animax_defense">Defensa: %d</string>
+	<string name="animax_speed">Velocidad: %d</string>
+	<string name="animax_agility">Agilidad: %d</string>
+</resources>

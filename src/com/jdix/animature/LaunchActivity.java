@@ -50,9 +50,6 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
-		startActivity(new Intent(LaunchActivity.this, AnimaxMenuActivity.class));
-		finish();
-
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
 		mEditTextPasswordLogin = (EditText) findViewById(R.id.editText_PasswordLogin);
