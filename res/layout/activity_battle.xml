@@ -88,7 +88,7 @@
                     <ProgressBar
                         android:id="@+id/enemy_live_progressBar"
                         style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
@@ -98,7 +98,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dip"
                 android:layout_marginLeft="@dimen/Margin20"
                 android:layout_marginRight="@dimen/Margin_80"
                 android:layout_marginTop="@dimen/Margin20"
@@ -301,7 +301,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dip"
                 android:layout_weight="1"
                 android:gravity="center" >
 

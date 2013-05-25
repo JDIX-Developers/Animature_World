@@ -488,6 +488,7 @@ public class MapView extends View implements OnTouchListener {
 			}
 			bitmap = Player.getInstance().getBitmap(direction);
 			Player.getInstance().setOrientation(direction);
+			finish();
 		}
 
 		private void finish()
@@ -501,6 +502,16 @@ public class MapView extends View implements OnTouchListener {
 			x = 0;
 			y = 0;
 			finished = true;
+
+			((Activity) context).runOnUiThread(new Runnable()
+			{
+
+				@Override
+				public void run()
+				{
+					invalidate();
+				}
+			});
 
 			startEvents();
 

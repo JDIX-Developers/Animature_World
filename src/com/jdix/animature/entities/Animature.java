@@ -64,6 +64,8 @@ public class Animature implements Serializable {
 	private int					box;
 	private final int[]			cualitiesC			= new int[5];
 
+	// TODO create and save new animatures
+
 	public Animature(final int id, final int animature, final int save,
 	final String nickname, final int sex, final int status,
 	final int capturedTime, final int a1, final int a1pp, final int a2,

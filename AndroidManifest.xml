@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jdix.animature"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -82,12 +82,5 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-        <activity
-            android:name="com.jdix.animature.LoadGameActivity"
-            android:label="@string/title_activity_load_game" 
-            android:windowSoftInputMode="adjustResize|stateVisible">
-        </activity>
-  
     </application>
-
 </manifest>
