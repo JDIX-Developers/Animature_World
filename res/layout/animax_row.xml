@@ -82,8 +82,9 @@
             android:paddingRight="@dimen/Margin5"
             android:paddingTop="@dimen/Margin5"
             android:text=""
-			android:textColor="#000000"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+            android:visibility="invisible" />
 
     </LinearLayout>
 

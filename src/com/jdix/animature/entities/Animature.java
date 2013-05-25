@@ -351,7 +351,7 @@ public class Animature implements Serializable {
 		int cont = 0;
 		for (int i = 1; i < ELEMENTAL && cont < 2; i *= 2)
 		{
-			if (isOfType(animature, i, context))
+			if (isOfType(i, animature, context))
 			{
 				types[cont++] = i;
 			}
@@ -366,7 +366,7 @@ public class Animature implements Serializable {
 	 */
 	public static int getType(final int animature, final Context context)
 	{
-		return context.getResources().getIntArray(R.array.animature_level_evo)[animature - 1];
+		return context.getResources().getIntArray(R.array.animature_type)[animature - 1];
 	}
 
 	/**

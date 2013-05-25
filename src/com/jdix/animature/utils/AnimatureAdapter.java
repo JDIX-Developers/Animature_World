@@ -96,18 +96,25 @@ public class AnimatureAdapter extends BaseAdapter {
 	private void modifyTypeTextView(final TextView[] textViews,
 	final int animature)
 	{
-		textViews[0]
-		.setText(typesNames[Animature.getTypes(animature, context)[0]]);
-		final int color = colors.getColor(
-		Animature.getTypes(animature, context)[0], 0);
+		final int[] types = Animature.getTypes(animature, context);
+
+		final int typeIndex1 = (int) Math.round(Math.log(types[0])
+		/ Math.log(2));
+
+		textViews[0].setText(typesNames[typeIndex1]);
+		int color = colors.getColor(typeIndex1, 0);
 		textViews[0].setBackgroundColor(color);
 
-		textViews[1]
-		.setText(typesNames[Animature.getTypes(animature, context)[1]]);
-		final int color = colors.getColor(
-		Animature.getTypes(animature, context)[1], 0);
-		textViews[1].setBackgroundColor(color);
+		if (types[1] != 0)
+		{
+			final int typeIndex2 = (int) Math.round(Math.log(types[1])
+			/ Math.log(2));
 
+			textViews[1].setText(typesNames[typeIndex2]);
+			color = colors.getColor(typeIndex2, 0);
+			textViews[1].setBackgroundColor(color);
+			textViews[1].setVisibility(View.VISIBLE);
+		}
 		colors.recycle();
 	}
 
