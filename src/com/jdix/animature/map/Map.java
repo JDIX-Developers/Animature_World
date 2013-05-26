@@ -2,6 +2,7 @@ package com.jdix.animature.map;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import android.content.Context;
@@ -63,17 +64,19 @@ public class Map {
 
 		calculateDimension(array);
 
+		Log.e("MAP ARRAY", Arrays.toString(array));
+
 		try
 		{
 			generateData(array);
 		}
 		catch (final CompressionException e)
 		{
-			System.err.println(e.getMessage());
+			Log.e("MAP", e.getMessage());
 		}
 		catch (final SpriteException e)
 		{
-			System.err.println(e.getMessage());
+			Log.e("MAP", e.getMessage());
 		}
 
 		generateBitmap();
@@ -118,6 +121,10 @@ public class Map {
 					for (int r = 0; r < MathUtils
 					.uByteToInt(array[pointer + 1]); r++)
 					{
+						if (i - 1 < 0)
+						{
+							throw new CompressionException();
+						}
 						this.squares[i + r][h] = this.squares[i - 1][h];
 					}
 					pointer += 2;
@@ -127,6 +134,10 @@ public class Map {
 					// Repetition in X coordinate
 					for (int r = 0; r < MathUtils.uByteToInt(array[pointer]); r++)
 					{
+						if (h - 1 < 0)
+						{
+							throw new CompressionException();
+						}
 						this.squares[i][h + r] = this.squares[i][h - 1];
 					}
 
@@ -148,14 +159,9 @@ public class Map {
 		if (array.length > pointer + 1 && array[pointer] == array[pointer + 1]
 		&& array[pointer] == (byte) 0xFF)
 		{
-			Log.e("STATUS", "Tiene links");
-			Log.e("STATUS", "Tamaño del array: " + array.length);
-			Log.e("STATUS", "Posición actual: " + pointer);
-
 			p += 2;
 			while (array.length > p + 7)
 			{
-				Log.e("STATUS", "Empezamos a meter links");
 				links.put(
 				new PosEntry<Byte, Byte>(array[p], array[p + 1]),
 				new Link(MathUtils.fourByteToInt(array[p + 2], array[p + 3],
@@ -163,8 +169,6 @@ public class Map {
 				p += 8;
 			}
 		}
-
-		Log.e("STATUS", "Cantidad de links: " + links.size());
 	}
 
 	private void generateBitmap()
