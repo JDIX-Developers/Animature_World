@@ -57,14 +57,15 @@ public class BattleUtils {
 	 * 
 	 * @param playerAnimature The player Animature.
 	 * @param enemyAnimature Wild Animature.
+	 * @param context - The context of the application
 	 * @return true if player can escape from the battle.
 	 */
 	public static boolean canEscape(final Animature playerAnimature,
-	final Animature enemyAnimature)
+	final Animature enemyAnimature, final Context context)
 	{
 		return (playerAnimature.getLevel() > enemyAnimature.getLevel())
 		|| (playerAnimature.getLevel() == enemyAnimature.getLevel() && enemyAnimature
-		.getHealthAct() < enemyAnimature.getHealthMax() * 0.4);
+		.getHealthAct() < enemyAnimature.getMaxHealth(context) * 0.4);
 	}
 
 	/**

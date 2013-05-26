@@ -328,6 +328,15 @@ public class Animature implements Serializable {
 	}
 
 	/**
+	 * @param context - The context of the application
+	 * @return The maximum health of the animature
+	 */
+	public int getMaxHealth(final Context context)
+	{
+		return context.getResources().getIntArray(R.array.animature_health)[animature - 1];
+	}
+
+	/**
 	 * Gets the type of the animature
 	 * 
 	 * @param animature - The animature to check
