@@ -125,8 +125,8 @@ public class Animature implements Serializable {
 	{
 		this(animature, Player.getInstance().getId(),
 		(nickname == null ? Animature.getName(animature, context) : nickname),
-		OK, new Attack(1, context), Attack.getMaxPP(1, context), null, 0, null,
-		0, null, 0, 5, 0, Animature.getMaxHealth(animature, context));
+		OK, Attack.load(1, context), Attack.load(1, context).getMaxPP(), null,
+		0, null, 0, null, 0, 5, 0, Animature.getMaxHealth(animature, context));
 	}
 
 	public int getId()
