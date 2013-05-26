@@ -2,6 +2,7 @@ package com.jdix.animature.entities;
 
 import java.io.Serializable;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -51,9 +52,8 @@ public class Animature implements Serializable {
 
 	private int					id;
 	private int					animature;
-	private final int			save;
+	private int					save;
 	private String				nickname;
-	private int					sex;
 	private int					status;
 	private int					capturedTime;
 	private Attack[]			attacks				= new Attack[4];
@@ -61,13 +61,13 @@ public class Animature implements Serializable {
 	private int[]				attacksPP			= new int[4];
 	private int					level;
 	private int					currentExp;
-	private int					healthAct;
+	private int					health;
 
 	public Animature(final int id, final int animature, final int save,
 	final String nickname, final int status, final Attack a1, final int a1pp,
 	final Attack a2, final int a2pp, final Attack a3, final int a3pp,
 	final Attack a4, final int a4pp, final int level, final int currentExp,
-	final int healthAct)
+	final int health)
 	{
 		this.id = id;
 		this.animature = animature;
@@ -84,14 +84,14 @@ public class Animature implements Serializable {
 		this.attacksPP[3] = a4pp;
 		this.level = level;
 		this.currentExp = currentExp;
-		this.healthAct = healthAct;
+		this.health = health;
 	}
 
 	public Animature(final int animature, final int save,
 	final String nickname, final int status, final Attack a1, final int a1pp,
 	final Attack a2, final int a2pp, final Attack a3, final int a3pp,
 	final Attack a4, final int a4pp, final int level, final int currentExp,
-	final int healthAct)
+	final int health)
 	{
 		this.animature = animature;
 		this.save = save;
@@ -107,10 +107,10 @@ public class Animature implements Serializable {
 		this.attacksPP[3] = a4pp;
 		this.level = level;
 		this.currentExp = currentExp;
-		this.healthAct = healthAct;
+		this.health = health;
 
 		this.id = 0;
-		// TODO save animature and get ID
+		// TODO save animature if save != 0
 	}
 
 	/**
@@ -157,16 +157,6 @@ public class Animature implements Serializable {
 	public void setNickname(final String nickname)
 	{
 		this.nickname = nickname;
-	}
-
-	public int getSex()
-	{
-		return sex;
-	}
-
-	public void setSex(final int sex)
-	{
-		this.sex = sex;
 	}
 
 	public int getStatus()
@@ -254,14 +244,14 @@ public class Animature implements Serializable {
 		this.currentExp = currentExp;
 	}
 
-	public int getHealthAct()
+	public int getHealth()
 	{
-		return healthAct;
+		return health;
 	}
 
-	public void setHealthAct(final int healthAct)
+	public void setHealth(final int health)
 	{
-		this.healthAct = healthAct;
+		this.health = health;
 	}
 
 	/**
@@ -283,11 +273,11 @@ public class Animature implements Serializable {
 	/**
 	 * Changes the save of the animature
 	 * 
-	 * @param id - The id of the new save
+	 * @param save- The id of the new save
 	 */
-	public void setSave(final int id)
+	public void setSave(final int save)
 	{
-		this.id = id;
+		this.save = id;
 	}
 
 	/**
@@ -356,6 +346,70 @@ public class Animature implements Serializable {
 			}
 		}
 		return maxHealth;
+	}
+
+	/**
+	 * Saves the current animature into the database
+	 * 
+	 * @param context - The context of the application
+	 */
+	public void save(final Context context)
+	{
+		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
+
+		// "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+		// "animature" INTEGER NOT NULL,
+		// "save" INTEGER REFERENCES SAVE(id) ON DELETE CASCADE,
+		// "nickname" TEXT,
+		// "status" INTEGER NOT NULL,
+		// "attack1" INTEGER,
+		// "attack1_pp" INTEGER,
+		// "attack2" INTEGER,
+		// "attack2_pp" INTEGER,
+		// "attack3" INTEGER,
+		// "attack3_pp" INTEGER,
+		// "attack4" INTEGER,
+		// "attack4_pp" INTEGER,
+		// "health" INTEGER NOT NULL,
+		// "level" INTEGER NOT NULL,
+		// "cur_exp" INTEGER NOT NULL);
+
+		final ContentValues values = new ContentValues(15);
+		values.put("animature", animature);
+		values.put("save", this.save != 0 ? this.save : null);
+		values.put("nickname", nickname);
+		values.put("status", status);
+		values.put("attack1", attacks[0].getId());
+		values.put("attack1_pp", attacksPP[0]);
+		values.put("attack2", attacks[1].getId());
+		values.put("attack2_pp", attacksPP[1]);
+		values.put("attack3", attacks[2].getId());
+		values.put("attack3_pp", attacksPP[2]);
+		values.put("attack4", attacks[3].getId());
+		values.put("attack4_pp", attacksPP[3]);
+		values.put("health", health);
+		values.put("level", level);
+		values.put("cur_exp", currentExp);
+
+		if (this.id == 0)
+		{
+			db.insert("ANIMATURE", null, values);
+
+			final Cursor c = db.rawQuery("SELECT max(id) FROM ANIMATURE", null);
+			if (c.moveToFirst())
+			{
+				this.id = c.getInt(0);
+			}
+			c.close();
+		}
+		else
+		{
+			db.update("ANIMATURE", values, "id = " + this.id, null);
+		}
+
+		db.close();
+
+		// TODO save to server
 	}
 
 	/**
@@ -541,16 +595,5 @@ public class Animature implements Serializable {
 		db.close();
 
 		return anim;
-	}
-
-	/**
-	 * Saves the current animature into the database
-	 */
-	public void save()
-	{
-		if (save != 0)
-		{
-			// TODO Auto-generated method stub
-		}
 	}
 }

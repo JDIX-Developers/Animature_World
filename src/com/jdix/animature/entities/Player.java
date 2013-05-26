@@ -188,7 +188,7 @@ public class Player {
 				if (activeAnimature != null)
 				{
 					activeAnimature.setSave(this.id);
-					activeAnimature.save();
+					activeAnimature.save(context);
 					save(context);
 				}
 			}
