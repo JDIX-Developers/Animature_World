@@ -499,19 +499,26 @@ public class BattleActivity extends Activity {
 				switch (attacker.getAttacks()[indexAttack].getEffectivenes(
 				defender, this))
 				{
+				// SHOW MESSAGE --> ¡Es muy eficaz!
 					case Attack.VERY_EFFECTIVE:
 						showPlayerTextView(
 						getResources().getString(R.string.battle_string_7),
 						false);
 					break;
+
+					// SHOW MESSAGE --> No es muy eficaz…
 					case Attack.FEW_EFFECTIVE:
 						showPlayerTextView(
 						getResources().getString(R.string.battle_string_8),
 						false);
 					break;
+
+					// SHOW MESSAGE --> ¡No afecta a Pidgey!
 					case Attack.NOT_EFFECTIVE:
 						showPlayerTextView(
-						getResources().getString(R.string.battle_string_9),
+						getResources().getString(R.string.battle_string_9)
+						.replace("*anim*",
+						Animature.getName(attacker.getAnimature(), this)),
 						false);
 					break;
 				}
