@@ -119,6 +119,25 @@ public class BattleActivity extends Activity {
 					loadPlayerAnimatureAttackButtons();
 					playerAnimatureAttacksLayout.setVisibility(View.VISIBLE);
 				}
+				else
+				{
+					BattleUtils.combat(playerAnimature, wildAnimature,
+					BattleActivity.this);
+					try
+					{
+						this.wait(2000);
+					}
+					catch (final InterruptedException e)
+					{
+						e.printStackTrace();
+					}
+					showPlayerTextView(
+					getResources().getString(R.string.battle_string_15)
+					.replace(
+					"%a",
+					Animature.getName(playerAnimature.getAnimature(),
+					BattleActivity.this)), false);
+				}
 			}
 		});
 		btnAnimatureBattleActivity = (Button) findViewById(R.id.btnAnimatureBattleActivity);
@@ -450,11 +469,10 @@ public class BattleActivity extends Activity {
 		if ( ! BattleUtils.getHit(attacker, attacker.getAttacks()[indexAttack],
 		defender, this))
 		{
-			// SHOW MESSAGE --> ¡Charmander usó ascuas!
+			// SHOW MESSAGE --> ¡El ataque de Charmander falló!
 			showPlayerTextView(
 			getResources().getString(R.string.battle_string_5).replace("%a",
 			Animature.getName(attacker.getAnimature(), this)), false);
-			attacker.getAttacksPP()[indexAttack]--;
 			try
 			{
 				this.wait(2000);
@@ -464,6 +482,44 @@ public class BattleActivity extends Activity {
 				e.printStackTrace();
 			}
 		}
+		else
+		{
+			if (attacker.getAttacks()[indexAttack].isActive())
+			{
+				BattleUtils.getDamage(attacker, defender,
+				attacker.getAttacks()[indexAttack], this);
+				try
+				{
+					this.wait(2000);
+				}
+				catch (final InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+				switch (attacker.getAttacks()[indexAttack].getEffectivenes(
+				defender, this))
+				{
+					case Attack.VERY_EFFECTIVE:
+						showPlayerTextView(
+						getResources().getString(R.string.battle_string_7),
+						false);
+					break;
+					case Attack.FEW_EFFECTIVE:
+						showPlayerTextView(
+						getResources().getString(R.string.battle_string_8),
+						false);
+					break;
+					case Attack.NOT_EFFECTIVE:
+						showPlayerTextView(
+						getResources().getString(R.string.battle_string_9),
+						false);
+					break;
+				}
+			}
+			else
+			{
 
+			}
+		}
 	}
 }
