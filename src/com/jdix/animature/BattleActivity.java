@@ -11,7 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.jdix.animature.entities.Animature;
+import com.jdix.animature.entities.Attack;
 import com.jdix.animature.entities.Player;
+import com.jdix.animature.utils.BattleUtils;
 
 /**
  * @author Jordan Aranda Tejada
@@ -46,6 +48,7 @@ public class BattleActivity extends Activity {
 	private Button			btnEscapeBattleActivity;
 
 	private LinearLayout	playerAnimatureAttacksLayout;
+	private Button[]		btnsAttacks;
 	private Button			btnAttack1;
 	private Button			btnAttack2;
 	private Button			btnAttack3;
@@ -64,6 +67,9 @@ public class BattleActivity extends Activity {
 		// We recover the information passed in the intent
 		wildAnimature = (Animature) this.getIntent().getSerializableExtra(
 		"wild_capturable");
+
+		// GETS PLAYER FIRST ENABLE ANIMATURE
+		playerAnimature = getPlayerFirstAnimature();
 
 		// We get a reference to the interface controls
 		enemyDataLayout = (LinearLayout) findViewById(R.id.enemy_animature_data_layout);
@@ -93,45 +99,95 @@ public class BattleActivity extends Activity {
 			}
 		});
 
+		playerAnimatureAttacksLayout = (LinearLayout) findViewById(R.id.player_animature_attacks_layout);
 		playerBattleOptionsLayout = (LinearLayout) findViewById(R.id.player_battle_options_layout);
+
 		playerBattleOptionsHeader = (TextView) findViewById(R.id.battle_options_header);
 		btnFightBattleActivity = (Button) findViewById(R.id.btnFightBattleActivity);
+		btnFightBattleActivity.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				playerBattleOptionsLayout.setVisibility(View.GONE);
+				loadPlayerAnimatureAttackButtons();
+				playerAnimatureAttacksLayout.setVisibility(View.VISIBLE);
+			}
+		});
 		btnAnimatureBattleActivity = (Button) findViewById(R.id.btnAnimatureBattleActivity);
+		btnAnimatureBattleActivity
+		.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				// TODO NOTHING
+			}
+		});
 		btnBagBattleActivity = (Button) findViewById(R.id.btnBagBattleActivity);
+		btnBagBattleActivity.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				// TODO NOTHING
+			}
+		});
 		btnEscapeBattleActivity = (Button) findViewById(R.id.btnEscapeBattleActivity);
+		btnEscapeBattleActivity.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				if (BattleUtils.canEscape(playerAnimature, wildAnimature,
+				BattleActivity.this))
+				{
+					showPlayerTextView(
+					getResources().getString(R.string.battle_string_14), false);
+					try
+					{
+						wait(1000);
+					}
+					catch (final InterruptedException e)
+					{
+						e.printStackTrace();
+					}
+					finish();
+				}
+				else
+				{
+
+				}
+			}
+		});
 
 		playerAnimatureAttacksLayout = (LinearLayout) findViewById(R.id.player_animature_attacks_layout);
 		btnAttack1 = (Button) findViewById(R.id.btn_attack1);
+		btnsAttacks[0] = btnAttack1;
 		btnAttack2 = (Button) findViewById(R.id.btn_attack2);
+		btnsAttacks[1] = btnAttack2;
 		btnAttack3 = (Button) findViewById(R.id.btn_attack3);
+		btnsAttacks[2] = btnAttack3;
 		btnAttack4 = (Button) findViewById(R.id.btn_attack4);
+		btnsAttacks[3] = btnAttack4;
+
 		// END REFERENCE GETTERS
 
-		final int id = getResources().getIdentifier(
-		"f" + wildAnimature.getAnimature(), "drawable", getPackageName());
-		enemyImageView.setImageDrawable(this.getResources().getDrawable(id));
+		// LOAD WILD ANIMATURE COMPONENTS
+		loadEnemyAnimatureComponents();
 
-		if (Player.getInstance().hasAnimature(wildAnimature.getAnimature()))
-		{
-			enemyCapturedImageView.setVisibility(View.VISIBLE);
-		}
-
-		enemyNameTextView.setText(Animature.getName(
-		wildAnimature.getAnimature(), this));
-
-		enemyLevelTextView.setText(wildAnimature.getLevel());
-
-		enemyLifeProgressBar.setMax(wildAnimature.getMaxHealth(this));
-		enemyLifeProgressBar.setProgress(wildAnimature.getMaxHealth(this));
-
+		// SHOW PLAYER IMAGE
 		playerAnimatureImageView.setImageDrawable(this.getResources()
 		.getDrawable(R.drawable.player_battle_image));
 
+		// SHOW FIRST MESSAGE --> ¡Un Pidgey salvaje!
 		showPlayerTextView(getResources().getString(R.string.battle_string_1)
 		.replace("%a", Animature.getName(wildAnimature.getAnimature(), this)),
 		true);
-
-		playerAnimature = getPlayerFirstAnimature();
 
 		stageOfBattle = 0;
 	}
@@ -159,11 +215,9 @@ public class BattleActivity extends Activity {
 		{
 			case 1:
 				final String namePlayerAnimature = getResources().getString(
-				R.string.battle_string_2).replace(
-				"%a",
-				Animature.getName(
-				Player.getInstance().getActiveAnimatures()[0].getAnimature(),
-				this));
+				R.string.battle_string_2).replace("%a",
+				Animature.getName(playerAnimature.getAnimature(), this));
+				// SHOW MESSAGE --> ¡Adelante Charmander!
 				showPlayerTextView(namePlayerAnimature, false);
 				try
 				{
@@ -173,12 +227,10 @@ public class BattleActivity extends Activity {
 				{
 					e.printStackTrace();
 				}
-
-				final int id = getResources().getIdentifier(
-				"b" + playerAnimature.getAnimature(), "drawable",
-				getPackageName());
-				playerAnimatureImageView.setImageDrawable(this.getResources()
-				.getDrawable(id));
+				loadPlayerAnimatureComponents();
+			case 2:
+				playerTextView.setVisibility(View.GONE);
+				playerBattleOptionsLayout.setVisibility(View.VISIBLE);
 			break;
 		}
 	}
@@ -199,5 +251,76 @@ public class BattleActivity extends Activity {
 			}
 		}
 		return Player.getInstance().getActiveAnimatures()[i];
+	}
+
+	private void loadPlayerAnimatureComponents()
+	{
+		// Player Animature Name
+		playerAnimatureNameTextView.setText(Animature.getName(
+		playerAnimature.getAnimature(), this));
+		// Player Animature Image
+		final int id = getResources().getIdentifier(
+		"b" + playerAnimature.getAnimature(), "drawable", getPackageName());
+		playerAnimatureImageView.setImageDrawable(this.getResources()
+		.getDrawable(id));
+		// Player Animature Level
+		playerAnimatureLevelTextView
+		.setText("Nv " + playerAnimature.getLevel());
+		// Player Animature Life ProgressBar and TextView
+		final int maxHealth = playerAnimature.getMaxHealth(this);
+		final int currentHealth = playerAnimature.getHealthAct();
+		playerAnimatureLifeProgressBar.setMax(maxHealth);
+		playerAnimatureLifeProgressBar.setProgress(currentHealth);
+		playerAnimatureCurrentPSTextView.setText(currentHealth + " / "
+		+ maxHealth);
+		// Player Animature Exp ProgressBar
+		playerAnimatureExperienceProgressBar.setMax(playerAnimature
+		.getMaxHealth(this));
+		// Battle Options Layout Header
+		playerBattleOptionsHeader.setText(getResources().getString(
+		R.string.battle_string_2).replace("%a",
+		Animature.getName(playerAnimature.getAnimature(), this)));
+	}
+
+	private void loadPlayerAnimatureAttackButtons()
+	{
+		for (int i = 0; i < btnsAttacks.length; i++)
+		{
+			final Attack attack = playerAnimature.getAttacks()[i];
+			btnAttack1
+			.setText(attack.getName()
+			+ " ("
+			+ playerAnimature.getAttackPP(i)
+			+ " / "
+			+ attack.getMaxPP()
+			+ "\nTipo "
+			+ getResources().getStringArray(R.array.animature_types_names)[(int) Math
+			.round(Math.log(attack.getType()) / Math.log(2))]);
+		}
+	}
+
+	private void loadEnemyAnimatureComponents()
+	{
+		// WILD ANIMATURE IMAGE
+		final int id = getResources().getIdentifier(
+		"f" + wildAnimature.getAnimature(), "drawable", getPackageName());
+		enemyImageView.setImageDrawable(this.getResources().getDrawable(id));
+
+		// IF PLAYER HAS THIS ANIMATURE
+		if (Player.getInstance().hasAnimature(wildAnimature.getAnimature()))
+		{
+			enemyCapturedImageView.setVisibility(View.VISIBLE);
+		}
+
+		// WILD ANIMATURE NAME
+		enemyNameTextView.setText(Animature.getName(
+		wildAnimature.getAnimature(), this));
+
+		// WILD ANIMATURE LEVEL
+		enemyLevelTextView.setText(wildAnimature.getLevel());
+
+		// WILD ANIMATURE LIFE PROGRESSBAR
+		enemyLifeProgressBar.setMax(wildAnimature.getMaxHealth(this));
+		enemyLifeProgressBar.setProgress(wildAnimature.getMaxHealth(this));
 	}
 }

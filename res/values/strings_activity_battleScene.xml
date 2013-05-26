@@ -18,6 +18,7 @@
 	<string name="battle_string_11">¡*anim* debilitó!</string>							<!-- ¡Charmander se debilitó! -->
 	<string name="battle_string_12">¡*anim* gano *score* puntos de EXP!</string>		<!-- ¡Charmander ganó 50 puntos de EXP! -->
 	<string name="battle_string_13">¡A *player* no le quedan más Animatures!</string>	<!-- ¡A Jordan no le quedan más Animatures! -->
+	<string name="battle_string_14">Escapaste sin problemas.</string>
 	
 	<string name="battle_combat_gameOver">*player* fue corriendo al centro Animature a curar a sus Animatures debilitados.</string>
 								
