@@ -1,6 +1,7 @@
 package com.jdix.animature;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -74,11 +75,19 @@ public class GameMenuActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
-				.vibrate(50);
-				final Intent intent = new Intent(GameMenuActivity.this,
-				PlayerDataViewActivity.class);
-				startActivity(intent);
+				/*
+				 * ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
+				 * .vibrate(50); final Intent intent = new
+				 * Intent(GameMenuActivity.this, PlayerDataViewActivity.class);
+				 * startActivity(intent);
+				 */
+				final AlertDialog.Builder builder = new AlertDialog.Builder(
+				GameMenuActivity.this);
+				builder.setTitle("No disponible");
+				builder.setMessage("¡Espere nuevas actualizaciones!");
+				builder.setPositiveButton("Aceptar", null);
+				builder.create();
+				builder.show();
 			}
 		});
 		btnSave = (Button) findViewById(R.id.btn_game_menu_save);

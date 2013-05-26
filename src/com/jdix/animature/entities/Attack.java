@@ -1,6 +1,9 @@
 package com.jdix.animature.entities;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+
+import com.jdix.animature.R;
 
 /**
  * @author Jordan Aranda Tejada
@@ -76,6 +79,23 @@ public class Attack {
 	public void setFirst(final boolean isFirst)
 	{
 		this.isFirst = isFirst;
+	}
+
+	/**
+	 * Method to get attacks maxPP.
+	 * 
+	 * @param id - Animature's id.
+	 * @param context - The aplication context
+	 * @return The number maxPP for this attack.
+	 */
+	public static int getMaxPP(final int id, final Context context)
+	{
+		int maxPP = 0;
+		final TypedArray array = context.getResources().obtainTypedArray(
+		R.array.attack_max_pp);
+		maxPP = array.getInt(id - 1, 0);
+		array.recycle();
+		return maxPP;
 	}
 
 	/**
