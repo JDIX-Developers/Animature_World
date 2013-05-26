@@ -3,5 +3,7 @@
 
     <string name="app_name">Animature World</string>
     <string name="animature_image">Imagen del Animature</string>
+    <string name="animBall_image">Imagen de la animBall</string>
+    <string name="player_battle_image">Imagen del jugador</string>
 
 </resources>

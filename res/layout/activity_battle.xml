@@ -13,7 +13,8 @@
         android:layout_marginLeft="@dimen/Margin15"
         android:layout_marginRight="@dimen/Margin15"
         android:layout_marginTop="@dimen/Margin15"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,7 +76,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/Margin10"
                         android:src="@drawable/pokeball"
-                        android:visibility="invisible" />
+                        android:visibility="invisible"
+                        android:contentDescription="@string/animBall_image" />
 
                     <TextView
                         android:id="@+id/ps_textView"
@@ -111,7 +113,8 @@
                     android:id="@+id/player_animature_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/player_battle_image" />
+                    android:src="@drawable/player_battle_image"
+                    android:contentDescription="@string/player_battle_image"/>
 
             </LinearLayout>
 
@@ -135,7 +138,8 @@
                     android:id="@+id/enemy_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/f1" />
+                    android:src="@drawable/f1"
+                    android:contentDescription="@string/animature_image"/>
 
             </LinearLayout>
 

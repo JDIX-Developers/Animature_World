@@ -37,29 +37,34 @@ public class Attack {
 
 		array = context.getResources().obtainTypedArray(R.array.attack_type);
 		this.type = array.getInt(id - 1, 0);
+		array.recycle();
 
 		array = context.getResources().obtainTypedArray(R.array.attack_power);
 		this.power = array.getInt(id - 1, 0);
+		array.recycle();
 
 		array = context.getResources().obtainTypedArray(
 		R.array.attack_probability);
 		this.probability = array.getInt(id - 1, 0);
+		array.recycle();
 
 		array = context.getResources().obtainTypedArray(R.array.attack_max_pp);
 		this.maxPP = array.getInt(id - 1, 0);
+		array.recycle();
 
 		array = context.getResources()
 		.obtainTypedArray(R.array.attack_is_first);
 		this.isFirst = array.getInt(id - 1, 0) == 1;
+		array.recycle();
 
 		array = context.getResources().obtainTypedArray(
 		R.array.attack_is_pasive);
 		this.active = array.getInt(id - 1, 0) == 0;
+		array.recycle();
 
 		array = context.getResources().obtainTypedArray(
 		R.array.attack_attributte);
 		this.attribute = array.getInt(id - 1, 0);
-
 		array.recycle();
 	}
 
