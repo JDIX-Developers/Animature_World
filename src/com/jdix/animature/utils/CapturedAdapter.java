@@ -75,7 +75,7 @@ public class CapturedAdapter extends BaseAdapter {
 		final ProgressBar lifeProgressBar = (ProgressBar) v
 		.findViewById(R.id.progress_bar_captured_life);
 		lifeProgressBar.setMax(captured.getMaxHealth(context));
-		lifeProgressBar.setProgress(captured.getHealthAct());
+		lifeProgressBar.setProgress(captured.getHealth());
 		// LEVEL
 		final TextView levelAnimature = (TextView) v
 		.findViewById(R.id.text_view_captured_level);
@@ -83,7 +83,7 @@ public class CapturedAdapter extends BaseAdapter {
 		// LIFE TEXTVIEW
 		final TextView lifeTextView = (TextView) v
 		.findViewById(R.id.text_view_captured_ps_life);
-		lifeTextView.setText(captured.getHealthAct() + " / "
+		lifeTextView.setText(captured.getHealth() + " / "
 		+ captured.getMaxHealth(context));
 		// Retornamos la vista
 		return v;
