@@ -24,6 +24,7 @@ public class MapView extends View implements OnTouchListener {
 	private int					mHeight;
 	private final Context		context;
 	private int					control;
+	private int					map0x, map0y;
 	private final MoveThread	move;
 
 	private static int			NONE	= 0;
@@ -132,13 +133,13 @@ public class MapView extends View implements OnTouchListener {
 		canvas.drawColor(Color.BLACK);
 		final Bitmap mapb = map.getBitmap();
 
-		final int size = Square.getSprite().getSize();
+		final int cx = (mWidth - mapb.getWidth()) / 2; // TODO add scrolling
+		final int cy = (mHeight - mapb.getHeight()) / 2;
 
-		final int pX = Player.getInstance().getX() * size;
-		final int pY = Player.getInstance().getY() * size;
+		map0x = cx;
+		map0y = cy;
 
-		canvas.drawBitmap(mapb, mWidth / 2 - pX - move.getX() - size / 2,
-		mHeight / 2 - pY - move.getY() - size / 2, null);
+		canvas.drawBitmap(mapb, cx, cy, null);
 		drawCharacter(canvas);
 		drawControls(canvas);
 	}
@@ -164,8 +165,8 @@ public class MapView extends View implements OnTouchListener {
 
 	private void drawCharacter(final Canvas canvas)
 	{
-		canvas.drawBitmap(move.getBitmap(), (mWidth - Square.getSprite()
-		.getSize()) / 2, mHeight / 2 - Square.getSprite().getSize(), null);
+		canvas.drawBitmap(move.getBitmap(), map0x + move.getX(),
+		map0y + move.getY() - Square.getSprite().getSize() / 2, null);
 	}
 
 	@Override
@@ -485,11 +486,10 @@ public class MapView extends View implements OnTouchListener {
 				}
 
 				stopped = getArrowControl() == NONE;
-				while ( ! stopped && finished)
+				if ( ! stopped && finished)
 				{
 					this.control = getArrowControl() | getABControls();
 					nextMove();
-					stopped = getArrowControl() == NONE;
 				}
 			}
 			while (true);
@@ -498,6 +498,16 @@ public class MapView extends View implements OnTouchListener {
 		private void startEvents()
 		{
 			// TODO Start events for the current square
+			final Player p = Player.getInstance();
+			final Square sq = map.getSquareAt((byte) p.getX(), (byte) p.getY());
+
+			if (sq.isOfType(Square.GRASSANIM))
+			{
+				if (Math.random() < 0.7)
+				{
+					// TODO start battle
+				}
+			}
 		}
 
 		public Bitmap getBitmap()
@@ -507,12 +517,14 @@ public class MapView extends View implements OnTouchListener {
 
 		public int getX()
 		{
-			return x;
+			return Player.getInstance().getX() * Square.getSprite().getSize()
+			+ x;
 		}
 
 		public int getY()
 		{
-			return y;
+			return Player.getInstance().getY() * Square.getSprite().getSize()
+			+ y;
 		}
 	}
 }
