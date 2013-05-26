@@ -2,12 +2,12 @@ package com.jdix.animature.utils;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.jdix.animature.R;
@@ -16,19 +16,19 @@ import com.jdix.animature.entities.Animature;
 /**
  * @author Jordan Aranda Tejada
  */
-public class CapturableAdapter extends BaseAdapter {
+public class CapturedAdapter extends BaseAdapter {
 
-	private final Activity				activity;
+	private final Context				context;
 	private final ArrayList<Animature>	items;
 
 	/**
-	 * @param activity The activity of the list.
+	 * @param context The aplication context.
 	 * @param items Items to show in list.
 	 */
-	public CapturableAdapter(final Activity activity,
+	public CapturedAdapter(final Context context,
 	final ArrayList<Animature> items)
 	{
-		this.activity = activity;
+		this.context = context;
 		this.items = items;
 	}
 
@@ -59,7 +59,7 @@ public class CapturableAdapter extends BaseAdapter {
 		// Asociamos el layout de la lista que hemos creado
 		if (convertView == null)
 		{
-			final LayoutInflater inf = (LayoutInflater) activity
+			final LayoutInflater inf = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = inf.inflate(R.layout.animax_row, null);
 		}
@@ -67,42 +67,25 @@ public class CapturableAdapter extends BaseAdapter {
 		// Creamos un objeto Animature
 		final Animature captured = items.get(position);
 		// NAME
-
-		// STATUS
-
-		//
-
+		final TextView nameAnimature = (TextView) v
+		.findViewById(R.id.text_view_captured_name);
+		nameAnimature.setText(Animature.getName(captured.getAnimature(),
+		context));
+		// LIFE PROGRESSBAR
+		final ProgressBar lifeProgressBar = (ProgressBar) v
+		.findViewById(R.id.progress_bar_captured_life);
+		lifeProgressBar.setMax(captured.getMaxHealth(context));
+		lifeProgressBar.setProgress(captured.getHealthAct());
+		// LEVEL
+		final TextView levelAnimature = (TextView) v
+		.findViewById(R.id.text_view_captured_level);
+		levelAnimature.setText("Nv " + captured.getLevel());
+		// LIFE TEXTVIEW
+		final TextView lifeTextView = (TextView) v
+		.findViewById(R.id.text_view_captured_ps_life);
+		lifeTextView.setText(captured.getHealthAct() + " / "
+		+ captured.getMaxHealth(context));
 		// Retornamos la vista
 		return v;
-	}
-
-	private void modifyStatusTextView(final TextView textView, final int status)
-	{
-		switch (status)
-		{
-			case 0:
-				textView.setVisibility(View.INVISIBLE);
-			break;
-			case 1:
-				textView.setText("PARALIZADO");
-
-			break;
-			case 2:
-				textView.setText("QUEMADO");
-
-			break;
-			case 3:
-				textView.setText("ENVENENADO");
-
-			break;
-			case 4:
-				textView.setText("DORMIDO");
-
-			break;
-			case 5:
-				textView.setText("CONGELADO");
-
-			break;
-		}
 	}
 }
