@@ -63,7 +63,6 @@ public class Map {
 
 		try
 		{
-			getLinks(array);
 			generateData(array);
 		}
 		catch (final CompressionException e)
@@ -84,10 +83,19 @@ public class Map {
 		this.height = MathUtils.uByteToInt(array[1]);
 	}
 
-	private void getLinks(final byte[] array) throws SpriteException,
-	CompressionException
+	private void getLinks(final byte[] array, final int pointer)
+	throws SpriteException, CompressionException
 	{
-		// TODO
+		int p = pointer;
+		if (array.length > pointer + 1 && array[pointer] == array[pointer + 1]
+		&& array[pointer] == (byte) 0xFF)
+		{
+			p += 2;
+			while (array.length > p + 3)
+			{
+				p += 3;
+			}
+		}
 	}
 
 	/**
@@ -140,6 +148,8 @@ public class Map {
 				}
 			}
 		}
+
+		getLinks(array, pointer);
 	}
 
 	private void generateBitmap()

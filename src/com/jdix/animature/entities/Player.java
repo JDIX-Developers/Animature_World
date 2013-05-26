@@ -120,10 +120,16 @@ public class Player {
 	 * @param context - The context of the application
 	 */
 	public static void set(final Map map, final String name, final int sex,
-	final String neighborName, final Animature[] activeAnimatures,
-	final int posX, final int posY, final int orientation, final int firstAnim,
+	final String neighborName, final int posX, final int posY,
+	final int orientation, final int firstAnim, final String firstAnimName,
 	final Context context)
 	{
+		final Animature[] activeAnimatures = new Animature[6];
+
+		activeAnimatures[0] = new Animature(firstAnim,
+		firstAnimName == null ? Animature.getName(firstAnim, context)
+		: firstAnimName, context);
+
 		player = new Player(map, 0, name, sex, neighborName, 0, new Date(),
 		new Date(0), 0, 0, activeAnimatures, posX, posY, orientation, 0, 0, 0,
 		0, 0, new Vector<Item>(), firstAnim, context);
