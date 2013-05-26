@@ -2,7 +2,6 @@ package com.jdix.animature.map;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import android.content.Context;
@@ -64,8 +63,6 @@ public class Map {
 
 		calculateDimension(array);
 
-		Log.e("MAP ARRAY", Arrays.toString(array));
-
 		try
 		{
 			generateData(array);
@@ -106,6 +103,16 @@ public class Map {
 		{
 			for (int h = 0; pointer < array.length && h < width; h++)
 			{
+				while (h < width && squares[i][h] != null)
+				{
+					h++;
+				}
+
+				if (h == width)
+				{
+					break;
+				}
+
 				// We test if there has been a Y coordinate repetition
 				if (this.squares[i][h] == null && array[pointer] != (byte) 0xFF
 				&& array[pointer + 1] != (byte) 0xFF)
