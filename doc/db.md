@@ -1,28 +1,22 @@
 # Base de datos #
 
-## Tabla User ##
-(id, email, password, username, is_current, *save*)
+## Tabla USER	 ##
+(id, email, password, username, is_current, remember)
 
-## Tabla Animature ##
-(id, name, height, weight, type, type2, speed, defense, agility, strenght, precission, health, level_evo, baseExp)
+## Tabla ANIMATURE ##
+(id, animature, *save*, nickname, status, attack1, attack1_pp, attack2, attack2_pp, attack3, attack3_pp, attack4, attack4_pp, health, level, cur_exp)
 
-## Tabla Save ##
-(id, name, sex, character, stage, last_played, started, total_time, steps, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*, *map*, coord_x, coord_y, neighbour, *1st_an*, orientation, last_Healing, medals, money)
+## Tabla SAVE ##
+(id, *user*, name, sex, stage, last_played, start_date, total_time, steps, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*, map, coord_x, coord_y, neighbor, first_an, orientation, last_healing_map, last_healing_x, last_healing_y, medals, money)
 
-## Tabla Captured ##
-(id, *animature*, *save*, nickname, sex, status, capturedTime, *attack1*, attack1_pp, *attack2*, attack2_pp, *attack3*, attack3_pp, *attack4*, attack4_pp, health, level, cur_exp, exp, box)
+## Tabla BAG ##
+(*save*, item, quantity)
 
-## Tabla Bag ##
-(*save*, *item*, quantity)
+## Tabla ENEMY ##
+(id, map, coord_x, coord_y, money, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*)
 
-## Tabla Items ##
-(id, name, type, description)
-
-## Tabla Enemies ##
-(id, map, coord_x, coord_y, *an1*, *an2*, *an3*, *an4*, *an5*, *an6*)
-
-## Tabla Fights ##
+## Tabla FIGHT ##
 (*save*, *enemy*)
 
-## Tabla Attacks ##
-(id, name, type, max_pp, active, ifPass, power, probability)
+## Tabla VIEWED ##
+(*save*, *animature*)

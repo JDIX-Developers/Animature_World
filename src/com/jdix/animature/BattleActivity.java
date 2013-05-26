@@ -58,6 +58,8 @@ public class BattleActivity extends Activity {
 
 	private int				stageOfBattle;
 
+	private int				playerSelectedAttack;
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -72,13 +74,14 @@ public class BattleActivity extends Activity {
 		playerAnimature = getPlayerFirstAnimature();
 
 		// We get a reference to the interface controls
+		// Wild Animature Components
 		enemyDataLayout = (LinearLayout) findViewById(R.id.enemy_animature_data_layout);
 		enemyNameTextView = (TextView) findViewById(R.id.enemy_animature_name);
 		enemyLevelTextView = (TextView) findViewById(R.id.enemy_level_textView);
 		enemyCapturedImageView = (ImageView) findViewById(R.id.enemy_captured_image);
 		enemyLifeProgressBar = (ProgressBar) findViewById(R.id.enemy_live_progressBar);
 		enemyImageView = (ImageView) findViewById(R.id.enemy_imageView);
-
+		// Player Animature Components
 		playerAnimatureDataLayout = (LinearLayout) findViewById(R.id.player_animature_data_layout);
 		playerAnimatureNameTextView = (TextView) findViewById(R.id.player_animature_name_textView);
 		playerAnimatureLevelTextView = (TextView) findViewById(R.id.player_animatura_level_textView);
@@ -86,7 +89,7 @@ public class BattleActivity extends Activity {
 		playerAnimatureCurrentPSTextView = (TextView) findViewById(R.id.player_animature_ps_textView);
 		playerAnimatureExperienceProgressBar = (ProgressBar) findViewById(R.id.player_animature_experience_progressBar);
 		playerAnimatureImageView = (ImageView) findViewById(R.id.player_animature_imageView);
-
+		// Player Components
 		playerTextView = (TextView) findViewById(R.id.textViewBattleActivity);
 		playerTextView.setOnClickListener(new View.OnClickListener()
 		{
@@ -110,9 +113,12 @@ public class BattleActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				playerBattleOptionsLayout.setVisibility(View.GONE);
-				loadPlayerAnimatureAttackButtons();
-				playerAnimatureAttacksLayout.setVisibility(View.VISIBLE);
+				if (BattleUtils.hasAnimatureEnableAttacks(playerAnimature))
+				{
+					playerBattleOptionsLayout.setVisibility(View.GONE);
+					loadPlayerAnimatureAttackButtons();
+					playerAnimatureAttacksLayout.setVisibility(View.VISIBLE);
+				}
 			}
 		});
 		btnAnimatureBattleActivity = (Button) findViewById(R.id.btnAnimatureBattleActivity);
@@ -160,21 +166,81 @@ public class BattleActivity extends Activity {
 				}
 				else
 				{
-
+					stageOfBattle = 2;
+					stagesOfBattle();
 				}
 			}
 		});
 
 		playerAnimatureAttacksLayout = (LinearLayout) findViewById(R.id.player_animature_attacks_layout);
 		btnAttack1 = (Button) findViewById(R.id.btn_attack1);
+		btnAttack1.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				if ( ! playerAnimature.getAttacks()[0].equals(null)
+				&& playerAnimature.getAttacksPP()[0] > 0)
+				{
+					stageOfBattle = 5;
+					playerSelectedAttack = 0;
+					stagesOfBattle();
+				}
+			}
+		});
 		btnsAttacks[0] = btnAttack1;
 		btnAttack2 = (Button) findViewById(R.id.btn_attack2);
+		btnAttack2.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				if ( ! playerAnimature.getAttacks()[1].equals(null)
+				&& playerAnimature.getAttacksPP()[1] > 0)
+				{
+					stageOfBattle = 5;
+					playerSelectedAttack = 1;
+					stagesOfBattle();
+				}
+			}
+		});
 		btnsAttacks[1] = btnAttack2;
 		btnAttack3 = (Button) findViewById(R.id.btn_attack3);
+		btnAttack3.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				if ( ! playerAnimature.getAttacks()[2].equals(null)
+				&& playerAnimature.getAttacksPP()[2] > 0)
+				{
+					stageOfBattle = 5;
+					playerSelectedAttack = 2;
+					stagesOfBattle();
+				}
+			}
+		});
 		btnsAttacks[2] = btnAttack3;
 		btnAttack4 = (Button) findViewById(R.id.btn_attack4);
-		btnsAttacks[3] = btnAttack4;
+		btnAttack4.setOnClickListener(new View.OnClickListener()
+		{
 
+			@Override
+			public void onClick(final View view)
+			{
+				if ( ! playerAnimature.getAttacks()[3].equals(null)
+				&& playerAnimature.getAttacksPP()[3] > 0)
+				{
+					stageOfBattle = 5;
+					playerSelectedAttack = 3;
+					stagesOfBattle();
+				}
+			}
+		});
+		btnsAttacks[3] = btnAttack4;
 		// END REFERENCE GETTERS
 
 		// LOAD WILD ANIMATURE COMPONENTS
@@ -190,6 +256,13 @@ public class BattleActivity extends Activity {
 		true);
 
 		stageOfBattle = 0;
+	}
+
+	private void clearBottomLayouts()
+	{
+		playerAnimatureAttacksLayout.setVisibility(View.GONE);
+		playerBattleOptionsLayout.setVisibility(View.GONE);
+		playerTextView.setVisibility(View.GONE);
 	}
 
 	private void showPlayerTextView(final String text, final boolean clickable)
@@ -229,9 +302,23 @@ public class BattleActivity extends Activity {
 				}
 				loadPlayerAnimatureComponents();
 			case 2:
-				playerTextView.setVisibility(View.GONE);
+				clearBottomLayouts();
 				playerBattleOptionsLayout.setVisibility(View.VISIBLE);
 			break;
+			case 3:
+				clearBottomLayouts();
+				loadPlayerAnimatureAttackButtons();
+				playerAnimatureAttacksLayout.setVisibility(View.VISIBLE);
+			break;
+			case 5:
+				int indexAttack = - 1;
+				if (BattleUtils.hasAnimatureEnableAttacks(wildAnimature))
+				{
+					indexAttack = BattleUtils
+					.getEnemyAnimatureRandomAttack(wildAnimature);
+				}
+				runBattle(indexAttack);
+
 		}
 	}
 
@@ -278,7 +365,7 @@ public class BattleActivity extends Activity {
 		.getMaxHealth(this));
 		// Battle Options Layout Header
 		playerBattleOptionsHeader.setText(getResources().getString(
-		R.string.battle_string_2).replace("%a",
+		R.string.battle_string_3).replace("%a",
 		Animature.getName(playerAnimature.getAnimature(), this)));
 	}
 
@@ -290,7 +377,7 @@ public class BattleActivity extends Activity {
 			btnAttack1
 			.setText(attack.getName()
 			+ " ("
-			+ playerAnimature.getAttackPP(i)
+			+ playerAnimature.getAttacksPP()[i]
 			+ " / "
 			+ attack.getMaxPP()
 			+ "\nTipo "
@@ -322,5 +409,42 @@ public class BattleActivity extends Activity {
 		// WILD ANIMATURE LIFE PROGRESSBAR
 		enemyLifeProgressBar.setMax(wildAnimature.getMaxHealth(this));
 		enemyLifeProgressBar.setProgress(wildAnimature.getMaxHealth(this));
+	}
+
+	private void runBattle(final int enemyIndexAttack)
+	{
+		final Attack playerAnimatureAttack = playerAnimature.getAttacks()[playerSelectedAttack];
+		final Attack enemyAnimatureAttack = wildAnimature.getAttacks()[enemyIndexAttack];
+
+		if (BattleUtils.attacksFirst(playerAnimature, playerAnimatureAttack,
+		wildAnimature, enemyAnimatureAttack, this)
+		&& playerSelectedAttack > - 1)
+		{
+			attack(playerAnimature, playerSelectedAttack, wildAnimature);
+		}
+	}
+
+	private void attack(final Animature attacker, final int indexAttack,
+	final Animature defender)
+	{
+		final String namePlayerAnimature = getResources().getString(
+		R.string.battle_string_4).replace("%a",
+		Animature.getName(attacker.getAnimature(), this));
+		// SHOW MESSAGE --> ¡Charmander usó ascuas!
+		showPlayerTextView(namePlayerAnimature, false);
+		attacker.getAttacksPP()[indexAttack]--;
+		try
+		{
+			this.wait(1000);
+		}
+		catch (final InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		if ( ! BattleUtils.getHit(attacker, attacker.getAttacks()[indexAttack],
+		defender, this))
+		{
+
+		}
 	}
 }
