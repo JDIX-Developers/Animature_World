@@ -24,7 +24,6 @@ public class MapView extends View implements OnTouchListener {
 	private int					mHeight;
 	private final Context		context;
 	private int					control;
-	private int					map0x, map0y;
 	private final MoveThread	move;
 
 	private static int			NONE	= 0;
@@ -133,13 +132,13 @@ public class MapView extends View implements OnTouchListener {
 		canvas.drawColor(Color.BLACK);
 		final Bitmap mapb = map.getBitmap();
 
-		final int cx = (mWidth - mapb.getWidth()) / 2; // TODO add scrolling
-		final int cy = (mHeight - mapb.getHeight()) / 2;
+		final int size = Square.getSprite().getSize();
 
-		map0x = cx;
-		map0y = cy;
+		final int pX = Player.getInstance().getX() * size;
+		final int pY = Player.getInstance().getY() * size;
 
-		canvas.drawBitmap(mapb, cx, cy, null);
+		canvas.drawBitmap(mapb, mWidth / 2 - pX - move.getX() - size / 2,
+		mHeight / 2 - pY - move.getY() - size / 2, null);
 		drawCharacter(canvas);
 		drawControls(canvas);
 	}
@@ -165,8 +164,8 @@ public class MapView extends View implements OnTouchListener {
 
 	private void drawCharacter(final Canvas canvas)
 	{
-		canvas.drawBitmap(move.getBitmap(), map0x + move.getX(),
-		map0y + move.getY() - Square.getSprite().getSize() / 2, null);
+		canvas.drawBitmap(move.getBitmap(), (mWidth - Square.getSprite()
+		.getSize()) / 2, mHeight / 2 - Square.getSprite().getSize(), null);
 	}
 
 	@Override
@@ -486,10 +485,11 @@ public class MapView extends View implements OnTouchListener {
 				}
 
 				stopped = getArrowControl() == NONE;
-				if ( ! stopped && finished)
+				while ( ! stopped && finished)
 				{
 					this.control = getArrowControl() | getABControls();
 					nextMove();
+					stopped = getArrowControl() == NONE;
 				}
 			}
 			while (true);
@@ -517,14 +517,12 @@ public class MapView extends View implements OnTouchListener {
 
 		public int getX()
 		{
-			return Player.getInstance().getX() * Square.getSprite().getSize()
-			+ x;
+			return x;
 		}
 
 		public int getY()
 		{
-			return Player.getInstance().getY() * Square.getSprite().getSize()
-			+ y;
+			return y;
 		}
 	}
 }

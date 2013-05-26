@@ -490,16 +490,14 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Loads a capturable by ID
+	 * Loads an animature by ID
 	 * 
-	 * @param id - The ID of the capturable
+	 * @param id - The ID of the animature
 	 * @param context - The context of the application
-	 * @return The Capturable loaded
+	 * @return Theanimature loaded
 	 */
 	public static Animature load(final int id, final Context context)
 	{
-		// TODO Auto-generated method stub
-
 		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
 
 		final Cursor c = db.rawQuery(
@@ -534,5 +532,16 @@ public class Animature implements Serializable {
 		db.close();
 
 		return anim;
+	}
+
+	/**
+	 * Saves the current animature into the database
+	 */
+	public void save()
+	{
+		if (save != 0)
+		{
+			// TODO Auto-generated method stub
+		}
 	}
 }

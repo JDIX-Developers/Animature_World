@@ -165,7 +165,10 @@ public class Player {
 		values.put("neighbor", neighborName);
 		values.put("first_an", firstAnim);
 		values.put("orientation", orientation);
-		values.put("last_healing_map", lastHealingMap);
+		values.put("last_healing_map", lastHealingMap == 0 ? null
+		: lastHealingMap);
+		values.put("last_healing_x", lastHealingMap == 0 ? null : lastHealingX);
+		values.put("last_healing_y", lastHealingMap == 0 ? null : lastHealingY);
 		values.put("medals", medals);
 		values.put("money", money);
 
@@ -183,9 +186,10 @@ public class Player {
 			for (final Animature activeAnimature: activeAnimatures)
 			{
 				if (activeAnimature != null)
-
 				{
 					activeAnimature.setSave(this.id);
+					activeAnimature.save();
+					save(context);
 				}
 			}
 		}
@@ -538,7 +542,7 @@ public class Player {
 		final SQLiteDatabase db = (new Database(context)).getReadableDatabase();
 
 		final Cursor c = db.rawQuery(
-		"SELECT COUNT(*) FROM CAPTURABLE WHERE save="
+		"SELECT COUNT(*) FROM ANIMATURE WHERE save="
 		+ Player.getInstance().getId(), null);
 
 		if (c.moveToFirst())
