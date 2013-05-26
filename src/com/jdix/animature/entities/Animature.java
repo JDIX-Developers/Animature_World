@@ -86,30 +86,33 @@ public class Animature implements Serializable {
 		this.health = health;
 	}
 
+	/**
+	 * Creates an animature that is not saved
+	 * 
+	 * @param animature - The animature number
+	 * @param save - The save of the animature
+	 * @param nickname - The nickname of the animature
+	 * @param status - The status of the animature
+	 * @param a1 - The first attack
+	 * @param a1pp - The number of PPs for the first attack
+	 * @param a2 - The second attack
+	 * @param a2pp - The number of PPs for the second attack
+	 * @param a3 - The third attack
+	 * @param a3pp - The number of PPs for the third attack
+	 * @param a4 - The fourth attack
+	 * @param a4pp - The PPs for the fourth attack
+	 * @param level - The level of the animature
+	 * @param currentExp - Current experience for the animature
+	 * @param health - The health of the animature
+	 */
 	public Animature(final int animature, final int save,
 	final String nickname, final int status, final Attack a1, final int a1pp,
 	final Attack a2, final int a2pp, final Attack a3, final int a3pp,
 	final Attack a4, final int a4pp, final int level, final int currentExp,
 	final int health)
 	{
-		this.animature = animature;
-		this.save = save;
-		this.nickname = nickname;
-		this.status = status;
-		this.attacks[0] = a1;
-		this.attacks[1] = a2;
-		this.attacks[2] = a3;
-		this.attacks[3] = a4;
-		this.attacksPP[0] = a1pp;
-		this.attacksPP[1] = a2pp;
-		this.attacksPP[2] = a3pp;
-		this.attacksPP[3] = a4pp;
-		this.level = level;
-		this.currentExp = currentExp;
-		this.health = health;
-
-		this.id = 0;
-		// TODO save animature if save != 0
+		this(0, animature, save, nickname, status, a1, a1pp, a2, a2pp, a3,
+		a3pp, a4, a4pp, level, currentExp, health);
 	}
 
 	/**
