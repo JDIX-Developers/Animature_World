@@ -67,7 +67,7 @@
     <!-- 017 -->	<item>Elemental</item>
 	</string-array>
 	
-    <string-array name="animature_cualities_names">
+    <string-array name="animature_qualities_names">
     <!-- 000 -->	<item>Velocidad</item>
     <!-- 001 -->  	<item>Defensa</item>
     <!-- 002 -->	<item>Agilidad</item>
