@@ -5,12 +5,12 @@
 	<string name="image_of_enemy_Animature">Imagen del animature enemigo</string>
 	<string name="image_of_your_Animature">Imagen de tu animature</string>
 	
-	<string name="battle_string_1">¡Un *anim* salvaje!</string>							<!-- ¡Un Pidgey salvaje! -->
-	<string name="battle_string_2">¡Adelante *anim*!</string>							<!-- ¡Adelante Charmander! -->
+	<string name="battle_string_1">¡Un %a salvaje!</string>								<!-- ¡Un Pidgey salvaje! -->
+	<string name="battle_string_2">¡Adelante %a!</string>								<!-- ¡Adelante Charmander! -->
 	<string name="battle_string_3">¿Qué debería hacer *anim*?</string>					<!-- ¿Qué debería hacer Charmander? -->
 	<string name="battle_string_4">¡*anim* usó *atack*!</string>						<!-- ¡Charmander usó Placaje! -->
 	<string name="battle_string_5">¡El ataque de *anim* falló!</string>					<!-- ¡El ataque de Charmander falló! -->
-	<string name="battle_string_6">¡*cuality* de *anim* bajó!</string>					<!-- ¡Defensa de Charmander bajó! -->
+	<string name="battle_string_6">¡*quality* de *anim* bajó!</string>					<!-- ¡Defensa de Charmander bajó! -->
 	<string name="battle_string_7">¡Es muy eficaz!</string>				 				<!-- ¡Es muy eficaz! -->		
 	<string name="battle_string_8">No es muy eficaz…</string>							<!-- No es muy eficaz -->
 	<string name="battle_string_9">¡No afecta a *anim*!</string>						<!-- ¡No afecta a Charmander! -->
