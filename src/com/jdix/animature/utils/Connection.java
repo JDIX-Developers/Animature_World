@@ -156,8 +156,6 @@ public class Connection {
 						e.printStackTrace();
 					}
 
-					System.err.println("Token: " + token);
-
 					action = a;
 					data = d;
 

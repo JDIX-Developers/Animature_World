@@ -152,10 +152,6 @@ public class AnimaxAnimatureActivity extends Activity {
 
 		if (types[1] != 0)
 		{
-			if (animature == 4)
-			{
-				System.out.println("ERROR");
-			}
 			final int typeIndex2 = (int) Math.round(Math.log(types[1])
 			/ Math.log(2));
 

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.jdix.animature.R;
 import com.jdix.animature.utils.Database;
@@ -493,8 +492,6 @@ public class Animature implements Serializable {
 			final int save = c.getInt(2);
 			final String nickname = c.getString(3);
 			final int status = c.getInt(4);
-
-			Log.e("ATACK 1: ", "" + c.getInt(5));
 
 			final Attack a1 = Attack.load(c.getInt(5), context);
 			final Attack a2 = Attack.load(c.getInt(7), context);

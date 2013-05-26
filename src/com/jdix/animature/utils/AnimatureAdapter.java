@@ -20,7 +20,7 @@ public class AnimatureAdapter extends BaseAdapter {
 
 	private final Context				context;
 	private final ArrayList<Integer>	items;
-	private String[]					typesNames;
+	private final String[]				typesNames;
 	private final TypedArray			colors;
 
 	/**
@@ -105,10 +105,6 @@ public class AnimatureAdapter extends BaseAdapter {
 
 		if (types[1] != 0)
 		{
-			if (animature == 4)
-			{
-				System.out.println("ERROR");
-			}
 			final int typeIndex2 = (int) Math.round(Math.log(types[1])
 			/ Math.log(2));
 

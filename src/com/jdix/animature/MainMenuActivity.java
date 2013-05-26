@@ -51,7 +51,6 @@ public class MainMenuActivity extends Activity {
 			{
 				startActivity(new Intent(MainMenuActivity.this,
 				NewGameActivity.class));
-				finish();
 			}
 		});
 		btnLoadGame = (Button) findViewById(R.id.btnLoadGame);
@@ -136,7 +135,6 @@ public class MainMenuActivity extends Activity {
 					Player.load(1, MainMenuActivity.this);
 					startActivity(new Intent(MainMenuActivity.this,
 					MapActivity.class));
-					finish();
 				}
 			}
 		});
