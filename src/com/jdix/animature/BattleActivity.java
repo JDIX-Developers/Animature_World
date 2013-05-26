@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.jdix.animature.entities.Animature;
+import com.jdix.animature.entities.Player;
 
 /**
  * @author Jordan Aranda Tejada
@@ -18,6 +19,7 @@ import com.jdix.animature.entities.Animature;
 public class BattleActivity extends Activity {
 
 	private Animature		wildAnimature;
+	private Animature		playerAnimature;
 
 	private LinearLayout	enemyDataLayout;
 	private TextView		enemyNameTextView;
@@ -51,6 +53,8 @@ public class BattleActivity extends Activity {
 
 	private ActionListener	animatureRestLifeAction;
 
+	private int				stageOfBattle;
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -78,6 +82,16 @@ public class BattleActivity extends Activity {
 		playerAnimatureImageView = (ImageView) findViewById(R.id.player_animature_imageView);
 
 		playerTextView = (TextView) findViewById(R.id.textViewBattleActivity);
+		playerTextView.setOnClickListener(new View.OnClickListener()
+		{
+
+			@Override
+			public void onClick(final View view)
+			{
+				stageOfBattle++;
+				stagesOfBattle();
+			}
+		});
 
 		playerBattleOptionsLayout = (LinearLayout) findViewById(R.id.player_battle_options_layout);
 		playerBattleOptionsHeader = (TextView) findViewById(R.id.battle_options_header);
@@ -91,14 +105,35 @@ public class BattleActivity extends Activity {
 		btnAttack2 = (Button) findViewById(R.id.btn_attack2);
 		btnAttack3 = (Button) findViewById(R.id.btn_attack3);
 		btnAttack4 = (Button) findViewById(R.id.btn_attack4);
+		// END REFERENCE GETTERS
 
-		// playerAnimatureImageView.setImageDrawable(this.getResources()
-		// .getDrawable(R.drawable.player_battle_image));
+		final int id = getResources().getIdentifier(
+		"f" + wildAnimature.getAnimature(), "drawable", getPackageName());
+		enemyImageView.setImageDrawable(this.getResources().getDrawable(id));
+
+		if (Player.getInstance().hasAnimature(wildAnimature.getAnimature()))
+		{
+			enemyCapturedImageView.setVisibility(View.VISIBLE);
+		}
+
+		enemyNameTextView.setText(Animature.getName(
+		wildAnimature.getAnimature(), this));
+
+		enemyLevelTextView.setText(wildAnimature.getLevel());
 
 		enemyLifeProgressBar.setMax(wildAnimature.getHealthMax());
 		enemyLifeProgressBar.setProgress(wildAnimature.getHealthMax());
 
-		showPlayerTextView("¡Un Pidgey salvaje!", true);
+		playerAnimatureImageView.setImageDrawable(this.getResources()
+		.getDrawable(R.drawable.player_battle_image));
+
+		showPlayerTextView(getResources().getString(R.string.battle_string_1)
+		.replace("%a", Animature.getName(wildAnimature.getAnimature(), this)),
+		true);
+
+		playerAnimature = getPlayerFirstAnimature();
+
+		stageOfBattle = 0;
 	}
 
 	private void showPlayerTextView(final String text, final boolean clickable)
@@ -116,5 +151,53 @@ public class BattleActivity extends Activity {
 			playerTextView.setCompoundDrawables(null, null, null, null);
 			playerTextView.setClickable(false);
 		}
+	}
+
+	private void stagesOfBattle()
+	{
+		switch (stageOfBattle)
+		{
+			case 1:
+				final String namePlayerAnimature = getResources().getString(
+				R.string.battle_string_2).replace(
+				"%a",
+				Animature.getName(
+				Player.getInstance().getActiveAnimatures()[0].getAnimature(),
+				this));
+				showPlayerTextView(namePlayerAnimature, false);
+				try
+				{
+					this.wait(1000);
+				}
+				catch (final InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+
+				final int id = getResources().getIdentifier(
+				"b" + playerAnimature.getAnimature(), "drawable",
+				getPackageName());
+				playerAnimatureImageView.setImageDrawable(this.getResources()
+				.getDrawable(id));
+			break;
+		}
+	}
+
+	private Animature getPlayerFirstAnimature()
+	{
+		boolean enc = false;
+		int i = 6;
+		while ( ! enc && i < 6)
+		{
+			if (Player.getInstance().getActiveAnimatures()[i].getHealthAct() > 0)
+			{
+				enc = true;
+			}
+			else
+			{
+				i++;
+			}
+		}
+		return Player.getInstance().getActiveAnimatures()[i];
 	}
 }

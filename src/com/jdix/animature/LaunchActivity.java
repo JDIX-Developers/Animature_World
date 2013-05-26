@@ -50,6 +50,13 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
+		/*
+		 * Animature animature = new Animature() final Intent intent = new
+		 * Intent(LaunchActivity.this, BattleActivity.class); final Bundle b =
+		 * new Bundle(); b.putSerializable("wild_animature", null);
+		 * intent.putExtras(b); startActivity(intent);
+		 */
+
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
 		mEditTextPasswordLogin = (EditText) findViewById(R.id.editText_PasswordLogin);

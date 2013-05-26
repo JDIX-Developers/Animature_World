@@ -65,15 +65,13 @@ public class Animature implements Serializable {
 	private int					baseHealth;
 	private int					healthMax;
 	private int					healthAct;
-	private int					box;
 
 	// TODO create and save new animatures
 
 	public Animature(final int id, final int animature, final int save,
-	final String nickname, final int sex, final int status,
-	final int capturedTime, final Attack a1, final int a1pp, final Attack a2,
-	final int a2pp, final Attack a3, final int a3pp, final Attack a4,
-	final int a4pp, final int level, final int currentExp,
+	final String nickname, final int status, final Attack a1, final int a1pp,
+	final Attack a2, final int a2pp, final Attack a3, final int a3pp,
+	final Attack a4, final int a4pp, final int level, final int currentExp,
 	final int experience, final int baseHealth, final int healthAct,
 	final int box)
 	{
@@ -81,9 +79,7 @@ public class Animature implements Serializable {
 		this.animature = animature;
 		this.save = save;
 		this.nickname = nickname;
-		this.sex = sex;
 		this.status = status;
-		this.capturedTime = capturedTime;
 		this.attacks[0] = a1;
 		this.attacks[1] = a2;
 		this.attacks[2] = a3;
@@ -97,7 +93,6 @@ public class Animature implements Serializable {
 		this.experience = experience;
 		this.baseHealth = baseHealth;
 		this.healthAct = healthAct;
-		this.box = box;
 		this.healthMax = baseHealth;
 		if (this.level > 1)
 		{
@@ -444,8 +439,12 @@ public class Animature implements Serializable {
 	 */
 	public static double getWeight(final int animature, final Context context)
 	{
-		return context.getResources()
-		.obtainTypedArray(R.array.animature_weight).getFloat(animature - 1, 1); // TODO
+		float weight = 0;
+		final TypedArray array = context.getResources().obtainTypedArray(
+		R.array.animature_weight);
+		weight = array.getFloat(animature - 1, 1);
+		array.recycle();
+		return weight;
 	}
 
 	/**
@@ -491,9 +490,7 @@ public class Animature implements Serializable {
 		final int animature = c.getInt(2);
 		final int save = c.getInt(3);
 		final String nickname = c.getString(4);
-		final int sex = c.getInt(5);
 		final int status = c.getInt(6);
-		final int capturedTime = c.getInt(7);
 
 		final Attack[] attacks = new Attack[4];
 		attacks[0] = new Attack(c.getInt(8), context);
@@ -515,9 +512,9 @@ public class Animature implements Serializable {
 		final int box = c.getInt(21);
 
 		final Animature anim = new Animature(id, animature, save, nickname,
-		sex, status, capturedTime, attacks[0], attackPPs[0], attacks[1],
-		attackPPs[1], attacks[2], attackPPs[2], attacks[3], attackPPs[3],
-		level, cur_exp, exp, baseHealth, healthAct, box);
+		status, attacks[0], attackPPs[0], attacks[1], attackPPs[1], attacks[2],
+		attackPPs[2], attacks[3], attackPPs[3], level, cur_exp, exp,
+		baseHealth, healthAct, box);
 
 		c.close();
 		db.close();
