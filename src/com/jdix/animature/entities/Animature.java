@@ -242,7 +242,7 @@ public class Animature implements Serializable {
 	 */
 	public int[] getQualities(final Context context)
 	{
-		return getQualities(animature, context);
+		return getQualities(animature, level, context);
 	}
 
 	/**
@@ -383,10 +383,12 @@ public class Animature implements Serializable {
 
 	/**
 	 * @param animature - The animature to check
+	 * @param level - The level of the Animature
 	 * @param context - The context of the application
 	 * @return The qualities of the animature
 	 */
-	public static int[] getQualities(final int animature, final Context context)
+	public static int[] getQualities(final int animature, final int level,
+	final Context context)
 	{
 		final int[] qualities = new int[5];
 
@@ -400,6 +402,14 @@ public class Animature implements Serializable {
 		R.array.animature_strength)[animature - 1];
 		qualities[PRECISION] = context.getResources().getIntArray(
 		R.array.animature_precision)[animature - 1];
+
+		for (int i = 1; i <= level; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				qualities[j] += qualities[j] / 3;
+			}
+		}
 		return qualities;
 	}
 
