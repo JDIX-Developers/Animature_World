@@ -28,6 +28,8 @@ public class MathUtils {
 	}
 
 	/**
+	 * Gets a short from 2 bytes
+	 * 
 	 * @param b1 - left byte for the short
 	 * @param b2 - right byte for the short
 	 * @return Short representing the unsigned number contained by the two
@@ -39,6 +41,21 @@ public class MathUtils {
 	}
 
 	/**
+	 * Gets an int from four bytes
+	 * 
+	 * @param b - The first byte, containing the top value
+	 * @param c - The second byte
+	 * @param d - The third byte
+	 * @param e - the fourth byte
+	 * @return The int represented by the four bytes
+	 */
+	public static int fourByteToInt(final byte b, final byte c, final byte d,
+	final byte e)
+	{
+		return 0; // TODO
+	}
+
+	/**
 	 * @param b byte to convert
 	 * @return String with hexadecimal representation of the byte
 	 */
@@ -46,4 +63,5 @@ public class MathUtils {
 	{
 		return "0x" + String.format("%02X", b);
 	}
+
 }

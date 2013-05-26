@@ -524,13 +524,41 @@ public class MapView extends View implements OnTouchListener {
 			final Player p = Player.getInstance();
 			final Square sq = map.getSquareAt((byte) p.getX(), (byte) p.getY());
 
-			if (sq.isOfType(Square.GRASSANIM))
+			Link l;
+			if ((l = map.getLinkAt((byte) p.getX(), (byte) p.getY())) != null)
+			{
+				// TODO new map if needed
+				p.setX(l.getX());
+				p.setY(l.getY());
+
+				try
+				{
+					Thread.sleep(250);
+				}
+				catch (final InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+
+				((Activity) context).runOnUiThread(new Runnable()
+				{
+
+					@Override
+					public void run()
+					{
+						invalidate();
+					}
+				});
+			}
+
+			else if (sq.isOfType(Square.GRASSANIM))
 			{
 				if (Math.random() < 0.7)
 				{
 					// TODO start battle
 				}
 			}
+
 		}
 
 		public Bitmap getBitmap()

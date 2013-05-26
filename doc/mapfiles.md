@@ -1,10 +1,10 @@
-# Especificación de los MapFiles v2.0 #
+# Especificación de los MapFiles v2.1 #
 
 Un MapFile es un archivo con extensión .map que contiene una porción de universo del juego. Será un archivo binario, que estará codificado según esta especificación. Todo el archivo se dividirá en porciones de 2 bytes. Cada 2 bytes erá un dato.
 
 El primer dato indicará el ancho y el alto del mapa, el ancho el primer byte y el alto el segundo. A partir de entonces, cada dato será un cuadrado del sprite, con coordenadas XXYY. Una vez completado el ancho y el alto, tras un separador *0xFFFF* se incluirán los en laces a otros mapas, como en puertas etc.
 
-Cada enlace tendrá 6 bytes. Los primeros dos bytes serán las coordenadas del mapa actual en el que estará el enlace. Los segundos dos bytes, formando un short, serán el número de mapa al que se accederá desde ahí, y los terceros dos bytes, las coordenadas a las que se llegará. Los mapas se guardarán en *res/raw/* en el formato map_X.map, donde X será el número, que podrá tener múltiples dígitos. El caso en el que el mapa sea *0x0000*, se referirá al mapa actual.
+Cada enlace tendrá 8 bytes. Los primeros dos bytes serán las coordenadas del mapa actual en el que estará el enlace. Los siguientes 4 bytes, formando un int, serán el id del mapa al que se accederá desde ahí, que será *0x00000000* en el caso de ser el mismo, y los últimos dos bytes, las coordenadas a las que se llegará. Los mapas se guardarán en *res/raw/*.
 
 Hay dos tipos de datos especiales, que habilitan la compresión del mapa. Los datos que tengan el primer **o** el último byte *0xFF* serán de este tipo. Los que tengan el segundo byte en *0xFF* serán las repeticiones en la coordenada X. Así que *0x07FF* significará que el dato anterior se repetirá 7 veces en la coordenada X contando el cuadrado actual. El máximo será 254. El traductor no fallará con *0x00FF*, pero a ser posible deberá evitarse. Tampoco es aconsejable usar *0x01FF*, ya que es una notación que puede inducir a error, en su lugar se repetirá el dato de la izquierda.
 

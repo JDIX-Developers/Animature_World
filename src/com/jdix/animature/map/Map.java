@@ -91,9 +91,14 @@ public class Map {
 		&& array[pointer] == (byte) 0xFF)
 		{
 			p += 2;
-			while (array.length > p + 3)
+			while (array.length > p + 8)
 			{
-				p += 3;
+				links.put(
+				new PosEntry<Byte, Byte>(array[pointer], array[pointer + 1]),
+				new Link(MathUtils.fourByteToInt(array[pointer + 2],
+				array[pointer + 3], array[pointer + 4], array[pointer + 5]),
+				array[pointer + 6], array[pointer + 7]));
+				p += 8;
 			}
 		}
 	}
