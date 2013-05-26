@@ -54,7 +54,7 @@ public class AnimaxMenuActivity extends Activity {
 				AnimaxAnimatureActivity.class);
 				final Bundle b = new Bundle();
 				b.putInt("animature_id", animatureIndex.get(pos));
-
+				intent.putExtras(b);
 				startActivity(intent);
 			}
 		});

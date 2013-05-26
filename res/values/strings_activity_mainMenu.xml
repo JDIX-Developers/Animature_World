@@ -3,6 +3,8 @@
     <string name="title_activity_main_menu">MainMenuActivity</string>
     
 	<!-- Strings related to Main Menu -->
+	
+	<string name="tittleMainMenu">Animature World</string>
 	<string name="btnNewGame">Nueva Partida</string>
 	<string name="btnLoadGame">Cargar Partida</string>
 	<string name="btnMultiplayer">Multijugador</string>
@@ -15,4 +17,8 @@
 
 	<string name="yes_option">Si</string>
 	<string name="no_option">No</string>
+	
+	<string name="user_main_menu">User:</string>
+	<string name="signature_main_menu">JDIX - Developers</string>
+	
 </resources>

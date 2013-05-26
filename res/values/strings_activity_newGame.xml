@@ -16,22 +16,23 @@
 	    <item>Estudio a los Animatures como profesión.</item>										// 6
 	    <item>Bueno, cuéntame algo de ti.</item>													// 7
 	   	<item>¿Eres chico o chica?</item>															// 8
-	    <item>¿Como te llamas?</item>																// 9
-	    <item>¡Bien! ¿Asi que te llamas *namePlayer*?</item>										// 10
+	    <item>Pero primero dime… ¿Como te llamas?</item>											// 9
+	    <item>¡Bien! ¿Asi que te llamas %s?</item>													// 10
 	    <item>He oido que tienes un vecino de tu misma edad.</item>									// 11
-	    <item>¿Podrías decirme como se llamaba?</item>												// 12
-	    <item >A ya recuerdo ¿tu vecino se llamaba *nameNeightboor*?</item>							// 13
-	    <item>¡*namePlayer*! Tu aventura está a punto de comenzar.</item>							// 14
+	    <item>Mmm… ¿Podrías decirme como se llamaba?</item>											// 12
+	    <item >A ya recuerdo ¿tu vecino se llamaba %s?</item>										// 13
+	    <item>¡%s! Tu aventura está a punto de comenzar.</item>										// 14
 	    <item>Pero antes…</item>																	// 15
 	    <item>Tienes que elegir uno de los siguientes Animatures…</item>							// 16
 	    <item>¿Cuál quieres?</item>																	// 17
-	    <item>Asi que *animature*, ¿quieres a *animature* el animature de tipo *typeAnimature*?</item>			// 18
-	    <item>¡*namePlayer* recibió a *animature* de manos del profesor Oak!</item>					// 19
-	    <item>¿Quieres darle un mote a *animature*?</item>											// 20
+	    <item>Asi que $a, ¿quieres a $a el Animature de tipo $s?</item>								// 18
+	    <item>¡$s recibió a $a de manos del profesor Oak!</item>									// 19
+	    <item>¿Quieres darle un mote a $a?</item>													// 20
 	    <item>¿Como se llama?</item>																// 21
-	    <item>¡Bien! ¿Así que se llama *nickName*?</item>											// 22
+	    <item>¡Bien! ¿Así que se llama $a?</item>													// 22
 	    <item>¡%s! Tu aventura comienza ahora…</item>												// 23
-	    <item>¡captura todos los Animatures que puedas y vence a los entrenadores!</item>			// 24
+	    <item>¡Te espera un mundo de sueños y aventuras con los Animatures!</item>					// 24
+	    <item >¡Adelante!</item>																	// 25
 	</string-array>		
 	
 	<string name="animatureOption1">Bulbasur</string>

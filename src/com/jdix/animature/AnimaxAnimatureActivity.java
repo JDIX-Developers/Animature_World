@@ -1,5 +1,7 @@
 package com.jdix.animature;
 
+import java.text.DecimalFormat;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,8 +24,8 @@ public class AnimaxAnimatureActivity extends Activity {
 	private TextView	animatureWeight;
 	private TextView	animatureStrenght;
 	private TextView	animatureDefense;
-	private TextView	animatureVelocity;
-	private TextView	animatureHealth;
+	private TextView	animatureSpeed;
+	private TextView	animatureAgility;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -40,32 +42,54 @@ public class AnimaxAnimatureActivity extends Activity {
 		animatureWeight = (TextView) findViewById(R.id.weight_Animature_Animax_view);
 		animatureStrenght = (TextView) findViewById(R.id.strenght_Animature_Animax_view);
 		animatureDefense = (TextView) findViewById(R.id.defense_Animature_Animax_view);
-		animatureVelocity = (TextView) findViewById(R.id.velocity_Animature_Animax_view);
-		animatureHealth = (TextView) findViewById(R.id.health_Animature_Animax_view);
+		animatureSpeed = (TextView) findViewById(R.id.velocity_Animature_Animax_view);
+		animatureAgility = (TextView) findViewById(R.id.health_Animature_Animax_view);
 
 		// We recover the information passed in the intent
-		this.animature = this.getIntent().getIntExtra("animature_id", 1);
+		this.animature = this.getIntent().getExtras().getInt("animature_id");
 
-		// ADD ANIMATURE DATA TODO Quality names from strings
+		final DecimalFormat dF = new DecimalFormat("####.##");
+
 		animatureId.setText("N.º " + getFormatedIdAnimature(this.animature));
 		animatureName.setText(Animature.getName(this.animature, this));
+
 		final int id = getResources().getIdentifier("f" + this.animature,
 		"drawable", getPackageName());
 		animatureImage.setImageDrawable(this.getResources().getDrawable(id));
+
 		animatureDescription.setText(getResources().getStringArray(
-		R.array.animature_names)[this.animature - 1]);
-		animatureHeight.setText("Altura: "
-		+ Animature.getHeight(this.animature, this) + " m");
-		animatureWeight.setText("Peso: "
-		+ Animature.getWeight(this.animature, this) + " kg");
-		animatureStrenght.setText("Fuerza: "
-		+ Animature.getQualities(this.animature, this)[Animature.STRENGTH]);
-		animatureDefense.setText("Defensa: "
-		+ Animature.getQualities(this.animature, this)[Animature.DEFENSE]);
-		animatureVelocity.setText("Velocidad: "
-		+ Animature.getQualities(this.animature, this)[Animature.SPEED]);
-		animatureHealth.setText("Agilidad: "
-		+ Animature.getQualities(this.animature, this)[Animature.AGILITY]);
+		R.array.animature_descriptions)[this.animature - 1]);
+
+		// ANIMATURE HEIGHT
+		String height = getResources().getString(R.string.animax_height);
+		height = height.replaceAll("%f",
+		dF.format(Animature.getHeight(this.animature, this)));
+		animatureHeight.setText(height);
+		// ANIMATURE WEIGHT
+		String weight = getResources().getString(R.string.animax_weight);
+		weight = weight.replaceAll("%f",
+		dF.format(Animature.getWeight(this.animature, this)));
+		animatureWeight.setText(weight);
+		// ANIMATURE STRENGHT
+		String strenght = getResources().getString(R.string.animax_strength);
+		strenght = strenght.replaceAll("%d",
+		Animature.getQualities(animature, this)[Animature.STRENGTH] + "");
+		animatureStrenght.setText(strenght);
+		// ANIMATURE DEFENSE
+		String defense = getResources().getString(R.string.animax_defense);
+		defense = defense.replaceAll("%d",
+		Animature.getQualities(animature, this)[Animature.DEFENSE] + "");
+		animatureDefense.setText(defense);
+		// ANIMATURE SPEED
+		String speed = getResources().getString(R.string.animax_speed);
+		speed = speed.replaceAll("%d",
+		Animature.getQualities(animature, this)[Animature.SPEED] + "");
+		animatureSpeed.setText(speed);
+		// ANIMATURE AGILITY
+		String agility = getResources().getString(R.string.animax_agility);
+		agility = agility.replaceAll("%d",
+		Animature.getQualities(animature, this)[Animature.AGILITY] + "");
+		animatureAgility.setText(agility);
 	}
 
 	@Override

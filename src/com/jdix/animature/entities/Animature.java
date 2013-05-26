@@ -3,6 +3,7 @@ package com.jdix.animature.entities;
 import java.io.Serializable;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -378,17 +379,16 @@ public class Animature implements Serializable {
 	{
 		final int[] qualities = new int[5]; // TODO
 
-		qualities[SPEED] = Integer.parseInt(context.getResources()
-		.getStringArray(R.array.animature_speed)[animature - 1]);
-		qualities[DEFENSE] = Integer.parseInt(context.getResources()
-		.getStringArray(R.array.animature_defense)[animature - 1]);
-		qualities[AGILITY] = Integer.parseInt(context.getResources()
-		.getStringArray(R.array.animature_agility)[animature - 1]);
-		qualities[STRENGTH] = Integer.parseInt(context.getResources()
-		.getStringArray(R.array.animature_strength)[animature - 1]);
-		qualities[PRECISION] = Integer.parseInt(context.getResources()
-		.getStringArray(R.array.animature_precision)[animature - 1]);
-
+		qualities[SPEED] = context.getResources().getIntArray(
+		R.array.animature_speed)[animature - 1];
+		qualities[DEFENSE] = context.getResources().getIntArray(
+		R.array.animature_defense)[animature - 1];
+		qualities[AGILITY] = context.getResources().getIntArray(
+		R.array.animature_agility)[animature - 1];
+		qualities[STRENGTH] = context.getResources().getIntArray(
+		R.array.animature_strength)[animature - 1];
+		qualities[PRECISION] = context.getResources().getIntArray(
+		R.array.animature_precision)[animature - 1];
 		return qualities;
 	}
 
@@ -425,10 +425,14 @@ public class Animature implements Serializable {
 	 * @param context - The context of the application
 	 * @return The height of the animature
 	 */
-	public static double getHeight(final int animature, final Context context)
+	public static float getHeight(final int animature, final Context context)
 	{
-		return Double.parseDouble(context.getResources().getStringArray(
-		R.array.animature_height)[animature - 1]); // TODO
+		float height = 0;
+		final TypedArray array = context.getResources().obtainTypedArray(
+		R.array.animature_height);
+		height = array.getFloat(animature - 1, 1);
+		array.recycle();
+		return height;
 	}
 
 	/**
@@ -440,8 +444,8 @@ public class Animature implements Serializable {
 	 */
 	public static double getWeight(final int animature, final Context context)
 	{
-		return Double.parseDouble(context.getResources().getStringArray(
-		R.array.animature_weight)[animature - 1]); // TODO
+		return context.getResources()
+		.obtainTypedArray(R.array.animature_weight).getFloat(animature - 1, 1); // TODO
 	}
 
 	/**
