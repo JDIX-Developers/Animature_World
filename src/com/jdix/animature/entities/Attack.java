@@ -10,43 +10,75 @@ import com.jdix.animature.R;
  */
 public class Attack {
 
-	private int				id;
-	private String			name;
-	private int				type;
-	private int				maxpp;
-	private boolean			active;
-	private int				attribute;
-	private int				power;
-	private int				probability;				// 0 - 100 (Example: 60%
-														// - 60)
-	private boolean			isFirst;
+	private final int		id;
+	private final String	name;
+	private final int		type;
+	private final boolean	active;
+	private final int		attribute;
+	private final int		maxPP;
+	private final int		power;
+	private final int		probability;
+	private final boolean	isFirst;
+
+	public static Attack[]	attacks;
 
 	public static final int	NORMAL_EFFECTIVE	= 0;
 	public static final int	VERY_EFFECTIVE		= 1;
 	public static final int	FEW_EFFECTIVE		= 2;
 	public static final int	NOT_EFFECTIVE		= 3;
 
-	public Attack()
-	{
-
-	}
-
-	public Attack(final int id, final String name, final int type,
-	final int maxpp, final boolean active, final int attribute,
-	final int power, final int probability, final boolean isFirst)
+	private Attack(final int id, final Context context)
 	{
 		this.id = id;
-		this.name = name;
-		this.type = type;
-		this.maxpp = maxpp;
-		this.active = active;
-		this.attribute = attribute;
-		this.power = power;
-		this.probability = probability;
-		this.isFirst = isFirst;
+		TypedArray array;
+
+		this.name = context.getResources()
+		.getStringArray(R.array.attacks_names)[id - 1];
+
+		array = context.getResources().obtainTypedArray(R.array.attack_type);
+		this.type = array.getInt(id - 1, 0);
+
+		array = context.getResources().obtainTypedArray(R.array.attack_power);
+		this.power = array.getInt(id - 1, 0);
+
+		array = context.getResources().obtainTypedArray(
+		R.array.attack_probability);
+		this.probability = array.getInt(id - 1, 0);
+
+		array = context.getResources().obtainTypedArray(R.array.attack_max_pp);
+		this.maxPP = array.getInt(id - 1, 0);
+
+		array = context.getResources()
+		.obtainTypedArray(R.array.attack_is_first);
+		this.isFirst = array.getInt(id - 1, 0) == 1;
+
+		array = context.getResources().obtainTypedArray(
+		R.array.attack_is_pasive);
+		this.active = array.getInt(id - 1, 0) == 0;
+
+		array = context.getResources().obtainTypedArray(
+		R.array.attack_attributte);
+		this.attribute = array.getInt(id - 1, 0);
+
+		array.recycle();
 	}
 
-	public boolean getActive()
+	public int getId()
+	{
+		return id;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public int getType()
+	{
+		return type;
+	}
+
+	public boolean isActive()
 	{
 		return active;
 	}
@@ -56,9 +88,9 @@ public class Attack {
 		return attribute;
 	}
 
-	public double getProbability()
+	public int getMaxPP()
 	{
-		return probability;
+		return maxPP;
 	}
 
 	public int getPower()
@@ -66,9 +98,9 @@ public class Attack {
 		return power;
 	}
 
-	public void setPower(final int power)
+	public int getProbability()
 	{
-		this.power = power;
+		return probability;
 	}
 
 	public boolean isFirst()
@@ -76,26 +108,25 @@ public class Attack {
 		return isFirst;
 	}
 
-	public void setFirst(final boolean isFirst)
-	{
-		this.isFirst = isFirst;
-	}
-
 	/**
-	 * Method to get attacks maxPP.
-	 * 
-	 * @param id - Animature's id.
-	 * @param context - The aplication context
-	 * @return The number maxPP for this attack.
+	 * @param id - Attack's id.
+	 * @param context - The aplication context.
+	 * @return The attack in this position.
 	 */
-	public static int getMaxPP(final int id, final Context context)
+	public static Attack load(final int id, final Context context)
 	{
-		int maxPP = 0;
-		final TypedArray array = context.getResources().obtainTypedArray(
-		R.array.attack_max_pp);
-		maxPP = array.getInt(id - 1, 0);
-		array.recycle();
-		return maxPP;
+		final String[] attacksNames = context.getResources().getStringArray(
+		R.array.attacks_names);
+
+		if (attacks == null)
+		{
+			attacks = new Attack[attacksNames.length];
+		}
+		if (attacks[id - 1] == null)
+		{
+			attacks[id - 1] = new Attack(id, context);
+		}
+		return attacks[id - 1];
 	}
 
 	/**
@@ -424,13 +455,6 @@ public class Attack {
 				effective = VERY_EFFECTIVE;
 			break;
 		}
-
 		return effective;
-
-	}
-
-	public Attack(final int id, final Context context)
-	{
-		// TODO Auto-generated method stub
 	}
 }
