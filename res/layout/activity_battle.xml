@@ -267,7 +267,7 @@
         android:padding="@dimen/Margin5" >
 
         <TextView
-            android:id="@+id/textViewBattleActivity"
+            android:id="@+id/player_text_view_battle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -350,7 +350,7 @@
             android:background="#FFFFFF"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone" >
+            android:visibility="visible" >
 
             <LinearLayout
                 android:layout_width="match_parent"
