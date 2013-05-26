@@ -40,14 +40,17 @@ public class PlayerDataViewActivity extends Activity {
 		playerId.setText("ID: "
 		+ getFormatedIdPlayer(Player.getInstance().getId()));
 		playerName.setText("Nombre: " + Player.getInstance().getName());
-		playerPlayedTime.setText("Tiempo jugado:"
-		+ Player.getInstance().getPlayedTime());
-		playerViewAnimatures.setText("Animax: "
-		+ Player.getInstance().getViewed(this));
-		playerCapturedAnimatures.setText("Animatures caputarados: "
-		+ Player.getInstance().getCaptured(this));
-		playerMoney.setText("Monedas: " + Player.getInstance().getMoney());
-		playerMedals.setText("Medallas: " + Player.getInstance().getMedals());
+		/*
+		 * playerPlayedTime.setText("Tiempo jugado:" +
+		 * Player.getInstance().getPlayedTime());
+		 * playerViewAnimatures.setText("Animax: " +
+		 * Player.getInstance().getViewed(this));
+		 * playerCapturedAnimatures.setText("Animatures caputarados: " +
+		 * Player.getInstance().getCaptured(this));
+		 * playerMoney.setText("Monedas: " + Player.getInstance().getMoney());
+		 * playerMedals.setText("Medallas: " +
+		 * Player.getInstance().getMedals());
+		 */
 	}
 
 	@Override
