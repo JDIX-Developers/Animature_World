@@ -49,9 +49,9 @@ public class Animature implements Serializable {
 	public static final int		SLEEPED				= 4;
 	public static final int		FROZEN				= 5;
 
-	private int					id;
+	private final int			id;
 	private int					animature;
-	private int					save;
+	private final int			save;
 	private String				nickname;
 	private int					sex;
 	private int					status;
@@ -61,19 +61,13 @@ public class Animature implements Serializable {
 	private int[]				attacksPP			= new int[4];
 	private int					level;
 	private int					currentExp;
-	private int					experience;
-	private int					baseHealth;
-	private int					healthMax;
 	private int					healthAct;
-
-	// TODO create and save new animatures
 
 	public Animature(final int id, final int animature, final int save,
 	final String nickname, final int status, final Attack a1, final int a1pp,
 	final Attack a2, final int a2pp, final Attack a3, final int a3pp,
 	final Attack a4, final int a4pp, final int level, final int currentExp,
-	final int experience, final int baseHealth, final int healthAct,
-	final int box)
+	final int healthAct)
 	{
 		this.id = id;
 		this.animature = animature;
@@ -90,35 +84,54 @@ public class Animature implements Serializable {
 		this.attacksPP[3] = a4pp;
 		this.level = level;
 		this.currentExp = currentExp;
-		this.experience = experience;
-		this.baseHealth = baseHealth;
 		this.healthAct = healthAct;
-		this.healthMax = baseHealth;
-		if (this.level > 1)
-		{
-			for (int i = 2; i <= this.level; i++)
-			{
-				this.healthMax += this.healthMax / 3;
-			}
-		}
+	}
+
+	public Animature(final int animature, final int save,
+	final String nickname, final int status, final Attack a1, final int a1pp,
+	final Attack a2, final int a2pp, final Attack a3, final int a3pp,
+	final Attack a4, final int a4pp, final int level, final int currentExp,
+	final int healthAct)
+	{
+		this.animature = animature;
+		this.save = save;
+		this.nickname = nickname;
+		this.status = status;
+		this.attacks[0] = a1;
+		this.attacks[1] = a2;
+		this.attacks[2] = a3;
+		this.attacks[3] = a4;
+		this.attacksPP[0] = a1pp;
+		this.attacksPP[1] = a2pp;
+		this.attacksPP[2] = a3pp;
+		this.attacksPP[3] = a4pp;
+		this.level = level;
+		this.currentExp = currentExp;
+		this.healthAct = healthAct;
+
+		this.id = 0;
+		// TODO save animature and get ID
 	}
 
 	/**
-	 * @param id - The ID of the animature
+	 * Creates a new animature at the begining of the game
+	 * 
+	 * @param animature - The animature ID
+	 * @param nickname - The nickname of the animature
+	 * @param context - The context of the application
 	 */
-	public Animature(final int id)
+	public Animature(final int animature, final String nickname,
+	final Context context)
 	{
-		// TODO Auto-generated constructor stub
+		this(animature, Player.getInstance().getId(),
+		(nickname == null ? Animature.getName(animature, context) : nickname),
+		OK, new Attack(1, context), Attack.getMaxPP(1, context), null, 0, null,
+		0, null, 0, 5, 0, Animature.getMaxHealth(animature, context));
 	}
 
 	public int getId()
 	{
 		return id;
-	}
-
-	public void setId(final int id)
-	{
-		this.id = id;
 	}
 
 	public int getAnimature()
@@ -239,26 +252,6 @@ public class Animature implements Serializable {
 	public void setCurrentExp(final int currentExp)
 	{
 		this.currentExp = currentExp;
-	}
-
-	public int getExperience()
-	{
-		return experience;
-	}
-
-	public void setExperience(final int experience)
-	{
-		this.experience = experience;
-	}
-
-	public int getHealthMax()
-	{
-		return healthMax;
-	}
-
-	public void setHealthMax(final int healthMax)
-	{
-		this.healthMax = healthMax;
 	}
 
 	public int getHealthAct()
@@ -469,6 +462,11 @@ public class Animature implements Serializable {
 		return context.getResources().getStringArray(R.array.animature_names)[animature - 1];
 	}
 
+	private static int getMaxHealth(final int animature, final Context context)
+	{
+		return context.getResources().getIntArray(R.array.animature_health)[animature - 1];
+	}
+
 	/**
 	 * Loads a capturable by ID
 	 * 
@@ -482,39 +480,33 @@ public class Animature implements Serializable {
 
 		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
 
-		final Cursor c = db.rawQuery("SELECT * FROM CAPTURABLE WHERE id = "
-		+ id, null);
+		final Cursor c = db.rawQuery(
+		"SELECT * FROM ANIMATURE WHERE id = " + id, null);
 
 		c.moveToFirst();
 
-		final int animature = c.getInt(2);
-		final int save = c.getInt(3);
-		final String nickname = c.getString(4);
-		final int status = c.getInt(6);
+		final int animature = c.getInt(1);
+		final int save = c.getInt(2);
+		final String nickname = c.getString(3);
+		final int status = c.getInt(4);
 
-		final Attack[] attacks = new Attack[4];
-		attacks[0] = new Attack(c.getInt(8), context);
-		attacks[1] = new Attack(c.getInt(10), context);
-		attacks[2] = new Attack(c.getInt(12), context);
-		attacks[3] = new Attack(c.getInt(14), context);
+		final Attack a1 = Attack.load(c.getInt(5), context);
+		final Attack a2 = Attack.load(c.getInt(7), context);
+		final Attack a3 = Attack.load(c.getInt(9), context);
+		final Attack a4 = Attack.load(c.getInt(11), context);
 
-		final int[] attackPPs = new int[4];
-		attackPPs[0] = c.getInt(9);
-		attackPPs[1] = c.getInt(11);
-		attackPPs[2] = c.getInt(13);
-		attackPPs[3] = c.getInt(15);
+		final int a1pp = c.getInt(6);
+		final int a2pp = c.getInt(8);
+		final int a3pp = c.getInt(10);
+		final int a4pp = c.getInt(12);
 
-		final int baseHealth = c.getInt(16);
-		final int healthAct = c.getInt(17);
-		final int level = c.getInt(18);
-		final int cur_exp = c.getInt(19);
-		final int exp = c.getInt(20);
-		final int box = c.getInt(21);
+		final int healthAct = c.getInt(13);
+		final int level = c.getInt(14);
+		final int currentExp = c.getInt(15);
 
 		final Animature anim = new Animature(id, animature, save, nickname,
-		status, attacks[0], attackPPs[0], attacks[1], attackPPs[1], attacks[2],
-		attackPPs[2], attacks[3], attackPPs[3], level, cur_exp, exp,
-		baseHealth, healthAct, box);
+		status, a1, a1pp, a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp,
+		healthAct);
 
 		c.close();
 		db.close();

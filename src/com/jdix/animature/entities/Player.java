@@ -146,12 +146,18 @@ public class Player {
 		values.put("start_date", startDate.getTime());
 		values.put("total_time", 0); // TODO totalTime
 		values.put("steps", 0); // TODO steps
-		values.put("an1", activeAnimatures[0].getId());
-		values.put("an2", activeAnimatures[1].getId());
-		values.put("an3", activeAnimatures[2].getId());
-		values.put("an4", activeAnimatures[3].getId());
-		values.put("an5", activeAnimatures[4].getId());
-		values.put("an6", activeAnimatures[5].getId());
+		values.put("an1",
+		(activeAnimatures[0] != null ? activeAnimatures[0].getId() : null));
+		values.put("an2",
+		(activeAnimatures[1] != null ? activeAnimatures[1].getId() : null));
+		values.put("an3",
+		(activeAnimatures[2] != null ? activeAnimatures[2].getId() : null));
+		values.put("an4",
+		(activeAnimatures[3] != null ? activeAnimatures[3].getId() : null));
+		values.put("an5",
+		(activeAnimatures[4] != null ? activeAnimatures[4].getId() : null));
+		values.put("an6",
+		(activeAnimatures[5] != null ? activeAnimatures[5].getId() : null));
 		values.put("map", map.getId());
 		values.put("coord_x", posX);
 		values.put("coord_y", posY);

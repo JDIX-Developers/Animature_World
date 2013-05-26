@@ -413,5 +413,4 @@ public class Attack {
 	{
 		// TODO Auto-generated method stub
 	}
-
 }
