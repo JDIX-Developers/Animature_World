@@ -55,7 +55,6 @@ public class Animature implements Serializable {
 	private int					save;
 	private String				nickname;
 	private int					status;
-	private int					capturedTime;
 	private Attack[]			attacks				= new Attack[4];
 	private final int[]			attacksPP			= new int[4];
 	private int					level;
@@ -390,6 +389,27 @@ public class Animature implements Serializable {
 	public static int[] getQualities(final int animature, final int level,
 	final Context context)
 	{
+		final int[] qualities = getQualities(animature, context);
+
+		for (int i = 1; i <= level; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				qualities[j] += qualities[j] / 3;
+			}
+		}
+		return qualities;
+	}
+
+	/**
+	 * Gets the qualities of the animature
+	 * 
+	 * @param animature - The animature to check
+	 * @param context - The context of the application
+	 * @return The qualities of the animature
+	 */
+	public static int[] getQualities(final int animature, final Context context)
+	{
 		final int[] qualities = new int[5];
 
 		qualities[SPEED] = context.getResources().getIntArray(
@@ -403,13 +423,6 @@ public class Animature implements Serializable {
 		qualities[PRECISION] = context.getResources().getIntArray(
 		R.array.animature_precision)[animature - 1];
 
-		for (int i = 1; i <= level; i++)
-		{
-			for (int j = 0; j < 5; j++)
-			{
-				qualities[j] += qualities[j] / 3;
-			}
-		}
 		return qualities;
 	}
 
