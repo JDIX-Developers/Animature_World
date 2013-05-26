@@ -346,8 +346,16 @@ public class Animature implements Serializable {
 	 */
 	public int getMaxHealth(final Context context)
 	{
-
-		return context.getResources().getIntArray(R.array.animature_health)[animature - 1];
+		int maxHealth = context.getResources().getIntArray(
+		R.array.animature_health)[animature - 1];
+		if (this.level > 1)
+		{
+			for (int i = 2; i <= this.level; i++)
+			{
+				maxHealth += maxHealth / 3;
+			}
+		}
+		return maxHealth;
 	}
 
 	/**
