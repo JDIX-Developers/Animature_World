@@ -11,6 +11,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.jdix.animature.R;
 
+/**
+ * @author Xabier Ferrer Ardanaz
+ */
 public class Database extends SQLiteOpenHelper {
 
 	private final Context	context;
