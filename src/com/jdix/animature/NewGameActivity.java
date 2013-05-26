@@ -16,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.jdix.animature.entities.Animature;
 import com.jdix.animature.entities.Player;
 import com.jdix.animature.map.Map;
 import com.jdix.animature.map.Sprite;
@@ -268,11 +267,9 @@ public class NewGameActivity extends Activity {
 					break;
 				}
 
-				final Animature[] anims = new Animature[6];
-
 				Player.set(new Map(R.raw.map_test, this), playerName,
-				playerSex, enemyName, anims, 5, 5, Player.SOUTH,
-				idAnimatureSelected, this);
+				playerSex, enemyName, 5, 5, Player.SOUTH, idAnimatureSelected,
+				nameAnimatureSelected, this);
 
 				startActivity(new Intent(NewGameActivity.this,
 				MapActivity.class));
