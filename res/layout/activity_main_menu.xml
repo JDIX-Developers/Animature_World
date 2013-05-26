@@ -11,6 +11,16 @@
           android:orientation="vertical" >
 
      <TextView
+         android:id="@+id/user_textView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="right"
+         android:text="@string/user_main_menu"
+         android:textAppearance="?android:attr/textAppearanceSmall"
+         android:textColor="#FFFFFF"
+         android:textSize="15sp" />
+
+     <TextView
          android:id="@+id/tittle_textView"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
@@ -82,28 +92,5 @@
 
          </LinearLayout>
      </ScrollView>
-
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content" >
-
-         <TextView
-             android:id="@+id/user_textView"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="@string/user_main_menu"
-             android:textAppearance="?android:attr/textAppearanceSmall"
-             android:textColor="#0F0F0F"
-             android:textSize="15sp" />
-
-         <TextView
-             android:id="@+id/textView1"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:gravity="right"
-             android:text="@string/signature_main_menu"
-             android:textAppearance="?android:attr/textAppearanceSmall"
-             android:textColor="#0F0F0F" />
-     </LinearLayout>
 
       </LinearLayout>

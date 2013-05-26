@@ -50,6 +50,11 @@ public class LaunchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
 
+		final Intent intent = new Intent(LaunchActivity.this,
+		AnimaxMenuActivity.class);
+		startActivity(intent);
+		finish();
+
 		/*
 		 * Animature animature = new Animature(); final Intent intent = new
 		 * Intent(LaunchActivity.this, BattleActivity.class); final Bundle b =

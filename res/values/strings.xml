@@ -2,8 +2,20 @@
 <resources>
 
     <string name="app_name">Animature World</string>
+<<<<<<< HEAD
     <string name="animature_image">Imagen del Animature</string>
     <string name="animBall_image">Imagen de la animBall</string>
     <string name="player_battle_image">Imagen del jugador</string>
+=======
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_battle">BattleActivity</string>
+    <string name="title_activity_map">Map</string>
+    <string name="title_activity_game_menu">GameMenuActivity</string>
+    <string name="title_activity_animax_game_menu">AnimaxGameMenuActivity</string>
+    <string name="title_activity_bag">BagActivity</string>
+    <string name="title_activity_player_data_view">PlayerDataViewActivity</string>
+    <string name="title_activity_animax_animature_view">AnimaxAnimatureViewActivity</string>
+    <string name="title_activity_load_game">LoadGameActivity</string>
+>>>>>>> parent of 06ab96e... Quitar fallos
 
 </resources>
