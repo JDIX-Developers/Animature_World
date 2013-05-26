@@ -412,7 +412,7 @@ public class Animature implements Serializable {
 	 */
 	public static int[] getQualities(final int animature, final Context context)
 	{
-		final int[] qualities = new int[5]; // TODO
+		final int[] qualities = new int[5];
 
 		qualities[SPEED] = context.getResources().getIntArray(
 		R.array.animature_speed)[animature - 1];
@@ -436,8 +436,7 @@ public class Animature implements Serializable {
 	 */
 	public static int getLevelEvo(final int animature, final Context context)
 	{
-		return Integer.parseInt(context.getResources().getStringArray(
-		R.array.animature_level_evo)[animature - 1]); // TODO
+		return context.getResources().getIntArray(R.array.animature_level_evo)[animature - 1];
 	}
 
 	/**
@@ -549,13 +548,10 @@ public class Animature implements Serializable {
 		final int level = c.getInt(14);
 		final int currentExp = c.getInt(15);
 
-		final Animature anim = new Animature(id, animature, save, nickname,
-		status, a1, a1pp, a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp,
-		healthAct);
-
 		c.close();
 		db.close();
 
-		return anim;
+		return new Animature(id, animature, save, nickname, status, a1, a1pp,
+		a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp, healthAct);
 	}
 }
