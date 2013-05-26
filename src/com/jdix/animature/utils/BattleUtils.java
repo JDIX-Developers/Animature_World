@@ -65,7 +65,7 @@ public class BattleUtils {
 	{
 		return (playerAnimature.getLevel() > enemyAnimature.getLevel())
 		|| (playerAnimature.getLevel() == enemyAnimature.getLevel() && enemyAnimature
-		.getHealthAct() < enemyAnimature.getMaxHealth(context) * 0.4);
+		.getHealth() < enemyAnimature.getMaxHealth(context) * 0.4);
 	}
 
 	/**

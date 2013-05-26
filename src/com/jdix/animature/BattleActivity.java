@@ -328,7 +328,7 @@ public class BattleActivity extends Activity {
 		int i = 6;
 		while ( ! enc && i < 6)
 		{
-			if (Player.getInstance().getActiveAnimatures()[i].getHealthAct() > 0)
+			if (Player.getInstance().getActiveAnimatures()[i].getHealth() > 0)
 			{
 				enc = true;
 			}
@@ -355,7 +355,7 @@ public class BattleActivity extends Activity {
 		.setText("Nv " + playerAnimature.getLevel());
 		// Player Animature Life ProgressBar and TextView
 		final int maxHealth = playerAnimature.getMaxHealth(this);
-		final int currentHealth = playerAnimature.getHealthAct();
+		final int currentHealth = playerAnimature.getHealth();
 		playerAnimatureLifeProgressBar.setMax(maxHealth);
 		playerAnimatureLifeProgressBar.setProgress(currentHealth);
 		playerAnimatureCurrentPSTextView.setText(currentHealth + " / "
