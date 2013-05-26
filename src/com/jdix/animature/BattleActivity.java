@@ -422,6 +422,12 @@ public class BattleActivity extends Activity {
 		{
 			attack(playerAnimature, playerSelectedAttack, wildAnimature);
 		}
+		else
+		{
+			attack(wildAnimature,
+			BattleUtils.getEnemyAnimatureRandomAttack(wildAnimature),
+			playerAnimature);
+		}
 	}
 
 	private void attack(final Animature attacker, final int indexAttack,
