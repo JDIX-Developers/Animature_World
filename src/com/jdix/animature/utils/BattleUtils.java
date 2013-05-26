@@ -126,6 +126,51 @@ public class BattleUtils {
 		return damage;
 	}
 
+	/**
+	 * Method to get enemy Animature random attack
+	 * 
+	 * @param enemyAnimature - Enemy animature
+	 * @return The index of the attack for enemy Animature.
+	 */
+	public static int getEnemyAnimatureRandomAttack(
+	final Animature enemyAnimature)
+	{
+		final Random r = new Random();
+		int indexAttack = - 1;
+		boolean enc = false;
+		do
+		{
+			indexAttack = r.nextInt(4);
+			if ( ! enemyAnimature.getAttacks()[indexAttack].equals(null)
+			&& enemyAnimature.getAttacksPP()[indexAttack] > 0)
+			{
+				enc = true;
+			}
+		}
+		while ( ! enc);
+		return indexAttack;
+	}
+
+	/**
+	 * Method to check if Animature has enable attacks.
+	 * 
+	 * @param animature - Animature.
+	 * @return True if it has enable attacks.
+	 */
+	public static boolean hasAnimatureEnableAttacks(final Animature animature)
+	{
+		boolean enc = false;
+		for (int i = 0; i < 4 && ! enc; i++)
+		{
+			if ( ! animature.getAttacks()[i].equals(null)
+			&& animature.getAttacksPP()[i] > 0)
+			{
+				enc = true;
+			}
+		}
+		return enc;
+	}
+
 	// /**
 	// * Method to load the cualities of the Animature
 	// *

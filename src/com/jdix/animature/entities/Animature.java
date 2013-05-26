@@ -57,8 +57,7 @@ public class Animature implements Serializable {
 	private int					status;
 	private int					capturedTime;
 	private Attack[]			attacks				= new Attack[4];
-	private final int[]			attackN				= new int[4];
-	private int[]				attacksPP			= new int[4];
+	private final int[]			attacksPP			= new int[4];
 	private int					level;
 	private int					currentExp;
 	private int					healthAct;
@@ -159,16 +158,6 @@ public class Animature implements Serializable {
 		this.nickname = nickname;
 	}
 
-	public int getSex()
-	{
-		return sex;
-	}
-
-	public void setSex(final int sex)
-	{
-		this.sex = sex;
-	}
-
 	public int getStatus()
 	{
 		return status;
@@ -177,16 +166,6 @@ public class Animature implements Serializable {
 	public void setStatus(final int status)
 	{
 		this.status = status;
-	}
-
-	public int getCapturedTime()
-	{
-		return capturedTime;
-	}
-
-	public void setCapturedTime(final int capturedTime)
-	{
-		this.capturedTime = capturedTime;
 	}
 
 	public Attack[] getAttacks()
@@ -199,39 +178,9 @@ public class Animature implements Serializable {
 		this.attacks = attacks;
 	}
 
-	public int getAttackN(final int pos)
-	{
-		return this.attackN[pos];
-	}
-
-	public Attack getAttack(final int pos)
-	{
-		return attacks[pos];
-	}
-
-	public void setAttack(final int pos, final Attack attack)
-	{
-		this.attacks[pos] = attack;
-	}
-
 	public int[] getAttacksPP()
 	{
 		return attacksPP;
-	}
-
-	public void setAttacksPP(final int[] attacksPP)
-	{
-		this.attacksPP = attacksPP;
-	}
-
-	public int getAttackPP(final int pos)
-	{
-		return attacksPP[pos];
-	}
-
-	public void reduceAttackPP(final int pos)
-	{
-		this.attacksPP[pos] -= 1;
 	}
 
 	public int getLevel()
