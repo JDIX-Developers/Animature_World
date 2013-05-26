@@ -547,12 +547,11 @@ public class Animature implements Serializable {
 		final int healthAct = c.getInt(13);
 		final int level = c.getInt(14);
 		final int currentExp = c.getInt(15);
-		
+
 		c.close();
 		db.close();
 
-		return new Animature(id, animature, save, nickname,
-		status, a1, a1pp, a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp,
-		healthAct);
+		return new Animature(id, animature, save, nickname, status, a1, a1pp,
+		a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp, healthAct);
 	}
 }
