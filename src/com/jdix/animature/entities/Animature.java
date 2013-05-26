@@ -49,7 +49,7 @@ public class Animature implements Serializable {
 	public static final int		SLEEPED				= 4;
 	public static final int		FROZEN				= 5;
 
-	private final int			id;
+	private int					id;
 	private int					animature;
 	private final int			save;
 	private String				nickname;
@@ -125,8 +125,8 @@ public class Animature implements Serializable {
 	{
 		this(animature, Player.getInstance().getId(),
 		(nickname == null ? Animature.getName(animature, context) : nickname),
-		OK, new Attack(1, context), Attack.getMaxPP(1, context), null, 0, null,
-		0, null, 0, 5, 0, Animature.getMaxHealth(animature, context));
+		OK, Attack.load(1, context), Attack.load(1, context).getMaxPP(), null,
+		0, null, 0, null, 0, 5, 0, Animature.getMaxHealth(animature, context));
 	}
 
 	public int getId()
@@ -264,6 +264,9 @@ public class Animature implements Serializable {
 		this.healthAct = healthAct;
 	}
 
+	/**
+	 * @return The number of attacks of the animature
+	 */
 	public int getNumAttacks()
 	{
 		int attacks = 0;
@@ -275,6 +278,16 @@ public class Animature implements Serializable {
 			}
 		}
 		return attacks;
+	}
+
+	/**
+	 * Changes the save of the animature
+	 * 
+	 * @param id - The id of the new save
+	 */
+	public void setSave(final int id)
+	{
+		this.id = id;
 	}
 
 	/**
@@ -325,6 +338,15 @@ public class Animature implements Serializable {
 	public int getBaseExp(final Context context)
 	{
 		return getBaseExp(animature, context);
+	}
+
+	/**
+	 * @param context - The context of the application
+	 * @return The maximum health of the animature
+	 */
+	public int getMaxHealth(final Context context)
+	{
+		return context.getResources().getIntArray(R.array.animature_health)[animature - 1];
 	}
 
 	/**

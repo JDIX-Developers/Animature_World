@@ -42,43 +42,36 @@
         </activity>
         <activity
             android:name="com.jdix.animature.BattleActivity"
-            android:label="@string/title_activity_battle"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.jdix.animature.MapActivity"
-            android:label="@string/title_activity_map"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.jdix.animature.GameMenuActivity"
-            android:label="@string/title_activity_game_menu"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.jdix.animature.BagActivity"
-            android:label="@string/title_activity_bag"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.jdix.animature.PlayerDataViewActivity"
-            android:label="@string/title_activity_player_data_view"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.jdix.animature.AnimaxMenuActivity"
-            android:label="@string/title_activity_animax_game_menu"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.jdix.animature.AnimaxAnimatureActivity"
-            android:label="@string/title_activity_animax_animature_view"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>

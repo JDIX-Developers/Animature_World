@@ -116,6 +116,7 @@ public class Player {
 	 * @param posY - The current Y coordinate position
 	 * @param orientation - The current orientation
 	 * @param firstAnim - The first animature of the player
+	 * @param firstAnimName - The name for the first animature
 	 * @param context - The context of the application
 	 */
 	public static void set(final Map map, final String name, final int sex,
@@ -178,6 +179,15 @@ public class Player {
 				this.id = c.getInt(0);
 			}
 			c.close();
+
+			for (final Animature activeAnimature: activeAnimatures)
+			{
+				if (activeAnimature != null)
+
+				{
+					activeAnimature.setSave(this.id);
+				}
+			}
 		}
 		else
 		{

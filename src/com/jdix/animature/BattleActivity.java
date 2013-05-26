@@ -121,8 +121,8 @@ public class BattleActivity extends Activity {
 
 		enemyLevelTextView.setText(wildAnimature.getLevel());
 
-		enemyLifeProgressBar.setMax(wildAnimature.getHealthMax());
-		enemyLifeProgressBar.setProgress(wildAnimature.getHealthMax());
+		enemyLifeProgressBar.setMax(wildAnimature.getMaxHealth(this));
+		enemyLifeProgressBar.setProgress(wildAnimature.getMaxHealth(this));
 
 		playerAnimatureImageView.setImageDrawable(this.getResources()
 		.getDrawable(R.drawable.player_battle_image));

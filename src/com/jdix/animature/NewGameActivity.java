@@ -269,9 +269,6 @@ public class NewGameActivity extends Activity {
 				}
 
 				final Animature[] anims = new Animature[6];
-				// TODO create animature
-				// anims[0] = Capturable.load(idAnimatureSelected, this); TODO
-				final Animature firstAnim = null; // TODO select animature
 
 				Player.set(new Map(R.raw.map_test, this), playerName,
 				playerSex, enemyName, anims, 5, 5, Player.SOUTH,

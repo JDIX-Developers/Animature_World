@@ -35,4 +35,11 @@
     <!-- 001 -->    <item>1</item>
     <!-- 002 -->    <item>0</item>
     </array>
+    
+    <array name="attack_is_pasive">
+    <!-- 000 -->    <item>0</item>
+    <!-- 001 -->    <item>0</item>
+    <!-- 002 -->    <item>1</item>
+    </array>
+    
 </resources>
