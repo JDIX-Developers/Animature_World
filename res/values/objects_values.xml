@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name = "objects_types">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </array>
+</resources>

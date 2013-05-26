@@ -12,70 +12,96 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/Margin5"
-            android:layout_marginRight="@dimen/Margin5"
-            android:layout_marginTop="@dimen/Margin5"
-            android:background="#FFFFFF"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="@dimen/Margin5" >
-
-            <TextView
-                android:id="@+id/text_view_captured_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/Margin10"
-                android:text="Charmander"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/text_view_PS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/Margin10"
-                android:text="PS"
-                android:textColor="#000000" />
-
-            <ProgressBar
-                android:id="@+id/progress_bar_captured_life"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/text_view_capture_new_animature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/Margin5"
             android:layout_marginLeft="@dimen/Margin5"
             android:layout_marginRight="@dimen/Margin5"
+            android:layout_marginTop="@dimen/Margin5"
+            android:layout_weight="1"
             android:background="#FFFFFF"
             android:gravity="center"
-            android:paddingBottom="@dimen/Margin5"
-            android:paddingLeft="@dimen/Margin5"
-            android:paddingRight="@dimen/Margin5" >
+            android:height="50dp"
+            android:text="@string/capture_new_animature"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/text_view_captured_level"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/Margin10"
-                android:text="Nv 18"
-                android:textColor="#000000" />
+        <LinearLayout
+            android:id="@+id/animature_captured_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone" >
 
-            <TextView
-                android:id="@+id/text_view_captured_ps_life"
-                android:layout_width="0dip"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="60 / 70"
-                android:textColor="#000000" />
+                android:layout_marginLeft="@dimen/Margin5"
+                android:layout_marginRight="@dimen/Margin5"
+                android:layout_marginTop="@dimen/Margin5"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/Margin5" >
+
+                <TextView
+                    android:id="@+id/text_view_captured_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/Margin10"
+                    android:text="Charmander"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text_view_PS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/Margin10"
+                    android:text="PS"
+                    android:textColor="#000000" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_captured_life"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/Margin5"
+                android:layout_marginLeft="@dimen/Margin5"
+                android:layout_marginRight="@dimen/Margin5"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:paddingBottom="@dimen/Margin5"
+                android:paddingLeft="@dimen/Margin5"
+                android:paddingRight="@dimen/Margin5" >
+
+                <TextView
+                    android:id="@+id/text_view_captured_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/Margin10"
+                    android:text="Nv 18"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/text_view_captured_ps_life"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="60 / 70"
+                    android:textColor="#000000" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
