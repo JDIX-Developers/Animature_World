@@ -31,6 +31,7 @@ public class Map {
 	public Map(final int map, final Context context)
 	{
 		this.id = map;
+
 		final InputStream s = context.getResources().openRawResource(map);
 		try
 		{
@@ -81,26 +82,6 @@ public class Map {
 	{
 		this.width = MathUtils.uByteToInt(array[0]);
 		this.height = MathUtils.uByteToInt(array[1]);
-	}
-
-	private void getLinks(final byte[] array, final int pointer)
-	throws SpriteException, CompressionException
-	{
-		int p = pointer;
-		if (array.length > pointer + 1 && array[pointer] == array[pointer + 1]
-		&& array[pointer] == (byte) 0xFF)
-		{
-			p += 2;
-			while (array.length > p + 8)
-			{
-				links.put(
-				new PosEntry<Byte, Byte>(array[pointer], array[pointer + 1]),
-				new Link(MathUtils.fourByteToInt(array[pointer + 2],
-				array[pointer + 3], array[pointer + 4], array[pointer + 5]),
-				array[pointer + 6], array[pointer + 7]));
-				p += 8;
-			}
-		}
 	}
 
 	/**
@@ -155,6 +136,28 @@ public class Map {
 		}
 
 		getLinks(array, pointer);
+	}
+
+	private void getLinks(final byte[] array, final int pointer)
+	throws SpriteException, CompressionException
+	{
+		links = new HashMap<PosEntry<Byte, Byte>, Link>();
+
+		int p = pointer;
+		if (array.length > pointer + 1 && array[pointer] == array[pointer + 1]
+		&& array[pointer] == (byte) 0xFF)
+		{
+			p += 2;
+			while (array.length > p + 8)
+			{
+				links.put(
+				new PosEntry<Byte, Byte>(array[pointer], array[pointer + 1]),
+				new Link(MathUtils.fourByteToInt(array[pointer + 2],
+				array[pointer + 3], array[pointer + 4], array[pointer + 5]),
+				array[pointer + 6], array[pointer + 7]));
+				p += 8;
+			}
+		}
 	}
 
 	private void generateBitmap()
