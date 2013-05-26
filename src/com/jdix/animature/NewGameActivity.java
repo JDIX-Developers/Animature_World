@@ -269,8 +269,6 @@ public class NewGameActivity extends Activity {
 				}
 
 				final Animature[] anims = new Animature[6];
-				anims[0] = new Animature(idAnimatureSelected,
-				nameAnimatureSelected, this);
 
 				Player.set(new Map(R.raw.map_test, this), playerName,
 				playerSex, enemyName, anims, 5, 5, Player.SOUTH,

@@ -49,7 +49,7 @@ public class Animature implements Serializable {
 	public static final int		SLEEPED				= 4;
 	public static final int		FROZEN				= 5;
 
-	private final int			id;
+	private int					id;
 	private int					animature;
 	private final int			save;
 	private String				nickname;
@@ -264,6 +264,9 @@ public class Animature implements Serializable {
 		this.healthAct = healthAct;
 	}
 
+	/**
+	 * @return The number of attacks of the animature
+	 */
 	public int getNumAttacks()
 	{
 		int attacks = 0;
@@ -275,6 +278,16 @@ public class Animature implements Serializable {
 			}
 		}
 		return attacks;
+	}
+
+	/**
+	 * Changes the save of the animature
+	 * 
+	 * @param id - The id of the new save
+	 */
+	public void setSave(final int id)
+	{
+		this.id = id;
 	}
 
 	/**
