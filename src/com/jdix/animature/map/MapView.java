@@ -346,28 +346,7 @@ public class MapView extends View implements OnTouchListener {
 
 		private Square next()
 		{
-			final Player p = Player.getInstance();
-			Square sq = null;
-			switch (p.getOrientation())
-			{
-				case Player.NORTH:
-					sq = map
-					.getSquareAt((byte) p.getX(), (byte) (p.getY() - 1));
-				break;
-				case Player.WEST:
-					sq = map
-					.getSquareAt((byte) (p.getX() - 1), (byte) p.getY());
-				break;
-				case Player.SOUTH:
-					sq = map
-					.getSquareAt((byte) p.getX(), (byte) (p.getY() + 1));
-				break;
-				case Player.EAST:
-					sq = map
-					.getSquareAt((byte) (p.getX() + 1), (byte) p.getY());
-			}
-
-			return sq;
+			return map.getSquareAt(nextX(), nextY());
 		}
 
 		private void move(final int direction, final int left, final int right,
@@ -425,7 +404,9 @@ public class MapView extends View implements OnTouchListener {
 							bitmap = Player.getInstance().getBitmap(right);
 						}
 					}
-					if (next() != null && next().isOfType(Square.WALKABLE))
+					if (next() != null
+					&& (next().isOfType(Square.WALKABLE) || map.getLinkAt(
+					nextX(), nextY()) != null))
 					{
 						this.x += x;
 						this.y += y;
@@ -454,6 +435,48 @@ public class MapView extends View implements OnTouchListener {
 			bitmap = Player.getInstance().getBitmap(direction);
 			Player.getInstance().setOrientation(direction);
 			finish();
+		}
+
+		private byte nextX()
+		{
+			final Player p = Player.getInstance();
+			byte nextX = 0;
+			switch (p.getOrientation())
+			{
+				case Player.NORTH:
+					nextX = (byte) p.getX();
+				break;
+				case Player.WEST:
+					nextX = (byte) (p.getX() - 1);
+				break;
+				case Player.SOUTH:
+					nextX = (byte) p.getX();
+				break;
+				case Player.EAST:
+					nextX = (byte) (p.getX() + 1);
+			}
+			return nextX;
+		}
+
+		private byte nextY()
+		{
+			final Player p = Player.getInstance();
+			byte nextY = 0;
+			switch (p.getOrientation())
+			{
+				case Player.NORTH:
+					nextY = (byte) (p.getY() - 1);
+				break;
+				case Player.WEST:
+					nextY = (byte) p.getY();
+				break;
+				case Player.SOUTH:
+					nextY = (byte) (p.getY() + 1);
+				break;
+				case Player.EAST:
+					nextY = (byte) p.getY();
+			}
+			return nextY;
 		}
 
 		private void finish()

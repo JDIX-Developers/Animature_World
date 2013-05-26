@@ -11,17 +11,18 @@ import android.graphics.Canvas;
 import com.jdix.animature.exceptions.CompressionException;
 import com.jdix.animature.exceptions.SpriteException;
 import com.jdix.animature.utils.MathUtils;
+import com.jdix.animature.utils.PosEntry;
 
 /**
  * @author Razican (Iban Eguia)
  */
 public class Map {
 
-	private final int				id;
-	private HashMap<Square, Link>	links;
-	private Square[][]				squares;
-	private int						width, height;
-	private Bitmap					bitmap;
+	private final int							id;
+	private HashMap<PosEntry<Byte, Byte>, Link>	links;
+	private Square[][]							squares;
+	private int									width, height;
+	private Bitmap								bitmap;
 
 	/**
 	 * @param context - The context of the application
@@ -207,5 +208,15 @@ public class Map {
 		{
 			return null;
 		}
+	}
+
+	/**
+	 * @param x - The X coordinate of the square
+	 * @param y - The Y coordinate of the square
+	 * @return The link in the square
+	 */
+	public Link getLinkAt(final byte x, final byte y)
+	{
+		return links.get(new PosEntry<Byte, Byte>(x, y));
 	}
 }
