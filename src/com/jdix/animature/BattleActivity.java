@@ -427,9 +427,9 @@ public class BattleActivity extends Activity {
 	private void attack(final Animature attacker, final int indexAttack,
 	final Animature defender)
 	{
-		final String text = getResources().getString(R.string.battle_string_4)
+		String text = getResources().getString(R.string.battle_string_4)
 		.replace("%a", Animature.getName(attacker.getAnimature(), this));
-		text = text.replace("%b", attacker.getAttacks()[indexAttack].getName());
+		text = text.replace("$b", attacker.getAttacks()[indexAttack].getName());
 		// SHOW MESSAGE --> ¡Charmander usó ascuas!
 		showPlayerTextView(text, false);
 		attacker.getAttacksPP()[indexAttack]--;

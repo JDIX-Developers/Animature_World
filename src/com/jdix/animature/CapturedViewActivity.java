@@ -35,17 +35,13 @@ public class CapturedViewActivity extends Activity {
 		list = (ListView) findViewById(R.id.list_player_captured);
 
 		playerCaptured = new ArrayList<Animature>();
+		// playerCaptured.add(Player.getInstance().getActiveAnimatures()[0]);
+
 		Log.e("PLAYER ACTIVE ANIMATURES", "Active animatures: "
 		+ Player.getInstance().getActiveAnimatures().length);
 		for (int i = 0; i < Player.getInstance().getActiveAnimatures().length; i++)
 		{
-			Log.e("PLAYER ACTIVE " + i, "Active animatures: "
-			+ Player.getInstance().getActiveAnimatures()[i]);
-			if ( ! Player.getInstance().getActiveAnimatures()[i].equals(null))
-			{
-				playerCaptured
-				.add(Player.getInstance().getActiveAnimatures()[i]);
-			}
+			playerCaptured.add(Player.getInstance().getActiveAnimatures()[i]);
 		}
 
 		final CapturedAdapter adapter = new CapturedAdapter(this,

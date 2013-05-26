@@ -7,70 +7,77 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="@dimen/Margin5"
-          android:layout_marginRight="@dimen/Margin5"
-          android:layout_marginTop="@dimen/Margin5"
-          android:background="#FFFFFF"
-          android:gravity="center"
-          android:orientation="horizontal"
-          android:padding="@dimen/Margin5" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-          <TextView
-              android:id="@+id/text_view_captured_name"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginRight="@dimen/Margin10"
-              android:text="Charmander"
-              android:textColor="#000000"
-              android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/Margin5"
+            android:layout_marginRight="@dimen/Margin5"
+            android:layout_marginTop="@dimen/Margin5"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/Margin5" >
 
-          <TextView
-              android:id="@+id/text_view_PS"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginRight="@dimen/Margin10"
-              android:textColor="#000000"
-              android:text="PS" />
+            <TextView
+                android:id="@+id/text_view_captured_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/Margin10"
+                android:text="Charmander"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
-          <ProgressBar
-              android:id="@+id/progress_bar_captured_life"
-              style="?android:attr/progressBarStyleHorizontal"
-              android:layout_width="0dip"
-              android:layout_height="wrap_content"
-              android:layout_weight="1" />
-      </LinearLayout>
+            <TextView
+                android:id="@+id/text_view_PS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/Margin10"
+                android:text="PS"
+                android:textColor="#000000" />
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/Margin5"
-          android:layout_marginLeft="@dimen/Margin5"
-          android:layout_marginRight="@dimen/Margin5"
-          android:background="#FFFFFF"
-          android:gravity="center"
-          android:paddingBottom="@dimen/Margin5"
-          android:paddingLeft="@dimen/Margin5"
-          android:paddingRight="@dimen/Margin5" >
+            <ProgressBar
+                android:id="@+id/progress_bar_captured_life"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
 
-          <TextView
-              android:id="@+id/text_view_captured_level"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginRight="@dimen/Margin10"
-		android:textColor="#000000"
-              android:text="Nv 18" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/Margin5"
+            android:layout_marginLeft="@dimen/Margin5"
+            android:layout_marginRight="@dimen/Margin5"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:paddingBottom="@dimen/Margin5"
+            android:paddingLeft="@dimen/Margin5"
+            android:paddingRight="@dimen/Margin5" >
 
-          <TextView
-              android:id="@+id/text_view_captured_ps_life"
-              android:layout_width="0dip"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:gravity="right"
-              android:textColor="#000000"
-              android:text="60 / 70" />
-      </LinearLayout>
+            <TextView
+                android:id="@+id/text_view_captured_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/Margin10"
+                android:text="Nv 18"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/text_view_captured_ps_life"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="60 / 70"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
