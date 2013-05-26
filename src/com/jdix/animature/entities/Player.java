@@ -220,6 +220,14 @@ public class Player {
 
 		db.close();
 
+		for (final Animature activeAnimature: activeAnimatures)
+		{
+			if (activeAnimature != null)
+			{
+				activeAnimature.save(context);
+			}
+		}
+
 		// TODO save to server
 
 		this.lastSaved = new Date();

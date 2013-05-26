@@ -143,8 +143,6 @@ public class NewGameActivity extends Activity {
 		|| keyCode == KeyEvent.KEYCODE_BACK)
 		{
 			((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
-			startActivity(new Intent(NewGameActivity.this,
-			MainMenuActivity.class));
 			finish();
 		}
 
@@ -268,7 +266,7 @@ public class NewGameActivity extends Activity {
 				}
 
 				Player.set(new Map(R.raw.map_test, this), playerName,
-				playerSex, enemyName, 5, 5, Player.SOUTH, idAnimatureSelected,
+				playerSex, enemyName, 3, 3, Player.SOUTH, idAnimatureSelected,
 				nameAnimatureSelected, this);
 
 				startActivity(new Intent(NewGameActivity.this,

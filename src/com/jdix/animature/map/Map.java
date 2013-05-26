@@ -7,6 +7,7 @@ import java.util.HashMap;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.Log;
 
 import com.jdix.animature.exceptions.CompressionException;
 import com.jdix.animature.exceptions.SpriteException;
@@ -147,17 +148,23 @@ public class Map {
 		if (array.length > pointer + 1 && array[pointer] == array[pointer + 1]
 		&& array[pointer] == (byte) 0xFF)
 		{
+			Log.e("STATUS", "Tiene links");
+			Log.e("STATUS", "Tamaño del array: " + array.length);
+			Log.e("STATUS", "Posición actual: " + pointer);
+
 			p += 2;
-			while (array.length > p + 8)
+			while (array.length > p + 7)
 			{
+				Log.e("STATUS", "Empezamos a meter links");
 				links.put(
-				new PosEntry<Byte, Byte>(array[pointer], array[pointer + 1]),
-				new Link(MathUtils.fourByteToInt(array[pointer + 2],
-				array[pointer + 3], array[pointer + 4], array[pointer + 5]),
-				array[pointer + 6], array[pointer + 7]));
+				new PosEntry<Byte, Byte>(array[p], array[p + 1]),
+				new Link(MathUtils.fourByteToInt(array[p + 2], array[p + 3],
+				array[p + 4], array[p + 5]), array[p + 6], array[p + 7]));
 				p += 8;
 			}
 		}
+
+		Log.e("STATUS", "Cantidad de links: " + links.size());
 	}
 
 	private void generateBitmap()
