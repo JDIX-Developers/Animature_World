@@ -51,7 +51,7 @@ public class LaunchActivity extends Activity {
 		setContentView(R.layout.activity_launch);
 
 		/*
-		 * Animature animature = new Animature() final Intent intent = new
+		 * Animature animature = new Animature(); final Intent intent = new
 		 * Intent(LaunchActivity.this, BattleActivity.class); final Bundle b =
 		 * new Bundle(); b.putSerializable("wild_animature", null);
 		 * intent.putExtras(b); startActivity(intent);
@@ -98,7 +98,7 @@ public class LaunchActivity extends Activity {
 			}
 		});
 
-		if (false && User.loadRemembered(this) != null)
+		if (User.loadRemembered(this) != null)
 		{
 			Connection.getInstance().setUser(User.getCurrent());
 
