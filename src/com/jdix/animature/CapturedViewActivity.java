@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,10 +34,7 @@ public class CapturedViewActivity extends Activity {
 		list = (ListView) findViewById(R.id.list_player_captured);
 
 		playerCaptured = new ArrayList<Animature>();
-		// playerCaptured.add(Player.getInstance().getActiveAnimatures()[0]);
 
-		Log.e("PLAYER ACTIVE ANIMATURES", "Active animatures: "
-		+ Player.getInstance().getActiveAnimatures().length);
 		for (int i = 0; i < Player.getInstance().getActiveAnimatures().length; i++)
 		{
 			playerCaptured.add(Player.getInstance().getActiveAnimatures()[i]);
