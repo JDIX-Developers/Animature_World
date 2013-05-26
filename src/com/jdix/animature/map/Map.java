@@ -199,7 +199,7 @@ public class Map {
 	 */
 	public Square getSquareAt(final byte x, final byte y)
 	{
-		if (y < squares.length && x < squares[y].length)
+		if (x >= 0 && y >= 0 && y < squares.length && x < squares[y].length)
 		{
 			return squares[y][x];
 		}
