@@ -271,7 +271,7 @@ public class Animature implements Serializable {
 	 */
 	public int getMaxHealth(final Context context)
 	{
-		return getMaxHealth(id, level, context);
+		return getMaxHealth(animature, level, context);
 	}
 
 	/**
