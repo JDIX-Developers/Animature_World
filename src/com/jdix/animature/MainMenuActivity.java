@@ -7,12 +7,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jdix.animature.entities.Player;
 import com.jdix.animature.entities.User;
+import com.jdix.animature.map.Sprite;
+import com.jdix.animature.map.Square;
 import com.jdix.animature.utils.Database;
 
 /**
@@ -105,6 +109,65 @@ public class MainMenuActivity extends Activity {
 				}
 				else
 				{
+					// TODO adapter y lista de partidas
+
+					final DisplayMetrics metrics = new DisplayMetrics();
+					getWindowManager().getDefaultDisplay().getMetrics(metrics);
+					switch (metrics.densityDpi)
+					{
+						case DisplayMetrics.DENSITY_LOW:
+							Square.setSprite(new Sprite(MainMenuActivity.this,
+							R.raw.sprite24, R.drawable.sprite));
+						break;
+						case DisplayMetrics.DENSITY_MEDIUM:
+							Square.setSprite(new Sprite(MainMenuActivity.this,
+							R.raw.sprite32, R.drawable.sprite));
+						break;
+						case DisplayMetrics.DENSITY_HIGH:
+							Square.setSprite(new Sprite(MainMenuActivity.this,
+							R.raw.sprite48, R.drawable.sprite));
+						break;
+						case DisplayMetrics.DENSITY_XHIGH:
+							Square.setSprite(new Sprite(MainMenuActivity.this,
+							R.raw.sprite64, R.drawable.sprite));
+						break;
+					}
+
+					// InputStream in;
+					// try
+					// {
+					// in = new FileInputStream(
+					// getDatabasePath("AnimatureWorldDB"));
+					//
+					// final OutputStream out = new FileOutputStream(new File(
+					// Environment.getExternalStorageDirectory().getPath()
+					// + "/Animature.db"));
+					//
+					// // Transfer bytes from in to out
+					// final byte[] buf = new byte[1024];
+					// int len;
+					// while ((len = in.read(buf)) > 0)
+					// {
+					// out.write(buf, 0, len);
+					// }
+					// in.close();
+					// out.close();
+					// }
+					// catch (final FileNotFoundException e)
+					// {
+					// // TODO Auto-generated catch block
+					// e.printStackTrace();
+					// }
+					// catch (final IOException e)
+					// {
+					// // TODO Auto-generated catch block
+					// e.printStackTrace();
+					// }
+
+					Player.load(1, MainMenuActivity.this);
+					startActivity(new Intent(MainMenuActivity.this,
+					MapActivity.class));
+					finish();
 					// Player.load(id, context)
 					// Carga el juego
 				}
