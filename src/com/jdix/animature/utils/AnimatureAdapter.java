@@ -33,6 +33,8 @@ public class AnimatureAdapter extends BaseAdapter {
 		this.items = items;
 		this.colors = context.getResources().obtainTypedArray(
 		R.array.animature_types_colors);
+		this.typesNames = context.getResources().getStringArray(
+		R.array.animature_types_names);
 	}
 
 	@Override
@@ -65,9 +67,6 @@ public class AnimatureAdapter extends BaseAdapter {
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = inf.inflate(R.layout.animax_row, null);
 		}
-
-		typesNames = context.getResources().getStringArray(
-		R.array.animature_types_names);
 
 		// ID
 		final TextView idAnimature = (TextView) v

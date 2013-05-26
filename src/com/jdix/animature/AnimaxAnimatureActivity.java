@@ -3,8 +3,10 @@ package com.jdix.animature;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +20,8 @@ public class AnimaxAnimatureActivity extends Activity {
 	private int			animature;
 	private TextView	animatureId;
 	private TextView	animatureName;
+	private TextView	animatureType1;
+	private TextView	animatureType2;
 	private ImageView	animatureImage;
 	private TextView	animatureDescription;
 	private TextView	animatureHeight;
@@ -26,6 +30,8 @@ public class AnimaxAnimatureActivity extends Activity {
 	private TextView	animatureDefense;
 	private TextView	animatureSpeed;
 	private TextView	animatureAgility;
+	private String[]	typesNames;
+	private TypedArray	colors;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -35,6 +41,9 @@ public class AnimaxAnimatureActivity extends Activity {
 
 		// We get a reference to the interface controls
 		animatureId = (TextView) findViewById(R.id.id_Animature_Animax_view);
+		animatureType1 = (TextView) findViewById(R.id.type1_Animature_Animax_view);
+		animatureType2 = (TextView) findViewById(R.id.type2_Animature_Animax_view);
+		final TextView[] typesTextViews = {animatureType1, animatureType2};
 		animatureName = (TextView) findViewById(R.id.name_Animature_Animax_view);
 		animatureImage = (ImageView) findViewById(R.id.image_Animature_Animax_view);
 		animatureDescription = (TextView) findViewById(R.id.desc_Animature_Animax_view);
@@ -48,15 +57,28 @@ public class AnimaxAnimatureActivity extends Activity {
 		// We recover the information passed in the intent
 		this.animature = this.getIntent().getExtras().getInt("animature_id");
 
+		this.colors = getResources().obtainTypedArray(
+		R.array.animature_types_colors);
+		this.typesNames = getResources().getStringArray(
+		R.array.animature_types_names);
+
 		final DecimalFormat dF = new DecimalFormat("####.##");
 
+		// ANIMATURE ID
 		animatureId.setText("N.º " + getFormatedIdAnimature(this.animature));
+
+		// ANIMATURE NAME
 		animatureName.setText(Animature.getName(this.animature, this));
 
+		// ANIMATURE TYPES
+		modifyTypeTextView(typesTextViews, animature);
+
+		// ANIMATURE IMAGE
 		final int id = getResources().getIdentifier("f" + this.animature,
 		"drawable", getPackageName());
 		animatureImage.setImageDrawable(this.getResources().getDrawable(id));
 
+		// ANIMATURE DESCRIPTION
 		animatureDescription.setText(getResources().getStringArray(
 		R.array.animature_descriptions)[this.animature - 1]);
 
@@ -112,5 +134,36 @@ public class AnimaxAnimatureActivity extends Activity {
 		{
 			return "" + id;
 		}
+	}
+
+	private void modifyTypeTextView(final TextView[] textViews,
+	final int animature)
+	{
+		final int[] types = Animature.getTypes(animature, this);
+
+		final int typeIndex1 = (int) Math.round(Math.log(types[0])
+		/ Math.log(2));
+
+		textViews[0].setText(typesNames[typeIndex1]);
+		int color = colors.getColor(typeIndex1, 0);
+		textViews[0].setBackgroundColor(color);
+
+		textViews[1].setVisibility(View.GONE);
+
+		if (types[1] != 0)
+		{
+			if (animature == 4)
+			{
+				System.out.println("ERROR");
+			}
+			final int typeIndex2 = (int) Math.round(Math.log(types[1])
+			/ Math.log(2));
+
+			textViews[1].setText(typesNames[typeIndex2]);
+			color = colors.getColor(typeIndex2, 0);
+			textViews[1].setBackgroundColor(color);
+			textViews[1].setVisibility(View.VISIBLE);
+		}
+		colors.recycle();
 	}
 }

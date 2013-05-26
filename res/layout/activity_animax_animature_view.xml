@@ -16,25 +16,49 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="center" >
 
             <TextView
                 android:id="@+id/id_Animature_Animax_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/Margin15"
-                android:layout_marginRight="@dimen/Margin50"
+                android:layout_marginRight="@dimen/Margin40"
+                android:text=""
                 android:textColor="#FFFFFF"
-                android:textSize="28sp"
-                android:text="" />
+                android:textSize="28sp" />
 
             <TextView
                 android:id="@+id/name_Animature_Animax_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/type1_Animature_Animax_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-				android:textSize="28sp"
-                android:text="" />
+                android:gravity="center"
+                android:padding="@dimen/Margin5"
+                android:text="Fuego"
+                android:textColor="#000000"
+                android:width="65dp" />
+
+            <TextView
+                android:id="@+id/type2_Animature_Animax_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Margin10"
+                android:gravity="center"
+                android:padding="@dimen/Margin5"
+                android:text="Acero"
+                android:textColor="#000000"
+                android:visibility="gone"
+                android:width="65dp" />
 
         </LinearLayout>
 
@@ -44,25 +68,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/Margin20"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center" >
 
             <ImageView
                 android:id="@+id/image_Animature_Animax_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/Margin20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/Margin10"
+                android:layout_weight="1"
                 android:src="@drawable/f1" />
 
             <TextView
                 android:id="@+id/desc_Animature_Animax_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:text=""
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
@@ -74,6 +103,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/Margin5"
         android:layout_marginLeft="@dimen/Margin20"
         android:layout_marginRight="@dimen/Margin20"
         android:layout_marginTop="@dimen/Margin10"
