@@ -16,5 +16,6 @@
     <string name="title_activity_load_game">LoadGameActivity</string>
     <string name="title_activity_captured_view">CapturedViewActivity</string>
     <string name="title_activity_player_captured_animature_data_view">PlayerCapturedAnimatureDataView</string>
+    <string name="title_activity_player_captured_qualities_view">PlayerCapturedQualitiesViewActivity</string>
 
 </resources>

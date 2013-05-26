@@ -23,26 +23,25 @@ public class PlayerCapturedAnimatureDataView extends TabActivity {
 
 		final TabHost tabHost = getTabHost();
 
+		final Bundle b = new Bundle();
+		b.putInt("animatureIndex", playerAnimatureIndex);
+
 		// Tab for Info Animature
 		final TabSpec infoAnim = tabHost.newTabSpec("Inf. Anim.");
 		infoAnim.setIndicator("Inf. Anim");
-		final Bundle b = new Bundle();
-		b.putInt("animatureIndex", playerAnimatureIndex);
 		final Intent infoAnimatureIntent = new Intent(this,
 		PlayerCapturedInfoViewActivity.class);
 		infoAnimatureIntent.putExtras(b);
 		infoAnim.setContent(infoAnimatureIntent);
 
-		// Tab for Cualities. Anim.
+		// Tab for Qualities. Anim.
 		final TabSpec habilAnim = tabHost.newTabSpec("Habil. Anim.");
 		habilAnim.setIndicator("Habil. Anim");
-		/*
-		 * final Intent qualitiesAnimIntent = new Intent(this,
-		 * PlayerCapturedCualitiesViewAtivity.class);
-		 * habilAnim.setContent(qualitiesAnimIntent);
-		 */
-		infoAnimatureIntent.putExtras(b);
-		habilAnim.setContent(infoAnimatureIntent);
+		final Intent qualitiesAnimatureIntent = new Intent(this,
+		PlayerCapturedQualitiesViewActivity.class);
+		qualitiesAnimatureIntent.putExtras(b);
+		qualitiesAnimatureIntent.putExtras(b);
+		habilAnim.setContent(qualitiesAnimatureIntent);
 
 		// Tab for Attacks Anim.
 		final TabSpec attacksAnim = tabHost.newTabSpec("Attacks");

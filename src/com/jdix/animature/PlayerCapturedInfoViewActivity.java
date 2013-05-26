@@ -69,7 +69,8 @@ public class PlayerCapturedInfoViewActivity extends Activity {
 		capturedDataAnimatureName.setText(Animature.getName(
 		animature.getAnimature(), this));
 
-		// captureDataDescription.setText("Description");
+		captureDataDescription.setText(Animature.getDescription(
+		animature.getAnimature(), this));
 
 		modifyTypeTextView(typesTextViews, animature.getAnimature());
 	}

@@ -83,12 +83,18 @@
         </activity>
         <activity
             android:name="com.jdix.animature.PlayerCapturedAnimatureDataView"
-            android:label="@string/title_activity_player_captured_animature_data_view"  
+            android:label="@string/title_activity_player_captured_animature_data_view"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.jdix.animature.PlayerCapturedInfoViewActivity"  
+            android:name="com.jdix.animature.PlayerCapturedInfoViewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.jdix.animature.PlayerCapturedQualitiesViewActivity"
+            android:label="@string/title_activity_player_captured_qualities_view"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
