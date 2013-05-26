@@ -46,6 +46,10 @@ public class Item {
 		return getName(id, context);
 	}
 
+	/**
+	 * @param context - The context of the application
+	 * @return The description of the item
+	 */
 	public String getDescription(final Context context)
 	{
 		return getDescription(id, context);
@@ -57,7 +61,7 @@ public class Item {
 	 * @param context - The context of the application
 	 * @return Item's type.
 	 */
-	public int getType(final Context context)
+	public String getType(final Context context)
 	{
 		return getType(id, context);
 	}
@@ -82,9 +86,16 @@ public class Item {
 		this.quantity = quantity;
 	}
 
+	/**
+	 * Gets the name of the item
+	 * 
+	 * @param id - The id of the item
+	 * @param context - The context of the application
+	 * @return The name of the application
+	 */
 	public static String getName(final int id, final Context context)
 	{
-		return context.getResources().getStringArray(R.array.objects_names)[id - 1];
+		return context.getResources().getStringArray(R.array.object_names)[id - 1];
 	}
 
 	/**
@@ -97,17 +108,18 @@ public class Item {
 	public static String getDescription(final int id, final Context context)
 	{
 		return context.getResources().getStringArray(
-		R.array.objects_descriptions)[id - 1];
+		R.array.object_descriptions)[id - 1];
 	}
 
-	public static String getTypeName(final int id, final Context context)
+	/**
+	 * Gets the type of the given item
+	 * 
+	 * @param id - The ID of the item
+	 * @param context - The context of the application
+	 * @return The type of the given item
+	 */
+	public static String getType(final int id, final Context context)
 	{
-		return context.getResources().getTypedArray(R.array.object_types)
-		.getInt(id - 1);
-	}
-
-	public static int getType(final int id, final Context context)
-	{
-		return 0;
+		return context.getResources().getStringArray(R.array.object_types)[id - 1];
 	}
 }

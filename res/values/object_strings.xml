@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="objects_names">
+    <string-array name="object_names">
        <item>Poción</item>
        <item>superpoción</item>
        <item>Hiperpoción</item>
@@ -13,7 +13,7 @@
        <item>UltraBall</item>
     </string-array>
     
-    <string-array name="objects_descriptions">
+    <string-array name="object_descriptions">
         <item>Cura 50 PS de tu Animature.</item>
         <item>Cura 100 PS de tu Animature.</item>
         <item>Cura 150 PS de tu Animature.</item>

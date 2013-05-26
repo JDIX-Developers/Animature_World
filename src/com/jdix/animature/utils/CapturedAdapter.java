@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -64,12 +65,21 @@ public class CapturedAdapter extends BaseAdapter {
 			v = inf.inflate(R.layout.captured_row, null);
 		}
 
+		final LinearLayout animatureCapturedRow = (LinearLayout) v
+		.findViewById(R.id.animature_captured_row);
+
+		final TextView textViewCaptureNewAnimature = (TextView) v
+		.findViewById(R.id.text_view_capture_new_animature);
+
 		// Creamos un objeto Animature
 		final Animature captured = items.get(position);
 
-		// NAME
+		animatureCapturedRow.setVisibility(View.GONE);
+		textViewCaptureNewAnimature.setVisibility(View.VISIBLE);
+
 		if (captured != null)
 		{
+			// NAME
 			final TextView nameAnimature = (TextView) v
 			.findViewById(R.id.text_view_captured_name);
 			nameAnimature.setText(captured.getNickname());
@@ -88,7 +98,11 @@ public class CapturedAdapter extends BaseAdapter {
 			.findViewById(R.id.text_view_captured_ps_life);
 			lifeTextView.setText(captured.getHealth() + " / "
 			+ captured.getMaxHealth(context));
+
+			textViewCaptureNewAnimature.setVisibility(View.GONE);
+			animatureCapturedRow.setVisibility(View.VISIBLE);
 		}
+
 		// Retornamos la vista
 		return v;
 	}

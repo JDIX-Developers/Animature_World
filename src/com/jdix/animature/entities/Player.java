@@ -292,7 +292,7 @@ public class Player {
 		{
 			do
 			{
-				items.add(new Item(c.getInt(0), c.getInt(1), c.getInt(2)));
+				items.add(new Item(c.getInt(1), c.getInt(2)));
 			}
 			while (c.moveToNext());
 		}

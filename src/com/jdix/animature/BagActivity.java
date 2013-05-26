@@ -38,9 +38,9 @@ public class BagActivity extends Activity {
 		items = new ArrayList<Item>();
 
 		// Example data
-		final Item i1 = new Item(1, 0, 10);
-		final Item i2 = new Item(2, 0, 16);
-		final Item i3 = new Item(3, 0, 3);
+		final Item i1 = new Item(1, 10);
+		final Item i2 = new Item(2, 16);
+		final Item i3 = new Item(3, 3);
 		items.add(i1);
 		items.add(i2);
 		items.add(i3);
