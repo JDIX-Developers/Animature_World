@@ -141,7 +141,7 @@ public class BattleUtils {
 		do
 		{
 			indexAttack = r.nextInt(4);
-			if ( ! enemyAnimature.getAttacks()[indexAttack].equals(null)
+			if (enemyAnimature.getAttacks()[indexAttack] != null
 			&& enemyAnimature.getAttacksPP()[indexAttack] > 0)
 			{
 				enc = true;
@@ -162,7 +162,7 @@ public class BattleUtils {
 		boolean enc = false;
 		for (int i = 0; i < 4 && ! enc; i++)
 		{
-			if ( ! animature.getAttacks()[i].equals(null)
+			if (animature.getAttacks()[i] != null
 			&& animature.getAttacksPP()[i] > 0)
 			{
 				enc = true;

@@ -41,7 +41,7 @@ public class CapturedViewActivity extends Activity {
 		{
 			Log.e("PLAYER ACTIVE " + i, "Active animatures: "
 			+ Player.getInstance().getActiveAnimatures()[i]);
-			if ( ! Player.getInstance().getActiveAnimatures()[i].equals(null))
+			if (Player.getInstance().getActiveAnimatures()[i] != null)
 			{
 				playerCaptured
 				.add(Player.getInstance().getActiveAnimatures()[i]);
