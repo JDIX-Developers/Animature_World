@@ -156,7 +156,7 @@ public class BattleActivity extends Activity {
 					getResources().getString(R.string.battle_string_14), false);
 					try
 					{
-						wait(1000);
+						wait(2000);
 					}
 					catch (final InterruptedException e)
 					{
@@ -294,7 +294,7 @@ public class BattleActivity extends Activity {
 				showPlayerTextView(namePlayerAnimature, false);
 				try
 				{
-					this.wait(1000);
+					this.wait(2000);
 				}
 				catch (final InterruptedException e)
 				{
@@ -427,15 +427,15 @@ public class BattleActivity extends Activity {
 	private void attack(final Animature attacker, final int indexAttack,
 	final Animature defender)
 	{
-		final String namePlayerAnimature = getResources().getString(
-		R.string.battle_string_4).replace("%a",
-		Animature.getName(attacker.getAnimature(), this));
+		final String text = getResources().getString(R.string.battle_string_4)
+		.replace("%a", Animature.getName(attacker.getAnimature(), this));
+		text = text.replace("%b", attacker.getAttacks()[indexAttack].getName());
 		// SHOW MESSAGE --> ¡Charmander usó ascuas!
-		showPlayerTextView(namePlayerAnimature, false);
+		showPlayerTextView(text, false);
 		attacker.getAttacksPP()[indexAttack]--;
 		try
 		{
-			this.wait(1000);
+			this.wait(2000);
 		}
 		catch (final InterruptedException e)
 		{
@@ -444,7 +444,20 @@ public class BattleActivity extends Activity {
 		if ( ! BattleUtils.getHit(attacker, attacker.getAttacks()[indexAttack],
 		defender, this))
 		{
-
+			// SHOW MESSAGE --> ¡Charmander usó ascuas!
+			showPlayerTextView(
+			getResources().getString(R.string.battle_string_5).replace("%a",
+			Animature.getName(attacker.getAnimature(), this)), false);
+			attacker.getAttacksPP()[indexAttack]--;
+			try
+			{
+				this.wait(2000);
+			}
+			catch (final InterruptedException e)
+			{
+				e.printStackTrace();
+			}
 		}
+
 	}
 }
