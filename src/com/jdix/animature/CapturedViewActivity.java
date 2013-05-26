@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.KeyEvent;
@@ -37,7 +38,11 @@ public class CapturedViewActivity extends Activity {
 
 		for (int i = 0; i < Player.getInstance().getActiveAnimatures().length; i++)
 		{
-			playerCaptured.add(Player.getInstance().getActiveAnimatures()[i]);
+			if (Player.getInstance().getActiveAnimatures()[i] != null)
+			{
+				playerCaptured
+				.add(Player.getInstance().getActiveAnimatures()[i]);
+			}
 		}
 
 		final CapturedAdapter adapter = new CapturedAdapter(this,
@@ -52,7 +57,16 @@ public class CapturedViewActivity extends Activity {
 			public void onItemClick(final AdapterView<?> a, final View v,
 			final int position, final long id)
 			{
-				// TODO View captured data.
+				if (position < Player.getInstance().getActiveAnimatures().length)
+				{
+					// TODO View captured data.
+					final Bundle b = new Bundle();
+					b.putInt("animatureIndex", position);
+					final Intent intent = new Intent(CapturedViewActivity.this,
+					PlayerCapturedAnimatureDataView.class);
+					intent.putExtras(b);
+					startActivity(intent);
+				}
 			}
 		});
 	}

@@ -90,7 +90,7 @@ public class BattleActivity extends Activity {
 		playerAnimatureExperienceProgressBar = (ProgressBar) findViewById(R.id.player_animature_experience_progressBar);
 		playerAnimatureImageView = (ImageView) findViewById(R.id.player_animature_imageView);
 		// Player Components
-		playerTextView = (TextView) findViewById(R.id.textViewBattleActivity);
+		playerTextView = (TextView) findViewById(R.id.player_text_view_battle);
 		playerTextView.setOnClickListener(new View.OnClickListener()
 		{
 
@@ -421,6 +421,12 @@ public class BattleActivity extends Activity {
 		&& playerSelectedAttack > - 1)
 		{
 			attack(playerAnimature, playerSelectedAttack, wildAnimature);
+		}
+		else
+		{
+			attack(wildAnimature,
+			BattleUtils.getEnemyAnimatureRandomAttack(wildAnimature),
+			playerAnimature);
 		}
 	}
 

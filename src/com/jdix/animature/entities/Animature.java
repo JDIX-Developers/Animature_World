@@ -190,7 +190,7 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * @return The number of attacks of the animature
+	 * @return The number of attacks of the Animature
 	 */
 	public int getNumAttacks()
 	{
@@ -206,7 +206,7 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Changes the save of the animature
+	 * Changes the save of the Animature
 	 * 
 	 * @param save - The save game
 	 */
@@ -217,7 +217,7 @@ public class Animature implements Serializable {
 
 	/**
 	 * @param context - The context of the application
-	 * @return The types of the animature, 0 in the second value of the array if
+	 * @return The types of the Animature, 0 in the second value of the array if
 	 *         it has only one type
 	 */
 	public int[] getTypes(final Context context)
@@ -227,7 +227,7 @@ public class Animature implements Serializable {
 
 	/**
 	 * @param context - The context of the application
-	 * @return The type of the animature
+	 * @return The type of the Animature
 	 */
 	public int getType(final Context context)
 	{
@@ -235,10 +235,10 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Gets the qualities of the animature
+	 * Gets the qualities of the Animature
 	 * 
 	 * @param context - The context of the application
-	 * @return The qualities of the animature
+	 * @return The qualities of the Animature
 	 */
 	public int[] getQualities(final Context context)
 	{
@@ -246,7 +246,7 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Gets the evolution level for the animature
+	 * Gets the evolution level for the Animature
 	 * 
 	 * @param context - The context of the appplication
 	 * @return The Animature's evolution level.
@@ -258,7 +258,7 @@ public class Animature implements Serializable {
 
 	/**
 	 * @param context - The context of the application
-	 * @return The base experience for the animature
+	 * @return The base experience for the Animature
 	 */
 	public int getBaseExp(final Context context)
 	{
@@ -267,24 +267,32 @@ public class Animature implements Serializable {
 
 	/**
 	 * @param context - The context of the application
-	 * @return The maximum health of the animature
+	 * @return The maximum health of the Animature
 	 */
 	public int getMaxHealth(final Context context)
 	{
-		int maxHealth = context.getResources().getIntArray(
-		R.array.animature_health)[animature - 1];
-		if (this.level > 1)
-		{
-			for (int i = 2; i <= this.level; i++)
-			{
-				maxHealth += maxHealth / 3;
-			}
-		}
-		return maxHealth;
+		return getMaxHealth(id, level, context);
 	}
 
 	/**
-	 * Saves the current animature into the database
+	 * @param context - The context of the application
+	 * @return The experience that the Animature must achieve to level up
+	 */
+	public int getMaxExperience(final Context context)
+	{
+		return getMaxExperience(level, context);
+	}
+
+	/**
+	 * @param context - The context of the application
+	 */
+	public void levelUp(final Context context)
+	{
+		levelUp(this, context);
+	}
+
+	/**
+	 * Saves the current Animature into the database
 	 * 
 	 * @param context - The context of the application
 	 */
@@ -331,11 +339,11 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Gets the type of the animature
+	 * Gets the type of the Animature
 	 * 
-	 * @param animature - The animature to check
+	 * @param animature - The Animature to check
 	 * @param context - The context of the application
-	 * @return The type of the animature
+	 * @return The type of the Animature
 	 */
 	public static int[] getTypes(final int animature, final Context context)
 	{
@@ -352,13 +360,25 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * @param animature - The animature to check
+	 * @param animature - The Animature to check
 	 * @param context - The context of the application
-	 * @return - The type of the animature
+	 * @return - The type of the Animature
 	 */
 	public static int getType(final int animature, final Context context)
 	{
 		return context.getResources().getIntArray(R.array.animature_type)[animature - 1];
+	}
+
+	/**
+	 * @param animature - The Animature to check
+	 * @param context - The context of the application
+	 * @return - The description of the Animature
+	 */
+	public static String getDescription(final int animature,
+	final Context context)
+	{
+		return context.getResources().getStringArray(
+		R.array.animature_descriptions)[animature - 1];
 	}
 
 	/**
@@ -384,11 +404,11 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Gets the evolution level for the given animature
+	 * Gets the evolution level for the given Animature
 	 * 
-	 * @param animature - The animature to check
+	 * @param animature - The Animature to check
 	 * @param context - The context of the application
-	 * @return The evolution level for the animature
+	 * @return The evolution level for the Animature
 	 */
 	public static int getLevelEvo(final int animature, final Context context)
 	{
@@ -396,9 +416,9 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Gets the base experience for the given animature
+	 * Gets the base experience for the given Animature
 	 * 
-	 * @param animature - The animature to check
+	 * @param animature - The Animature to check
 	 * @param context - The context of the application
 	 * @return The base experience
 	 */
@@ -409,11 +429,11 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Gets the height of the animature
+	 * Gets the height of the Animature
 	 * 
-	 * @param animature - The animature to check
+	 * @param animature - The Animature to check
 	 * @param context - The context of the application
-	 * @return The height of the animature
+	 * @return The height of the Animature
 	 */
 	public static float getHeight(final int animature, final Context context)
 	{
@@ -426,11 +446,11 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Gets the weight of the animature
+	 * Gets the weight of the Animature
 	 * 
-	 * @param animature - The animature to check
+	 * @param animature - The Animature to check
 	 * @param context - The context of the application
-	 * @return The weight of the animature
+	 * @return The weight of the Animature
 	 */
 	public static double getWeight(final int animature, final Context context)
 	{
@@ -444,9 +464,9 @@ public class Animature implements Serializable {
 
 	/**
 	 * @param type - The type to check
-	 * @param animature - The animature to check
+	 * @param animature - The Animature to check
 	 * @param context - The context of the application
-	 * @return If the animature is of the given type
+	 * @return If the Animature is of the given type
 	 */
 	public static boolean isOfType(final int type, final int animature,
 	final Context context)
@@ -455,18 +475,53 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * @param animature - The animature to check
+	 * @param animature - The Animature to check
 	 * @param context - The context of the application
-	 * @return - The name of the animature
+	 * @return - The name of the Animature
 	 */
 	public static String getName(final int animature, final Context context)
 	{
 		return context.getResources().getStringArray(R.array.animature_names)[animature - 1];
 	}
 
-	private static int getMaxHealth(final int animature, final Context context)
+	/**
+	 * @param animature - The Animature to check
+	 * @param level - The level of the Animature
+	 * @param context - The context of the application
+	 * @return - The max health of the Animature
+	 */
+	private static int getMaxHealth(final int animature, final int level,
+	final Context context)
 	{
-		return context.getResources().getIntArray(R.array.animature_health)[animature - 1];
+		int maxHealth = context.getResources().getIntArray(
+		R.array.animature_health)[animature - 1];
+		if (level > 1)
+		{
+			for (int i = 2; i <= level; i++)
+			{
+				maxHealth += maxHealth / 3;
+			}
+		}
+		return maxHealth;
+	}
+
+	/**
+	 * @param level - The level of the Animature
+	 * @param context - The context of the application
+	 * @return - The experience that the Animature must achieve to level up
+	 */
+	private static int getMaxExperience(final int level, final Context context)
+	{
+		return (int) Math.pow(level, 3);
+	}
+
+	/**
+	 * @param animature - The Animature to check
+	 * @param context - The context of the application
+	 */
+	private static void levelUp(final Animature animature, final Context context)
+	{
+		animature.setLevel(animature.getLevel() + 1);
 	}
 
 	/**

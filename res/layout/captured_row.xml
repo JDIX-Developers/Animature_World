@@ -7,10 +7,6 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/text_view_capture_new_animature"
@@ -53,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/Margin10"
-                    android:text="Charmander"
+                    android:text=""
                     android:textColor="#000000"
                     android:textSize="20sp" />
 
@@ -62,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/Margin10"
-                    android:text="PS"
+                    android:text=""
                     android:textColor="#000000" />
 
                 <ProgressBar
@@ -90,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/Margin10"
-                    android:text="Nv 18"
+                    android:text=""
                     android:textColor="#000000" />
 
                 <TextView
@@ -99,11 +95,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="60 / 70"
+                    android:text=""
                     android:textColor="#000000" />
             </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>

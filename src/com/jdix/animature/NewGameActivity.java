@@ -58,7 +58,7 @@ public class NewGameActivity extends Activity {
 		layoutOak = (LinearLayout) findViewById(R.id.newGameOakLayout);
 		layoutAnimOptions = (LinearLayout) findViewById(R.id.newGameAnimatureOptLayout);
 
-		textViewNewGame = (TextView) findViewById(R.id.textViewBattleActivity);
+		textViewNewGame = (TextView) findViewById(R.id.player_text_view_battle);
 		textViewNewGame.setOnClickListener(new View.OnClickListener()
 		{
 
