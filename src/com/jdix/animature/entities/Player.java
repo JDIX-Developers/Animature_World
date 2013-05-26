@@ -285,9 +285,8 @@ public class Player {
 		final SQLiteDatabase db = (new Database(context)).getReadableDatabase();
 		final Vector<Item> items = new Vector<Item>();
 
-		final Cursor c = db.rawQuery(
-		"SELECT i.id, i.type, b.quantity FROM ITEM i "
-		+ "JOIN BAG b ON b.item = i.id WHERE b.save = " + id, null);
+		final Cursor c = db.rawQuery("SELECT * FROM BAG WHERE save = " + id,
+		null);
 
 		if (c.moveToFirst())
 		{

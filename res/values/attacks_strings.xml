@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <string-array name="attacks_names">
+        <string-array name="attack_names">
         <item>Placaje</item>
         <item>Ataque rápido</item>
         <item>Gruñido</item>

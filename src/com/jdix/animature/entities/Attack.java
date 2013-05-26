@@ -32,8 +32,7 @@ public class Attack {
 		this.id = id;
 		TypedArray array;
 
-		this.name = context.getResources()
-		.getStringArray(R.array.attacks_names)[id - 1];
+		this.name = context.getResources().getStringArray(R.array.attack_names)[id - 1];
 
 		array = context.getResources().obtainTypedArray(R.array.attack_type);
 		this.type = array.getInt(id - 1, 0);
@@ -449,12 +448,17 @@ public class Attack {
 	 */
 	public static Attack load(final int id, final Context context)
 	{
-		final String[] attacksNames = context.getResources().getStringArray(
-		R.array.attacks_names);
+		final String[] attackNames = context.getResources().getStringArray(
+		R.array.attack_names);
+
+		if (id <= 0 || id >= attackNames.length)
+		{
+			return null;
+		}
 
 		if (attacks == null)
 		{
-			attacks = new Attack[attacksNames.length];
+			attacks = new Attack[attackNames.length];
 		}
 		if (attacks[id - 1] == null)
 		{

@@ -133,43 +133,10 @@ public class MainMenuActivity extends Activity {
 						break;
 					}
 
-					// InputStream in;
-					// try
-					// {
-					// in = new FileInputStream(
-					// getDatabasePath("AnimatureWorldDB"));
-					//
-					// final OutputStream out = new FileOutputStream(new File(
-					// Environment.getExternalStorageDirectory().getPath()
-					// + "/Animature.db"));
-					//
-					// // Transfer bytes from in to out
-					// final byte[] buf = new byte[1024];
-					// int len;
-					// while ((len = in.read(buf)) > 0)
-					// {
-					// out.write(buf, 0, len);
-					// }
-					// in.close();
-					// out.close();
-					// }
-					// catch (final FileNotFoundException e)
-					// {
-					// // TODO Auto-generated catch block
-					// e.printStackTrace();
-					// }
-					// catch (final IOException e)
-					// {
-					// // TODO Auto-generated catch block
-					// e.printStackTrace();
-					// }
-
 					Player.load(1, MainMenuActivity.this);
 					startActivity(new Intent(MainMenuActivity.this,
 					MapActivity.class));
 					finish();
-					// Player.load(id, context)
-					// Carga el juego
 				}
 			}
 		});

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.jdix.animature.R;
 import com.jdix.animature.utils.Database;
@@ -208,11 +209,11 @@ public class Animature implements Serializable {
 	/**
 	 * Changes the save of the animature
 	 * 
-	 * @param save- The id of the new save
+	 * @param save - The save game
 	 */
 	public void setSave(final int save)
 	{
-		this.save = id;
+		this.save = save;
 	}
 
 	/**
@@ -478,36 +479,46 @@ public class Animature implements Serializable {
 	 */
 	public static Animature load(final int id, final Context context)
 	{
-		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
+		if (id > 0)
+		{
+			final SQLiteDatabase db = (new Database(context))
+			.getWritableDatabase();
 
-		final Cursor c = db.rawQuery(
-		"SELECT * FROM ANIMATURE WHERE id = " + id, null);
+			final Cursor c = db.rawQuery("SELECT * FROM ANIMATURE WHERE id = "
+			+ id, null);
 
-		c.moveToFirst();
+			c.moveToFirst();
 
-		final int animature = c.getInt(1);
-		final int save = c.getInt(2);
-		final String nickname = c.getString(3);
-		final int status = c.getInt(4);
+			final int animature = c.getInt(1);
+			final int save = c.getInt(2);
+			final String nickname = c.getString(3);
+			final int status = c.getInt(4);
 
-		final Attack a1 = Attack.load(c.getInt(5), context);
-		final Attack a2 = Attack.load(c.getInt(7), context);
-		final Attack a3 = Attack.load(c.getInt(9), context);
-		final Attack a4 = Attack.load(c.getInt(11), context);
+			Log.e("ATACK 1: ", "" + c.getInt(5));
 
-		final int a1pp = c.getInt(6);
-		final int a2pp = c.getInt(8);
-		final int a3pp = c.getInt(10);
-		final int a4pp = c.getInt(12);
+			final Attack a1 = Attack.load(c.getInt(5), context);
+			final Attack a2 = Attack.load(c.getInt(7), context);
+			final Attack a3 = Attack.load(c.getInt(9), context);
+			final Attack a4 = Attack.load(c.getInt(11), context);
 
-		final int healthAct = c.getInt(13);
-		final int level = c.getInt(14);
-		final int currentExp = c.getInt(15);
+			final int a1pp = c.getInt(6);
+			final int a2pp = c.getInt(8);
+			final int a3pp = c.getInt(10);
+			final int a4pp = c.getInt(12);
 
-		c.close();
-		db.close();
+			final int healthAct = c.getInt(13);
+			final int level = c.getInt(14);
+			final int currentExp = c.getInt(15);
 
-		return new Animature(id, animature, save, nickname, status, a1, a1pp,
-		a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp, healthAct);
+			c.close();
+			db.close();
+
+			return new Animature(id, animature, save, nickname, status, a1,
+			a1pp, a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp, healthAct);
+		}
+		else
+		{
+			return null;
+		}
 	}
 }

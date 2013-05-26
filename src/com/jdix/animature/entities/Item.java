@@ -9,30 +9,19 @@ import com.jdix.animature.R;
  */
 public class Item {
 
-	private int	id;
-	private int	type;
-	private int	quantity;
-
-	/**
-	 * Constructor
-	 */
-	public Item()
-	{
-
-	}
+	private final int	id;
+	private int			quantity;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param id Item's id.
-	 * @param type Item's type.
 	 * @param quantity Item's quantity.
 	 */
-	public Item(final int id, final int type, final int quantity)
+	public Item(final int id, final int quantity)
 	{
 		super();
 		this.id = id;
-		this.type = type;
 		this.quantity = quantity;
 	}
 
@@ -54,28 +43,23 @@ public class Item {
 	 */
 	public String getName(final Context context)
 	{
-		return context.getResources().getStringArray(R.array.objects_names)[id - 1];
+		return getName(id, context);
+	}
+
+	public String getDescription(final Context context)
+	{
+		return getDescription(id, context);
 	}
 
 	/**
 	 * Method to get Item's type.
 	 * 
+	 * @param context - The context of the application
 	 * @return Item's type.
 	 */
-	public int getType()
+	public int getType(final Context context)
 	{
-		return type;
-	}
-
-	/**
-	 * Method to get Item's description.
-	 * 
-	 * @return Item's description.
-	 */
-	public String getDescription(final Context context)
-	{
-		return context.getResources().getStringArray(
-		R.array.objects_descriptions)[id - 1];
+		return getType(id, context);
 	}
 
 	/**
@@ -96,5 +80,34 @@ public class Item {
 	public void setQuantity(final int quantity)
 	{
 		this.quantity = quantity;
+	}
+
+	public static String getName(final int id, final Context context)
+	{
+		return context.getResources().getStringArray(R.array.objects_names)[id - 1];
+	}
+
+	/**
+	 * Method to get Item's description.
+	 * 
+	 * @param id - The ID of the item
+	 * @param context - The context of the application
+	 * @return Item's description.
+	 */
+	public static String getDescription(final int id, final Context context)
+	{
+		return context.getResources().getStringArray(
+		R.array.objects_descriptions)[id - 1];
+	}
+
+	public static String getTypeName(final int id, final Context context)
+	{
+		return context.getResources().getTypedArray(R.array.object_types)
+		.getInt(id - 1);
+	}
+
+	public static int getType(final int id, final Context context)
+	{
+		return 0;
 	}
 }
