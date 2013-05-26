@@ -87,35 +87,6 @@ public class Animature implements Serializable {
 	}
 
 	/**
-	 * Creates an animature that is not saved
-	 * 
-	 * @param animature - The animature number
-	 * @param save - The save of the animature
-	 * @param nickname - The nickname of the animature
-	 * @param status - The status of the animature
-	 * @param a1 - The first attack
-	 * @param a1pp - The number of PPs for the first attack
-	 * @param a2 - The second attack
-	 * @param a2pp - The number of PPs for the second attack
-	 * @param a3 - The third attack
-	 * @param a3pp - The number of PPs for the third attack
-	 * @param a4 - The fourth attack
-	 * @param a4pp - The PPs for the fourth attack
-	 * @param level - The level of the animature
-	 * @param currentExp - Current experience for the animature
-	 * @param health - The health of the animature
-	 */
-	public Animature(final int animature, final int save,
-	final String nickname, final int status, final Attack a1, final int a1pp,
-	final Attack a2, final int a2pp, final Attack a3, final int a3pp,
-	final Attack a4, final int a4pp, final int level, final int currentExp,
-	final int health)
-	{
-		this(0, animature, save, nickname, status, a1, a1pp, a2, a2pp, a3,
-		a3pp, a4, a4pp, level, currentExp, health);
-	}
-
-	/**
 	 * Creates a new animature at the begining of the game
 	 * 
 	 * @param animature - The animature ID
@@ -125,10 +96,12 @@ public class Animature implements Serializable {
 	public Animature(final int animature, final String nickname,
 	final Context context)
 	{
-		this(animature, Player.getInstance().getId(),
+		this(0, animature, Player.getInstance().getId(),
 		(nickname == null ? Animature.getName(animature, context) : nickname),
 		OK, Attack.load(1, context), Attack.load(1, context).getMaxPP(), null,
-		0, null, 0, null, 0, 5, 0, Animature.getMaxHealth(animature, context));
+		0, null, 0, null, 0, 5, 0, 0);
+
+		this.setHealth(this.getMaxHealth(context));
 	}
 
 	public int getId()
@@ -319,23 +292,6 @@ public class Animature implements Serializable {
 	{
 		final SQLiteDatabase db = (new Database(context)).getWritableDatabase();
 
-		// "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-		// "animature" INTEGER NOT NULL,
-		// "save" INTEGER REFERENCES SAVE(id) ON DELETE CASCADE,
-		// "nickname" TEXT,
-		// "status" INTEGER NOT NULL,
-		// "attack1" INTEGER,
-		// "attack1_pp" INTEGER,
-		// "attack2" INTEGER,
-		// "attack2_pp" INTEGER,
-		// "attack3" INTEGER,
-		// "attack3_pp" INTEGER,
-		// "attack4" INTEGER,
-		// "attack4_pp" INTEGER,
-		// "health" INTEGER NOT NULL,
-		// "level" INTEGER NOT NULL,
-		// "cur_exp" INTEGER NOT NULL);
-
 		final ContentValues values = new ContentValues(15);
 		values.put("animature", animature);
 		values.put("save", this.save != 0 ? this.save : null);
@@ -343,12 +299,12 @@ public class Animature implements Serializable {
 		values.put("status", status);
 		values.put("attack1", attacks[0].getId());
 		values.put("attack1_pp", attacksPP[0]);
-		values.put("attack2", attacks[1].getId());
-		values.put("attack2_pp", attacksPP[1]);
-		values.put("attack3", attacks[2].getId());
-		values.put("attack3_pp", attacksPP[2]);
-		values.put("attack4", attacks[3].getId());
-		values.put("attack4_pp", attacksPP[3]);
+		values.put("attack2", attacks[1] != null ? attacks[1].getId() : null);
+		values.put("attack2_pp", attacks[1] != null ? attacksPP[1] : null);
+		values.put("attack3", attacks[2] != null ? attacks[2].getId() : null);
+		values.put("attack3_pp", attacks[2] != null ? attacksPP[2] : null);
+		values.put("attack4", attacks[3] != null ? attacks[3].getId() : null);
+		values.put("attack4_pp", attacks[3] != null ? attacksPP[3] : null);
 		values.put("health", health);
 		values.put("level", level);
 		values.put("cur_exp", currentExp);
@@ -547,12 +503,11 @@ public class Animature implements Serializable {
 		final int healthAct = c.getInt(13);
 		final int level = c.getInt(14);
 		final int currentExp = c.getInt(15);
-		
+
 		c.close();
 		db.close();
 
-		return new Animature(id, animature, save, nickname,
-		status, a1, a1pp, a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp,
-		healthAct);
+		return new Animature(id, animature, save, nickname, status, a1, a1pp,
+		a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp, healthAct);
 	}
 }

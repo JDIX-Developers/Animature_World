@@ -114,27 +114,6 @@ public class Attack {
 	}
 
 	/**
-	 * @param id - Attack's id.
-	 * @param context - The aplication context.
-	 * @return The attack in this position.
-	 */
-	public static Attack load(final int id, final Context context)
-	{
-		final String[] attacksNames = context.getResources().getStringArray(
-		R.array.attacks_names);
-
-		if (attacks == null)
-		{
-			attacks = new Attack[attacksNames.length];
-		}
-		if (attacks[id - 1] == null)
-		{
-			attacks[id - 1] = new Attack(id, context);
-		}
-		return attacks[id - 1];
-	}
-
-	/**
 	 * @param animature The defender Animature's type.
 	 * @param context - The context of the application
 	 * @return Return 0 if normal effective, 1 if very effective, 2 if
@@ -461,5 +440,26 @@ public class Attack {
 			break;
 		}
 		return effective;
+	}
+
+	/**
+	 * @param id - Attack's id.
+	 * @param context - The aplication context.
+	 * @return The attack in this position.
+	 */
+	public static Attack load(final int id, final Context context)
+	{
+		final String[] attacksNames = context.getResources().getStringArray(
+		R.array.attacks_names);
+
+		if (attacks == null)
+		{
+			attacks = new Attack[attacksNames.length];
+		}
+		if (attacks[id - 1] == null)
+		{
+			attacks[id - 1] = new Attack(id, context);
+		}
+		return attacks[id - 1];
 	}
 }
