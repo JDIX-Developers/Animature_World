@@ -347,7 +347,8 @@ public class BattleActivity extends Activity {
 				Player.getInstance().getName()));
 			break;
 			case 9:
-			// RETURN TO MAP VIEW
+				playerAnimature.setHealth(playerAnimature.getMaxHealth(this));
+				finish();
 			break;
 			case 10:
 				clearBottomLayouts();
@@ -564,7 +565,6 @@ public class BattleActivity extends Activity {
 	@Override
 	public void onBackPressed()
 	{
-		// do something on back.
 		return;
 	}
 

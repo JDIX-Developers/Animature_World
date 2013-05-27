@@ -84,14 +84,6 @@ public class GameMenuActivity extends Activity {
 				final Intent intent = new Intent(GameMenuActivity.this,
 				PlayerDataViewActivity.class);
 				startActivity(intent);
-
-				/*
-				 * final AlertDialog.Builder builder = new AlertDialog.Builder(
-				 * GameMenuActivity.this); builder.setTitle("No disponible");
-				 * builder.setMessage("¡Espere nuevas actualizaciones!");
-				 * builder.setPositiveButton("Aceptar", null); builder.create();
-				 * builder.show();
-				 */
 			}
 		});
 		btnSave = (Button) findViewById(R.id.btn_game_menu_save);
