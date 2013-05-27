@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -561,4 +562,14 @@ public class BattleActivity extends Activity {
 		}
 	}
 
+	@Override
+	public boolean onKeyDown(final int keyCode, final KeyEvent event)
+	{
+		if (keyCode == KeyEvent.KEYCODE_MENU
+		&& keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			return false;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }
