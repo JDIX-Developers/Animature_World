@@ -266,8 +266,8 @@ public class NewGameActivity extends Activity {
 				}
 
 				Player.set(new Map(R.raw.map_test, this), playerName,
-				playerSex, enemyName, 3, 3, Player.SOUTH, idAnimatureSelected,
-				nameAnimatureSelected, this);
+				playerSex, enemyName, 10, 23, Player.SOUTH,
+				idAnimatureSelected, nameAnimatureSelected, this);
 
 				startActivity(new Intent(NewGameActivity.this,
 				MapActivity.class));
