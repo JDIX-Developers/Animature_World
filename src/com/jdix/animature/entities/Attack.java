@@ -1,5 +1,7 @@
 package com.jdix.animature.entities;
 
+import java.io.Serializable;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 
@@ -8,24 +10,26 @@ import com.jdix.animature.R;
 /**
  * @author Jordan Aranda Tejada
  */
-public class Attack {
+public class Attack implements Serializable {
 
-	private final int		id;
-	private final String	name;
-	private final int		type;
-	private final boolean	active;
-	private final int		attribute;
-	private final int		maxPP;
-	private final int		power;
-	private final int		probability;
-	private final boolean	isFirst;
+	private static final long	serialVersionUID	= - 8880816173282545244L;
 
-	public static Attack[]	attacks;
+	private final int			id;
+	private final String		name;
+	private final int			type;
+	private final boolean		active;
+	private final int			attribute;
+	private final int			maxPP;
+	private final int			power;
+	private final int			probability;
+	private final boolean		isFirst;
 
-	public static final int	NORMAL_EFFECTIVE	= 0;
-	public static final int	VERY_EFFECTIVE		= 1;
-	public static final int	FEW_EFFECTIVE		= 2;
-	public static final int	NOT_EFFECTIVE		= 3;
+	public static Attack[]		attacks;
+
+	public static final int		NORMAL_EFFECTIVE	= 0;
+	public static final int		VERY_EFFECTIVE		= 1;
+	public static final int		FEW_EFFECTIVE		= 2;
+	public static final int		NOT_EFFECTIVE		= 3;
 
 	private Attack(final int id, final Context context)
 	{

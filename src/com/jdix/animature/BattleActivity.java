@@ -344,10 +344,11 @@ public class BattleActivity extends Activity {
 	private Animature getPlayerFirstAnimature()
 	{
 		boolean enc = false;
-		int i = 6;
-		while ( ! enc && i < 6)
+		int i = 0;
+		final Animature[] anims = Player.getInstance().getActiveAnimatures();
+		while ( ! enc && i < anims.length)
 		{
-			if (Player.getInstance().getActiveAnimatures()[i].getHealth() > 0)
+			if (anims[i].getHealth() > 0)
 			{
 				enc = true;
 			}
@@ -356,7 +357,7 @@ public class BattleActivity extends Activity {
 				i++;
 			}
 		}
-		return Player.getInstance().getActiveAnimatures()[i];
+		return anims[i];
 	}
 
 	private void loadPlayerAnimatureComponents()
