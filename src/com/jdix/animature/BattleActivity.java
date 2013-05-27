@@ -531,10 +531,12 @@ public class BattleActivity extends Activity {
 			}
 			else
 			{
-				showPlayerTextView(
-				getResources().getString(R.string.battle_string_9).replace(
-				"*anim*", Animature.getName(attacker.getAnimature(), this)),
-				false);
+				// SHOW MESSAGE --> ¡Defensa de Charmander bajó!
+				String text2 = getResources().getString(
+				R.string.battle_string_6).replace("*anim*",
+				Animature.getName(defender.getAnimature(), this));
+				text2 = text2.replace("*quality*", "Defensa");
+				showPlayerTextView(text2, false);
 			}
 		}
 	}
