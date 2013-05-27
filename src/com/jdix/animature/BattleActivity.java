@@ -1,7 +1,6 @@
 package com.jdix.animature;
 
 import android.app.Activity;
-import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +23,6 @@ public class BattleActivity extends Activity {
 	private Animature		wildAnimature;
 	private Animature		playerAnimature;
 
-	private LinearLayout	enemyDataLayout;
 	private TextView		enemyNameTextView;
 	private TextView		enemyLevelTextView;
 	private ImageView		enemyCapturedImageView;
@@ -55,10 +53,8 @@ public class BattleActivity extends Activity {
 	private Button			btnAttack3;
 	private Button			btnAttack4;
 
-	private ActionListener	animatureRestLifeAction;
-
 	private int				stageOfBattle;
-
+	private boolean			levelUp;
 	private int				playerSelectedAttack;
 
 	@Override
@@ -78,7 +74,6 @@ public class BattleActivity extends Activity {
 
 		// We get a reference to the interface controls
 		// Wild Animature Components
-		enemyDataLayout = (LinearLayout) findViewById(R.id.enemy_animature_data_layout);
 		enemyNameTextView = (TextView) findViewById(R.id.enemy_name_textView);
 		enemyLevelTextView = (TextView) findViewById(R.id.enemy_level_textView);
 		enemyCapturedImageView = (ImageView) findViewById(R.id.enemy_captured_image);
@@ -92,6 +87,7 @@ public class BattleActivity extends Activity {
 		playerAnimatureCurrentPSTextView = (TextView) findViewById(R.id.player_animature_ps_textView);
 		playerAnimatureExperienceProgressBar = (ProgressBar) findViewById(R.id.player_animature_experience_progressBar);
 		playerAnimatureImageView = (ImageView) findViewById(R.id.player_animature_imageView);
+
 		// Player Components
 		playerTextView = (TextView) findViewById(R.id.player_text_view_battle);
 		playerTextView.setOnClickListener(new View.OnClickListener()
@@ -134,12 +130,11 @@ public class BattleActivity extends Activity {
 					{
 						e.printStackTrace();
 					}
-					showPlayerTextView(
-					getResources().getString(R.string.battle_string_15)
-					.replace(
+					showPlayerTextView(getResources().getString(
+					R.string.battle_string_15).replace(
 					"%a",
 					Animature.getName(playerAnimature.getAnimature(),
-					BattleActivity.this)), false);
+					BattleActivity.this)));
 				}
 			}
 		});
@@ -174,8 +169,8 @@ public class BattleActivity extends Activity {
 				if (BattleUtils.canEscape(playerAnimature, wildAnimature,
 				BattleActivity.this))
 				{
-					showPlayerTextView(
-					getResources().getString(R.string.battle_string_14), false);
+					showPlayerTextView(getResources().getString(
+					R.string.battle_string_14));
 					finish();
 				}
 				else
@@ -267,8 +262,7 @@ public class BattleActivity extends Activity {
 
 		// SHOW FIRST MESSAGE --> ¡Un Pidgey salvaje!
 		showPlayerTextView(getResources().getString(R.string.battle_string_1)
-		.replace("%a", Animature.getName(wildAnimature.getAnimature(), this)),
-		true);
+		.replace("%a", Animature.getName(wildAnimature.getAnimature(), this)));
 
 		stageOfBattle = 0;
 	}
@@ -280,21 +274,14 @@ public class BattleActivity extends Activity {
 		playerTextView.setVisibility(View.GONE);
 	}
 
-	private void showPlayerTextView(final String text, final boolean clickable)
+	private void showPlayerTextView(final String text)
 	{
 		playerTextView.setText(text);
 		playerTextView.setVisibility(View.VISIBLE);
-		if (clickable)
-		{
-			playerTextView.setCompoundDrawablesWithIntrinsicBounds(null, null,
-			getResources().getDrawable(R.drawable.flecha), null);
-			playerTextView.setClickable(true);
-		}
-		else
-		{
-			playerTextView.setCompoundDrawables(null, null, null, null);
-			playerTextView.setClickable(false);
-		}
+
+		playerTextView.setCompoundDrawablesWithIntrinsicBounds(null, null,
+		getResources().getDrawable(R.drawable.flecha), null);
+		playerTextView.setClickable(true);
 	}
 
 	private void stagesOfBattle()
@@ -306,14 +293,14 @@ public class BattleActivity extends Activity {
 				R.string.battle_string_2).replace("%a",
 				Animature.getName(playerAnimature.getAnimature(), this));
 				// SHOW MESSAGE --> ¡Adelante Charmander!
-				showPlayerTextView(namePlayerAnimature, false);
-
-				loadPlayerAnimatureComponents();
+				showPlayerTextView(namePlayerAnimature);
+			break;
 			case 2:
+				loadPlayerAnimatureComponents();
+				loadEnemyAnimatureComponents();
 				clearBottomLayouts();
 				playerAnimatureDataLayout.setVisibility(View.VISIBLE);
 				playerBattleOptionsLayout.setVisibility(View.VISIBLE);
-
 			break;
 			case 3:
 				clearBottomLayouts();
@@ -328,6 +315,63 @@ public class BattleActivity extends Activity {
 					.getEnemyAnimatureRandomAttack(wildAnimature);
 				}
 				runBattle(indexAttack);
+			break;
+			case 6:
+				playerBattleOptionsLayout.setVisibility(View.GONE);
+				showPlayerTextView(getResources().getString(
+				R.string.battle_string_11).replace("%a",
+				playerAnimature.getNickname()));
+			break;
+			case 7:
+				playerAnimatureDataLayout.setVisibility(View.GONE);
+				showPlayerTextView(getResources().getString(
+				R.string.battle_string_13).replace("%a",
+				Player.getInstance().getName()));
+			break;
+			case 8:
+				showPlayerTextView(getResources().getString(
+				R.string.battle_combat_gameOver).replace("%a",
+				Player.getInstance().getName()));
+			break;
+			case 9:
+			// RETURN TO MAP VIEW
+			break;
+			case 10:
+				showPlayerTextView(getResources().getString(
+				R.string.battle_string_10).replace("%a",
+				Animature.getName(wildAnimature.getAnimature(), this)));
+			break;
+			case 11:
+				final int exp = BattleUtils.giveExp(0, playerAnimature,
+				wildAnimature, this);
+
+				String text = getResources().getString(
+				R.string.battle_string_12).replace("%a",
+				playerAnimature.getNickname());
+				text = text.replace("$s", exp + "");
+				showPlayerTextView(text);
+
+				playerAnimature.setCurrentExp(playerAnimature.getCurrentExp()
+				+ exp);
+				if (playerAnimature.getCurrentExp() >= playerAnimature
+				.getMaxExperience(this))
+				{
+					levelUp = true;
+					playerAnimature.levelUp(this);
+				}
+			break;
+			case 12:
+				if (levelUp == true)
+				{
+					showPlayerTextView(getResources().getString(
+					R.string.battle_string_16).replace("%a",
+					playerAnimature.getNickname()));
+				}
+			// RETURN TO MAP VIEW
+			break;
+			case 13:
+
+			break;
 
 		}
 	}
@@ -387,7 +431,7 @@ public class BattleActivity extends Activity {
 			if (playerAnimature.getAttacks()[i] != null)
 			{
 				final Attack attack = playerAnimature.getAttacks()[i];
-				btnAttack1
+				btnsAttacks[i]
 				.setText(attack.getName()
 				+ " ("
 				+ playerAnimature.getAttacksPP()[i]
@@ -399,8 +443,7 @@ public class BattleActivity extends Activity {
 			}
 			else
 			{
-				btnAttack1.setOnClickListener(null);
-
+				btnsAttacks[i].setOnClickListener(null);
 			}
 		}
 	}
@@ -421,11 +464,11 @@ public class BattleActivity extends Activity {
 		enemyNameTextView.setText(wildAnimature.getNickname());
 
 		// WILD ANIMATURE LEVEL
-		enemyLevelTextView.setText("Nv" + wildAnimature.getLevel());
+		enemyLevelTextView.setText("Nv " + wildAnimature.getLevel());
 
 		// WILD ANIMATURE LIFE PROGRESSBAR
 		enemyLifeProgressBar.setMax(wildAnimature.getMaxHealth(this));
-		enemyLifeProgressBar.setProgress(wildAnimature.getMaxHealth(this));
+		enemyLifeProgressBar.setProgress(wildAnimature.getHealth());
 	}
 
 	private void runBattle(final int enemyIndexAttack)
@@ -438,80 +481,53 @@ public class BattleActivity extends Activity {
 		&& playerSelectedAttack > - 1)
 		{
 			attack(playerAnimature, playerSelectedAttack, wildAnimature);
-			attack(wildAnimature,
-			BattleUtils.getEnemyAnimatureRandomAttack(wildAnimature),
-			playerAnimature);
+			attack(wildAnimature, enemyIndexAttack, playerAnimature);
 		}
 		else
 		{
-			attack(wildAnimature,
-			BattleUtils.getEnemyAnimatureRandomAttack(wildAnimature),
-			playerAnimature);
+			attack(wildAnimature, enemyIndexAttack, playerAnimature);
 			attack(playerAnimature, playerSelectedAttack, wildAnimature);
 		}
+		Log.e("VIDA", "Vida animature: " + playerAnimature.getHealth());
+		Log.e("VIDA2", "Vida wildAnimature: " + wildAnimature.getHealth());
+
+		if (playerAnimature.getHealth() < 0)
+		{
+			playerAnimature.setHealth(0);
+			playerAnimatureImageView.setVisibility(View.INVISIBLE);
+			playerAnimatureAttacksLayout.setVisibility(View.GONE);
+			loadEnemyAnimatureComponents();
+			loadPlayerAnimatureComponents();
+			stageOfBattle = 6;
+			Log.e("MUERE",
+			"Vida PlayerAnimature: " + playerAnimature.getHealth());
+			stagesOfBattle();
+		}
+		else if (wildAnimature.getHealth() < 0)
+		{
+			stageOfBattle = 10;
+			enemyImageView.setVisibility(View.INVISIBLE);
+			stagesOfBattle();
+		}
+
 	}
 
 	private void attack(final Animature attacker, final int indexAttack,
 	final Animature defender)
 	{
-		String text = getResources().getString(R.string.battle_string_4)
-		.replace("%a", Animature.getName(attacker.getAnimature(), this));
-		text = text.replace("$b", attacker.getAttacks()[indexAttack].getName());
-		// SHOW MESSAGE --> ¡Charmander usó ascuas!
-		showPlayerTextView(text, false);
 		attacker.getAttacksPP()[indexAttack]--;
 
-		if ( ! BattleUtils.getHit(attacker, attacker.getAttacks()[indexAttack],
+		if (BattleUtils.getHit(attacker, attacker.getAttacks()[indexAttack],
 		defender, this))
-		{
-			// SHOW MESSAGE --> ¡El ataque de Charmander falló!
-			showPlayerTextView(
-			getResources().getString(R.string.battle_string_5).replace("%a",
-			Animature.getName(attacker.getAnimature(), this)), false);
-		}
-		else
 		{
 			if (attacker.getAttacks()[indexAttack].isActive())
 			{
-				BattleUtils.getDamage(attacker, defender,
+				final int damage = BattleUtils.getDamage(attacker, defender,
 				attacker.getAttacks()[indexAttack], this);
-
-				switch (attacker.getAttacks()[indexAttack].getEffectivenes(
-				defender, this))
-				{
-				// SHOW MESSAGE --> ¡Es muy eficaz!
-					case Attack.VERY_EFFECTIVE:
-						showPlayerTextView(
-						getResources().getString(R.string.battle_string_7),
-						false);
-					break;
-
-					// SHOW MESSAGE --> No es muy eficaz…
-					case Attack.FEW_EFFECTIVE:
-						showPlayerTextView(
-						getResources().getString(R.string.battle_string_8),
-						false);
-					break;
-
-					// SHOW MESSAGE --> ¡No afecta a Pidgey!
-					case Attack.NOT_EFFECTIVE:
-						showPlayerTextView(
-						getResources().getString(R.string.battle_string_9)
-						.replace("*anim*",
-						Animature.getName(attacker.getAnimature(), this)),
-						false);
-					break;
-				}
-			}
-			else
-			{
-				// SHOW MESSAGE --> ¡Defensa de Charmander bajó!
-				String text2 = getResources().getString(
-				R.string.battle_string_6).replace("*anim*",
-				Animature.getName(defender.getAnimature(), this));
-				text2 = text2.replace("*quality*", "Defensa");
-				showPlayerTextView(text2, false);
+				Log.e("DAMAGE", "Damage: " + damage);
+				defender.setHealth(defender.getHealth() - damage);
 			}
 		}
 	}
+
 }

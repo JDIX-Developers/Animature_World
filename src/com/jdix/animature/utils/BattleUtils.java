@@ -80,28 +80,29 @@ public class BattleUtils {
 	final Animature defender, final Attack attack, final Context context)
 	{
 		int damage = 0;
+		final int r = new Random().nextInt(15);
 
 		if (attack.getEffectivenes(defender, context) == Attack.VERY_EFFECTIVE)
 		{
-			damage = ((attack.getPower() / 100) * (attacker
-			.getQualities(context)[Animature.STRENGTH]
-			/ defender.getQualities(context)[Animature.DEFENSE] * attacker
-			.getQualities(context)[Animature.STRENGTH])) * 2;
+			damage = (((((((2 * attacker.getLevel() / 5) + 2)
+			* attacker.getQualities(context)[Animature.STRENGTH] * attack
+				.getPower()) / defender.getQualities(context)[Animature.DEFENSE]) / 10) + 2)
+			* (85 + r) * 2) / 100;
 		}
 		else if (attack.getEffectivenes(defender, context) == Attack.FEW_EFFECTIVE)
 		{
-			damage = ((attack.getPower() / 100) * (attacker
-			.getQualities(context)[Animature.STRENGTH]
-			/ defender.getQualities(context)[Animature.DEFENSE] * attacker
-			.getQualities(context)[Animature.STRENGTH])) / 2;
+			damage = (int) ((((((((2 * attacker.getLevel() / 5) + 2)
+			* attacker.getQualities(context)[Animature.STRENGTH] * attack
+				.getPower()) / defender.getQualities(context)[Animature.DEFENSE]) / 10) + 2)
+			* (85 + r) * 0.5) / 100);
 		}
 		else
 		{
-			damage = (attack.getPower() / 100)
-			* (attacker.getQualities(context)[Animature.STRENGTH]
-			/ defender.getQualities(context)[Animature.DEFENSE] * attacker
-				.getQualities(context)[Animature.STRENGTH]);
+			damage = (((((((2 * attacker.getLevel() / 5) + 2)
+			* attacker.getQualities(context)[Animature.STRENGTH] * attack
+			.getPower()) / defender.getQualities(context)[Animature.DEFENSE]) / 10) + 2) * (85 + r)) / 100;
 		}
+
 		return damage;
 	}
 
@@ -242,24 +243,24 @@ public class BattleUtils {
 	// captured.setStatus(Animature.NORMAL);
 	// }
 
-	// /**
-	// * Method to get experience to your animature
-	// *
-	// * @param battleType 0 wild battle, 1 trainer battle
-	// * @param yourCaptured Your Animature who is going to receive experience
-	// * @param enemy The enemy Animature which has been fainted
-	// * @return the experience in the battle
-	// */
-	// public int giveExp(final int battleType, final Animature yourCaptured,
-	// final Animature enemy)
-	// {
-	// if (battleType == 0)
-	// {
-	// return (enemy.getBaseExp() * enemy.getLevel()) / 7;
-	// }
-	// else
-	// {
-	// return (int) ((enemy.getBaseExp() * enemy.getLevel() * 1.5) / 7);
-	// }
-	// }
+	/**
+	 * Method to get experience to your animature
+	 * 
+	 * @param battleType 0 wild battle, 1 trainer battle
+	 * @param yourCaptured Your Animature who is going to receive experience
+	 * @param enemy The enemy Animature which has been fainted
+	 * @return the experience in the battle
+	 */
+	public static int giveExp(final int battleType,
+	final Animature yourCaptured, final Animature enemy, final Context context)
+	{
+		if (battleType == 0)
+		{
+			return (enemy.getBaseExp(context) * enemy.getLevel()) / 7;
+		}
+		else
+		{
+			return (int) ((enemy.getBaseExp(context) * enemy.getLevel() * 1.5) / 7);
+		}
+	}
 }
