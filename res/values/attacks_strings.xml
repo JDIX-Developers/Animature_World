@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
         <string-array name="attack_names">
-        <item>Placaje</item>
-        <item>Ataque rápido</item>
-        <item>Gruñido</item>
-        <item>Malicioso</item>
-        <item>Arañazo</item>
-        <item>Ascuas</item>
-        <item>Burbuja</item>
-        <item>Látigo cepa</item>
-        <item>Pistola agua</item>
-        <item>Picotazo</item>
+	    <!-- 000 -->    <item>Placaje</item>
+	    <!-- 001 -->    <item>Ataque rápido</item>
+	    <!-- 002 -->    <item>Gruñido</item>
+	    <!-- 003 -->    <item>Malicioso</item>
+	    <!-- 004 -->    <item>Arañazo</item>
+	    <!-- 005 -->    <item>Ascuas</item>
+	    <!-- 006 -->    <item>Burbuja</item>
+	    <!-- 007 -->    <item>Látigo cepa</item>
+	    <!-- 008 -->    <item>Pistola agua</item>
+	    <!-- 009 -->    <item>Picotazo</item>
     </string-array>
 </resources>
