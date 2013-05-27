@@ -570,12 +570,12 @@ public class MapView extends View implements OnTouchListener {
 
 			else if (sq.isOfType(Square.GRASSANIM) && Math.random() < 0.1)
 			{
+				final int r = (new Random()).nextInt(4);
 				final Animature wildAnim = new Animature(0,
 				(new Random()).nextInt(10) + 10, 0, null, Animature.OK,
 				Attack.load(1, context), Attack.load(1, context).getMaxPP(),
 				Attack.load(2, context), Attack.load(2, context).getMaxPP(),
-				null, 0, null, 0, (new Random()).nextInt(4) + 1, 0,
-				Animature.getMaxHealth(10, (new Random()).nextInt(4) + 1,
+				null, 0, null, 0, r + 1, 0, Animature.getMaxHealth(10, r + 1,
 				context), context);
 
 				final Intent intent = new Intent(context, BattleActivity.class);
