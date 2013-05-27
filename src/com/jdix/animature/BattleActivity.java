@@ -78,7 +78,7 @@ public class BattleActivity extends Activity {
 		// We get a reference to the interface controls
 		// Wild Animature Components
 		enemyDataLayout = (LinearLayout) findViewById(R.id.enemy_animature_data_layout);
-		enemyNameTextView = (TextView) findViewById(R.id.enemy_animature_name);
+		enemyNameTextView = (TextView) findViewById(R.id.enemy_name_textView);
 		enemyLevelTextView = (TextView) findViewById(R.id.enemy_level_textView);
 		enemyCapturedImageView = (ImageView) findViewById(R.id.enemy_captured_image);
 		enemyLifeProgressBar = (ProgressBar) findViewById(R.id.enemy_live_progressBar);
@@ -424,7 +424,7 @@ public class BattleActivity extends Activity {
 		enemyNameTextView.setText(wildAnimature.getNickname());
 
 		// WILD ANIMATURE LEVEL
-		enemyLevelTextView.setText(wildAnimature.getLevel());
+		enemyLevelTextView.setText("" + wildAnimature.getLevel());
 
 		// WILD ANIMATURE LIFE PROGRESSBAR
 		enemyLifeProgressBar.setMax(wildAnimature.getMaxHealth(this));
