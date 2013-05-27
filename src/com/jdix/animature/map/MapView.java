@@ -2,16 +2,21 @@ package com.jdix.animature.map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+import com.jdix.animature.BattleActivity;
 import com.jdix.animature.R;
+import com.jdix.animature.entities.Animature;
+import com.jdix.animature.entities.Attack;
 import com.jdix.animature.entities.Player;
 
 /**
@@ -553,10 +558,22 @@ public class MapView extends View implements OnTouchListener {
 
 			else if (sq.isOfType(Square.GRASSANIM))
 			{
-				if (Math.random() < 0.7)
-				{
-					// TODO start battle
-				}
+				final Animature wildAnim = new Animature(0, 10, 0, null,
+				Animature.OK, Attack.load(1, context), Attack.load(1, context)
+				.getMaxPP(), Attack.load(2, context), Attack.load(2, context)
+				.getMaxPP(), null, 0, null, 0, 5, 0, Animature.getMaxHealth(10,
+				5, context));
+
+				final Intent intent = new Intent(context, BattleActivity.class);
+				final Bundle b = new Bundle();
+				b.putSerializable("wild_animature", wildAnim);
+				intent.putExtras(b);
+				context.startActivity(intent);
+
+				// if (Math.random() < 0.7)
+				// {
+				// // TODO start battle
+				// }
 			}
 
 		}

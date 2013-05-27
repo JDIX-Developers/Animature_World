@@ -513,7 +513,7 @@ public class Animature implements Serializable {
 	 * @param context - The context of the application
 	 * @return - The max health of the Animature
 	 */
-	private static int getMaxHealth(final int animature, final int level,
+	public static int getMaxHealth(final int animature, final int level,
 	final Context context)
 	{
 		int maxHealth = context.getResources().getIntArray(
