@@ -3,6 +3,7 @@ package com.jdix.animature;
 import android.app.Activity;
 import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -68,10 +69,12 @@ public class BattleActivity extends Activity {
 
 		// We recover the information passed in the intent
 		wildAnimature = (Animature) this.getIntent().getSerializableExtra(
-		"wild_capturable");
+		"wild_animature");
 
 		// GETS PLAYER FIRST ENABLE ANIMATURE
 		playerAnimature = getPlayerFirstAnimature();
+
+		btnsAttacks = new Button[4];
 
 		// We get a reference to the interface controls
 		// Wild Animature Components
@@ -420,8 +423,13 @@ public class BattleActivity extends Activity {
 		}
 
 		// WILD ANIMATURE NAME
-		enemyNameTextView.setText(Animature.getName(
-		wildAnimature.getAnimature(), this));
+		if (wildAnimature == null)
+		{
+			Log.e("ESCUPE", "ES NULL");
+		}
+		Log.e("ESCUPE", "HAPPY " + wildAnimature);
+		Log.e("ESCUPE2", enemyNameTextView.toString());
+		enemyNameTextView.setText(wildAnimature.getNickname());
 
 		// WILD ANIMATURE LEVEL
 		enemyLevelTextView.setText(wildAnimature.getLevel());
