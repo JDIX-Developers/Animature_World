@@ -412,6 +412,11 @@ public class BattleActivity extends Activity {
 				+ getResources().getStringArray(R.array.animature_types_names)[(int) Math
 				.round(Math.log(attack.getType()) / Math.log(2))]);
 			}
+			else
+			{
+				btnAttack1.setOnClickListener(null);
+
+			}
 		}
 	}
 
@@ -431,7 +436,7 @@ public class BattleActivity extends Activity {
 		enemyNameTextView.setText(wildAnimature.getNickname());
 
 		// WILD ANIMATURE LEVEL
-		enemyLevelTextView.setText("" + wildAnimature.getLevel());
+		enemyLevelTextView.setText("Nv" + wildAnimature.getLevel());
 
 		// WILD ANIMATURE LIFE PROGRESSBAR
 		enemyLifeProgressBar.setMax(wildAnimature.getMaxHealth(this));
