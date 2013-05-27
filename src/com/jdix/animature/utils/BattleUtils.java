@@ -63,9 +63,8 @@ public class BattleUtils {
 	public static boolean canEscape(final Animature playerAnimature,
 	final Animature enemyAnimature, final Context context)
 	{
-		return (playerAnimature.getLevel() > enemyAnimature.getLevel())
-		|| (playerAnimature.getLevel() == enemyAnimature.getLevel() && enemyAnimature
-		.getHealth() < enemyAnimature.getMaxHealth(context) * 0.4);
+		return true;
+		// TODO ALGORITMO
 	}
 
 	/**

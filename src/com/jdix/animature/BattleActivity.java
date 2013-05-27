@@ -3,6 +3,7 @@ package com.jdix.animature;
 import android.app.Activity;
 import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -177,7 +178,7 @@ public class BattleActivity extends Activity {
 					getResources().getString(R.string.battle_string_14), false);
 					try
 					{
-						wait(2000);
+						Thread.sleep(3000);
 					}
 					catch (final InterruptedException e)
 					{
@@ -187,6 +188,7 @@ public class BattleActivity extends Activity {
 				}
 				else
 				{
+					Log.e("NO PUEDE ESCAPAR", "No puede huir");
 					stageOfBattle = 2;
 					stagesOfBattle();
 				}
