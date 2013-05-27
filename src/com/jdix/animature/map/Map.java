@@ -174,8 +174,6 @@ public class Map {
 				array[p++], array[p++]), array[p++], array[p++]));
 			}
 		}
-
-		System.out.println(links.size());
 	}
 
 	private void generateBitmap()
