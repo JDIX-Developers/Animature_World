@@ -86,7 +86,7 @@ public class BattleActivity extends Activity {
 		// Player Animature Components
 		playerAnimatureDataLayout = (LinearLayout) findViewById(R.id.player_animature_data_layout);
 		playerAnimatureNameTextView = (TextView) findViewById(R.id.player_animature_name_textView);
-		playerAnimatureLevelTextView = (TextView) findViewById(R.id.player_animatura_level_textView);
+		playerAnimatureLevelTextView = (TextView) findViewById(R.id.player_animature_level_textView);
 		playerAnimatureLifeProgressBar = (ProgressBar) findViewById(R.id.player_animature_live_progressBar);
 		playerAnimatureCurrentPSTextView = (TextView) findViewById(R.id.player_animature_ps_textView);
 		playerAnimatureExperienceProgressBar = (ProgressBar) findViewById(R.id.player_animature_experience_progressBar);
@@ -315,7 +315,7 @@ public class BattleActivity extends Activity {
 				showPlayerTextView(namePlayerAnimature, false);
 				try
 				{
-					this.wait(2000);
+					Thread.sleep(5000);
 				}
 				catch (final InterruptedException e)
 				{
@@ -324,7 +324,9 @@ public class BattleActivity extends Activity {
 				loadPlayerAnimatureComponents();
 			case 2:
 				clearBottomLayouts();
+				playerAnimatureDataLayout.setVisibility(View.VISIBLE);
 				playerBattleOptionsLayout.setVisibility(View.VISIBLE);
+
 			break;
 			case 3:
 				clearBottomLayouts();
@@ -395,16 +397,19 @@ public class BattleActivity extends Activity {
 	{
 		for (int i = 0; i < btnsAttacks.length; i++)
 		{
-			final Attack attack = playerAnimature.getAttacks()[i];
-			btnAttack1
-			.setText(attack.getName()
-			+ " ("
-			+ playerAnimature.getAttacksPP()[i]
-			+ " / "
-			+ attack.getMaxPP()
-			+ "\nTipo "
-			+ getResources().getStringArray(R.array.animature_types_names)[(int) Math
-			.round(Math.log(attack.getType()) / Math.log(2))]);
+			if (playerAnimature.getAttacks()[i] != null)
+			{
+				final Attack attack = playerAnimature.getAttacks()[i];
+				btnAttack1
+				.setText(attack.getName()
+				+ " ("
+				+ playerAnimature.getAttacksPP()[i]
+				+ " / "
+				+ attack.getMaxPP()
+				+ ")\nTipo"
+				+ getResources().getStringArray(R.array.animature_types_names)[(int) Math
+				.round(Math.log(attack.getType()) / Math.log(2))]);
+			}
 		}
 	}
 
