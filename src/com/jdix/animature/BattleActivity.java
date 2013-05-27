@@ -176,14 +176,6 @@ public class BattleActivity extends Activity {
 				{
 					showPlayerTextView(
 					getResources().getString(R.string.battle_string_14), false);
-					try
-					{
-						Thread.sleep(3000);
-					}
-					catch (final InterruptedException e)
-					{
-						e.printStackTrace();
-					}
 					finish();
 				}
 				else
@@ -315,14 +307,7 @@ public class BattleActivity extends Activity {
 				Animature.getName(playerAnimature.getAnimature(), this));
 				// SHOW MESSAGE --> ¡Adelante Charmander!
 				showPlayerTextView(namePlayerAnimature, false);
-				try
-				{
-					Thread.sleep(5000);
-				}
-				catch (final InterruptedException e)
-				{
-					e.printStackTrace();
-				}
+
 				loadPlayerAnimatureComponents();
 			case 2:
 				clearBottomLayouts();
@@ -475,14 +460,7 @@ public class BattleActivity extends Activity {
 		// SHOW MESSAGE --> ¡Charmander usó ascuas!
 		showPlayerTextView(text, false);
 		attacker.getAttacksPP()[indexAttack]--;
-		try
-		{
-			this.wait(2000);
-		}
-		catch (final InterruptedException e)
-		{
-			e.printStackTrace();
-		}
+
 		if ( ! BattleUtils.getHit(attacker, attacker.getAttacks()[indexAttack],
 		defender, this))
 		{
@@ -490,14 +468,6 @@ public class BattleActivity extends Activity {
 			showPlayerTextView(
 			getResources().getString(R.string.battle_string_5).replace("%a",
 			Animature.getName(attacker.getAnimature(), this)), false);
-			try
-			{
-				this.wait(2000);
-			}
-			catch (final InterruptedException e)
-			{
-				e.printStackTrace();
-			}
 		}
 		else
 		{
@@ -531,14 +501,6 @@ public class BattleActivity extends Activity {
 						Animature.getName(attacker.getAnimature(), this)),
 						false);
 					break;
-				}
-				try
-				{
-					this.wait(2000);
-				}
-				catch (final InterruptedException e)
-				{
-					e.printStackTrace();
 				}
 			}
 			else
