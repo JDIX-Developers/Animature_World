@@ -337,6 +337,8 @@ public class BattleActivity extends Activity {
 			// RETURN TO MAP VIEW
 			break;
 			case 10:
+				clearBottomLayouts();
+				playerTextView.setVisibility(View.VISIBLE);
 				showPlayerTextView(getResources().getString(
 				R.string.battle_string_10).replace("%a",
 				Animature.getName(wildAnimature.getAnimature(), this)));
@@ -359,6 +361,7 @@ public class BattleActivity extends Activity {
 					levelUp = true;
 					playerAnimature.levelUp(this);
 				}
+				loadPlayerAnimatureComponents();
 			break;
 			case 12:
 				if (levelUp == true)
@@ -367,7 +370,7 @@ public class BattleActivity extends Activity {
 					R.string.battle_string_16).replace("%a",
 					playerAnimature.getNickname()));
 				}
-			// RETURN TO MAP VIEW
+				finish();
 			break;
 			case 13:
 
@@ -417,7 +420,9 @@ public class BattleActivity extends Activity {
 		+ maxHealth);
 		// Player Animature Exp ProgressBar
 		playerAnimatureExperienceProgressBar.setMax(playerAnimature
-		.getMaxHealth(this));
+		.getMaxExperience(this));
+		playerAnimatureExperienceProgressBar.setProgress(playerAnimature
+		.getCurrentExp());
 		// Battle Options Layout Header
 		playerBattleOptionsHeader.setText(getResources().getString(
 		R.string.battle_string_3).replace("%a",
@@ -506,7 +511,14 @@ public class BattleActivity extends Activity {
 		else if (wildAnimature.getHealth() < 0)
 		{
 			stageOfBattle = 10;
+			loadEnemyAnimatureComponents();
+			loadPlayerAnimatureComponents();
 			enemyImageView.setVisibility(View.INVISIBLE);
+			stagesOfBattle();
+		}
+		else
+		{
+			stageOfBattle = 2;
 			stagesOfBattle();
 		}
 
