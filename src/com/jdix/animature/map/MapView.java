@@ -46,6 +46,7 @@ public class MapView extends View implements OnTouchListener {
 	private int[]				posDOWN;
 	private int[]				posLEFT;
 	private int[]				posRIGHT;
+	private Bitmap				mapb;
 
 	/**
 	 * @param context - Context of the application
@@ -135,15 +136,16 @@ public class MapView extends View implements OnTouchListener {
 	{
 		super.onDraw(canvas);
 		canvas.drawColor(Color.BLACK);
-		final Bitmap mapb = map.getBitmap();
 
+		final Player p = Player.getInstance();
 		final int size = Square.getSprite().getSize();
 
-		final int pX = Player.getInstance().getX() * size;
-		final int pY = Player.getInstance().getY() * size;
+		if (mapb == null)
+		{
+			mapb = map.getBitmap((p.getX() + 2) * size, (p.getY() + 2) * size);
+		}
 
-		canvas.drawBitmap(mapb, mWidth / 2 - pX - move.getX() - size / 2,
-		mHeight / 2 - pY - move.getY() - size / 2, null);
+		canvas.drawBitmap(mapb, - 2 * size, - 2 * size, null);
 		drawCharacter(canvas);
 		drawControls(canvas);
 	}
@@ -419,8 +421,8 @@ public class MapView extends View implements OnTouchListener {
 						}
 					}
 					if (next() != null
-					&& (next().isOfType(Square.WALKABLE) || map.getLinkAt(
-					nextX(), nextY()) != null))
+					&& (next().isOfType(Square.WALKABLE)
+					|| map.getLinkAt(nextX(), nextY()) != null || true))
 					{
 						this.x += x;
 						this.y += y;
@@ -495,15 +497,28 @@ public class MapView extends View implements OnTouchListener {
 
 		private void finish()
 		{
-			Player.getInstance().setX(
-			Player.getInstance().getX()
-			+ Math.round((float) x / Square.getSprite().getSize()));
-			Player.getInstance().setY(
-			Player.getInstance().getY()
-			+ Math.round((float) y / Square.getSprite().getSize()));
+			final Player p = Player.getInstance();
+			final int size = Square.getSprite().getSize();
+			p.setX(p.getX() + Math.round((float) x / size));
+			p.setY(p.getY() + Math.round((float) y / size));
 			x = 0;
 			y = 0;
 			finished = true;
+
+			(new Thread()
+			{
+
+				@Override
+				public void run()
+				{
+					final Player p = Player.getInstance();
+					final int size = Square.getSprite().getSize();
+
+					mapb = map.getBitmap(p.getX() - mWidth / (2 * size),
+					p.getY() - mHeight / (2 * size), p.getX() + mWidth
+					/ (2 * size), p.getY() + mHeight / (2 * size));
+				}
+			}).start();
 
 			startEvents();
 		}

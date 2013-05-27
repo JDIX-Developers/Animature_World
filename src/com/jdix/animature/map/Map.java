@@ -23,7 +23,6 @@ public class Map {
 	private HashMap<PosEntry<Byte, Byte>, Link>	links;
 	private Square[][]							squares;
 	private int									width, height;
-	private Bitmap								bitmap;
 
 	/**
 	 * @param context - The context of the application
@@ -75,8 +74,6 @@ public class Map {
 		{
 			Log.e("MAP", e.getMessage());
 		}
-
-		generateBitmap();
 	}
 
 	private void calculateDimension(final byte[] array)
@@ -94,7 +91,6 @@ public class Map {
 	private void generateData(final byte[] array) throws CompressionException,
 	SpriteException
 	{
-		// TODO errors on double X, Y compression
 		this.squares = new Square[height][width];
 
 		int pointer = 2;
@@ -178,22 +174,32 @@ public class Map {
 		}
 	}
 
-	private void generateBitmap()
+	private Bitmap generateBitmap(final int x1, final int y1, final int x2,
+	final int y2)
 	{
+		final int xS = x1 - 2 < 0 ? 0 : x1 - 2;
+		final int xF = x2 + 2 > width ? width : x2 + 2;
+		final int yS = y1 - 2 < 0 ? 0 : y1 - 2;
+		final int yF = y2 + 2 > height ? height : y2 + 2;
+
+		System.out.println(xF);
+
 		final short size = Square.getSprite().getSize();
-		bitmap = Bitmap.createBitmap(width * size, height * size,
-		Bitmap.Config.ARGB_8888);
+		final Bitmap bitmap = Bitmap.createBitmap((xF - xS) * size, (yF - yS)
+		* size, Bitmap.Config.ARGB_8888);
 
 		final Canvas c = new Canvas(bitmap);
 
-		for (int i = 0; i < height; i++)
+		for (int i = 0; i < (yF - yS); i++)
 		{
-			for (int h = 0; h < width; h++)
+			for (int h = 0; h < (xF - xS); h++)
 			{
-				c.drawBitmap(squares[i][h].getBitmap(), size * h, size * i,
-				null);
+				c.drawBitmap(squares[i + yS][h + xS].getBitmap(), size * h,
+				size * i, null);
 			}
 		}
+
+		return bitmap;
 	}
 
 	/**
@@ -213,12 +219,13 @@ public class Map {
 	}
 
 	/**
+	 * @param x - The player's X coordinate plus two squares, in pixels
+	 * @param y - The player's Y coordinate plus two squares, in pixels
 	 * @return Bitmap of the map
 	 */
-	public Bitmap getBitmap()
+	public Bitmap getBitmap(final int x, final int y)
 	{
-		// TODO calculate which portion of the bitmap to show
-		return bitmap;
+		return generateBitmap(x1, y1, x2, y2);
 	}
 
 	/**
