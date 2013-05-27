@@ -4,42 +4,91 @@
     <!-- 000 -->    <item>1</item>
     <!-- 001 -->    <item>1</item>
     <!-- 002 -->    <item>1</item>
+    <!-- 003 -->    <item>1</item>
+    <!-- 004 -->    <item>1</item>
+    <!-- 005 -->    <item>2</item>
+    <!-- 006 -->    <item>4</item>
+    <!-- 007 -->    <item>8</item>
+    <!-- 008 -->    <item>4</item>
+    <!-- 009 -->    <item>1</item>
     </array>
     
     <array name="attack_max_pp">
     <!-- 000 -->    <item>35</item>
     <!-- 001 -->    <item>30</item>
     <!-- 002 -->    <item>40</item>
+    <!-- 003 -->    <item>30</item>
+    <!-- 004 -->    <item>35</item>
+    <!-- 005 -->    <item>25</item>
+    <!-- 006 -->    <item>20</item>
+    <!-- 007 -->    <item>15</item>
+    <!-- 008 -->    <item>25</item>
+    <!-- 009 -->    <item>35</item>
     </array>
     
     <array name="attack_attributte">
     <!-- 000 -->    <item>-1</item>
     <!-- 001 -->    <item>-1</item>
     <!-- 002 -->    <item>3</item>
+    <!-- 003 -->    <item>1</item>
+    <!-- 004 -->    <item>-1</item>
+    <!-- 005 -->    <item>-1</item>
+    <!-- 006 -->    <item>-1</item>
+    <!-- 007 -->    <item>-1</item>
+    <!-- 008 -->    <item>-1</item>
+    <!-- 009 -->    <item>-1</item>
     </array>
     
     <array name="attack_power">
     <!-- 000 -->    <item>35</item>
     <!-- 001 -->    <item>40</item>
     <!-- 002 -->    <item>0</item>
+    <!-- 003 -->    <item>0</item>
+    <!-- 004 -->    <item>40</item>
+    <!-- 005 -->    <item>40</item>
+    <!-- 006 -->    <item>65</item>
+    <!-- 007 -->    <item>35</item>
+    <!-- 008 -->    <item>40</item>
+    <!-- 009 -->    <item>35</item>
     </array>
     
     <array name="attack_probability">
     <!-- 000 -->    <item>95</item>
     <!-- 001 -->    <item>100</item>
     <!-- 002 -->    <item>100</item>
+    <!-- 003 -->    <item>100</item>
+    <!-- 004 -->    <item>100</item>
+    <!-- 005 -->    <item>100</item>
+    <!-- 006 -->    <item>100</item>
+    <!-- 007 -->    <item>100</item>
+    <!-- 008 -->    <item>100</item>
+    <!-- 009 -->    <item>100</item>
     </array>
     
     <array name="attack_is_first">
     <!-- 000 -->    <item>0</item>
     <!-- 001 -->    <item>1</item>
     <!-- 002 -->    <item>0</item>
+    <!-- 003 -->    <item>0</item>
+    <!-- 004 -->    <item>0</item>
+    <!-- 005 -->    <item>0</item>
+    <!-- 006 -->    <item>0</item>
+    <!-- 007 -->    <item>0</item>
+    <!-- 008 -->    <item>0</item>
+    <!-- 009 -->    <item>0</item>
     </array>
     
     <array name="attack_is_pasive">
     <!-- 000 -->    <item>0</item>
     <!-- 001 -->    <item>0</item>
     <!-- 002 -->    <item>1</item>
+    <!-- 003 -->    <item>1</item>
+    <!-- 004 -->    <item>0</item>
+    <!-- 005 -->    <item>0</item>
+    <!-- 006 -->    <item>0</item>
+    <!-- 007 -->    <item>0</item>
+    <!-- 008 -->    <item>0</item>
+    <!-- 009 -->    <item>0</item>
     </array>
     
 </resources>

@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                android:text="Nv 15"
+                android:text=""
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
@@ -30,7 +30,7 @@
                 android:id="@+id/captured_data_name_text_view2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Charmander"
+                android:text=""
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/Margin20"
-                android:text="PS"
+                android:text=""
                 android:textColor="#FFFFFF"
                 android:textSize="15sp" />
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/Margin10"
             android:gravity="right|center"
-            android:text="50 / 60" />
+            android:text="" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                 android:id="@+id/capture_data_attack_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -102,7 +102,7 @@
                 android:id="@+id/capture_data_defense_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -123,7 +123,7 @@
                 android:id="@+id/capture_data_speed_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -144,7 +144,7 @@
                 android:id="@+id/capture_data_agility_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -165,7 +165,7 @@
                 android:id="@+id/capture_data_precision_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -194,7 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/Margin15"
             android:gravity="right"
-            android:text="TextView" />
+            android:text="" />
 
 	</LinearLayout>
 
