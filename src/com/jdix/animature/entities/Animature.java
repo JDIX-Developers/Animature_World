@@ -65,12 +65,12 @@ public class Animature implements Serializable {
 	final String nickname, final int status, final Attack a1, final int a1pp,
 	final Attack a2, final int a2pp, final Attack a3, final int a3pp,
 	final Attack a4, final int a4pp, final int level, final int currentExp,
-	final int health)
+	final int health, final Context context)
 	{
 		this.id = id;
 		this.animature = animature;
 		this.save = save;
-		this.nickname = nickname;
+		this.nickname = nickname == null ? getName(context) : nickname;
 		this.status = status;
 		this.attacks[0] = a1;
 		this.attacks[1] = a2;
@@ -95,10 +95,9 @@ public class Animature implements Serializable {
 	public Animature(final int animature, final String nickname,
 	final Context context)
 	{
-		this(0, animature, Player.getInstance().getId(),
-		(nickname == null ? Animature.getName(animature, context) : nickname),
-		OK, Attack.load(1, context), Attack.load(1, context).getMaxPP(), null,
-		0, null, 0, null, 0, 5, 0, 0);
+		this(0, animature, Player.getInstance().getId(), nickname, OK, Attack
+		.load(1, context), Attack.load(1, context).getMaxPP(), null, 0, null,
+		0, null, 0, 5, 0, 0, context);
 
 		this.setHealth(this.getMaxHealth(context));
 	}
@@ -262,6 +261,15 @@ public class Animature implements Serializable {
 	public int getBaseExp(final Context context)
 	{
 		return getBaseExp(animature, context);
+	}
+
+	/**
+	 * @param context - The context of the application
+	 * @return - The name of the Animature
+	 */
+	public String getName(final Context context)
+	{
+		return context.getResources().getStringArray(R.array.animature_names)[animature - 1];
 	}
 
 	/**
@@ -589,7 +597,8 @@ public class Animature implements Serializable {
 			db.close();
 
 			return new Animature(id, animature, save, nickname, status, a1,
-			a1pp, a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp, healthAct);
+			a1pp, a2, a2pp, a3, a3pp, a4, a4pp, level, currentExp, healthAct,
+			context);
 		}
 		else
 		{

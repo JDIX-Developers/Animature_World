@@ -3,7 +3,6 @@ package com.jdix.animature;
 import android.app.Activity;
 import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -422,13 +421,6 @@ public class BattleActivity extends Activity {
 			enemyCapturedImageView.setVisibility(View.VISIBLE);
 		}
 
-		// WILD ANIMATURE NAME
-		if (wildAnimature == null)
-		{
-			Log.e("ESCUPE", "ES NULL");
-		}
-		Log.e("ESCUPE", "HAPPY " + wildAnimature);
-		Log.e("ESCUPE2", enemyNameTextView.toString());
 		enemyNameTextView.setText(wildAnimature.getNickname());
 
 		// WILD ANIMATURE LEVEL

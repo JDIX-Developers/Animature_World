@@ -562,7 +562,7 @@ public class MapView extends View implements OnTouchListener {
 				Animature.OK, Attack.load(1, context), Attack.load(1, context)
 				.getMaxPP(), Attack.load(2, context), Attack.load(2, context)
 				.getMaxPP(), null, 0, null, 0, 5, 0, Animature.getMaxHealth(10,
-				5, context));
+				5, context), context);
 
 				final Intent intent = new Intent(context, BattleActivity.class);
 				final Bundle b = new Bundle();
