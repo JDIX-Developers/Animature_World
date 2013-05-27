@@ -94,7 +94,6 @@ public class Map {
 	private void generateData(final byte[] array) throws CompressionException,
 	SpriteException
 	{
-		// TODO errors on double X, Y compression
 		this.squares = new Square[height][width];
 
 		int pointer = 2;
@@ -170,12 +169,13 @@ public class Map {
 			while (array.length > p + 7)
 			{
 				links.put(
-				new PosEntry<Byte, Byte>(array[p], array[p + 1]),
-				new Link(MathUtils.fourByteToInt(array[p + 2], array[p + 3],
-				array[p + 4], array[p + 5]), array[p + 6], array[p + 7]));
-				p += 8;
+				new PosEntry<Byte, Byte>(array[p++], array[p++]),
+				new Link(MathUtils.fourByteToInt(array[p++], array[p++],
+				array[p++], array[p++]), array[p++], array[p++]));
 			}
 		}
+
+		System.out.println(links.size());
 	}
 
 	private void generateBitmap()

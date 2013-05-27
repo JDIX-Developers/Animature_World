@@ -418,6 +418,7 @@ public class MapView extends View implements OnTouchListener {
 							bitmap = Player.getInstance().getBitmap(right);
 						}
 					}
+
 					if (next() != null
 					&& (next().isOfType(Square.WALKABLE) || map.getLinkAt(
 					nextX(), nextY()) != null))
