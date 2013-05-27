@@ -116,7 +116,6 @@ public class LaunchActivity extends Activity {
 	{
 		if (keyCode == KeyEvent.KEYCODE_BACK)
 		{
-			// mp.stop();
 			finish();
 		}
 

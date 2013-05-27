@@ -3,7 +3,6 @@ package com.jdix.animature;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
@@ -58,14 +57,5 @@ public class PlayerCapturedAnimatureDataView extends TabActivity {
 		tabHost.addTab(infoAnim);
 		tabHost.addTab(habilAnim);
 		tabHost.addTab(attacksAnim);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
-	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.player_captured_animature_data_view,
-		menu);
-		return true;
 	}
 }
