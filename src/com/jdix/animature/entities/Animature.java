@@ -551,6 +551,7 @@ public class Animature implements Serializable {
 	 */
 	private static void levelUp(final Animature animature, final Context context)
 	{
+		animature.setHealth(animature.getMaxHealth(context));
 		animature.setCurrentExp(animature.getCurrentExp()
 		- animature.getMaxExperience(context));
 		animature.setLevel(animature.getLevel() + 1);
