@@ -1,6 +1,7 @@
 package com.jdix.animature;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -146,7 +147,13 @@ public class BattleActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				// TODO NOTHING
+				final AlertDialog.Builder builder = new AlertDialog.Builder(
+				BattleActivity.this);
+				builder.setTitle("No disponible");
+				builder.setMessage("¡Espere nuevas actualizaciones!");
+				builder.setPositiveButton("Aceptar", null);
+				builder.create();
+				builder.show();
 			}
 		});
 		btnBagBattleActivity = (Button) findViewById(R.id.btnBagBattleActivity);
@@ -156,7 +163,13 @@ public class BattleActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				// TODO NOTHING
+				final AlertDialog.Builder builder = new AlertDialog.Builder(
+				BattleActivity.this);
+				builder.setTitle("No disponible");
+				builder.setMessage("¡Espere nuevas actualizaciones!");
+				builder.setPositiveButton("Aceptar", null);
+				builder.create();
+				builder.show();
 			}
 		});
 		btnEscapeBattleActivity = (Button) findViewById(R.id.btnEscapeBattleActivity);
@@ -366,14 +379,14 @@ public class BattleActivity extends Activity {
 			case 12:
 				if (levelUp == true)
 				{
+					loadPlayerAnimatureComponents();
 					showPlayerTextView(getResources().getString(
 					R.string.battle_string_16).replace("%a",
 					playerAnimature.getNickname()));
 				}
-				finish();
 			break;
 			case 13:
-
+				finish();
 			break;
 
 		}
@@ -486,12 +499,18 @@ public class BattleActivity extends Activity {
 		&& playerSelectedAttack > - 1)
 		{
 			attack(playerAnimature, playerSelectedAttack, wildAnimature);
-			attack(wildAnimature, enemyIndexAttack, playerAnimature);
+			if (wildAnimature.getHealth() > 0)
+			{
+				attack(wildAnimature, enemyIndexAttack, playerAnimature);
+			}
 		}
 		else
 		{
 			attack(wildAnimature, enemyIndexAttack, playerAnimature);
-			attack(playerAnimature, playerSelectedAttack, wildAnimature);
+			if (playerAnimature.getHealth() > 0)
+			{
+				attack(playerAnimature, playerSelectedAttack, wildAnimature);
+			}
 		}
 		Log.e("VIDA", "Vida animature: " + playerAnimature.getHealth());
 		Log.e("VIDA2", "Vida wildAnimature: " + wildAnimature.getHealth());
