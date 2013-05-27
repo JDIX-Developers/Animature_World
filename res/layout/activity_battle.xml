@@ -366,7 +366,6 @@
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
                     android:maxLines="2"
-                    android:text="Placaje (5/10)\nTipo Normal"
                     android:textSize="12sp" />
 
                 <Button
@@ -375,7 +374,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
-                    android:text="Placaje (5/10)\nTipo Normal"
                     android:textSize="12sp" />
 
                 <Button
@@ -384,7 +382,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
-                    android:text="Placaje (5/10)\nTipo Normal"
                     android:textSize="12sp" />
 
                 <Button
@@ -392,7 +389,6 @@
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Placaje (5/10)\nTipo Normal"
                     android:textSize="12sp" />
 
             </LinearLayout>
