@@ -1,6 +1,7 @@
 package com.jdix.animature;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -146,7 +147,13 @@ public class BattleActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				// TODO NOTHING
+				final AlertDialog.Builder builder = new AlertDialog.Builder(
+				BattleActivity.this);
+				builder.setTitle("No disponible");
+				builder.setMessage("¡Espere nuevas actualizaciones!");
+				builder.setPositiveButton("Aceptar", null);
+				builder.create();
+				builder.show();
 			}
 		});
 		btnBagBattleActivity = (Button) findViewById(R.id.btnBagBattleActivity);
@@ -156,7 +163,13 @@ public class BattleActivity extends Activity {
 			@Override
 			public void onClick(final View view)
 			{
-				// TODO NOTHING
+				final AlertDialog.Builder builder = new AlertDialog.Builder(
+				BattleActivity.this);
+				builder.setTitle("No disponible");
+				builder.setMessage("¡Espere nuevas actualizaciones!");
+				builder.setPositiveButton("Aceptar", null);
+				builder.create();
+				builder.show();
 			}
 		});
 		btnEscapeBattleActivity = (Button) findViewById(R.id.btnEscapeBattleActivity);
@@ -337,6 +350,8 @@ public class BattleActivity extends Activity {
 			// RETURN TO MAP VIEW
 			break;
 			case 10:
+				clearBottomLayouts();
+				playerTextView.setVisibility(View.VISIBLE);
 				showPlayerTextView(getResources().getString(
 				R.string.battle_string_10).replace("%a",
 				Animature.getName(wildAnimature.getAnimature(), this)));
@@ -359,18 +374,19 @@ public class BattleActivity extends Activity {
 					levelUp = true;
 					playerAnimature.levelUp(this);
 				}
+				loadPlayerAnimatureComponents();
 			break;
 			case 12:
 				if (levelUp == true)
 				{
+					loadPlayerAnimatureComponents();
 					showPlayerTextView(getResources().getString(
 					R.string.battle_string_16).replace("%a",
 					playerAnimature.getNickname()));
 				}
-			// RETURN TO MAP VIEW
 			break;
 			case 13:
-
+				finish();
 			break;
 
 		}
@@ -417,7 +433,9 @@ public class BattleActivity extends Activity {
 		+ maxHealth);
 		// Player Animature Exp ProgressBar
 		playerAnimatureExperienceProgressBar.setMax(playerAnimature
-		.getMaxHealth(this));
+		.getMaxExperience(this));
+		playerAnimatureExperienceProgressBar.setProgress(playerAnimature
+		.getCurrentExp());
 		// Battle Options Layout Header
 		playerBattleOptionsHeader.setText(getResources().getString(
 		R.string.battle_string_3).replace("%a",
@@ -481,12 +499,18 @@ public class BattleActivity extends Activity {
 		&& playerSelectedAttack > - 1)
 		{
 			attack(playerAnimature, playerSelectedAttack, wildAnimature);
-			attack(wildAnimature, enemyIndexAttack, playerAnimature);
+			if (wildAnimature.getHealth() > 0)
+			{
+				attack(wildAnimature, enemyIndexAttack, playerAnimature);
+			}
 		}
 		else
 		{
 			attack(wildAnimature, enemyIndexAttack, playerAnimature);
-			attack(playerAnimature, playerSelectedAttack, wildAnimature);
+			if (playerAnimature.getHealth() > 0)
+			{
+				attack(playerAnimature, playerSelectedAttack, wildAnimature);
+			}
 		}
 		Log.e("VIDA", "Vida animature: " + playerAnimature.getHealth());
 		Log.e("VIDA2", "Vida wildAnimature: " + wildAnimature.getHealth());
@@ -506,7 +530,14 @@ public class BattleActivity extends Activity {
 		else if (wildAnimature.getHealth() < 0)
 		{
 			stageOfBattle = 10;
+			loadEnemyAnimatureComponents();
+			loadPlayerAnimatureComponents();
 			enemyImageView.setVisibility(View.INVISIBLE);
+			stagesOfBattle();
+		}
+		else
+		{
+			stageOfBattle = 2;
 			stagesOfBattle();
 		}
 

@@ -455,8 +455,7 @@ public class Animature implements Serializable {
 	 */
 	public static int getBaseExp(final int animature, final Context context)
 	{
-		return Integer.parseInt(context.getResources().getStringArray(
-		R.array.animature_base_exp)[animature - 1]);
+		return context.getResources().getIntArray(R.array.animature_base_exp)[animature - 1];
 	}
 
 	/**
@@ -552,6 +551,7 @@ public class Animature implements Serializable {
 	 */
 	private static void levelUp(final Animature animature, final Context context)
 	{
+		animature.setHealth(animature.getMaxHealth(context));
 		animature.setCurrentExp(animature.getCurrentExp()
 		- animature.getMaxExperience(context));
 		animature.setLevel(animature.getLevel() + 1);
