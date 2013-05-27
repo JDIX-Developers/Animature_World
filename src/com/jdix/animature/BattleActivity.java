@@ -440,12 +440,16 @@ public class BattleActivity extends Activity {
 		&& playerSelectedAttack > - 1)
 		{
 			attack(playerAnimature, playerSelectedAttack, wildAnimature);
+			attack(wildAnimature,
+			BattleUtils.getEnemyAnimatureRandomAttack(wildAnimature),
+			playerAnimature);
 		}
 		else
 		{
 			attack(wildAnimature,
 			BattleUtils.getEnemyAnimatureRandomAttack(wildAnimature),
 			playerAnimature);
+			attack(playerAnimature, playerSelectedAttack, wildAnimature);
 		}
 	}
 
