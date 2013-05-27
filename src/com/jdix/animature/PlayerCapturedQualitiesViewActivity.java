@@ -61,18 +61,16 @@ public class PlayerCapturedQualitiesViewActivity extends Activity {
 		capturedDataPsTextView.setText(animature.getHealth() + " / "
 		+ animature.getMaxHealth(this));
 
-		/*
-		 * capturedDataAttackTextView
-		 * .setText(animature.getQualities(this)[Animature.STRENGTH]);
-		 * capturedDataDefenseTextView
-		 * .setText(animature.getQualities(this)[Animature.DEFENSE]);
-		 * capturedDataSpeedTextView
-		 * .setText(animature.getQualities(this)[Animature.SPEED]);
-		 * capturedDataAgilityTextView
-		 * .setText(animature.getQualities(this)[Animature.AGILITY]);
-		 * capturedDataPrecisionTextView
-		 * .setText(animature.getQualities(this)[Animature.PRECISION]);
-		 */
+		capturedDataAttackTextView
+		.setText(animature.getQualities(this)[Animature.STRENGTH]);
+		capturedDataDefenseTextView
+		.setText(animature.getQualities(this)[Animature.DEFENSE]);
+		capturedDataSpeedTextView
+		.setText(animature.getQualities(this)[Animature.SPEED]);
+		capturedDataAgilityTextView
+		.setText(animature.getQualities(this)[Animature.AGILITY]);
+		capturedDataPrecisionTextView
+		.setText(animature.getQualities(this)[Animature.PRECISION]);
 
 		capturedDataExperienceProgressBar.setMax(animature
 		.getMaxExperience(this));

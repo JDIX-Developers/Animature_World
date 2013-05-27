@@ -17,7 +17,7 @@
             android:layout_marginRight="@dimen/Margin15"
             android:text="Nv 25"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/captured_data_name_text_view"
@@ -41,7 +41,7 @@
             android:id="@+id/captured_data_image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.6"
+            android:layout_weight="0.7"
             android:src="@drawable/f1" />
 
         <LinearLayout
@@ -62,7 +62,7 @@
                     android:layout_marginRight="@dimen/Margin15"
                     android:gravity="center"
                     android:text="Nº."
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:width="100dp" />
 
                 <TextView
@@ -86,7 +86,7 @@
                     android:layout_marginRight="@dimen/Margin15"
                     android:gravity="center"
                     android:text="NOMBRE"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:width="100dp" />
 
                 <TextView
@@ -101,6 +101,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/Margin10"
                 android:layout_marginTop="@dimen/Margin5"
                 android:gravity="center_vertical" >
 
@@ -111,7 +112,7 @@
                     android:layout_marginRight="@dimen/Margin15"
                     android:gravity="center"
                     android:text="TIPO"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:width="100dp" />
 
                 <TextView
@@ -120,14 +121,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/Margin10"
                     android:gravity="center"
-                    android:text="Fuego" />
+                    android:text="Fuego"
+                    android:textColor="#000000"
+                    android:width="70dp" />
 
                 <TextView
                     android:id="@+id/captured_data_type2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Fuego" />
+                    android:text="Fuego"
+                    android:textColor="#000000"
+                    android:width="80dp" />
 
             </LinearLayout>
 
@@ -143,11 +148,18 @@
         android:text="Descripción"
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/captured_data_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/Margin10"
-        android:textSize="18sp" />
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/captured_data_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/Margin10"
+            android:textSize="18sp" />
+
+    </ScrollView>
 
 </LinearLayout>

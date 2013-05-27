@@ -192,8 +192,10 @@
             android:id="@+id/capture_data_experience_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/Margin15"
             android:gravity="right"
             android:text="TextView" />
+
 	</LinearLayout>
 
 </ScrollView>
