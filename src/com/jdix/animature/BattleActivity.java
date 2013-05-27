@@ -493,14 +493,7 @@ public class BattleActivity extends Activity {
 			{
 				BattleUtils.getDamage(attacker, defender,
 				attacker.getAttacks()[indexAttack], this);
-				try
-				{
-					this.wait(2000);
-				}
-				catch (final InterruptedException e)
-				{
-					e.printStackTrace();
-				}
+
 				switch (attacker.getAttacks()[indexAttack].getEffectivenes(
 				defender, this))
 				{
@@ -527,10 +520,21 @@ public class BattleActivity extends Activity {
 						false);
 					break;
 				}
+				try
+				{
+					this.wait(2000);
+				}
+				catch (final InterruptedException e)
+				{
+					e.printStackTrace();
+				}
 			}
 			else
 			{
-
+				showPlayerTextView(
+				getResources().getString(R.string.battle_string_9).replace(
+				"*anim*", Animature.getName(attacker.getAnimature(), this)),
+				false);
 			}
 		}
 	}
