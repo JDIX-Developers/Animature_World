@@ -14,11 +14,23 @@ import com.jdix.animature.map.MapView;
  */
 public class MapActivity extends Activity {
 
+	private MapView	view;
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(new MapView(this));
+		setContentView(view = new MapView(this));
+	}
+
+	@Override
+	protected void onActivityResult(final int requestCode,
+	final int resultCode, final Intent data)
+	{
+		if (requestCode == 1)
+		{
+			view.continueMoving();
+		}
 	}
 
 	@Override

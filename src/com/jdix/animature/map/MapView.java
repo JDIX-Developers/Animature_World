@@ -295,6 +295,14 @@ public class MapView extends View implements OnTouchListener {
 		return NONE | (MapView.this.control & A) | (MapView.this.control & B);
 	}
 
+	/**
+	 * Continues the movement of the map
+	 */
+	public void continueMoving()
+	{
+		move.continueMoving();
+	}
+
 	private class MoveThread extends Thread {
 
 		private boolean	stopped;
@@ -303,6 +311,7 @@ public class MapView extends View implements OnTouchListener {
 		private int		y;
 		private Bitmap	bitmap;
 		private int		control;
+		private boolean	inBattle;
 
 		public MoveThread()
 		{
@@ -512,12 +521,12 @@ public class MapView extends View implements OnTouchListener {
 					e.printStackTrace();
 				}
 
-				stopped = getArrowControl() == NONE;
+				stopped = inBattle || getArrowControl() == NONE;
 				while ( ! stopped && finished)
 				{
 					this.control = getArrowControl() | getABControls();
 					nextMove();
-					stopped = getArrowControl() == NONE;
+					stopped = inBattle || getArrowControl() == NONE;
 				}
 			}
 			while (true);
@@ -568,7 +577,9 @@ public class MapView extends View implements OnTouchListener {
 				final Bundle b = new Bundle();
 				b.putSerializable("wild_animature", wildAnim);
 				intent.putExtras(b);
-				context.startActivity(intent);
+				((Activity) context).startActivityForResult(intent, 1);
+
+				inBattle = true;
 
 				// if (Math.random() < 0.7)
 				// {
@@ -576,6 +587,11 @@ public class MapView extends View implements OnTouchListener {
 				// }
 			}
 
+		}
+
+		public void continueMoving()
+		{
+			inBattle = false;
 		}
 
 		public Bitmap getBitmap()
