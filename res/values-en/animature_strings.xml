@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   
+    <!-- TODO New Animature Names -->
+    <string-array name="animature_names">
+    <!-- 000 -->    <item>Bulbasur</item>
+    <!-- 001 -->    <item>Ivysaur</item>
+    <!-- 002 -->    <item>Venusaur</item>
+    <!-- 003 -->    <item>Charmander</item>
+    <!-- 004 -->    <item>Charmeleon</item>
+    <!-- 005 -->    <item>Charizard</item>
+    <!-- 006 -->    <item>Squirtle</item>
+    <!-- 007 -->    <item>Wartortle</item>
+    <!-- 008 -->    <item>Blastoise</item>
+    <!-- 009 -->    <item>Caterpie</item>
+    <!-- 010 -->    <item>Metapod</item>
+    <!-- 011 -->    <item>Butterfree</item>
+    <!-- 012 -->    <item>Weedle</item>
+    <!-- 013 -->    <item>Kakuna</item>
+    <!-- 014 -->    <item>Beedrill</item>
+    <!-- 015 -->    <item>Pidgey</item>
+    <!-- 016 -->    <item>Pidgeotto</item>
+    <!-- 017 -->    <item>Pidgeot</item>
+    <!-- 018 -->    <item>Rattata</item>
+    <!-- 019 -->    <item>Raticate</item>
+    </string-array>
+    
+    <!-- TODO translate new descriptions -->
+    <string-array name="animature_descriptions">
+    <!-- 000 -->    <item>Después de nacer, crece alimentándose de la semilla de su lomo.</item>
+    <!-- 001 -->    <item>Cuando el capullo de su lomo se hincha, desprende un dulce aroma para indicar el florecimiento.</item>
+    <!-- 002 -->    <item>Después de un día de lluvia, la flor de su lomo tiene un aroma más potente y atrae a otros Pokémon.</item>
+    <!-- 003 -->    <item>La llama de la punta de su cola indica su salud. Si Charmander está sano arderá con más fuerza.</item>
+    <!-- 004 -->    <item>En las montañas rocosas donde viven los Charmeleon, sus colas ardientes brillan como estrellas.</item>
+    <!-- 005 -->    <item>Se dice que el fuego de Charizard arde con más fuerza si ha vivido duras batallas.</item>
+    <!-- 006 -->    <item>Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.</item>
+    <!-- 007 -->    <item>Se dice que vive 10.000 años. Su peluda cola es un símbolo de longevidad.</item>
+    <!-- 008 -->    <item>Los chorros de agua que lanza por los tubos de su caparazón pueden atravesar el acero.</item>
+    <!-- 009 -->    <item>Su antena roja desprende un gran hedor para repeler a los enemigos. Crece mudándose repetidamente.</item>
+    <!-- 010 -->    <item>Su frágil cuerpo está recubierto de una coraza dura como el acero. Permanece quieto en su desarrollo.</item>
+    <!-- 011 -->    <item>Adora el néctar de las flores. Puede localizar hasta las más pequeñas cantidades de polen.</item> 
+    <!-- 012 -->    <item>Come el equivalente a su peso en hojas todos los días. Se defiende con el aguijón de su cabeza.</item>
+    <!-- 013 -->    <item>Se esconde de sus atacantes entre las ramas de los árboles mientras espera a evolucionar.</item>
+    <!-- 014 -->    <item>Atacan volando alrededor del objetivo y usando su aguijón venenoso antes de huir.</item>
+    <!-- 015 -->    <item>Es manso y prefiere evitar los problemas. Sin embargo, si le molestan, atacará ferozmente.</item>
+    <!-- 016 -->    <item>Sobrevuela su extenso territorio en busca de presas y ataca con sus poderosas garras.</item>
+    <!-- 017 -->    <item>Aleteando con toda su fuerza, Pidgeot crea corrientes de aire capaces de doblar grandes árboles.</item>
+    <!-- 018 -->    <item>Su capacidad de adaptación le permite vivir en cualquier lugar. Es tremendamente cauteloso.</item>
+    <!-- 019 -->    <item>Lima sus colmillos royendo objetos duros. Con ellos puede destruir incluso paredes de hormigón.</item>
+    </string-array>
+    
+    <string-array name="animature_types_names">
+    <!-- 000 -->	<item>Normal</item>
+    <!-- 001 -->  	<item>Fire</item>
+    <!-- 002 -->	<item>Water</item>
+    <!-- 003 -->	<item>Grass</item>
+  	<!-- 004 -->	<item>Electric</item>
+	<!-- 005 -->  	<item>Ice</item>
+	<!-- 006 -->	<item>Fight</item>
+	<!-- 007 -->	<item>Poison</item>
+    <!-- 008 -->	<item>Ground</item>
+    <!-- 009 -->	<item>Flying</item>
+    <!-- 010 -->	<item>Psychic</item>
+    <!-- 011 -->	<item>Bug</item>
+    <!-- 012 -->	<item>Rock</item>
+    <!-- 013 -->	<item>Ghost</item>
+    <!-- 014 -->	<item>Dragon</item>
+    <!-- 015 -->	<item>Dark</item>
+    <!-- 016 -->	<item>Steel</item>
+	</string-array>
+	
+    <string-array name="animature_qualities_names">
+    <!-- 000 -->	<item>Speed</item>
+    <!-- 001 -->  	<item>Defense</item>
+    <!-- 002 -->	<item>Agility</item>
+    <!-- 003 -->	<item>Strength</item>
+  	<!-- 004 -->	<item>Precision</item>
+	</string-array>
+	
+    <string-array name="status_names">
+    <!-- 000 -->    <item>Normal</item>
+    <!-- 001 -->    <item>Paralyzed</item>
+    <!-- 002 -->    <item>Burned</item>
+    <!-- 003 -->    <item>Poisoned</item>
+    <!-- 004 -->    <item>Asleep</item>
+    <!-- 005 -->    <item>Frozen</item>
+    </string-array>
+    
+</resources>
