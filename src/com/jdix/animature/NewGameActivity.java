@@ -263,6 +263,10 @@ public class NewGameActivity extends Activity {
 						Square.setSprite(new Sprite(this, R.raw.sprite64,
 						R.drawable.sprite));
 					break;
+					case DisplayMetrics.DENSITY_XXHIGH:
+						Square.setSprite(new Sprite(this, R.raw.sprite96,
+						R.drawable.sprite));
+					break;
 				}
 
 				Player.set(new Map(R.raw.map_test, this), playerName,

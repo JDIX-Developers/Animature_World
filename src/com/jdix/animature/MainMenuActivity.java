@@ -130,6 +130,10 @@ public class MainMenuActivity extends Activity {
 							Square.setSprite(new Sprite(MainMenuActivity.this,
 							R.raw.sprite64, R.drawable.sprite));
 						break;
+						case DisplayMetrics.DENSITY_XXHIGH:
+							Square.setSprite(new Sprite(MainMenuActivity.this,
+							R.raw.sprite96, R.drawable.sprite));
+						break;
 					}
 
 					Player.load(1, MainMenuActivity.this);
