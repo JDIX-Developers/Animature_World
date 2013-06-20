@@ -13,6 +13,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.View;
@@ -49,6 +51,11 @@ public class LaunchActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
+
+		Log.e("MENSAJE", "MENSAJE");
+		final DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		Log.e("DENSIDAD", "" + metrics.densityDpi);
 
 		// We get a reference to the interface controls
 		mEditTextUserLogin = (EditText) findViewById(R.id.editText_UserLogin);
