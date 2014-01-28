@@ -98,6 +98,10 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
+        <activity
+            android:name="com.jdix.animature.GifTestActivity"
+            android:label="@string/title_activity_gif_test" >
+        </activity>
     </application>
 
 </manifest>
